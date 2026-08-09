@@ -1,0 +1,22 @@
+generatorName: php
+inputSpec: https://api.ibexa.ai/api/v1/openapi.json
+outputDir: /local/src
+skipValidateSpec: true
+
+globalProperties:
+  models: ""
+  modelDocs: false
+  modelTests: false
+  apis: "public"
+  apiDocs: false
+  apiTests: false
+  composerPackageName: ibexa/agent-platform-api
+  supportingFiles: ""
+  library: "psr-18"
+  srcBasePath: "src"
+  skipFormModel: false
+
+additionalProperties:
+  apiPackage: Client
+  modelPackage: Model
+  invokerPackage: Ibexa\AgentPlatform

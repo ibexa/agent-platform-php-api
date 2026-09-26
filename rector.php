@@ -6,11 +6,20 @@
  */
 declare(strict_types=1);
 
-use Ibexa\Contracts\Rector\Factory\IbexaRectorConfigFactory;
+require_once __DIR__ . '/rector/AddReturnTypeFromPhpDocRector.php';
 
-return (new IbexaRectorConfigFactory(
-    [
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
-    ]
-))->createConfig();
+use Ibexa\AgentPlatform\Rector\AddReturnTypeFromPhpDocRector;
+use Rector\Config\RectorConfig;
+use Rector\Set\ValueObject\SetList;
+
+return RectorConfig::configure()
+    ->withRules([
+        AddReturnTypeFromPhpDocRector::class,
+    ])
+    ->withPaths([
+        __DIR__ . '/src/lib',
+    ])
+    ->withPhpSets(php83: true)
+    ->withSets([
+        SetList::TYPE_DECLARATION,
+    ]);

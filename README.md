@@ -1,5 +1,8 @@
 # agentic-platform-api
 
+For installation, authentication, usage examples, API overview, and architecture,
+see the [PHP developer guide](docs/README.md).
+
 ## Installation & Usage
 
 ### Requirements
@@ -34,7 +37,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Ibexa\AgentPlatform\Api\AccountActivationApi(
+$apiInstance = new Ibexa\AgentPlatform\Client\AccountActivationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()

@@ -1,4 +1,4 @@
-# agentic-platform-api
+# Ibexa Agent Platform API
 
 For installation, authentication, usage examples, API overview, and architecture,
 see the [PHP developer guide](docs/README.md).
@@ -7,7 +7,9 @@ see the [PHP developer guide](docs/README.md).
 
 ### Requirements
 
-PHP 8.1 and later.
+PHP 8.1–8.x with the `curl`, `json`, and `mbstring` extensions, and Composer.
+The generated clients use Guzzle. A compatible HTTP adapter is also required
+to satisfy the package's asynchronous client dependency.
 
 ### Composer
 
@@ -18,41 +20,57 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/ibexa/agent-platform-api.git"
+      "url": "https://github.com/ibexa/agent-platform-php-api.git"
     }
   ],
   "require": {
-    "ibexa/agent-platform-api": "*@dev"
+    "ibexa/agent-platform-api": "*@dev",
+    "guzzlehttp/guzzle": "^7.0",
+    "php-http/guzzle7-adapter": "^1.0"
   }
 }
 ```
 
-Then run `composer install`
+Then run `composer install`. If the package is already available through a
+configured Composer repository, omit the VCS repository entry. Pin an
+appropriate release or branch for deployments.
 
 ## Getting Started
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+Configure the API origin and authenticate before using protected endpoints.
+Set the environment variables `AGENT_PLATFORM_USERNAME` and
+`AGENT_PLATFORM_PASSWORD` using your application's secret management.
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new Ibexa\AgentPlatform\Client\AccountActivationApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$token = 'token_example'; // string
-$activate_account_request_schema = new \Ibexa\AgentPlatform\Model\ActivateAccountRequestSchema(); // \Ibexa\AgentPlatform\Model\ActivateAccountRequestSchema
+require __DIR__ . '/vendor/autoload.php';
 
-try {
-    $result = $apiInstance->accountActivationActivateAccount($token, $activate_account_request_schema);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountActivationApi->accountActivationActivateAccount: ', $e->getMessage(), PHP_EOL;
+use GuzzleHttp\Client;
+use Ibexa\AgentPlatform\Client\AgentsApi;
+use Ibexa\AgentPlatform\Client\LoginApi;
+use Ibexa\AgentPlatform\Configuration;
+
+$username = getenv('AGENT_PLATFORM_USERNAME');
+$password = getenv('AGENT_PLATFORM_PASSWORD');
+if (!$username || !$password) {
+    throw new RuntimeException('Agent Platform credentials are required');
 }
 
+$config = (new Configuration())->setHost('https://api.ibexa.ai');
+$httpClient = new Client();
+$tokens = (new LoginApi($httpClient, $config))->loginLogin($username, $password);
+$config->setAccessToken($tokens->getAccessToken());
+
+$agents = (new AgentsApi($httpClient, $config))->agentsListAgents();
+foreach ($agents->getAgents() as $agent) {
+    echo $agent->getId() . ': ' . $agent->getName() . PHP_EOL;
+}
 ```
+
+Replace the host with your deployment's origin, without `/api/v1`. See the
+[developer guide](docs/README.md) for token refresh, error handling, and more
+examples.
 
 ## COPYRIGHT
 

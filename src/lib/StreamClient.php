@@ -13,6 +13,7 @@ use Psr\Http\Message\RequestInterface;
 use Symfony\Component\HttpClient\Chunk\ServerSentEvent;
 use Symfony\Component\HttpClient\EventSourceHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -66,13 +67,20 @@ final class StreamClient
             foreach ($client->stream($response) as $chunk) {
                 if ($chunk instanceof ServerSentEvent) {
                     yield new ServerSentEventSchema([
-                        'data' => $chunk->getData(),
+                        'data' => $chunk->getArrayData(),
                         'event' => $chunk->getType(),
                         'id' => $chunk->getId(),
                         'retry' => (int) round($chunk->getRetry() * 1000),
                     ]);
                 }
             }
+        } catch (DecodingExceptionInterface $exception) {
+            throw new ApiException(
+                sprintf('Error JSON decoding event data (%s): %s', (string) $request->getUri(), $exception->getMessage()),
+                $response->getStatusCode(),
+                $response->getHeaders(false),
+                isset($chunk) && $chunk instanceof ServerSentEvent ? $chunk->getData() : null,
+            );
         } catch (TransportExceptionInterface $exception) {
             throw $transport->transportException($exception);
         } finally {

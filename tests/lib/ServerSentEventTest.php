@@ -27,8 +27,8 @@ final class ServerSentEventTest extends TestCase
     {
         $response = new MockResponse([
             ": heartbeat\n\nid: 42\neve",
-            "nt: update\ndata: first\ndata: second\nretry: 1500\n\n",
-            "data: done\n\n",
+            "nt: update\ndata: {\"delta\": \"first\",\ndata: \"agent_id\": 1}\nretry: 1500\n\n",
+            "data: {\"status\":\"SUCCESS\"}\n\n",
         ], ['response_headers' => ['Content-Type' => 'text/event-stream; charset=utf-8']]);
         $http = new MockHttpClient($response);
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('token');
@@ -37,12 +37,12 @@ final class ServerSentEventTest extends TestCase
 
         self::assertCount(2, $events);
         self::assertInstanceOf(ServerSentEventSchema::class, $events[0]);
-        self::assertSame('first' . "\n" . 'second', $events[0]->getData());
+        self::assertSame(['delta' => 'first', 'agent_id' => 1], $events[0]->getData());
         self::assertSame('update', $events[0]->getEvent());
         self::assertSame('42', $events[0]->getId());
         self::assertSame(1500, $events[0]->getRetry());
         self::assertSame('message', $events[1]->getEvent());
-        self::assertSame('done', $events[1]->getData());
+        self::assertSame(['status' => 'SUCCESS'], $events[1]->getData());
         self::assertContains('Accept: text/event-stream', $response->getRequestOptions()['headers']);
         self::assertContains('Last-Event-ID: previous', $response->getRequestOptions()['headers']);
         self::assertContains('Authorization: Bearer token', $response->getRequestOptions()['headers']);
@@ -55,7 +55,7 @@ final class ServerSentEventTest extends TestCase
     {
         $body = '';
         $response = new MockResponse([
-            "data: one\n\n",
+            "data: {\"delta\":\"one\"}\n\n",
             new TransportException('Stream failed'),
         ], ['response_headers' => ['Content-Type' => 'text/event-stream']]);
         $http = new MockHttpClient(static function (
@@ -75,7 +75,7 @@ final class ServerSentEventTest extends TestCase
 
         try {
             foreach ($events as $event) {
-                self::assertSame('one', $event->getData());
+                self::assertSame(['delta' => 'one'], $event->getData());
             }
             self::fail('Expected an API exception.');
         } catch (ApiException $exception) {
@@ -91,7 +91,7 @@ final class ServerSentEventTest extends TestCase
     public function testGetEventStreamDoesNotReconnectOnFailure(): void
     {
         $http = new MockHttpClient([
-            new MockResponse(["data: one\n\n", new TransportException('Disconnected')], [
+            new MockResponse(["data: {\"delta\":\"one\"}\n\n", new TransportException('Disconnected')], [
                 'response_headers' => ['Content-Type' => 'text/event-stream'],
             ]),
             new MockResponse(),
@@ -137,7 +137,7 @@ final class ServerSentEventTest extends TestCase
 
     public function testReleasingIteratorCancelsResponse(): void
     {
-        $http = new class(new MockResponse(["data: one\n\n", "data: two\n\n"], [
+        $http = new class(new MockResponse(["data: {\"delta\":\"one\"}\n\n", "data: {\"delta\":\"two\"}\n\n"], [
             'response_headers' => ['Content-Type' => 'text/event-stream'],
         ])) extends MockHttpClient {
             public ?ResponseInterface $response = null;
@@ -152,7 +152,7 @@ final class ServerSentEventTest extends TestCase
         };
         $events = (new ExecutionsApi($http))->attachExecutionStreamEvents(1);
         $events->rewind();
-        self::assertSame('one', $events->current()->getData());
+        self::assertSame(['delta' => 'one'], $events->current()->getData());
         unset($events);
 
         self::assertTrue($http->response->getInfo('canceled'));
@@ -184,7 +184,7 @@ final class ServerSentEventTest extends TestCase
     public function testTimeoutDoesNotReconnect(): void
     {
         $http = new MockHttpClient([
-            new MockResponse(["data: one\n\n", ''], [
+            new MockResponse(["data: {\"delta\":\"one\"}\n\n", ''], [
                 'response_headers' => ['Content-Type' => 'text/event-stream'],
             ]),
             new MockResponse(),
@@ -203,5 +203,60 @@ final class ServerSentEventTest extends TestCase
         self::assertTrue(method_exists(PublicApi::class, 'attachExecutionStreamEvents'));
         self::assertTrue(method_exists(PublicApi::class, 'attachMessageStreamEvents'));
         self::assertTrue(method_exists(PublicApi::class, 'sendMessageStreamEvents'));
+    }
+
+    /**
+     * @dataProvider payloadProvider
+     */
+    public function testEventDataIsDecodedToArray(
+        string $json,
+        array $expected
+    ): void {
+        $http = new MockHttpClient(new MockResponse("data: $json\n\n", [
+            'response_headers' => ['Content-Type' => 'text/event-stream'],
+        ]));
+
+        $events = iterator_to_array((new ExecutionsApi($http))->attachExecutionStreamEvents(1));
+
+        self::assertSame($expected, $events[0]->getData());
+    }
+
+    public function payloadProvider(): iterable
+    {
+        yield 'nested objects' => ['{"message":{"content":"Hello","tool_calls":null},"agent_id":1}', [
+            'message' => ['content' => 'Hello', 'tool_calls' => null], 'agent_id' => 1,
+        ]];
+        yield 'list' => ['[{"delta":"Hello"},{"delta":"world"}]', [['delta' => 'Hello'], ['delta' => 'world']]];
+        yield 'empty object' => ['{}', []];
+        yield 'empty list' => ['[]', []];
+    }
+
+    /**
+     * @dataProvider invalidPayloadProvider
+     */
+    public function testInvalidEventDataIsReported(string $payload): void
+    {
+        $http = new MockHttpClient(new MockResponse("data: $payload\n\n", [
+            'response_headers' => ['Content-Type' => 'text/event-stream'],
+        ]));
+
+        try {
+            iterator_to_array((new ExecutionsApi($http))->attachExecutionStreamEvents(1));
+            self::fail('Expected an API exception.');
+        } catch (ApiException $exception) {
+            self::assertStringContainsString('Error JSON decoding event data', $exception->getMessage());
+            self::assertSame($payload, $exception->getResponseBody());
+            self::assertSame(200, $exception->getCode());
+        }
+        self::assertSame(1, $http->getRequestsCount());
+    }
+
+    public function invalidPayloadProvider(): iterable
+    {
+        yield 'malformed JSON' => ['{invalid'];
+        yield 'string' => ['"hello"'];
+        yield 'number' => ['42'];
+        yield 'null' => ['null'];
+        yield 'empty data' => [''];
     }
 }

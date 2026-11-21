@@ -92,7 +92,8 @@ Streaming operations expose generated `*StreamEvents()` methods that yield
 use Ibexa\AgentPlatform\Client\ExecutionsApi;
 $executions = new ExecutionsApi($httpClient, $config);
 foreach ($executions->attachExecutionStreamEvents(42) as $event) {
-    echo $event->getEvent() . ': ' . $event->getData() . PHP_EOL;
+    $payload = $event->getData();
+    var_dump($event->getEvent(), $payload);
 }
 ```
 
@@ -100,7 +101,8 @@ foreach ($executions->attachExecutionStreamEvents(42) as $event) {
 `sendMessageStreamEvents()`. The event model exposes `getData()`, `getEvent()`,
 `getId()` and `getRetry()`; retry is in milliseconds. Symfony defaults missing
 event types to `message`, missing IDs to an empty string, and missing retry to
-zero. The data is a string; decode it separately if the application expects JSON.
+zero. `getData()` returns the JSON payload decoded as an associative array,
+including nested objects. Invalid JSON and non-array payloads raise `ApiException`.
 
 Automatic reconnection and redirects are disabled, including for POST streams.
 For attachment streams, callers can explicitly reconnect with the last event ID.

@@ -32,5 +32,12 @@ if ($count === 0 || isset($spec->components->schemas->ServerSentEventSchema)) {
     throw new RuntimeException('Cannot generate the server-sent event model.');
 }
 
+$eventSchema = clone $eventSchema;
+$eventSchema->properties = clone $eventSchema->properties;
+$eventSchema->properties->data = (object) [
+    'type' => 'object',
+    'additionalProperties' => new stdClass(),
+    'description' => 'The JSON event payload decoded as an associative array.',
+];
 $spec->components->schemas->ServerSentEventSchema = $eventSchema;
 echo json_encode($spec, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_PRESERVE_ZERO_FRACTION);

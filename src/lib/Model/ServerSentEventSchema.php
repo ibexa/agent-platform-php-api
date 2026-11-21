@@ -66,7 +66,7 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static array $openAPITypes = [
-        'data' => 'string',
+        'data' => 'array<string,mixed>',
         'event' => 'string',
         'id' => 'string',
         'retry' => 'int',
@@ -94,7 +94,7 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var bool[]
      */
     protected static array $openAPINullables = [
-        'data' => true,
+        'data' => false,
         'event' => true,
         'id' => true,
         'retry' => true,
@@ -331,9 +331,9 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets data.
      *
-     * @return string|null
+     * @return array<string,mixed>|null
      */
-    public function getData(): ?string
+    public function getData(): ?array
     {
         return $this->container['data'];
     }
@@ -341,21 +341,14 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data.
      *
-     * @param string|null $data ISO 639-1 language code
+     * @param array<string,mixed>|null $data The JSON event payload decoded as an associative array.
      *
      * @return self
      */
-    public function setData(?string $data): static
+    public function setData(?array $data): static
     {
         if (null === $data) {
-            array_push($this->openAPINullablesSetToNull, 'data');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('data', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
         $this->container['data'] = $data;
 

@@ -23,3 +23,5 @@ additionalProperties:
   apiPackage: Client
   modelPackage: Model
   invokerPackage: Ibexa\AgentPlatform
+  removeOperationIdPrefix: true
+  removeOperationIdPrefixDelimiter: "-"

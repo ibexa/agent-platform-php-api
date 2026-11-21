@@ -1,0 +1,167 @@
+<?php
+
+/**
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
+declare(strict_types=1);
+
+namespace Ibexa\Tests\AgentPlatform;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
+use Ibexa\AgentPlatform\ApiException;
+use Ibexa\AgentPlatform\Client\AgentsApi;
+use Ibexa\AgentPlatform\Configuration;
+use Ibexa\AgentPlatform\Model\AgentListItemResponseSchema;
+use Ibexa\AgentPlatform\Model\AgentListResponseSchema;
+use Ibexa\AgentPlatform\Model\ExecutionResponseSchema;
+use Ibexa\AgentPlatform\Model\ExecutionStatus;
+use Ibexa\AgentPlatform\Model\ModelInterface;
+use Ibexa\AgentPlatform\Model\ModelReference;
+use Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema;
+use Ibexa\AgentPlatform\ObjectSerializer;
+use PHPUnit\Framework\TestCase;
+
+final class GeneratedClientTest extends TestCase
+{
+    public function testGeneratedModelClassesLoad(): void
+    {
+        foreach (glob(__DIR__ . '/../../src/lib/Model/*.php') as $file) {
+            $class = 'Ibexa\\AgentPlatform\\Model\\' . basename($file, '.php');
+            self::assertTrue(class_exists($class) || interface_exists($class), $class);
+        }
+    }
+
+    public function testScalarAccessorsAndModelMetadata(): void
+    {
+        $agent = new AgentListItemResponseSchema();
+
+        self::assertNull($agent->getName());
+        self::assertSame($agent, $agent->setName('Assistant'));
+        self::assertSame('Assistant', $agent->getName());
+        self::assertSame('AgentListItemResponseSchema', $agent->getOpenAPIModelName());
+        self::assertInstanceOf(ModelInterface::class, $agent);
+
+        $reference = new ModelReference(['model_name' => 'example']);
+        self::assertSame('example', $reference->getModelName());
+        self::assertSame('ModelReference', $reference->getOpenAPIModelName());
+    }
+
+    public function testGeneratedAccessorTypesMatchSerializerTypes(): void
+    {
+        foreach (glob(__DIR__ . '/../../src/lib/Model/*.php') as $file) {
+            $class = 'Ibexa\\AgentPlatform\\Model\\' . basename($file, '.php');
+            if (!class_exists($class) || !is_subclass_of($class, ModelInterface::class)) {
+                continue;
+            }
+
+            foreach ($class::openAPITypes() as $property => $schemaType) {
+                $getter = new \ReflectionMethod($class, $class::getters()[$property]);
+                $nativeType = $getter->getReturnType();
+                if ($nativeType === null) {
+                    continue;
+                }
+
+                $expectedType = match (true) {
+                    str_ends_with($schemaType, '[]'),
+                    str_starts_with($schemaType, 'array<') => 'array',
+                    $schemaType === 'integer' => 'int',
+                    default => $schemaType,
+                };
+                self::assertInstanceOf(\ReflectionNamedType::class, $nativeType);
+                self::assertSame($expectedType, $nativeType->getName(), $class . '::' . $property);
+                self::assertTrue($nativeType->allowsNull(), $class . '::' . $property);
+
+                $setter = new \ReflectionMethod($class, $class::setters()[$property]);
+                $parameterType = $setter->getParameters()[0]->getType();
+                self::assertInstanceOf(\ReflectionNamedType::class, $parameterType);
+                self::assertSame($expectedType, $parameterType->getName(), $class . '::' . $property);
+            }
+        }
+    }
+
+    public function testNullableFieldSerialization(): void
+    {
+        $payload = new UpdateAgentPayloadSchema();
+        $defaults = (array) ObjectSerializer::sanitizeForSerialization($payload);
+
+        self::assertArrayNotHasKey('description', $defaults);
+
+        $payload->setDescription(null);
+        self::assertEquals($defaults + ['description' => null], (array) ObjectSerializer::sanitizeForSerialization($payload));
+
+        $payload->setDescription('Updated');
+        self::assertEquals($defaults + ['description' => 'Updated'], (array) ObjectSerializer::sanitizeForSerialization($payload));
+    }
+
+    public function testEnumAndNestedModelDeserialization(): void
+    {
+        $execution = ObjectSerializer::deserialize(
+            (object) ['status' => ExecutionStatus::SUCCESS],
+            ExecutionResponseSchema::class
+        );
+        self::assertInstanceOf(ExecutionResponseSchema::class, $execution);
+        self::assertSame(ExecutionStatus::SUCCESS, $execution->getStatus());
+
+        $list = ObjectSerializer::deserialize(
+            (object) ['agents' => [(object) ['id' => 42, 'name' => 'Assistant']], 'total_count' => 1],
+            AgentListResponseSchema::class
+        );
+        self::assertInstanceOf(AgentListResponseSchema::class, $list);
+        self::assertInstanceOf(AgentListItemResponseSchema::class, $list->getAgents()[0]);
+        self::assertSame(42, $list->getAgents()[0]->getId());
+        self::assertSame(1, $list->getTotalCount());
+    }
+
+    public function testRequestAuthenticationAndResponse(): void
+    {
+        $requests = [];
+        $stack = HandlerStack::create(new MockHandler([
+            new Response(200, ['Content-Type' => 'application/json'], '{"agents":[],"total_count":0}'),
+        ]));
+        $stack->push(Middleware::history($requests));
+        $config = (new Configuration())->setHost('https://example.test')->setAccessToken('token');
+        $client = new AgentsApi(new Client(['handler' => $stack]), $config);
+
+        $response = $client->listAgents(5, 10);
+
+        self::assertSame([], $response->getAgents());
+        self::assertSame(0, $response->getTotalCount());
+        self::assertSame('Bearer token', $requests[0]['request']->getHeaderLine('Authorization'));
+        self::assertSame('/api/v1/agents/', $requests[0]['request']->getUri()->getPath());
+        self::assertSame('skip=5&limit=10', $requests[0]['request']->getUri()->getQuery());
+    }
+
+    public function testHttpErrorIsReported(): void
+    {
+        $stack = HandlerStack::create(new MockHandler([
+            new Response(403, ['Content-Type' => 'application/json'], '{"detail":"Forbidden"}'),
+        ]));
+        $client = new AgentsApi(new Client(['handler' => $stack]));
+
+        try {
+            $client->listAgents();
+            self::fail('Expected an API exception');
+        } catch (ApiException $exception) {
+            self::assertSame(403, $exception->getCode());
+            self::assertSame('{"detail":"Forbidden"}', $exception->getResponseBody());
+        }
+    }
+
+    public function testAsyncResponse(): void
+    {
+        $stack = HandlerStack::create(new MockHandler([
+            new Response(200, ['Content-Type' => 'application/json'], '{"agents":[],"total_count":0}'),
+        ]));
+        $client = new AgentsApi(new Client(['handler' => $stack]));
+
+        $response = $client->listAgentsAsync()->wait();
+
+        self::assertInstanceOf(AgentListResponseSchema::class, $response);
+        self::assertSame(0, $response->getTotalCount());
+    }
+}

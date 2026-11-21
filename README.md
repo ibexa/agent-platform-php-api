@@ -7,9 +7,8 @@ see the [PHP developer guide](docs/README.md).
 
 ### Requirements
 
-PHP 8.1–8.x with the `curl`, `json`, and `mbstring` extensions, and Composer.
-The generated clients use Guzzle. A compatible HTTP adapter is also required
-to satisfy the package's asynchronous client dependency.
+PHP 8.3–8.x with the `curl`, `json`, and `mbstring` extensions, and Composer.
+The generated clients use Guzzle for synchronous and asynchronous requests.
 
 ### Composer
 
@@ -24,9 +23,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
     }
   ],
   "require": {
-    "ibexa/agent-platform-api": "*@dev",
-    "guzzlehttp/guzzle": "^7.0",
-    "php-http/guzzle7-adapter": "^1.0"
+    "ibexa/agent-platform-api": "*@dev"
   }
 }
 ```
@@ -71,6 +68,21 @@ foreach ($agents->getAgents() as $agent) {
 Replace the host with your deployment's origin, without `/api/v1`. See the
 [developer guide](docs/README.md) for token refresh, error handling, and more
 examples.
+
+## Regenerating the client
+
+The client is generated from the checked-in `generator/openapi.json` snapshot
+using OpenAPI Generator 7.27.0 and the overrides in `generator/templates`.
+Install Docker, then run `./update.sh` from any directory. Update the snapshot
+deliberately when adopting API changes; the script does not fetch the live API.
+The snapshot contains streaming response `itemSchema` fields which the
+generator's validator does not recognize, so generation skips validation.
+
+Generated models expose native types for scalar and collection accessors and
+return `static` from setters. Scalar and collection getters remain nullable
+because a model can be constructed before required values are populated.
+The model metadata method is `getOpenAPIModelName()`; `getModelName()` is
+reserved for a schema field of that name.
 
 ## COPYRIGHT
 

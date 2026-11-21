@@ -1,5 +1,5 @@
 generatorName: php
-inputSpec: https://api.ibexa.ai/api/v1/openapi.json
+inputSpec: /local/generator/openapi.json
 outputDir: /local/src
 skipValidateSpec: true
 
@@ -13,13 +13,13 @@ globalProperties:
   apis: ""
   apiDocs: false
   apiTests: false
-  composerPackageName: ibexa/agent-platform-api
   supportingFiles: ""
-  library: "psr-18"
-  srcBasePath: "lib"
   skipFormModel: false
 
 additionalProperties:
+  library: guzzle
+  srcBasePath: lib
+  composerPackageName: ibexa/agent-platform-api
   apiPackage: Client
   modelPackage: Model
   invokerPackage: Ibexa\AgentPlatform

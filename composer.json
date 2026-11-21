@@ -2,7 +2,7 @@
     "name": "ibexa/agent-platform-api",
     "description": "PHP client for the Ibexa Agent Platform API",
     "license": "(GPL-2.0-only or proprietary)",
-    "type": "ibexa-bundle",
+    "type": "library",
     "authors": [
         {
             "name": "Ibexa R&D",
@@ -11,7 +11,13 @@
         }
     ],
     "keywords": [
-        "ibexa-dxp"
+        "ibexa",
+        "iamp",
+        "agent-platform",
+        "ai",
+        "agent",
+        "api-client",
+        "openapi"
     ],
     "require": {
         "php": "^8.3",
@@ -49,11 +55,6 @@
         "fix-cs": "Automatically fixes code style in all files",
         "check-cs": "Run code style checker for all files",
         "test": "Run automatic tests"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-main": "5.0.x-dev"
-        }
     },
     "config": {
         "sort-packages": true,

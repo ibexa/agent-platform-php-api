@@ -3,17 +3,20 @@ inputSpec: https://api.ibexa.ai/api/v1/openapi.json
 outputDir: /local/src
 skipValidateSpec: true
 
+openapiNormalizer:
+  FILTER: "tag:public"
+
 globalProperties:
   models: ""
   modelDocs: false
   modelTests: false
-  apis: "public"
+  apis: ""
   apiDocs: false
   apiTests: false
   composerPackageName: ibexa/agent-platform-api
   supportingFiles: ""
   library: "psr-18"
-  srcBasePath: "src"
+  srcBasePath: "lib"
   skipFormModel: false
 
 additionalProperties:

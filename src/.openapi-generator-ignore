@@ -31,3 +31,5 @@ phpunit.xml.dist
 README.md
 docs/
 test/
+lib/Client/Admin*Api.php
+lib/Model/Admin*.php

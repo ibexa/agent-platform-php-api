@@ -34,16 +34,13 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use Ibexa\AgentPlatform\ApiException;
+use Ibexa\AgentPlatform\AsyncResult;
 use Ibexa\AgentPlatform\Configuration;
 use Ibexa\AgentPlatform\HeaderSelector;
+use Ibexa\AgentPlatform\HttpTransport;
 use Ibexa\AgentPlatform\Model\ConversationBookmarkPayloadSchema;
 use Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema;
 use Ibexa\AgentPlatform\Model\ConversationListResponseSchema;
@@ -52,9 +49,10 @@ use Ibexa\AgentPlatform\Model\CreateConversationPayloadSchema;
 use Ibexa\AgentPlatform\Model\ForkConversationPayloadSchema;
 use Ibexa\AgentPlatform\Model\UpdateConversationPayloadSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
-use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * ConversationsApi Class Doc Comment.
@@ -68,9 +66,12 @@ use Psr\Http\Message\ResponseInterface;
 class ConversationsApi
 {
     /**
-     * @var ClientInterface
+     * @var HttpTransport
      */
     protected $client;
+
+    /** @var HttpClientInterface */
+    private $httpClient;
 
     /**
      * @var Configuration
@@ -116,19 +117,20 @@ class ConversationsApi
     ];
 
     /**
-     * @param ClientInterface $client
+     * @param HttpClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ?ClientInterface $client = null,
+        ?HttpClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->httpClient = $client ?: HttpClient::create();
+        $this->client = new HttpTransport($this->httpClient, $this->config);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
     }
@@ -200,30 +202,24 @@ class ConversationsApi
         $conversation_bookmark_payload_schema,
         string $contentType = self::contentTypes['bookmarkConversation'][0]
     ) {
-        $request = $this->bookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, $contentType);
+        return $this->bookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType)->wait();
+    }
 
+    private function processbookmarkConversationResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -245,7 +241,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function bookmarkConversationAsync(
         $conversation_id,
@@ -253,11 +249,9 @@ class ConversationsApi
         string $contentType = self::contentTypes['bookmarkConversation'][0]
     ) {
         return $this->bookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -271,45 +265,18 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function bookmarkConversationAsyncWithHttpInfo(
         $conversation_id,
         $conversation_bookmark_payload_schema,
         string $contentType = self::contentTypes['bookmarkConversation'][0]
     ) {
-        $returnType = '';
         $request = $this->bookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbookmarkConversationResponse($request, $response);
+        });
     }
 
     /**
@@ -469,30 +436,24 @@ class ConversationsApi
         $create_conversation_payload_schema,
         string $contentType = self::contentTypes['createConversation'][0]
     ) {
-        $request = $this->createConversationRequest($create_conversation_payload_schema, $contentType);
+        return $this->createConversationAsyncWithHttpInfo($create_conversation_payload_schema, $contentType)->wait();
+    }
 
+    private function processcreateConversationResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -501,19 +462,6 @@ class ConversationsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -547,18 +495,16 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function createConversationAsync(
         $create_conversation_payload_schema,
         string $contentType = self::contentTypes['createConversation'][0]
     ) {
         return $this->createConversationAsyncWithHttpInfo($create_conversation_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -571,57 +517,17 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function createConversationAsyncWithHttpInfo(
         $create_conversation_payload_schema,
         string $contentType = self::contentTypes['createConversation'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
         $request = $this->createConversationRequest($create_conversation_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processcreateConversationResponse($request, $response);
+        });
     }
 
     /**
@@ -759,30 +665,24 @@ class ConversationsApi
         $conversation_id,
         string $contentType = self::contentTypes['deleteConversation'][0]
     ) {
-        $request = $this->deleteConversationRequest($conversation_id, $contentType);
+        return $this->deleteConversationAsyncWithHttpInfo($conversation_id, $contentType)->wait();
+    }
 
+    private function processdeleteConversationResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -803,18 +703,16 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function deleteConversationAsync(
         $conversation_id,
         string $contentType = self::contentTypes['deleteConversation'][0]
     ) {
         return $this->deleteConversationAsyncWithHttpInfo($conversation_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -827,44 +725,17 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function deleteConversationAsyncWithHttpInfo(
         $conversation_id,
         string $contentType = self::contentTypes['deleteConversation'][0]
     ) {
-        $returnType = '';
         $request = $this->deleteConversationRequest($conversation_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processdeleteConversationResponse($request, $response);
+        });
     }
 
     /**
@@ -1008,30 +879,24 @@ class ConversationsApi
         $fork_conversation_payload_schema,
         string $contentType = self::contentTypes['forkConversation'][0]
     ) {
-        $request = $this->forkConversationRequest($conversation_id, $fork_conversation_payload_schema, $contentType);
+        return $this->forkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType)->wait();
+    }
 
+    private function processforkConversationResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -1040,19 +905,6 @@ class ConversationsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1087,7 +939,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function forkConversationAsync(
         $conversation_id,
@@ -1095,11 +947,9 @@ class ConversationsApi
         string $contentType = self::contentTypes['forkConversation'][0]
     ) {
         return $this->forkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1113,58 +963,18 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function forkConversationAsyncWithHttpInfo(
         $conversation_id,
         $fork_conversation_payload_schema,
         string $contentType = self::contentTypes['forkConversation'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
         $request = $this->forkConversationRequest($conversation_id, $fork_conversation_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processforkConversationResponse($request, $response);
+        });
     }
 
     /**
@@ -1324,30 +1134,24 @@ class ConversationsApi
         $conversation_id,
         string $contentType = self::contentTypes['getConversation'][0]
     ) {
-        $request = $this->getConversationRequest($conversation_id, $contentType);
+        return $this->getConversationAsyncWithHttpInfo($conversation_id, $contentType)->wait();
+    }
 
+    private function processgetConversationResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1356,19 +1160,6 @@ class ConversationsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1402,18 +1193,16 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function getConversationAsync(
         $conversation_id,
         string $contentType = self::contentTypes['getConversation'][0]
     ) {
         return $this->getConversationAsyncWithHttpInfo($conversation_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1426,57 +1215,17 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function getConversationAsyncWithHttpInfo(
         $conversation_id,
         string $contentType = self::contentTypes['getConversation'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
         $request = $this->getConversationRequest($conversation_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processgetConversationResponse($request, $response);
+        });
     }
 
     /**
@@ -1632,30 +1381,24 @@ class ConversationsApi
         $is_bookmarked = null,
         string $contentType = self::contentTypes['listConversations'][0]
     ) {
-        $request = $this->listConversationsRequest($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
+        return $this->listConversationsAsyncWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType)->wait();
+    }
 
+    private function processlistConversationsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1664,19 +1407,6 @@ class ConversationsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1714,7 +1444,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listConversationsAsync(
         $skip = 0,
@@ -1725,11 +1455,9 @@ class ConversationsApi
         string $contentType = self::contentTypes['listConversations'][0]
     ) {
         return $this->listConversationsAsyncWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1746,7 +1474,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listConversationsAsyncWithHttpInfo(
         $skip = 0,
@@ -1756,51 +1484,11 @@ class ConversationsApi
         $is_bookmarked = null,
         string $contentType = self::contentTypes['listConversations'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ConversationListResponseSchema';
         $request = $this->listConversationsRequest($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processlistConversationsResponse($request, $response);
+        });
     }
 
     /**
@@ -2000,30 +1688,24 @@ class ConversationsApi
         $conversation_feedback_payload_schema,
         string $contentType = self::contentTypes['submitConversationFeedback'][0]
     ) {
-        $request = $this->submitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, $contentType);
+        return $this->submitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType)->wait();
+    }
 
+    private function processsubmitConversationFeedbackResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -2045,7 +1727,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function submitConversationFeedbackAsync(
         $conversation_id,
@@ -2053,11 +1735,9 @@ class ConversationsApi
         string $contentType = self::contentTypes['submitConversationFeedback'][0]
     ) {
         return $this->submitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2071,45 +1751,18 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function submitConversationFeedbackAsyncWithHttpInfo(
         $conversation_id,
         $conversation_feedback_payload_schema,
         string $contentType = self::contentTypes['submitConversationFeedback'][0]
     ) {
-        $returnType = '';
         $request = $this->submitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processsubmitConversationFeedbackResponse($request, $response);
+        });
     }
 
     /**
@@ -2273,30 +1926,24 @@ class ConversationsApi
         $update_conversation_payload_schema,
         string $contentType = self::contentTypes['updateConversation'][0]
     ) {
-        $request = $this->updateConversationRequest($conversation_id, $update_conversation_payload_schema, $contentType);
+        return $this->updateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType)->wait();
+    }
 
+    private function processupdateConversationResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -2305,19 +1952,6 @@ class ConversationsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2352,7 +1986,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function updateConversationAsync(
         $conversation_id,
@@ -2360,11 +1994,9 @@ class ConversationsApi
         string $contentType = self::contentTypes['updateConversation'][0]
     ) {
         return $this->updateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2378,58 +2010,18 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function updateConversationAsyncWithHttpInfo(
         $conversation_id,
         $update_conversation_payload_schema,
         string $contentType = self::contentTypes['updateConversation'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
         $request = $this->updateConversationRequest($conversation_id, $update_conversation_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processupdateConversationResponse($request, $response);
+        });
     }
 
     /**
@@ -2548,49 +2140,6 @@ class ConversationsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option.
-     *
-     * @throws \RuntimeException on file opening failure
-     *
-     * @return array of http client options
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        if ($this->config->getCertFile()) {
-            $options[RequestOptions::CERT] = $this->config->getCertFile();
-        }
-
-        if ($this->config->getKeyFile()) {
-            $options[RequestOptions::SSL_KEY] = $this->config->getKeyFile();
-        }
-
-        return $options;
-    }
-
-    /**
-     * Returns the response attached to a Guzzle exception, if there is one.
-     *
-     * Guzzle 7 exposes getResponse() on RequestException, while Guzzle 8 only
-     * exposes it on ResponseException and its subclasses.
-     *
-     * @param \Throwable $exception
-     *
-     * @return ResponseInterface|null
-     */
-    private function getExceptionResponse(\Throwable $exception): ?ResponseInterface
-    {
-        return method_exists($exception, 'getResponse') ? $exception->getResponse() : null;
     }
 
     private function handleResponseWithDataType(

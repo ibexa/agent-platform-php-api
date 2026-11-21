@@ -34,22 +34,20 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use Ibexa\AgentPlatform\ApiException;
+use Ibexa\AgentPlatform\AsyncResult;
 use Ibexa\AgentPlatform\Configuration;
 use Ibexa\AgentPlatform\HeaderSelector;
+use Ibexa\AgentPlatform\HttpTransport;
 use Ibexa\AgentPlatform\Model\RemoteSourceWebhookResponseSchema;
 use Ibexa\AgentPlatform\Model\WebhookResponseSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
-use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * WebhooksApi Class Doc Comment.
@@ -63,9 +61,12 @@ use Psr\Http\Message\ResponseInterface;
 class WebhooksApi
 {
     /**
-     * @var ClientInterface
+     * @var HttpTransport
      */
     protected $client;
+
+    /** @var HttpClientInterface */
+    private $httpClient;
 
     /**
      * @var Configuration
@@ -93,19 +94,20 @@ class WebhooksApi
     ];
 
     /**
-     * @param ClientInterface $client
+     * @param HttpClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ?ClientInterface $client = null,
+        ?HttpClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->httpClient = $client ?: HttpClient::create();
+        $this->client = new HttpTransport($this->httpClient, $this->config);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
     }
@@ -177,30 +179,24 @@ class WebhooksApi
         $token,
         string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0]
     ) {
-        $request = $this->receiveRemoteSourceWebhookRequest($token, $contentType);
+        return $this->receiveRemoteSourceWebhookAsyncWithHttpInfo($token, $contentType)->wait();
+    }
 
+    private function processreceiveRemoteSourceWebhookResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 202:
@@ -209,19 +205,6 @@ class WebhooksApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -255,18 +238,16 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function receiveRemoteSourceWebhookAsync(
         $token,
         string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0]
     ) {
         return $this->receiveRemoteSourceWebhookAsyncWithHttpInfo($token, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -279,57 +260,17 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function receiveRemoteSourceWebhookAsyncWithHttpInfo(
         $token,
         string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\RemoteSourceWebhookResponseSchema';
         $request = $this->receiveRemoteSourceWebhookRequest($token, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processreceiveRemoteSourceWebhookResponse($request, $response);
+        });
     }
 
     /**
@@ -468,30 +409,24 @@ class WebhooksApi
         $request_body = null,
         string $contentType = self::contentTypes['receiveWebhook'][0]
     ) {
-        $request = $this->receiveWebhookRequest($token, $request_body, $contentType);
+        return $this->receiveWebhookAsyncWithHttpInfo($token, $request_body, $contentType)->wait();
+    }
 
+    private function processreceiveWebhookResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 202:
@@ -500,19 +435,6 @@ class WebhooksApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -547,7 +469,7 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function receiveWebhookAsync(
         $token,
@@ -555,11 +477,9 @@ class WebhooksApi
         string $contentType = self::contentTypes['receiveWebhook'][0]
     ) {
         return $this->receiveWebhookAsyncWithHttpInfo($token, $request_body, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -573,58 +493,18 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function receiveWebhookAsyncWithHttpInfo(
         $token,
         $request_body = null,
         string $contentType = self::contentTypes['receiveWebhook'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\WebhookResponseSchema';
         $request = $this->receiveWebhookRequest($token, $request_body, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processreceiveWebhookResponse($request, $response);
+        });
     }
 
     /**
@@ -731,49 +611,6 @@ class WebhooksApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option.
-     *
-     * @throws \RuntimeException on file opening failure
-     *
-     * @return array of http client options
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        if ($this->config->getCertFile()) {
-            $options[RequestOptions::CERT] = $this->config->getCertFile();
-        }
-
-        if ($this->config->getKeyFile()) {
-            $options[RequestOptions::SSL_KEY] = $this->config->getKeyFile();
-        }
-
-        return $options;
-    }
-
-    /**
-     * Returns the response attached to a Guzzle exception, if there is one.
-     *
-     * Guzzle 7 exposes getResponse() on RequestException, while Guzzle 8 only
-     * exposes it on ResponseException and its subclasses.
-     *
-     * @param \Throwable $exception
-     *
-     * @return ResponseInterface|null
-     */
-    private function getExceptionResponse(\Throwable $exception): ?ResponseInterface
-    {
-        return method_exists($exception, 'getResponse') ? $exception->getResponse() : null;
     }
 
     private function handleResponseWithDataType(

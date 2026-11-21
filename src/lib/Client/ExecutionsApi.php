@@ -34,16 +34,13 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use Ibexa\AgentPlatform\ApiException;
+use Ibexa\AgentPlatform\AsyncResult;
 use Ibexa\AgentPlatform\Configuration;
 use Ibexa\AgentPlatform\HeaderSelector;
+use Ibexa\AgentPlatform\HttpTransport;
 use Ibexa\AgentPlatform\Model\CreateExecutionPayloadSchema;
 use Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema;
 use Ibexa\AgentPlatform\Model\CreditsMax;
@@ -52,11 +49,14 @@ use Ibexa\AgentPlatform\Model\ExecutionListResponseSchema;
 use Ibexa\AgentPlatform\Model\ExecutionResponseSchema;
 use Ibexa\AgentPlatform\Model\ExecutionStatus;
 use Ibexa\AgentPlatform\Model\ExecutionStepListResponseSchema;
+use Ibexa\AgentPlatform\Model\ServerSentEventSchema;
 use Ibexa\AgentPlatform\Model\TriggerType;
 use Ibexa\AgentPlatform\ObjectSerializer;
-use Psr\Http\Client\NetworkExceptionInterface;
+use Ibexa\AgentPlatform\StreamClient;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * ExecutionsApi Class Doc Comment.
@@ -70,9 +70,12 @@ use Psr\Http\Message\ResponseInterface;
 class ExecutionsApi
 {
     /**
-     * @var ClientInterface
+     * @var HttpTransport
      */
     protected $client;
+
+    /** @var HttpClientInterface */
+    private $httpClient;
 
     /**
      * @var Configuration
@@ -115,19 +118,20 @@ class ExecutionsApi
     ];
 
     /**
-     * @param ClientInterface $client
+     * @param HttpClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ?ClientInterface $client = null,
+        ?HttpClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->httpClient = $client ?: HttpClient::create();
+        $this->client = new HttpTransport($this->httpClient, $this->config);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
     }
@@ -199,30 +203,24 @@ class ExecutionsApi
         $last_event_id = null,
         string $contentType = self::contentTypes['attachExecutionStream'][0]
     ) {
-        $request = $this->attachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
+        return $this->attachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id, $contentType)->wait();
+    }
 
+    private function processattachExecutionStreamResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -244,7 +242,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function attachExecutionStreamAsync(
         $execution_id,
@@ -252,11 +250,9 @@ class ExecutionsApi
         string $contentType = self::contentTypes['attachExecutionStream'][0]
     ) {
         return $this->attachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -270,45 +266,36 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function attachExecutionStreamAsyncWithHttpInfo(
         $execution_id,
         $last_event_id = null,
         string $contentType = self::contentTypes['attachExecutionStream'][0]
     ) {
-        $returnType = '';
         $request = $this->attachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processattachExecutionStreamResponse($request, $response);
+        });
+    }
+
+    /**
+     * Consume server-sent events for operation attachExecutionStream.
+     *
+     * @param int $execution_id
+     * @param string|null $last_event_id
+     *
+     * @return \Generator<int, ServerSentEventSchema>
+     */
+    public function attachExecutionStreamEvents(
+        $execution_id,
+        $last_event_id = null,
+        string $contentType = self::contentTypes['attachExecutionStream'][0]
+    ): \Generator {
+        $request = $this->attachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
+
+        return (new StreamClient($this->httpClient, $this->config))->events($request);
     }
 
     /**
@@ -455,30 +442,24 @@ class ExecutionsApi
         $execution_id,
         string $contentType = self::contentTypes['cancelExecution'][0]
     ) {
-        $request = $this->cancelExecutionRequest($execution_id, $contentType);
+        return $this->cancelExecutionAsyncWithHttpInfo($execution_id, $contentType)->wait();
+    }
 
+    private function processcancelExecutionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -487,19 +468,6 @@ class ExecutionsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -533,18 +501,16 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function cancelExecutionAsync(
         $execution_id,
         string $contentType = self::contentTypes['cancelExecution'][0]
     ) {
         return $this->cancelExecutionAsyncWithHttpInfo($execution_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -557,57 +523,17 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function cancelExecutionAsyncWithHttpInfo(
         $execution_id,
         string $contentType = self::contentTypes['cancelExecution'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ExecutionResponseSchema';
         $request = $this->cancelExecutionRequest($execution_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processcancelExecutionResponse($request, $response);
+        });
     }
 
     /**
@@ -747,30 +673,24 @@ class ExecutionsApi
         $create_execution_payload_schema,
         string $contentType = self::contentTypes['createExecution'][0]
     ) {
-        $request = $this->createExecutionRequest($create_execution_payload_schema, $contentType);
+        return $this->createExecutionAsyncWithHttpInfo($create_execution_payload_schema, $contentType)->wait();
+    }
 
+    private function processcreateExecutionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -779,19 +699,6 @@ class ExecutionsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -825,18 +732,16 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function createExecutionAsync(
         $create_execution_payload_schema,
         string $contentType = self::contentTypes['createExecution'][0]
     ) {
         return $this->createExecutionAsyncWithHttpInfo($create_execution_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -849,57 +754,17 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function createExecutionAsyncWithHttpInfo(
         $create_execution_payload_schema,
         string $contentType = self::contentTypes['createExecution'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema';
         $request = $this->createExecutionRequest($create_execution_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processcreateExecutionResponse($request, $response);
+        });
     }
 
     /**
@@ -1041,30 +906,24 @@ class ExecutionsApi
         $execution_id,
         string $contentType = self::contentTypes['getExecution'][0]
     ) {
-        $request = $this->getExecutionRequest($execution_id, $contentType);
+        return $this->getExecutionAsyncWithHttpInfo($execution_id, $contentType)->wait();
+    }
 
+    private function processgetExecutionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1073,19 +932,6 @@ class ExecutionsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1119,18 +965,16 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function getExecutionAsync(
         $execution_id,
         string $contentType = self::contentTypes['getExecution'][0]
     ) {
         return $this->getExecutionAsyncWithHttpInfo($execution_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1143,57 +987,17 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function getExecutionAsyncWithHttpInfo(
         $execution_id,
         string $contentType = self::contentTypes['getExecution'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ExecutionResponseSchema';
         $request = $this->getExecutionRequest($execution_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processgetExecutionResponse($request, $response);
+        });
     }
 
     /**
@@ -1341,30 +1145,24 @@ class ExecutionsApi
         $limit = 25,
         string $contentType = self::contentTypes['listExecutionSteps'][0]
     ) {
-        $request = $this->listExecutionStepsRequest($execution_id, $cursor, $limit, $contentType);
+        return $this->listExecutionStepsAsyncWithHttpInfo($execution_id, $cursor, $limit, $contentType)->wait();
+    }
 
+    private function processlistExecutionStepsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1373,19 +1171,6 @@ class ExecutionsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1421,7 +1206,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listExecutionStepsAsync(
         $execution_id,
@@ -1430,11 +1215,9 @@ class ExecutionsApi
         string $contentType = self::contentTypes['listExecutionSteps'][0]
     ) {
         return $this->listExecutionStepsAsyncWithHttpInfo($execution_id, $cursor, $limit, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1449,7 +1232,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listExecutionStepsAsyncWithHttpInfo(
         $execution_id,
@@ -1457,51 +1240,11 @@ class ExecutionsApi
         $limit = 25,
         string $contentType = self::contentTypes['listExecutionSteps'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ExecutionStepListResponseSchema';
         $request = $this->listExecutionStepsRequest($execution_id, $cursor, $limit, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processlistExecutionStepsResponse($request, $response);
+        });
     }
 
     /**
@@ -1723,30 +1466,24 @@ class ExecutionsApi
         $daterange = null,
         string $contentType = self::contentTypes['listExecutions'][0]
     ) {
-        $request = $this->listExecutionsRequest($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
+        return $this->listExecutionsAsyncWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType)->wait();
+    }
 
+    private function processlistExecutionsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1755,19 +1492,6 @@ class ExecutionsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1814,7 +1538,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listExecutionsAsync(
         $skip = 0,
@@ -1834,11 +1558,9 @@ class ExecutionsApi
         string $contentType = self::contentTypes['listExecutions'][0]
     ) {
         return $this->listExecutionsAsyncWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1864,7 +1586,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listExecutionsAsyncWithHttpInfo(
         $skip = 0,
@@ -1883,51 +1605,11 @@ class ExecutionsApi
         $daterange = null,
         string $contentType = self::contentTypes['listExecutions'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\ExecutionListResponseSchema';
         $request = $this->listExecutionsRequest($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processlistExecutionsResponse($request, $response);
+        });
     }
 
     /**
@@ -2231,30 +1913,24 @@ class ExecutionsApi
         $execution_id,
         string $contentType = self::contentTypes['retryExecution'][0]
     ) {
-        $request = $this->retryExecutionRequest($execution_id, $contentType);
+        return $this->retryExecutionAsyncWithHttpInfo($execution_id, $contentType)->wait();
+    }
 
+    private function processretryExecutionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -2263,19 +1939,6 @@ class ExecutionsApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2309,18 +1972,16 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function retryExecutionAsync(
         $execution_id,
         string $contentType = self::contentTypes['retryExecution'][0]
     ) {
         return $this->retryExecutionAsyncWithHttpInfo($execution_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2333,57 +1994,17 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function retryExecutionAsyncWithHttpInfo(
         $execution_id,
         string $contentType = self::contentTypes['retryExecution'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema';
         $request = $this->retryExecutionRequest($execution_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processretryExecutionResponse($request, $response);
+        });
     }
 
     /**
@@ -2482,49 +2103,6 @@ class ExecutionsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option.
-     *
-     * @throws \RuntimeException on file opening failure
-     *
-     * @return array of http client options
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        if ($this->config->getCertFile()) {
-            $options[RequestOptions::CERT] = $this->config->getCertFile();
-        }
-
-        if ($this->config->getKeyFile()) {
-            $options[RequestOptions::SSL_KEY] = $this->config->getKeyFile();
-        }
-
-        return $options;
-    }
-
-    /**
-     * Returns the response attached to a Guzzle exception, if there is one.
-     *
-     * Guzzle 7 exposes getResponse() on RequestException, while Guzzle 8 only
-     * exposes it on ResponseException and its subclasses.
-     *
-     * @param \Throwable $exception
-     *
-     * @return ResponseInterface|null
-     */
-    private function getExceptionResponse(\Throwable $exception): ?ResponseInterface
-    {
-        return method_exists($exception, 'getResponse') ? $exception->getResponse() : null;
     }
 
     private function handleResponseWithDataType(

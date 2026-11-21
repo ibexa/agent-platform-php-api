@@ -34,16 +34,13 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use Ibexa\AgentPlatform\ApiException;
+use Ibexa\AgentPlatform\AsyncResult;
 use Ibexa\AgentPlatform\Configuration;
 use Ibexa\AgentPlatform\HeaderSelector;
+use Ibexa\AgentPlatform\HttpTransport;
 use Ibexa\AgentPlatform\Model\CreateTriggerPayloadSchema;
 use Ibexa\AgentPlatform\Model\RemoteWebhookVerificationResponseSchema;
 use Ibexa\AgentPlatform\Model\TriggerCategoryListResponseSchema;
@@ -52,9 +49,10 @@ use Ibexa\AgentPlatform\Model\TriggerListResponseSchema;
 use Ibexa\AgentPlatform\Model\TriggerResponseSchema;
 use Ibexa\AgentPlatform\Model\UpdateTriggerPayloadSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
-use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * TriggersApi Class Doc Comment.
@@ -68,9 +66,12 @@ use Psr\Http\Message\ResponseInterface;
 class TriggersApi
 {
     /**
-     * @var ClientInterface
+     * @var HttpTransport
      */
     protected $client;
+
+    /** @var HttpClientInterface */
+    private $httpClient;
 
     /**
      * @var Configuration
@@ -116,19 +117,20 @@ class TriggersApi
     ];
 
     /**
-     * @param ClientInterface $client
+     * @param HttpClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ?ClientInterface $client = null,
+        ?HttpClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->httpClient = $client ?: HttpClient::create();
+        $this->client = new HttpTransport($this->httpClient, $this->config);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
     }
@@ -200,30 +202,24 @@ class TriggersApi
         $create_trigger_payload_schema,
         string $contentType = self::contentTypes['createTrigger'][0]
     ) {
-        $request = $this->createTriggerRequest($create_trigger_payload_schema, $contentType);
+        return $this->createTriggerAsyncWithHttpInfo($create_trigger_payload_schema, $contentType)->wait();
+    }
 
+    private function processcreateTriggerResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -232,19 +228,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -278,18 +261,16 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function createTriggerAsync(
         $create_trigger_payload_schema,
         string $contentType = self::contentTypes['createTrigger'][0]
     ) {
         return $this->createTriggerAsyncWithHttpInfo($create_trigger_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -302,57 +283,17 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function createTriggerAsyncWithHttpInfo(
         $create_trigger_payload_schema,
         string $contentType = self::contentTypes['createTrigger'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\TriggerResponseSchema';
         $request = $this->createTriggerRequest($create_trigger_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processcreateTriggerResponse($request, $response);
+        });
     }
 
     /**
@@ -490,30 +431,24 @@ class TriggersApi
         $trigger_id,
         string $contentType = self::contentTypes['deleteTrigger'][0]
     ) {
-        $request = $this->deleteTriggerRequest($trigger_id, $contentType);
+        return $this->deleteTriggerAsyncWithHttpInfo($trigger_id, $contentType)->wait();
+    }
 
+    private function processdeleteTriggerResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -534,18 +469,16 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function deleteTriggerAsync(
         $trigger_id,
         string $contentType = self::contentTypes['deleteTrigger'][0]
     ) {
         return $this->deleteTriggerAsyncWithHttpInfo($trigger_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -558,44 +491,17 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function deleteTriggerAsyncWithHttpInfo(
         $trigger_id,
         string $contentType = self::contentTypes['deleteTrigger'][0]
     ) {
-        $returnType = '';
         $request = $this->deleteTriggerRequest($trigger_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processdeleteTriggerResponse($request, $response);
+        });
     }
 
     /**
@@ -735,30 +641,24 @@ class TriggersApi
         $trigger_id,
         string $contentType = self::contentTypes['getTrigger'][0]
     ) {
-        $request = $this->getTriggerRequest($trigger_id, $contentType);
+        return $this->getTriggerAsyncWithHttpInfo($trigger_id, $contentType)->wait();
+    }
 
+    private function processgetTriggerResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -767,19 +667,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -813,18 +700,16 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function getTriggerAsync(
         $trigger_id,
         string $contentType = self::contentTypes['getTrigger'][0]
     ) {
         return $this->getTriggerAsyncWithHttpInfo($trigger_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -837,57 +722,17 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function getTriggerAsyncWithHttpInfo(
         $trigger_id,
         string $contentType = self::contentTypes['getTrigger'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\TriggerResponseSchema';
         $request = $this->getTriggerRequest($trigger_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processgetTriggerResponse($request, $response);
+        });
     }
 
     /**
@@ -1021,30 +866,24 @@ class TriggersApi
      */
     public function listTriggerCategoriesWithHttpInfo(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
-        $request = $this->listTriggerCategoriesRequest($contentType);
+        return $this->listTriggerCategoriesAsyncWithHttpInfo($contentType)->wait();
+    }
 
+    private function processlistTriggerCategoriesResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1053,19 +892,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1098,16 +924,14 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listTriggerCategoriesAsync(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
         return $this->listTriggerCategoriesAsyncWithHttpInfo($contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1119,55 +943,15 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listTriggerCategoriesAsyncWithHttpInfo(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
-        $returnType = '\Ibexa\AgentPlatform\Model\TriggerCategoryListResponseSchema';
         $request = $this->listTriggerCategoriesRequest($contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processlistTriggerCategoriesResponse($request, $response);
+        });
     }
 
     /**
@@ -1282,30 +1066,24 @@ class TriggersApi
      */
     public function listTriggerDefinitionsWithHttpInfo(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
-        $request = $this->listTriggerDefinitionsRequest($contentType);
+        return $this->listTriggerDefinitionsAsyncWithHttpInfo($contentType)->wait();
+    }
 
+    private function processlistTriggerDefinitionsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1314,19 +1092,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1359,16 +1124,14 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listTriggerDefinitionsAsync(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
         return $this->listTriggerDefinitionsAsyncWithHttpInfo($contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1380,55 +1143,15 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listTriggerDefinitionsAsyncWithHttpInfo(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
-        $returnType = '\Ibexa\AgentPlatform\Model\TriggerDefinitionListResponseSchema';
         $request = $this->listTriggerDefinitionsRequest($contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processlistTriggerDefinitionsResponse($request, $response);
+        });
     }
 
     /**
@@ -1565,30 +1288,24 @@ class TriggersApi
         $is_active = null,
         string $contentType = self::contentTypes['listTriggers'][0]
     ) {
-        $request = $this->listTriggersRequest($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
+        return $this->listTriggersAsyncWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType)->wait();
+    }
 
+    private function processlistTriggersResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1597,19 +1314,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1647,7 +1351,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listTriggersAsync(
         $skip = 0,
@@ -1658,11 +1362,9 @@ class TriggersApi
         string $contentType = self::contentTypes['listTriggers'][0]
     ) {
         return $this->listTriggersAsyncWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1679,7 +1381,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function listTriggersAsyncWithHttpInfo(
         $skip = 0,
@@ -1689,51 +1391,11 @@ class TriggersApi
         $is_active = null,
         string $contentType = self::contentTypes['listTriggers'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\TriggerListResponseSchema';
         $request = $this->listTriggersRequest($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processlistTriggersResponse($request, $response);
+        });
     }
 
     /**
@@ -1930,30 +1592,24 @@ class TriggersApi
         $update_trigger_payload_schema,
         string $contentType = self::contentTypes['updateTrigger'][0]
     ) {
-        $request = $this->updateTriggerRequest($trigger_id, $update_trigger_payload_schema, $contentType);
+        return $this->updateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType)->wait();
+    }
 
+    private function processupdateTriggerResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1962,19 +1618,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2009,7 +1652,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function updateTriggerAsync(
         $trigger_id,
@@ -2017,11 +1660,9 @@ class TriggersApi
         string $contentType = self::contentTypes['updateTrigger'][0]
     ) {
         return $this->updateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2035,58 +1676,18 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function updateTriggerAsyncWithHttpInfo(
         $trigger_id,
         $update_trigger_payload_schema,
         string $contentType = self::contentTypes['updateTrigger'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\TriggerResponseSchema';
         $request = $this->updateTriggerRequest($trigger_id, $update_trigger_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processupdateTriggerResponse($request, $response);
+        });
     }
 
     /**
@@ -2246,30 +1847,24 @@ class TriggersApi
         $trigger_id,
         string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0]
     ) {
-        $request = $this->verifyRemoteTriggerWebhookRequest($trigger_id, $contentType);
+        return $this->verifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, $contentType)->wait();
+    }
 
+    private function processverifyRemoteTriggerWebhookResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -2278,19 +1873,6 @@ class TriggersApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2324,18 +1906,16 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function verifyRemoteTriggerWebhookAsync(
         $trigger_id,
         string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0]
     ) {
         return $this->verifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2348,57 +1928,17 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function verifyRemoteTriggerWebhookAsyncWithHttpInfo(
         $trigger_id,
         string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\RemoteWebhookVerificationResponseSchema';
         $request = $this->verifyRemoteTriggerWebhookRequest($trigger_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processverifyRemoteTriggerWebhookResponse($request, $response);
+        });
     }
 
     /**
@@ -2497,49 +2037,6 @@ class TriggersApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option.
-     *
-     * @throws \RuntimeException on file opening failure
-     *
-     * @return array of http client options
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        if ($this->config->getCertFile()) {
-            $options[RequestOptions::CERT] = $this->config->getCertFile();
-        }
-
-        if ($this->config->getKeyFile()) {
-            $options[RequestOptions::SSL_KEY] = $this->config->getKeyFile();
-        }
-
-        return $options;
-    }
-
-    /**
-     * Returns the response attached to a Guzzle exception, if there is one.
-     *
-     * Guzzle 7 exposes getResponse() on RequestException, while Guzzle 8 only
-     * exposes it on ResponseException and its subclasses.
-     *
-     * @param \Throwable $exception
-     *
-     * @return ResponseInterface|null
-     */
-    private function getExceptionResponse(\Throwable $exception): ?ResponseInterface
-    {
-        return method_exists($exception, 'getResponse') ? $exception->getResponse() : null;
     }
 
     private function handleResponseWithDataType(

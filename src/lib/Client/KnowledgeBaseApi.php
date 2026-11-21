@@ -34,17 +34,14 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use Ibexa\AgentPlatform\ApiException;
+use Ibexa\AgentPlatform\AsyncResult;
 use Ibexa\AgentPlatform\Configuration;
 use Ibexa\AgentPlatform\FormDataProcessor;
 use Ibexa\AgentPlatform\HeaderSelector;
+use Ibexa\AgentPlatform\HttpTransport;
 use Ibexa\AgentPlatform\Model\AgentsUsingKnowledgeNodeListResponseSchema;
 use Ibexa\AgentPlatform\Model\CreateNodePayloadSchema;
 use Ibexa\AgentPlatform\Model\KnowledgeBaseOverviewResponseSchema;
@@ -62,9 +59,10 @@ use Ibexa\AgentPlatform\Model\SuggestDocumentTitleResponseSchema;
 use Ibexa\AgentPlatform\Model\UpdateDocumentContentPayloadSchema;
 use Ibexa\AgentPlatform\Model\UpdateNodePayloadSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
-use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * KnowledgeBaseApi Class Doc Comment.
@@ -78,9 +76,12 @@ use Psr\Http\Message\ResponseInterface;
 class KnowledgeBaseApi
 {
     /**
-     * @var ClientInterface
+     * @var HttpTransport
      */
     protected $client;
+
+    /** @var HttpClientInterface */
+    private $httpClient;
 
     /**
      * @var Configuration
@@ -174,19 +175,20 @@ class KnowledgeBaseApi
     ];
 
     /**
-     * @param ClientInterface $client
+     * @param HttpClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ?ClientInterface $client = null,
+        ?HttpClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->httpClient = $client ?: HttpClient::create();
+        $this->client = new HttpTransport($this->httpClient, $this->config);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
     }
@@ -270,30 +272,24 @@ class KnowledgeBaseApi
         $summary = null,
         string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0]
     ) {
-        $request = $this->baseCreateDocumentFromFileRequest($file, $parent_id, $name, $summary, $contentType);
+        return $this->baseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id, $name, $summary, $contentType)->wait();
+    }
 
+    private function processbaseCreateDocumentFromFileResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -302,19 +298,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -351,7 +334,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseCreateDocumentFromFileAsync(
         $file,
@@ -361,11 +344,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0]
     ) {
         return $this->baseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id, $name, $summary, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -381,7 +362,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseCreateDocumentFromFileAsyncWithHttpInfo(
         $file,
@@ -390,51 +371,11 @@ class KnowledgeBaseApi
         $summary = null,
         string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
         $request = $this->baseCreateDocumentFromFileRequest($file, $parent_id, $name, $summary, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseCreateDocumentFromFileResponse($request, $response);
+        });
     }
 
     /**
@@ -589,30 +530,24 @@ class KnowledgeBaseApi
         $create_node_payload_schema,
         string $contentType = self::contentTypes['baseCreateNode'][0]
     ) {
-        $request = $this->baseCreateNodeRequest($create_node_payload_schema, $contentType);
+        return $this->baseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, $contentType)->wait();
+    }
 
+    private function processbaseCreateNodeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -621,19 +556,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -667,18 +589,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseCreateNodeAsync(
         $create_node_payload_schema,
         string $contentType = self::contentTypes['baseCreateNode'][0]
     ) {
         return $this->baseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -691,57 +611,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseCreateNodeAsyncWithHttpInfo(
         $create_node_payload_schema,
         string $contentType = self::contentTypes['baseCreateNode'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
         $request = $this->baseCreateNodeRequest($create_node_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseCreateNodeResponse($request, $response);
+        });
     }
 
     /**
@@ -883,30 +763,24 @@ class KnowledgeBaseApi
         $attachment_id,
         string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0]
     ) {
-        $request = $this->baseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, $contentType);
+        return $this->baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, $contentType)->wait();
+    }
 
+    private function processbaseDeleteKnowledgeDocumentAttachmentResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -928,7 +802,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseDeleteKnowledgeDocumentAttachmentAsync(
         $node_id,
@@ -936,11 +810,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0]
     ) {
         return $this->baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -954,45 +826,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo(
         $node_id,
         $attachment_id,
         string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0]
     ) {
-        $returnType = '';
         $request = $this->baseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseDeleteKnowledgeDocumentAttachmentResponse($request, $response);
+        });
     }
 
     /**
@@ -1145,30 +990,24 @@ class KnowledgeBaseApi
         $node_id,
         string $contentType = self::contentTypes['baseDeleteNode'][0]
     ) {
-        $request = $this->baseDeleteNodeRequest($node_id, $contentType);
+        return $this->baseDeleteNodeAsyncWithHttpInfo($node_id, $contentType)->wait();
+    }
 
+    private function processbaseDeleteNodeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -1189,18 +1028,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseDeleteNodeAsync(
         $node_id,
         string $contentType = self::contentTypes['baseDeleteNode'][0]
     ) {
         return $this->baseDeleteNodeAsyncWithHttpInfo($node_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1213,44 +1050,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseDeleteNodeAsyncWithHttpInfo(
         $node_id,
         string $contentType = self::contentTypes['baseDeleteNode'][0]
     ) {
-        $returnType = '';
         $request = $this->baseDeleteNodeRequest($node_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseDeleteNodeResponse($request, $response);
+        });
     }
 
     /**
@@ -1390,30 +1200,24 @@ class KnowledgeBaseApi
         $version_id,
         string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0]
     ) {
-        $request = $this->baseDiscardDocumentDraftRequest($node_id, $version_id, $contentType);
+        return $this->baseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
+    }
 
+    private function processbaseDiscardDocumentDraftResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -1435,7 +1239,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseDiscardDocumentDraftAsync(
         $node_id,
@@ -1443,11 +1247,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0]
     ) {
         return $this->baseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1461,45 +1263,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseDiscardDocumentDraftAsyncWithHttpInfo(
         $node_id,
         $version_id,
         string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0]
     ) {
-        $returnType = '';
         $request = $this->baseDiscardDocumentDraftRequest($node_id, $version_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseDiscardDocumentDraftResponse($request, $response);
+        });
     }
 
     /**
@@ -1656,30 +1431,24 @@ class KnowledgeBaseApi
         $node_id,
         string $contentType = self::contentTypes['baseGetDocument'][0]
     ) {
-        $request = $this->baseGetDocumentRequest($node_id, $contentType);
+        return $this->baseGetDocumentAsyncWithHttpInfo($node_id, $contentType)->wait();
+    }
 
+    private function processbaseGetDocumentResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1688,19 +1457,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -1734,18 +1490,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetDocumentAsync(
         $node_id,
         string $contentType = self::contentTypes['baseGetDocument'][0]
     ) {
         return $this->baseGetDocumentAsyncWithHttpInfo($node_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -1758,57 +1512,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetDocumentAsyncWithHttpInfo(
         $node_id,
         string $contentType = self::contentTypes['baseGetDocument'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema';
         $request = $this->baseGetDocumentRequest($node_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseGetDocumentResponse($request, $response);
+        });
     }
 
     /**
@@ -1952,30 +1666,24 @@ class KnowledgeBaseApi
         $version_id,
         string $contentType = self::contentTypes['baseGetDocumentVersion'][0]
     ) {
-        $request = $this->baseGetDocumentVersionRequest($node_id, $version_id, $contentType);
+        return $this->baseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
+    }
 
+    private function processbaseGetDocumentVersionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -1984,19 +1692,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2031,7 +1726,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetDocumentVersionAsync(
         $node_id,
@@ -2039,11 +1734,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseGetDocumentVersion'][0]
     ) {
         return $this->baseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2057,58 +1750,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetDocumentVersionAsyncWithHttpInfo(
         $node_id,
         $version_id,
         string $contentType = self::contentTypes['baseGetDocumentVersion'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
         $request = $this->baseGetDocumentVersionRequest($node_id, $version_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseGetDocumentVersionResponse($request, $response);
+        });
     }
 
     /**
@@ -2273,30 +1926,24 @@ class KnowledgeBaseApi
         $token,
         string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0]
     ) {
-        $request = $this->baseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, $contentType);
+        return $this->baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, $contentType)->wait();
+    }
 
+    private function processbaseGetKnowledgeDocumentAttachmentContentResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -2305,19 +1952,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2353,7 +1987,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetKnowledgeDocumentAttachmentContentAsync(
         $node_id,
@@ -2362,11 +1996,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0]
     ) {
         return $this->baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2381,7 +2013,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo(
         $node_id,
@@ -2389,51 +2021,11 @@ class KnowledgeBaseApi
         $token,
         string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0]
     ) {
-        $returnType = 'mixed';
         $request = $this->baseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseGetKnowledgeDocumentAttachmentContentResponse($request, $response);
+        });
     }
 
     /**
@@ -2604,30 +2196,24 @@ class KnowledgeBaseApi
         $node_id,
         string $contentType = self::contentTypes['baseGetNode'][0]
     ) {
-        $request = $this->baseGetNodeRequest($node_id, $contentType);
+        return $this->baseGetNodeAsyncWithHttpInfo($node_id, $contentType)->wait();
+    }
 
+    private function processbaseGetNodeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -2636,19 +2222,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2682,18 +2255,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetNodeAsync(
         $node_id,
         string $contentType = self::contentTypes['baseGetNode'][0]
     ) {
         return $this->baseGetNodeAsyncWithHttpInfo($node_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -2706,57 +2277,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetNodeAsyncWithHttpInfo(
         $node_id,
         string $contentType = self::contentTypes['baseGetNode'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
         $request = $this->baseGetNodeRequest($node_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseGetNodeResponse($request, $response);
+        });
     }
 
     /**
@@ -2900,30 +2431,24 @@ class KnowledgeBaseApi
         $daterange = null,
         string $contentType = self::contentTypes['baseGetOverview'][0]
     ) {
-        $request = $this->baseGetOverviewRequest($group, $daterange, $contentType);
+        return $this->baseGetOverviewAsyncWithHttpInfo($group, $daterange, $contentType)->wait();
+    }
 
+    private function processbaseGetOverviewResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -2932,19 +2457,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -2979,7 +2491,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetOverviewAsync(
         $group = null,
@@ -2987,11 +2499,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseGetOverview'][0]
     ) {
         return $this->baseGetOverviewAsyncWithHttpInfo($group, $daterange, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -3005,58 +2515,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseGetOverviewAsyncWithHttpInfo(
         $group = null,
         $daterange = null,
         string $contentType = self::contentTypes['baseGetOverview'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeBaseOverviewResponseSchema';
         $request = $this->baseGetOverviewRequest($group, $daterange, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseGetOverviewResponse($request, $response);
+        });
     }
 
     /**
@@ -3209,30 +2679,24 @@ class KnowledgeBaseApi
         $limit = 100,
         string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0]
     ) {
-        $request = $this->baseListAgentsUsingKnowledgeNodeRequest($node_id, $skip, $limit, $contentType);
+        return $this->baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip, $limit, $contentType)->wait();
+    }
 
+    private function processbaseListAgentsUsingKnowledgeNodeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -3241,19 +2705,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -3289,7 +2740,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListAgentsUsingKnowledgeNodeAsync(
         $node_id,
@@ -3298,11 +2749,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0]
     ) {
         return $this->baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip, $limit, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -3317,7 +2766,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo(
         $node_id,
@@ -3325,51 +2774,11 @@ class KnowledgeBaseApi
         $limit = 100,
         string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\AgentsUsingKnowledgeNodeListResponseSchema';
         $request = $this->baseListAgentsUsingKnowledgeNodeRequest($node_id, $skip, $limit, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseListAgentsUsingKnowledgeNodeResponse($request, $response);
+        });
     }
 
     /**
@@ -3543,30 +2952,24 @@ class KnowledgeBaseApi
         $node_id,
         string $contentType = self::contentTypes['baseListDocumentVersions'][0]
     ) {
-        $request = $this->baseListDocumentVersionsRequest($node_id, $contentType);
+        return $this->baseListDocumentVersionsAsyncWithHttpInfo($node_id, $contentType)->wait();
+    }
 
+    private function processbaseListDocumentVersionsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -3575,19 +2978,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -3621,18 +3011,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListDocumentVersionsAsync(
         $node_id,
         string $contentType = self::contentTypes['baseListDocumentVersions'][0]
     ) {
         return $this->baseListDocumentVersionsAsyncWithHttpInfo($node_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -3645,57 +3033,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListDocumentVersionsAsyncWithHttpInfo(
         $node_id,
         string $contentType = self::contentTypes['baseListDocumentVersions'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionListResponseSchema';
         $request = $this->baseListDocumentVersionsRequest($node_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseListDocumentVersionsResponse($request, $response);
+        });
     }
 
     /**
@@ -3835,30 +3183,24 @@ class KnowledgeBaseApi
         $node_id,
         string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0]
     ) {
-        $request = $this->baseListKnowledgeDocumentAttachmentsRequest($node_id, $contentType);
+        return $this->baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, $contentType)->wait();
+    }
 
+    private function processbaseListKnowledgeDocumentAttachmentsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -3867,19 +3209,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -3913,18 +3242,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListKnowledgeDocumentAttachmentsAsync(
         $node_id,
         string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0]
     ) {
         return $this->baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -3937,57 +3264,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo(
         $node_id,
         string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentListResponseSchema';
         $request = $this->baseListKnowledgeDocumentAttachmentsRequest($node_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseListKnowledgeDocumentAttachmentsResponse($request, $response);
+        });
     }
 
     /**
@@ -4127,30 +3414,24 @@ class KnowledgeBaseApi
         $limit = 10,
         string $contentType = self::contentTypes['baseListMostCitedDocuments'][0]
     ) {
-        $request = $this->baseListMostCitedDocumentsRequest($limit, $contentType);
+        return $this->baseListMostCitedDocumentsAsyncWithHttpInfo($limit, $contentType)->wait();
+    }
 
+    private function processbaseListMostCitedDocumentsResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -4159,19 +3440,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -4205,18 +3473,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListMostCitedDocumentsAsync(
         $limit = 10,
         string $contentType = self::contentTypes['baseListMostCitedDocuments'][0]
     ) {
         return $this->baseListMostCitedDocumentsAsyncWithHttpInfo($limit, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -4229,57 +3495,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListMostCitedDocumentsAsyncWithHttpInfo(
         $limit = 10,
         string $contentType = self::contentTypes['baseListMostCitedDocuments'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema';
         $request = $this->baseListMostCitedDocumentsRequest($limit, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseListMostCitedDocumentsResponse($request, $response);
+        });
     }
 
     /**
@@ -4432,30 +3658,24 @@ class KnowledgeBaseApi
         $search = null,
         string $contentType = self::contentTypes['baseListNodeTree'][0]
     ) {
-        $request = $this->baseListNodeTreeRequest($sort_by, $sort_order, $root_id, $search, $contentType);
+        return $this->baseListNodeTreeAsyncWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType)->wait();
+    }
 
+    private function processbaseListNodeTreeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -4464,19 +3684,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -4513,7 +3720,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListNodeTreeAsync(
         $sort_by = 'name',
@@ -4523,11 +3730,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseListNodeTree'][0]
     ) {
         return $this->baseListNodeTreeAsyncWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -4543,7 +3748,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListNodeTreeAsyncWithHttpInfo(
         $sort_by = 'name',
@@ -4552,51 +3757,11 @@ class KnowledgeBaseApi
         $search = null,
         string $contentType = self::contentTypes['baseListNodeTree'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeTreeResponseSchema[]';
         $request = $this->baseListNodeTreeRequest($sort_by, $sort_order, $root_id, $search, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseListNodeTreeResponse($request, $response);
+        });
     }
 
     /**
@@ -4782,30 +3947,24 @@ class KnowledgeBaseApi
         $parent_id = null,
         string $contentType = self::contentTypes['baseListNodes'][0]
     ) {
-        $request = $this->baseListNodesRequest($sort_by, $sort_order, $parent_id, $contentType);
+        return $this->baseListNodesAsyncWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType)->wait();
+    }
 
+    private function processbaseListNodesResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -4814,19 +3973,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -4862,7 +4008,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListNodesAsync(
         $sort_by = 'name',
@@ -4871,11 +4017,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseListNodes'][0]
     ) {
         return $this->baseListNodesAsyncWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -4890,7 +4034,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseListNodesAsyncWithHttpInfo(
         $sort_by = 'name',
@@ -4898,51 +4042,11 @@ class KnowledgeBaseApi
         $parent_id = null,
         string $contentType = self::contentTypes['baseListNodes'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema';
         $request = $this->baseListNodesRequest($sort_by, $sort_order, $parent_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseListNodesResponse($request, $response);
+        });
     }
 
     /**
@@ -5106,30 +4210,24 @@ class KnowledgeBaseApi
         $move_node_payload_schema,
         string $contentType = self::contentTypes['baseMoveNode'][0]
     ) {
-        $request = $this->baseMoveNodeRequest($node_id, $move_node_payload_schema, $contentType);
+        return $this->baseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, $contentType)->wait();
+    }
 
+    private function processbaseMoveNodeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -5138,19 +4236,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -5185,7 +4270,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseMoveNodeAsync(
         $node_id,
@@ -5193,11 +4278,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseMoveNode'][0]
     ) {
         return $this->baseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -5211,58 +4294,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseMoveNodeAsyncWithHttpInfo(
         $node_id,
         $move_node_payload_schema,
         string $contentType = self::contentTypes['baseMoveNode'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
         $request = $this->baseMoveNodeRequest($node_id, $move_node_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseMoveNodeResponse($request, $response);
+        });
     }
 
     /**
@@ -5426,30 +4469,24 @@ class KnowledgeBaseApi
         $version_id,
         string $contentType = self::contentTypes['basePublishDocumentVersion'][0]
     ) {
-        $request = $this->basePublishDocumentVersionRequest($node_id, $version_id, $contentType);
+        return $this->basePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
+    }
 
+    private function processbasePublishDocumentVersionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 202:
@@ -5458,19 +4495,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -5505,7 +4529,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function basePublishDocumentVersionAsync(
         $node_id,
@@ -5513,11 +4537,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['basePublishDocumentVersion'][0]
     ) {
         return $this->basePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -5531,58 +4553,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function basePublishDocumentVersionAsyncWithHttpInfo(
         $node_id,
         $version_id,
         string $contentType = self::contentTypes['basePublishDocumentVersion'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
         $request = $this->basePublishDocumentVersionRequest($node_id, $version_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbasePublishDocumentVersionResponse($request, $response);
+        });
     }
 
     /**
@@ -5743,30 +4725,24 @@ class KnowledgeBaseApi
         $version_id,
         string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0]
     ) {
-        $request = $this->baseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, $contentType);
+        return $this->baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
+    }
 
+    private function processbaseRestoreDocumentVersionAsDraftResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -5775,19 +4751,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -5822,7 +4785,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseRestoreDocumentVersionAsDraftAsync(
         $node_id,
@@ -5830,11 +4793,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0]
     ) {
         return $this->baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -5848,58 +4809,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo(
         $node_id,
         $version_id,
         string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
         $request = $this->baseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseRestoreDocumentVersionAsDraftResponse($request, $response);
+        });
     }
 
     /**
@@ -6060,30 +4981,24 @@ class KnowledgeBaseApi
         $version_id,
         string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0]
     ) {
-        $request = $this->baseRollbackDocumentVersionRequest($node_id, $version_id, $contentType);
+        return $this->baseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
+    }
 
+    private function processbaseRollbackDocumentVersionResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 202:
@@ -6092,19 +5007,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -6139,7 +5041,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseRollbackDocumentVersionAsync(
         $node_id,
@@ -6147,11 +5049,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0]
     ) {
         return $this->baseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -6165,58 +5065,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseRollbackDocumentVersionAsyncWithHttpInfo(
         $node_id,
         $version_id,
         string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
         $request = $this->baseRollbackDocumentVersionRequest($node_id, $version_id, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseRollbackDocumentVersionResponse($request, $response);
+        });
     }
 
     /**
@@ -6373,30 +5233,24 @@ class KnowledgeBaseApi
         $suggest_document_title_payload_schema,
         string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0]
     ) {
-        $request = $this->baseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, $contentType);
+        return $this->baseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, $contentType)->wait();
+    }
 
+    private function processbaseSuggestDocumentTitleResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -6405,19 +5259,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -6451,18 +5292,16 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseSuggestDocumentTitleAsync(
         $suggest_document_title_payload_schema,
         string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0]
     ) {
         return $this->baseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -6475,57 +5314,17 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseSuggestDocumentTitleAsyncWithHttpInfo(
         $suggest_document_title_payload_schema,
         string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\SuggestDocumentTitleResponseSchema';
         $request = $this->baseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseSuggestDocumentTitleResponse($request, $response);
+        });
     }
 
     /**
@@ -6671,30 +5470,24 @@ class KnowledgeBaseApi
         $update_document_content_payload_schema,
         string $contentType = self::contentTypes['baseUpdateDocumentContent'][0]
     ) {
-        $request = $this->baseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, $contentType);
+        return $this->baseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType)->wait();
+    }
 
+    private function processbaseUpdateDocumentContentResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -6703,19 +5496,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -6750,7 +5530,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseUpdateDocumentContentAsync(
         $node_id,
@@ -6758,11 +5538,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseUpdateDocumentContent'][0]
     ) {
         return $this->baseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -6776,58 +5554,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseUpdateDocumentContentAsyncWithHttpInfo(
         $node_id,
         $update_document_content_payload_schema,
         string $contentType = self::contentTypes['baseUpdateDocumentContent'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema';
         $request = $this->baseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseUpdateDocumentContentResponse($request, $response);
+        });
     }
 
     /**
@@ -6991,30 +5729,24 @@ class KnowledgeBaseApi
         $update_node_payload_schema,
         string $contentType = self::contentTypes['baseUpdateNode'][0]
     ) {
-        $request = $this->baseUpdateNodeRequest($node_id, $update_node_payload_schema, $contentType);
+        return $this->baseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, $contentType)->wait();
+    }
 
+    private function processbaseUpdateNodeResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 200:
@@ -7023,19 +5755,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -7070,7 +5789,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseUpdateNodeAsync(
         $node_id,
@@ -7078,11 +5797,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseUpdateNode'][0]
     ) {
         return $this->baseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -7096,58 +5813,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseUpdateNodeAsyncWithHttpInfo(
         $node_id,
         $update_node_payload_schema,
         string $contentType = self::contentTypes['baseUpdateNode'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
         $request = $this->baseUpdateNodeRequest($node_id, $update_node_payload_schema, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseUpdateNodeResponse($request, $response);
+        });
     }
 
     /**
@@ -7311,30 +5988,24 @@ class KnowledgeBaseApi
         $file,
         string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0]
     ) {
-        $request = $this->baseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, $contentType);
+        return $this->baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, $contentType)->wait();
+    }
 
+    private function processbaseUploadKnowledgeDocumentAttachmentResponse(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                $eResponse = $this->getExceptionResponse($e);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $eResponse ? $eResponse->getHeaders() : null,
-                    $eResponse ? (string) $eResponse->getBody() : null
-                );
-            } catch (NetworkExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
                 );
             }
-
-            $statusCode = $response->getStatusCode();
 
             switch ($statusCode) {
                 case 201:
@@ -7343,19 +6014,6 @@ class KnowledgeBaseApi
                         $request,
                         $response,
                     );
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
             }
 
             return $this->handleResponseWithDataType(
@@ -7390,7 +6048,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseUploadKnowledgeDocumentAttachmentAsync(
         $node_id,
@@ -7398,11 +6056,9 @@ class KnowledgeBaseApi
         string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0]
     ) {
         return $this->baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, $contentType)
-            ->then(
-                static function ($response) {
-                    return $response[0];
-                }
-            );
+            ->map(static function ($response) {
+                return $response[0];
+            });
     }
 
     /**
@@ -7416,58 +6072,18 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return PromiseInterface
+     * @return AsyncResult
      */
     public function baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo(
         $node_id,
         $file,
         string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0]
     ) {
-        $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentResponseSchema';
         $request = $this->baseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, $contentType);
 
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                static function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                },
-                function ($exception) {
-                    $response = $this->getExceptionResponse($exception);
-                    if ($response === null) {
-                        throw new ApiException(
-                            "[{$exception->getCode()}] {$exception->getMessage()}",
-                            (int) $exception->getCode(),
-                            null,
-                            null
-                        );
-                    }
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
+        return $this->client->send($request, function (ResponseInterface $response) use ($request) {
+            return $this->processbaseUploadKnowledgeDocumentAttachmentResponse($request, $response);
+        });
     }
 
     /**
@@ -7586,49 +6202,6 @@ class KnowledgeBaseApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option.
-     *
-     * @throws \RuntimeException on file opening failure
-     *
-     * @return array of http client options
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        if ($this->config->getCertFile()) {
-            $options[RequestOptions::CERT] = $this->config->getCertFile();
-        }
-
-        if ($this->config->getKeyFile()) {
-            $options[RequestOptions::SSL_KEY] = $this->config->getKeyFile();
-        }
-
-        return $options;
-    }
-
-    /**
-     * Returns the response attached to a Guzzle exception, if there is one.
-     *
-     * Guzzle 7 exposes getResponse() on RequestException, while Guzzle 8 only
-     * exposes it on ResponseException and its subclasses.
-     *
-     * @param \Throwable $exception
-     *
-     * @return ResponseInterface|null
-     */
-    private function getExceptionResponse(\Throwable $exception): ?ResponseInterface
-    {
-        return method_exists($exception, 'getResponse') ? $exception->getResponse() : null;
     }
 
     private function handleResponseWithDataType(

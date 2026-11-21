@@ -380,6 +380,7 @@ lib/Model/SendMessageResponseSchema.php
 lib/Model/SenderType.php
 lib/Model/SequentialNodeInput.php
 lib/Model/SequentialNodeOutput.php
+lib/Model/ServerSentEventSchema.php
 lib/Model/SetCredentialsPayloadSchema.php
 lib/Model/SetNotificationPreferencePayloadSchema.php
 lib/Model/SortDirection.php

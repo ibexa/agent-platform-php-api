@@ -74,79 +74,79 @@ class AgentsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'agentsCreateAgent' => [
+        'createAgent' => [
             'application/json',
         ],
-        'agentsDeleteAgent' => [
+        'deleteAgent' => [
             'application/json',
         ],
-        'agentsGetAgent' => [
+        'getAgent' => [
             'application/json',
         ],
-        'agentsGetAgentCostForecast' => [
+        'getAgentCostForecast' => [
             'application/json',
         ],
-        'agentsGetAgentEvaluationMetricBreakdown' => [
+        'getAgentEvaluationMetricBreakdown' => [
             'application/json',
         ],
-        'agentsGetAgentEvaluationMetricProviderCounts' => [
+        'getAgentEvaluationMetricProviderCounts' => [
             'application/json',
         ],
-        'agentsGetAgentEvaluationSamplingRate' => [
+        'getAgentEvaluationSamplingRate' => [
             'application/json',
         ],
-        'agentsGetAgentEvaluationSummary' => [
+        'getAgentEvaluationSummary' => [
             'application/json',
         ],
-        'agentsGetAgentEvaluationTarget' => [
+        'getAgentEvaluationTarget' => [
             'application/json',
         ],
-        'agentsGetAgentExecutionDurationSummary' => [
+        'getAgentExecutionDurationSummary' => [
             'application/json',
         ],
-        'agentsGetAgentExecutionsComparison' => [
+        'getAgentExecutionsComparison' => [
             'application/json',
         ],
-        'agentsGetAgentExecutionsOverview' => [
+        'getAgentExecutionsOverview' => [
             'application/json',
         ],
-        'agentsGetAgentImpactMetrics' => [
+        'getAgentImpactMetrics' => [
             'application/json',
         ],
-        'agentsGetAgentStatusDistribution' => [
+        'getAgentStatusDistribution' => [
             'application/json',
         ],
-        'agentsGetAgentUsage' => [
+        'getAgentUsage' => [
             'application/json',
         ],
-        'agentsGetMcpServerLinks' => [
+        'getMcpServerLinks' => [
             'application/json',
         ],
-        'agentsGetSubAgentLinks' => [
+        'getSubAgentLinks' => [
             'application/json',
         ],
-        'agentsLinkMcpServer' => [
+        'linkMcpServer' => [
             'application/json',
         ],
-        'agentsLinkSubAgent' => [
+        'linkSubAgent' => [
             'application/json',
         ],
-        'agentsListAgentEvaluationTargets' => [
+        'listAgentEvaluationTargets' => [
             'application/json',
         ],
-        'agentsListAgents' => [
+        'listAgents' => [
             'application/json',
         ],
-        'agentsListContextWindowStrategies' => [
+        'listContextWindowStrategies' => [
             'application/json',
         ],
-        'agentsUnlinkMcpServer' => [
+        'unlinkMcpServer' => [
             'application/json',
         ],
-        'agentsUnlinkSubAgent' => [
+        'unlinkSubAgent' => [
             'application/json',
         ],
-        'agentsUpdateAgent' => [
+        'updateAgent' => [
             'application/json',
         ],
     ];
@@ -198,38 +198,38 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsCreateAgent
+     * Operation createAgent
      *
      * Create Agent
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateAgentPayloadSchema $create_agent_payload_schema create_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsCreateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\CreateAgentResponseSchema
      */
-    public function agentsCreateAgent($create_agent_payload_schema, string $contentType = self::contentTypes['agentsCreateAgent'][0])
+    public function createAgent($create_agent_payload_schema, string $contentType = self::contentTypes['createAgent'][0])
     {
-        list($response) = $this->agentsCreateAgentWithHttpInfo($create_agent_payload_schema, $contentType);
+        list($response) = $this->createAgentWithHttpInfo($create_agent_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsCreateAgentWithHttpInfo
+     * Operation createAgentWithHttpInfo
      *
      * Create Agent
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateAgentPayloadSchema $create_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsCreateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\CreateAgentResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsCreateAgentWithHttpInfo($create_agent_payload_schema, string $contentType = self::contentTypes['agentsCreateAgent'][0])
+    public function createAgentWithHttpInfo($create_agent_payload_schema, string $contentType = self::contentTypes['createAgent'][0])
     {
-        $request = $this->agentsCreateAgentRequest($create_agent_payload_schema, $contentType);
+        $request = $this->createAgentRequest($create_agent_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -302,19 +302,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsCreateAgentAsync
+     * Operation createAgentAsync
      *
      * Create Agent
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateAgentPayloadSchema $create_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsCreateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsCreateAgentAsync($create_agent_payload_schema, string $contentType = self::contentTypes['agentsCreateAgent'][0])
+    public function createAgentAsync($create_agent_payload_schema, string $contentType = self::contentTypes['createAgent'][0])
     {
-        return $this->agentsCreateAgentAsyncWithHttpInfo($create_agent_payload_schema, $contentType)
+        return $this->createAgentAsyncWithHttpInfo($create_agent_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -323,20 +323,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsCreateAgentAsyncWithHttpInfo
+     * Operation createAgentAsyncWithHttpInfo
      *
      * Create Agent
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateAgentPayloadSchema $create_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsCreateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsCreateAgentAsyncWithHttpInfo($create_agent_payload_schema, string $contentType = self::contentTypes['agentsCreateAgent'][0])
+    public function createAgentAsyncWithHttpInfo($create_agent_payload_schema, string $contentType = self::contentTypes['createAgent'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\CreateAgentResponseSchema';
-        $request = $this->agentsCreateAgentRequest($create_agent_payload_schema, $contentType);
+        $request = $this->createAgentRequest($create_agent_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -383,21 +383,21 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsCreateAgent'
+     * Create request for operation 'createAgent'
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateAgentPayloadSchema $create_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsCreateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsCreateAgentRequest($create_agent_payload_schema, string $contentType = self::contentTypes['agentsCreateAgent'][0])
+    public function createAgentRequest($create_agent_payload_schema, string $contentType = self::contentTypes['createAgent'][0])
     {
 
         // verify the required parameter 'create_agent_payload_schema' is set
         if ($create_agent_payload_schema === null || (is_array($create_agent_payload_schema) && count($create_agent_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_agent_payload_schema when calling agentsCreateAgent'
+                'Missing the required parameter $create_agent_payload_schema when calling createAgent'
             );
         }
 
@@ -486,37 +486,37 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsDeleteAgent
+     * Operation deleteAgent
      *
      * Delete Agent
      *
      * @param  int $agent_id agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsDeleteAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function agentsDeleteAgent($agent_id, string $contentType = self::contentTypes['agentsDeleteAgent'][0])
+    public function deleteAgent($agent_id, string $contentType = self::contentTypes['deleteAgent'][0])
     {
-        $this->agentsDeleteAgentWithHttpInfo($agent_id, $contentType);
+        $this->deleteAgentWithHttpInfo($agent_id, $contentType);
     }
 
     /**
-     * Operation agentsDeleteAgentWithHttpInfo
+     * Operation deleteAgentWithHttpInfo
      *
      * Delete Agent
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsDeleteAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsDeleteAgentWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsDeleteAgent'][0])
+    public function deleteAgentWithHttpInfo($agent_id, string $contentType = self::contentTypes['deleteAgent'][0])
     {
-        $request = $this->agentsDeleteAgentRequest($agent_id, $contentType);
+        $request = $this->deleteAgentRequest($agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -553,19 +553,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsDeleteAgentAsync
+     * Operation deleteAgentAsync
      *
      * Delete Agent
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsDeleteAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsDeleteAgentAsync($agent_id, string $contentType = self::contentTypes['agentsDeleteAgent'][0])
+    public function deleteAgentAsync($agent_id, string $contentType = self::contentTypes['deleteAgent'][0])
     {
-        return $this->agentsDeleteAgentAsyncWithHttpInfo($agent_id, $contentType)
+        return $this->deleteAgentAsyncWithHttpInfo($agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -574,20 +574,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsDeleteAgentAsyncWithHttpInfo
+     * Operation deleteAgentAsyncWithHttpInfo
      *
      * Delete Agent
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsDeleteAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsDeleteAgentAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsDeleteAgent'][0])
+    public function deleteAgentAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['deleteAgent'][0])
     {
         $returnType = '';
-        $request = $this->agentsDeleteAgentRequest($agent_id, $contentType);
+        $request = $this->deleteAgentRequest($agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -621,21 +621,21 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsDeleteAgent'
+     * Create request for operation 'deleteAgent'
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsDeleteAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsDeleteAgentRequest($agent_id, string $contentType = self::contentTypes['agentsDeleteAgent'][0])
+    public function deleteAgentRequest($agent_id, string $contentType = self::contentTypes['deleteAgent'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsDeleteAgent'
+                'Missing the required parameter $agent_id when calling deleteAgent'
             );
         }
 
@@ -721,38 +721,38 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgent
+     * Operation getAgent
      *
      * Get Agent
      *
      * @param  int $agent_id agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentDetailResponseSchema
      */
-    public function agentsGetAgent($agent_id, string $contentType = self::contentTypes['agentsGetAgent'][0])
+    public function getAgent($agent_id, string $contentType = self::contentTypes['getAgent'][0])
     {
-        list($response) = $this->agentsGetAgentWithHttpInfo($agent_id, $contentType);
+        list($response) = $this->getAgentWithHttpInfo($agent_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentWithHttpInfo
+     * Operation getAgentWithHttpInfo
      *
      * Get Agent
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentDetailResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetAgent'][0])
+    public function getAgentWithHttpInfo($agent_id, string $contentType = self::contentTypes['getAgent'][0])
     {
-        $request = $this->agentsGetAgentRequest($agent_id, $contentType);
+        $request = $this->getAgentRequest($agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -825,19 +825,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentAsync
+     * Operation getAgentAsync
      *
      * Get Agent
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentAsync($agent_id, string $contentType = self::contentTypes['agentsGetAgent'][0])
+    public function getAgentAsync($agent_id, string $contentType = self::contentTypes['getAgent'][0])
     {
-        return $this->agentsGetAgentAsyncWithHttpInfo($agent_id, $contentType)
+        return $this->getAgentAsyncWithHttpInfo($agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -846,20 +846,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentAsyncWithHttpInfo
+     * Operation getAgentAsyncWithHttpInfo
      *
      * Get Agent
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetAgent'][0])
+    public function getAgentAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['getAgent'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentDetailResponseSchema';
-        $request = $this->agentsGetAgentRequest($agent_id, $contentType);
+        $request = $this->getAgentRequest($agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -906,21 +906,21 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgent'
+     * Create request for operation 'getAgent'
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentRequest($agent_id, string $contentType = self::contentTypes['agentsGetAgent'][0])
+    public function getAgentRequest($agent_id, string $contentType = self::contentTypes['getAgent'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgent'
+                'Missing the required parameter $agent_id when calling getAgent'
             );
         }
 
@@ -1006,40 +1006,40 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentCostForecast
+     * Operation getAgentCostForecast
      *
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id agent_id (required)
      * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentCostForecast'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentCostForecastResponseSchema
      */
-    public function agentsGetAgentCostForecast($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['agentsGetAgentCostForecast'][0])
+    public function getAgentCostForecast($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['getAgentCostForecast'][0])
     {
-        list($response) = $this->agentsGetAgentCostForecastWithHttpInfo($agent_id, $method, $contentType);
+        list($response) = $this->getAgentCostForecastWithHttpInfo($agent_id, $method, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentCostForecastWithHttpInfo
+     * Operation getAgentCostForecastWithHttpInfo
      *
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentCostForecast'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentCostForecastResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentCostForecastWithHttpInfo($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['agentsGetAgentCostForecast'][0])
+    public function getAgentCostForecastWithHttpInfo($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['getAgentCostForecast'][0])
     {
-        $request = $this->agentsGetAgentCostForecastRequest($agent_id, $method, $contentType);
+        $request = $this->getAgentCostForecastRequest($agent_id, $method, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1112,20 +1112,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentCostForecastAsync
+     * Operation getAgentCostForecastAsync
      *
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentCostForecast'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentCostForecastAsync($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['agentsGetAgentCostForecast'][0])
+    public function getAgentCostForecastAsync($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['getAgentCostForecast'][0])
     {
-        return $this->agentsGetAgentCostForecastAsyncWithHttpInfo($agent_id, $method, $contentType)
+        return $this->getAgentCostForecastAsyncWithHttpInfo($agent_id, $method, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1134,21 +1134,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentCostForecastAsyncWithHttpInfo
+     * Operation getAgentCostForecastAsyncWithHttpInfo
      *
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentCostForecast'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentCostForecastAsyncWithHttpInfo($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['agentsGetAgentCostForecast'][0])
+    public function getAgentCostForecastAsyncWithHttpInfo($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['getAgentCostForecast'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentCostForecastResponseSchema';
-        $request = $this->agentsGetAgentCostForecastRequest($agent_id, $method, $contentType);
+        $request = $this->getAgentCostForecastRequest($agent_id, $method, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1195,22 +1195,22 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentCostForecast'
+     * Create request for operation 'getAgentCostForecast'
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentCostForecast'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentCostForecastRequest($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['agentsGetAgentCostForecast'][0])
+    public function getAgentCostForecastRequest($agent_id, $method = 'SEASONALITY', string $contentType = self::contentTypes['getAgentCostForecast'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentCostForecast'
+                'Missing the required parameter $agent_id when calling getAgentCostForecast'
             );
         }
 
@@ -1306,7 +1306,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricBreakdown
+     * Operation getAgentEvaluationMetricBreakdown
      *
      * Get Agent Evaluation Metric Breakdown
      *
@@ -1316,20 +1316,20 @@ class AgentsApi
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\EvaluationMetricBreakdownResponseSchema
      */
-    public function agentsGetAgentEvaluationMetricBreakdown($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'][0])
+    public function getAgentEvaluationMetricBreakdown($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricBreakdown'][0])
     {
-        list($response) = $this->agentsGetAgentEvaluationMetricBreakdownWithHttpInfo($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType);
+        list($response) = $this->getAgentEvaluationMetricBreakdownWithHttpInfo($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricBreakdownWithHttpInfo
+     * Operation getAgentEvaluationMetricBreakdownWithHttpInfo
      *
      * Get Agent Evaluation Metric Breakdown
      *
@@ -1339,15 +1339,15 @@ class AgentsApi
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\EvaluationMetricBreakdownResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentEvaluationMetricBreakdownWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'][0])
+    public function getAgentEvaluationMetricBreakdownWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricBreakdown'][0])
     {
-        $request = $this->agentsGetAgentEvaluationMetricBreakdownRequest($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType);
+        $request = $this->getAgentEvaluationMetricBreakdownRequest($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1420,7 +1420,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricBreakdownAsync
+     * Operation getAgentEvaluationMetricBreakdownAsync
      *
      * Get Agent Evaluation Metric Breakdown
      *
@@ -1430,14 +1430,14 @@ class AgentsApi
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationMetricBreakdownAsync($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'][0])
+    public function getAgentEvaluationMetricBreakdownAsync($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricBreakdown'][0])
     {
-        return $this->agentsGetAgentEvaluationMetricBreakdownAsyncWithHttpInfo($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType)
+        return $this->getAgentEvaluationMetricBreakdownAsyncWithHttpInfo($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1446,7 +1446,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricBreakdownAsyncWithHttpInfo
+     * Operation getAgentEvaluationMetricBreakdownAsyncWithHttpInfo
      *
      * Get Agent Evaluation Metric Breakdown
      *
@@ -1456,15 +1456,15 @@ class AgentsApi
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationMetricBreakdownAsyncWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'][0])
+    public function getAgentEvaluationMetricBreakdownAsyncWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricBreakdown'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\EvaluationMetricBreakdownResponseSchema';
-        $request = $this->agentsGetAgentEvaluationMetricBreakdownRequest($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType);
+        $request = $this->getAgentEvaluationMetricBreakdownRequest($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1511,7 +1511,7 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentEvaluationMetricBreakdown'
+     * Create request for operation 'getAgentEvaluationMetricBreakdown'
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
@@ -1519,18 +1519,18 @@ class AgentsApi
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentEvaluationMetricBreakdownRequest($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricBreakdown'][0])
+    public function getAgentEvaluationMetricBreakdownRequest($agent_id, $organisation_id = null, $group = 'DAY', $metric_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricBreakdown'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentEvaluationMetricBreakdown'
+                'Missing the required parameter $agent_id when calling getAgentEvaluationMetricBreakdown'
             );
         }
 
@@ -1666,7 +1666,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricProviderCounts
+     * Operation getAgentEvaluationMetricProviderCounts
      *
      * Get Agent Evaluation Metric Provider Counts
      *
@@ -1674,20 +1674,20 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ProviderMetricCountListResponseSchema
      */
-    public function agentsGetAgentEvaluationMetricProviderCounts($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'][0])
+    public function getAgentEvaluationMetricProviderCounts($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricProviderCounts'][0])
     {
-        list($response) = $this->agentsGetAgentEvaluationMetricProviderCountsWithHttpInfo($agent_id, $organisation_id, $target_type, $daterange, $contentType);
+        list($response) = $this->getAgentEvaluationMetricProviderCountsWithHttpInfo($agent_id, $organisation_id, $target_type, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricProviderCountsWithHttpInfo
+     * Operation getAgentEvaluationMetricProviderCountsWithHttpInfo
      *
      * Get Agent Evaluation Metric Provider Counts
      *
@@ -1695,15 +1695,15 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ProviderMetricCountListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentEvaluationMetricProviderCountsWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'][0])
+    public function getAgentEvaluationMetricProviderCountsWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricProviderCounts'][0])
     {
-        $request = $this->agentsGetAgentEvaluationMetricProviderCountsRequest($agent_id, $organisation_id, $target_type, $daterange, $contentType);
+        $request = $this->getAgentEvaluationMetricProviderCountsRequest($agent_id, $organisation_id, $target_type, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1776,7 +1776,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricProviderCountsAsync
+     * Operation getAgentEvaluationMetricProviderCountsAsync
      *
      * Get Agent Evaluation Metric Provider Counts
      *
@@ -1784,14 +1784,14 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationMetricProviderCountsAsync($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'][0])
+    public function getAgentEvaluationMetricProviderCountsAsync($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricProviderCounts'][0])
     {
-        return $this->agentsGetAgentEvaluationMetricProviderCountsAsyncWithHttpInfo($agent_id, $organisation_id, $target_type, $daterange, $contentType)
+        return $this->getAgentEvaluationMetricProviderCountsAsyncWithHttpInfo($agent_id, $organisation_id, $target_type, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1800,7 +1800,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationMetricProviderCountsAsyncWithHttpInfo
+     * Operation getAgentEvaluationMetricProviderCountsAsyncWithHttpInfo
      *
      * Get Agent Evaluation Metric Provider Counts
      *
@@ -1808,15 +1808,15 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationMetricProviderCountsAsyncWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'][0])
+    public function getAgentEvaluationMetricProviderCountsAsyncWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricProviderCounts'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ProviderMetricCountListResponseSchema';
-        $request = $this->agentsGetAgentEvaluationMetricProviderCountsRequest($agent_id, $organisation_id, $target_type, $daterange, $contentType);
+        $request = $this->getAgentEvaluationMetricProviderCountsRequest($agent_id, $organisation_id, $target_type, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1863,24 +1863,24 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentEvaluationMetricProviderCounts'
+     * Create request for operation 'getAgentEvaluationMetricProviderCounts'
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentEvaluationMetricProviderCountsRequest($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationMetricProviderCounts'][0])
+    public function getAgentEvaluationMetricProviderCountsRequest($agent_id, $organisation_id = null, $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationMetricProviderCounts'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentEvaluationMetricProviderCounts'
+                'Missing the required parameter $agent_id when calling getAgentEvaluationMetricProviderCounts'
             );
         }
 
@@ -1996,42 +1996,42 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSamplingRate
+     * Operation getAgentEvaluationSamplingRate
      *
      * Get Agent Evaluation Sampling Rate
      *
      * @param  int $agent_id agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSamplingRate'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSamplingRate'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\EvaluationSamplingRateResponseSchema
      */
-    public function agentsGetAgentEvaluationSamplingRate($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSamplingRate'][0])
+    public function getAgentEvaluationSamplingRate($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSamplingRate'][0])
     {
-        list($response) = $this->agentsGetAgentEvaluationSamplingRateWithHttpInfo($agent_id, $organisation_id, $daterange, $contentType);
+        list($response) = $this->getAgentEvaluationSamplingRateWithHttpInfo($agent_id, $organisation_id, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSamplingRateWithHttpInfo
+     * Operation getAgentEvaluationSamplingRateWithHttpInfo
      *
      * Get Agent Evaluation Sampling Rate
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSamplingRate'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSamplingRate'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\EvaluationSamplingRateResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentEvaluationSamplingRateWithHttpInfo($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSamplingRate'][0])
+    public function getAgentEvaluationSamplingRateWithHttpInfo($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSamplingRate'][0])
     {
-        $request = $this->agentsGetAgentEvaluationSamplingRateRequest($agent_id, $organisation_id, $daterange, $contentType);
+        $request = $this->getAgentEvaluationSamplingRateRequest($agent_id, $organisation_id, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2104,21 +2104,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSamplingRateAsync
+     * Operation getAgentEvaluationSamplingRateAsync
      *
      * Get Agent Evaluation Sampling Rate
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSamplingRate'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSamplingRate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationSamplingRateAsync($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSamplingRate'][0])
+    public function getAgentEvaluationSamplingRateAsync($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSamplingRate'][0])
     {
-        return $this->agentsGetAgentEvaluationSamplingRateAsyncWithHttpInfo($agent_id, $organisation_id, $daterange, $contentType)
+        return $this->getAgentEvaluationSamplingRateAsyncWithHttpInfo($agent_id, $organisation_id, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2127,22 +2127,22 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSamplingRateAsyncWithHttpInfo
+     * Operation getAgentEvaluationSamplingRateAsyncWithHttpInfo
      *
      * Get Agent Evaluation Sampling Rate
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSamplingRate'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSamplingRate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationSamplingRateAsyncWithHttpInfo($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSamplingRate'][0])
+    public function getAgentEvaluationSamplingRateAsyncWithHttpInfo($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSamplingRate'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\EvaluationSamplingRateResponseSchema';
-        $request = $this->agentsGetAgentEvaluationSamplingRateRequest($agent_id, $organisation_id, $daterange, $contentType);
+        $request = $this->getAgentEvaluationSamplingRateRequest($agent_id, $organisation_id, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2189,23 +2189,23 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentEvaluationSamplingRate'
+     * Create request for operation 'getAgentEvaluationSamplingRate'
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSamplingRate'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSamplingRate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentEvaluationSamplingRateRequest($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSamplingRate'][0])
+    public function getAgentEvaluationSamplingRateRequest($agent_id, $organisation_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSamplingRate'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentEvaluationSamplingRate'
+                'Missing the required parameter $agent_id when calling getAgentEvaluationSamplingRate'
             );
         }
 
@@ -2311,7 +2311,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSummary
+     * Operation getAgentEvaluationSummary
      *
      * Get Agent Evaluation Summary
      *
@@ -2320,20 +2320,20 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\EvaluationSummaryResponseSchema
      */
-    public function agentsGetAgentEvaluationSummary($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSummary'][0])
+    public function getAgentEvaluationSummary($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSummary'][0])
     {
-        list($response) = $this->agentsGetAgentEvaluationSummaryWithHttpInfo($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType);
+        list($response) = $this->getAgentEvaluationSummaryWithHttpInfo($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSummaryWithHttpInfo
+     * Operation getAgentEvaluationSummaryWithHttpInfo
      *
      * Get Agent Evaluation Summary
      *
@@ -2342,15 +2342,15 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\EvaluationSummaryResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentEvaluationSummaryWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSummary'][0])
+    public function getAgentEvaluationSummaryWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSummary'][0])
     {
-        $request = $this->agentsGetAgentEvaluationSummaryRequest($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType);
+        $request = $this->getAgentEvaluationSummaryRequest($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2423,7 +2423,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSummaryAsync
+     * Operation getAgentEvaluationSummaryAsync
      *
      * Get Agent Evaluation Summary
      *
@@ -2432,14 +2432,14 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationSummaryAsync($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSummary'][0])
+    public function getAgentEvaluationSummaryAsync($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSummary'][0])
     {
-        return $this->agentsGetAgentEvaluationSummaryAsyncWithHttpInfo($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType)
+        return $this->getAgentEvaluationSummaryAsyncWithHttpInfo($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2448,7 +2448,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationSummaryAsyncWithHttpInfo
+     * Operation getAgentEvaluationSummaryAsyncWithHttpInfo
      *
      * Get Agent Evaluation Summary
      *
@@ -2457,15 +2457,15 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationSummaryAsyncWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSummary'][0])
+    public function getAgentEvaluationSummaryAsyncWithHttpInfo($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSummary'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\EvaluationSummaryResponseSchema';
-        $request = $this->agentsGetAgentEvaluationSummaryRequest($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType);
+        $request = $this->getAgentEvaluationSummaryRequest($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2512,25 +2512,25 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentEvaluationSummary'
+     * Create request for operation 'getAgentEvaluationSummary'
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentEvaluationSummaryRequest($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationSummary'][0])
+    public function getAgentEvaluationSummaryRequest($agent_id, $organisation_id = null, $group = 'DAY', $target_type = null, $daterange = null, string $contentType = self::contentTypes['getAgentEvaluationSummary'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentEvaluationSummary'
+                'Missing the required parameter $agent_id when calling getAgentEvaluationSummary'
             );
         }
 
@@ -2656,42 +2656,42 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationTarget
+     * Operation getAgentEvaluationTarget
      *
      * Get Agent Evaluation Target
      *
      * @param  int $agent_id agent_id (required)
      * @param  int $target_id target_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationTarget'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationTarget'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\EvaluationTargetDetailResponseSchema
      */
-    public function agentsGetAgentEvaluationTarget($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationTarget'][0])
+    public function getAgentEvaluationTarget($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['getAgentEvaluationTarget'][0])
     {
-        list($response) = $this->agentsGetAgentEvaluationTargetWithHttpInfo($agent_id, $target_id, $organisation_id, $contentType);
+        list($response) = $this->getAgentEvaluationTargetWithHttpInfo($agent_id, $target_id, $organisation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentEvaluationTargetWithHttpInfo
+     * Operation getAgentEvaluationTargetWithHttpInfo
      *
      * Get Agent Evaluation Target
      *
      * @param  int $agent_id (required)
      * @param  int $target_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationTarget'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationTarget'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\EvaluationTargetDetailResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentEvaluationTargetWithHttpInfo($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationTarget'][0])
+    public function getAgentEvaluationTargetWithHttpInfo($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['getAgentEvaluationTarget'][0])
     {
-        $request = $this->agentsGetAgentEvaluationTargetRequest($agent_id, $target_id, $organisation_id, $contentType);
+        $request = $this->getAgentEvaluationTargetRequest($agent_id, $target_id, $organisation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2764,21 +2764,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationTargetAsync
+     * Operation getAgentEvaluationTargetAsync
      *
      * Get Agent Evaluation Target
      *
      * @param  int $agent_id (required)
      * @param  int $target_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationTarget'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationTarget'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationTargetAsync($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationTarget'][0])
+    public function getAgentEvaluationTargetAsync($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['getAgentEvaluationTarget'][0])
     {
-        return $this->agentsGetAgentEvaluationTargetAsyncWithHttpInfo($agent_id, $target_id, $organisation_id, $contentType)
+        return $this->getAgentEvaluationTargetAsyncWithHttpInfo($agent_id, $target_id, $organisation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2787,22 +2787,22 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentEvaluationTargetAsyncWithHttpInfo
+     * Operation getAgentEvaluationTargetAsyncWithHttpInfo
      *
      * Get Agent Evaluation Target
      *
      * @param  int $agent_id (required)
      * @param  int $target_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationTarget'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationTarget'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentEvaluationTargetAsyncWithHttpInfo($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationTarget'][0])
+    public function getAgentEvaluationTargetAsyncWithHttpInfo($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['getAgentEvaluationTarget'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\EvaluationTargetDetailResponseSchema';
-        $request = $this->agentsGetAgentEvaluationTargetRequest($agent_id, $target_id, $organisation_id, $contentType);
+        $request = $this->getAgentEvaluationTargetRequest($agent_id, $target_id, $organisation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2849,30 +2849,30 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentEvaluationTarget'
+     * Create request for operation 'getAgentEvaluationTarget'
      *
      * @param  int $agent_id (required)
      * @param  int $target_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentEvaluationTarget'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationTarget'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentEvaluationTargetRequest($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['agentsGetAgentEvaluationTarget'][0])
+    public function getAgentEvaluationTargetRequest($agent_id, $target_id, $organisation_id = null, string $contentType = self::contentTypes['getAgentEvaluationTarget'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentEvaluationTarget'
+                'Missing the required parameter $agent_id when calling getAgentEvaluationTarget'
             );
         }
 
         // verify the required parameter 'target_id' is set
         if ($target_id === null || (is_array($target_id) && count($target_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $target_id when calling agentsGetAgentEvaluationTarget'
+                'Missing the required parameter $target_id when calling getAgentEvaluationTarget'
             );
         }
 
@@ -2976,40 +2976,40 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionDurationSummary
+     * Operation getAgentExecutionDurationSummary
      *
      * Get Agent Execution Duration Summary
      *
      * @param  int $agent_id agent_id (required)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionDurationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionDurationSummary'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentExecutionDurationSummaryResponseSchema
      */
-    public function agentsGetAgentExecutionDurationSummary($agent_id, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentExecutionDurationSummary'][0])
+    public function getAgentExecutionDurationSummary($agent_id, $daterange = null, string $contentType = self::contentTypes['getAgentExecutionDurationSummary'][0])
     {
-        list($response) = $this->agentsGetAgentExecutionDurationSummaryWithHttpInfo($agent_id, $daterange, $contentType);
+        list($response) = $this->getAgentExecutionDurationSummaryWithHttpInfo($agent_id, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentExecutionDurationSummaryWithHttpInfo
+     * Operation getAgentExecutionDurationSummaryWithHttpInfo
      *
      * Get Agent Execution Duration Summary
      *
      * @param  int $agent_id (required)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionDurationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionDurationSummary'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentExecutionDurationSummaryResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentExecutionDurationSummaryWithHttpInfo($agent_id, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentExecutionDurationSummary'][0])
+    public function getAgentExecutionDurationSummaryWithHttpInfo($agent_id, $daterange = null, string $contentType = self::contentTypes['getAgentExecutionDurationSummary'][0])
     {
-        $request = $this->agentsGetAgentExecutionDurationSummaryRequest($agent_id, $daterange, $contentType);
+        $request = $this->getAgentExecutionDurationSummaryRequest($agent_id, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3082,20 +3082,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionDurationSummaryAsync
+     * Operation getAgentExecutionDurationSummaryAsync
      *
      * Get Agent Execution Duration Summary
      *
      * @param  int $agent_id (required)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionDurationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionDurationSummary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentExecutionDurationSummaryAsync($agent_id, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentExecutionDurationSummary'][0])
+    public function getAgentExecutionDurationSummaryAsync($agent_id, $daterange = null, string $contentType = self::contentTypes['getAgentExecutionDurationSummary'][0])
     {
-        return $this->agentsGetAgentExecutionDurationSummaryAsyncWithHttpInfo($agent_id, $daterange, $contentType)
+        return $this->getAgentExecutionDurationSummaryAsyncWithHttpInfo($agent_id, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3104,21 +3104,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionDurationSummaryAsyncWithHttpInfo
+     * Operation getAgentExecutionDurationSummaryAsyncWithHttpInfo
      *
      * Get Agent Execution Duration Summary
      *
      * @param  int $agent_id (required)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionDurationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionDurationSummary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentExecutionDurationSummaryAsyncWithHttpInfo($agent_id, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentExecutionDurationSummary'][0])
+    public function getAgentExecutionDurationSummaryAsyncWithHttpInfo($agent_id, $daterange = null, string $contentType = self::contentTypes['getAgentExecutionDurationSummary'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentExecutionDurationSummaryResponseSchema';
-        $request = $this->agentsGetAgentExecutionDurationSummaryRequest($agent_id, $daterange, $contentType);
+        $request = $this->getAgentExecutionDurationSummaryRequest($agent_id, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3165,22 +3165,22 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentExecutionDurationSummary'
+     * Create request for operation 'getAgentExecutionDurationSummary'
      *
      * @param  int $agent_id (required)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionDurationSummary'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionDurationSummary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentExecutionDurationSummaryRequest($agent_id, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentExecutionDurationSummary'][0])
+    public function getAgentExecutionDurationSummaryRequest($agent_id, $daterange = null, string $contentType = self::contentTypes['getAgentExecutionDurationSummary'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentExecutionDurationSummary'
+                'Missing the required parameter $agent_id when calling getAgentExecutionDurationSummary'
             );
         }
 
@@ -3276,42 +3276,42 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionsComparison
+     * Operation getAgentExecutionsComparison
      *
      * Get Agent Executions Comparison
      *
      * @param  int $agent_id agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
      * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsComparison'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ExecutionsComparisonResponseSchema
      */
-    public function agentsGetAgentExecutionsComparison($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['agentsGetAgentExecutionsComparison'][0])
+    public function getAgentExecutionsComparison($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['getAgentExecutionsComparison'][0])
     {
-        list($response) = $this->agentsGetAgentExecutionsComparisonWithHttpInfo($agent_id, $daterange, $compare_to, $contentType);
+        list($response) = $this->getAgentExecutionsComparisonWithHttpInfo($agent_id, $daterange, $compare_to, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentExecutionsComparisonWithHttpInfo
+     * Operation getAgentExecutionsComparisonWithHttpInfo
      *
      * Get Agent Executions Comparison
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
      * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsComparison'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ExecutionsComparisonResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentExecutionsComparisonWithHttpInfo($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['agentsGetAgentExecutionsComparison'][0])
+    public function getAgentExecutionsComparisonWithHttpInfo($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['getAgentExecutionsComparison'][0])
     {
-        $request = $this->agentsGetAgentExecutionsComparisonRequest($agent_id, $daterange, $compare_to, $contentType);
+        $request = $this->getAgentExecutionsComparisonRequest($agent_id, $daterange, $compare_to, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3384,21 +3384,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionsComparisonAsync
+     * Operation getAgentExecutionsComparisonAsync
      *
      * Get Agent Executions Comparison
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
      * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsComparison'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentExecutionsComparisonAsync($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['agentsGetAgentExecutionsComparison'][0])
+    public function getAgentExecutionsComparisonAsync($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['getAgentExecutionsComparison'][0])
     {
-        return $this->agentsGetAgentExecutionsComparisonAsyncWithHttpInfo($agent_id, $daterange, $compare_to, $contentType)
+        return $this->getAgentExecutionsComparisonAsyncWithHttpInfo($agent_id, $daterange, $compare_to, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3407,22 +3407,22 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionsComparisonAsyncWithHttpInfo
+     * Operation getAgentExecutionsComparisonAsyncWithHttpInfo
      *
      * Get Agent Executions Comparison
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
      * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsComparison'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentExecutionsComparisonAsyncWithHttpInfo($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['agentsGetAgentExecutionsComparison'][0])
+    public function getAgentExecutionsComparisonAsyncWithHttpInfo($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['getAgentExecutionsComparison'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ExecutionsComparisonResponseSchema';
-        $request = $this->agentsGetAgentExecutionsComparisonRequest($agent_id, $daterange, $compare_to, $contentType);
+        $request = $this->getAgentExecutionsComparisonRequest($agent_id, $daterange, $compare_to, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3469,30 +3469,30 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentExecutionsComparison'
+     * Create request for operation 'getAgentExecutionsComparison'
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
      * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsComparison'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentExecutionsComparisonRequest($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['agentsGetAgentExecutionsComparison'][0])
+    public function getAgentExecutionsComparisonRequest($agent_id, $daterange, $compare_to = 'PREVIOUS_MONTH', string $contentType = self::contentTypes['getAgentExecutionsComparison'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentExecutionsComparison'
+                'Missing the required parameter $agent_id when calling getAgentExecutionsComparison'
             );
         }
 
         // verify the required parameter 'daterange' is set
         if ($daterange === null || (is_array($daterange) && count($daterange) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $daterange when calling agentsGetAgentExecutionsComparison'
+                'Missing the required parameter $daterange when calling getAgentExecutionsComparison'
             );
         }
 
@@ -3597,38 +3597,38 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionsOverview
+     * Operation getAgentExecutionsOverview
      *
      * Get Agent Executions Overview
      *
      * @param  int $agent_id agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsOverview'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentExecutionsOverviewResponseSchema
      */
-    public function agentsGetAgentExecutionsOverview($agent_id, string $contentType = self::contentTypes['agentsGetAgentExecutionsOverview'][0])
+    public function getAgentExecutionsOverview($agent_id, string $contentType = self::contentTypes['getAgentExecutionsOverview'][0])
     {
-        list($response) = $this->agentsGetAgentExecutionsOverviewWithHttpInfo($agent_id, $contentType);
+        list($response) = $this->getAgentExecutionsOverviewWithHttpInfo($agent_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentExecutionsOverviewWithHttpInfo
+     * Operation getAgentExecutionsOverviewWithHttpInfo
      *
      * Get Agent Executions Overview
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsOverview'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentExecutionsOverviewResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentExecutionsOverviewWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetAgentExecutionsOverview'][0])
+    public function getAgentExecutionsOverviewWithHttpInfo($agent_id, string $contentType = self::contentTypes['getAgentExecutionsOverview'][0])
     {
-        $request = $this->agentsGetAgentExecutionsOverviewRequest($agent_id, $contentType);
+        $request = $this->getAgentExecutionsOverviewRequest($agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3701,19 +3701,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionsOverviewAsync
+     * Operation getAgentExecutionsOverviewAsync
      *
      * Get Agent Executions Overview
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsOverview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentExecutionsOverviewAsync($agent_id, string $contentType = self::contentTypes['agentsGetAgentExecutionsOverview'][0])
+    public function getAgentExecutionsOverviewAsync($agent_id, string $contentType = self::contentTypes['getAgentExecutionsOverview'][0])
     {
-        return $this->agentsGetAgentExecutionsOverviewAsyncWithHttpInfo($agent_id, $contentType)
+        return $this->getAgentExecutionsOverviewAsyncWithHttpInfo($agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3722,20 +3722,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentExecutionsOverviewAsyncWithHttpInfo
+     * Operation getAgentExecutionsOverviewAsyncWithHttpInfo
      *
      * Get Agent Executions Overview
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsOverview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentExecutionsOverviewAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetAgentExecutionsOverview'][0])
+    public function getAgentExecutionsOverviewAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['getAgentExecutionsOverview'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentExecutionsOverviewResponseSchema';
-        $request = $this->agentsGetAgentExecutionsOverviewRequest($agent_id, $contentType);
+        $request = $this->getAgentExecutionsOverviewRequest($agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3782,21 +3782,21 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentExecutionsOverview'
+     * Create request for operation 'getAgentExecutionsOverview'
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentExecutionsOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsOverview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentExecutionsOverviewRequest($agent_id, string $contentType = self::contentTypes['agentsGetAgentExecutionsOverview'][0])
+    public function getAgentExecutionsOverviewRequest($agent_id, string $contentType = self::contentTypes['getAgentExecutionsOverview'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentExecutionsOverview'
+                'Missing the required parameter $agent_id when calling getAgentExecutionsOverview'
             );
         }
 
@@ -3882,7 +3882,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentImpactMetrics
+     * Operation getAgentImpactMetrics
      *
      * Get Agent Impact Metrics
      *
@@ -3890,20 +3890,20 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentImpactMetrics'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentImpactMetricAggregateResponseSchema
      */
-    public function agentsGetAgentImpactMetrics($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentImpactMetrics'][0])
+    public function getAgentImpactMetrics($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentImpactMetrics'][0])
     {
-        list($response) = $this->agentsGetAgentImpactMetricsWithHttpInfo($agent_id, $group, $user_id, $daterange, $contentType);
+        list($response) = $this->getAgentImpactMetricsWithHttpInfo($agent_id, $group, $user_id, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentImpactMetricsWithHttpInfo
+     * Operation getAgentImpactMetricsWithHttpInfo
      *
      * Get Agent Impact Metrics
      *
@@ -3911,15 +3911,15 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentImpactMetrics'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentImpactMetricAggregateResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentImpactMetricsWithHttpInfo($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentImpactMetrics'][0])
+    public function getAgentImpactMetricsWithHttpInfo($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentImpactMetrics'][0])
     {
-        $request = $this->agentsGetAgentImpactMetricsRequest($agent_id, $group, $user_id, $daterange, $contentType);
+        $request = $this->getAgentImpactMetricsRequest($agent_id, $group, $user_id, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3992,7 +3992,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentImpactMetricsAsync
+     * Operation getAgentImpactMetricsAsync
      *
      * Get Agent Impact Metrics
      *
@@ -4000,14 +4000,14 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentImpactMetrics'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentImpactMetricsAsync($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentImpactMetrics'][0])
+    public function getAgentImpactMetricsAsync($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentImpactMetrics'][0])
     {
-        return $this->agentsGetAgentImpactMetricsAsyncWithHttpInfo($agent_id, $group, $user_id, $daterange, $contentType)
+        return $this->getAgentImpactMetricsAsyncWithHttpInfo($agent_id, $group, $user_id, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4016,7 +4016,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentImpactMetricsAsyncWithHttpInfo
+     * Operation getAgentImpactMetricsAsyncWithHttpInfo
      *
      * Get Agent Impact Metrics
      *
@@ -4024,15 +4024,15 @@ class AgentsApi
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentImpactMetrics'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentImpactMetricsAsyncWithHttpInfo($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentImpactMetrics'][0])
+    public function getAgentImpactMetricsAsyncWithHttpInfo($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentImpactMetrics'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentImpactMetricAggregateResponseSchema';
-        $request = $this->agentsGetAgentImpactMetricsRequest($agent_id, $group, $user_id, $daterange, $contentType);
+        $request = $this->getAgentImpactMetricsRequest($agent_id, $group, $user_id, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4079,24 +4079,24 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentImpactMetrics'
+     * Create request for operation 'getAgentImpactMetrics'
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentImpactMetrics'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentImpactMetricsRequest($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentImpactMetrics'][0])
+    public function getAgentImpactMetricsRequest($agent_id, $group = null, $user_id = null, $daterange = null, string $contentType = self::contentTypes['getAgentImpactMetrics'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentImpactMetrics'
+                'Missing the required parameter $agent_id when calling getAgentImpactMetrics'
             );
         }
 
@@ -4212,7 +4212,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentStatusDistribution
+     * Operation getAgentStatusDistribution
      *
      * Get Agent Status Distribution
      *
@@ -4220,20 +4220,20 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentStatusDistribution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ExecutionStatusDistributionResponseSchema
      */
-    public function agentsGetAgentStatusDistribution($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentStatusDistribution'][0])
+    public function getAgentStatusDistribution($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentStatusDistribution'][0])
     {
-        list($response) = $this->agentsGetAgentStatusDistributionWithHttpInfo($agent_id, $organisation_id, $group, $daterange, $contentType);
+        list($response) = $this->getAgentStatusDistributionWithHttpInfo($agent_id, $organisation_id, $group, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentStatusDistributionWithHttpInfo
+     * Operation getAgentStatusDistributionWithHttpInfo
      *
      * Get Agent Status Distribution
      *
@@ -4241,15 +4241,15 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentStatusDistribution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ExecutionStatusDistributionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentStatusDistributionWithHttpInfo($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentStatusDistribution'][0])
+    public function getAgentStatusDistributionWithHttpInfo($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentStatusDistribution'][0])
     {
-        $request = $this->agentsGetAgentStatusDistributionRequest($agent_id, $organisation_id, $group, $daterange, $contentType);
+        $request = $this->getAgentStatusDistributionRequest($agent_id, $organisation_id, $group, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4322,7 +4322,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentStatusDistributionAsync
+     * Operation getAgentStatusDistributionAsync
      *
      * Get Agent Status Distribution
      *
@@ -4330,14 +4330,14 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentStatusDistribution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentStatusDistributionAsync($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentStatusDistribution'][0])
+    public function getAgentStatusDistributionAsync($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentStatusDistribution'][0])
     {
-        return $this->agentsGetAgentStatusDistributionAsyncWithHttpInfo($agent_id, $organisation_id, $group, $daterange, $contentType)
+        return $this->getAgentStatusDistributionAsyncWithHttpInfo($agent_id, $organisation_id, $group, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4346,7 +4346,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentStatusDistributionAsyncWithHttpInfo
+     * Operation getAgentStatusDistributionAsyncWithHttpInfo
      *
      * Get Agent Status Distribution
      *
@@ -4354,15 +4354,15 @@ class AgentsApi
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentStatusDistribution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentStatusDistributionAsyncWithHttpInfo($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentStatusDistribution'][0])
+    public function getAgentStatusDistributionAsyncWithHttpInfo($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentStatusDistribution'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ExecutionStatusDistributionResponseSchema';
-        $request = $this->agentsGetAgentStatusDistributionRequest($agent_id, $organisation_id, $group, $daterange, $contentType);
+        $request = $this->getAgentStatusDistributionRequest($agent_id, $organisation_id, $group, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4409,24 +4409,24 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentStatusDistribution'
+     * Create request for operation 'getAgentStatusDistribution'
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentStatusDistribution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentStatusDistributionRequest($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentStatusDistribution'][0])
+    public function getAgentStatusDistributionRequest($agent_id, $organisation_id = null, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentStatusDistribution'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentStatusDistribution'
+                'Missing the required parameter $agent_id when calling getAgentStatusDistribution'
             );
         }
 
@@ -4542,42 +4542,42 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentUsage
+     * Operation getAgentUsage
      *
      * Get Agent Usage
      *
      * @param  int $agent_id agent_id (required)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentUsage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentUsageAggregateResponseSchema
      */
-    public function agentsGetAgentUsage($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentUsage'][0])
+    public function getAgentUsage($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentUsage'][0])
     {
-        list($response) = $this->agentsGetAgentUsageWithHttpInfo($agent_id, $group, $daterange, $contentType);
+        list($response) = $this->getAgentUsageWithHttpInfo($agent_id, $group, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetAgentUsageWithHttpInfo
+     * Operation getAgentUsageWithHttpInfo
      *
      * Get Agent Usage
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentUsage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentUsageAggregateResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetAgentUsageWithHttpInfo($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentUsage'][0])
+    public function getAgentUsageWithHttpInfo($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentUsage'][0])
     {
-        $request = $this->agentsGetAgentUsageRequest($agent_id, $group, $daterange, $contentType);
+        $request = $this->getAgentUsageRequest($agent_id, $group, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4650,21 +4650,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentUsageAsync
+     * Operation getAgentUsageAsync
      *
      * Get Agent Usage
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentUsage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentUsageAsync($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentUsage'][0])
+    public function getAgentUsageAsync($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentUsage'][0])
     {
-        return $this->agentsGetAgentUsageAsyncWithHttpInfo($agent_id, $group, $daterange, $contentType)
+        return $this->getAgentUsageAsyncWithHttpInfo($agent_id, $group, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4673,22 +4673,22 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetAgentUsageAsyncWithHttpInfo
+     * Operation getAgentUsageAsyncWithHttpInfo
      *
      * Get Agent Usage
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentUsage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetAgentUsageAsyncWithHttpInfo($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentUsage'][0])
+    public function getAgentUsageAsyncWithHttpInfo($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentUsage'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentUsageAggregateResponseSchema';
-        $request = $this->agentsGetAgentUsageRequest($agent_id, $group, $daterange, $contentType);
+        $request = $this->getAgentUsageRequest($agent_id, $group, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4735,23 +4735,23 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetAgentUsage'
+     * Create request for operation 'getAgentUsage'
      *
      * @param  int $agent_id (required)
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetAgentUsage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetAgentUsageRequest($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['agentsGetAgentUsage'][0])
+    public function getAgentUsageRequest($agent_id, $group = null, $daterange = null, string $contentType = self::contentTypes['getAgentUsage'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetAgentUsage'
+                'Missing the required parameter $agent_id when calling getAgentUsage'
             );
         }
 
@@ -4857,38 +4857,38 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetMcpServerLinks
+     * Operation getMcpServerLinks
      *
      * Get Mcp Server Links
      *
      * @param  int $agent_id agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetMcpServerLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMcpServerLinks'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentMCPServerLinksResponseSchema
      */
-    public function agentsGetMcpServerLinks($agent_id, string $contentType = self::contentTypes['agentsGetMcpServerLinks'][0])
+    public function getMcpServerLinks($agent_id, string $contentType = self::contentTypes['getMcpServerLinks'][0])
     {
-        list($response) = $this->agentsGetMcpServerLinksWithHttpInfo($agent_id, $contentType);
+        list($response) = $this->getMcpServerLinksWithHttpInfo($agent_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetMcpServerLinksWithHttpInfo
+     * Operation getMcpServerLinksWithHttpInfo
      *
      * Get Mcp Server Links
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetMcpServerLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMcpServerLinks'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentMCPServerLinksResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetMcpServerLinksWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetMcpServerLinks'][0])
+    public function getMcpServerLinksWithHttpInfo($agent_id, string $contentType = self::contentTypes['getMcpServerLinks'][0])
     {
-        $request = $this->agentsGetMcpServerLinksRequest($agent_id, $contentType);
+        $request = $this->getMcpServerLinksRequest($agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4961,19 +4961,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetMcpServerLinksAsync
+     * Operation getMcpServerLinksAsync
      *
      * Get Mcp Server Links
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetMcpServerLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMcpServerLinks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetMcpServerLinksAsync($agent_id, string $contentType = self::contentTypes['agentsGetMcpServerLinks'][0])
+    public function getMcpServerLinksAsync($agent_id, string $contentType = self::contentTypes['getMcpServerLinks'][0])
     {
-        return $this->agentsGetMcpServerLinksAsyncWithHttpInfo($agent_id, $contentType)
+        return $this->getMcpServerLinksAsyncWithHttpInfo($agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4982,20 +4982,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetMcpServerLinksAsyncWithHttpInfo
+     * Operation getMcpServerLinksAsyncWithHttpInfo
      *
      * Get Mcp Server Links
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetMcpServerLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMcpServerLinks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetMcpServerLinksAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetMcpServerLinks'][0])
+    public function getMcpServerLinksAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['getMcpServerLinks'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentMCPServerLinksResponseSchema';
-        $request = $this->agentsGetMcpServerLinksRequest($agent_id, $contentType);
+        $request = $this->getMcpServerLinksRequest($agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5042,21 +5042,21 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetMcpServerLinks'
+     * Create request for operation 'getMcpServerLinks'
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetMcpServerLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMcpServerLinks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetMcpServerLinksRequest($agent_id, string $contentType = self::contentTypes['agentsGetMcpServerLinks'][0])
+    public function getMcpServerLinksRequest($agent_id, string $contentType = self::contentTypes['getMcpServerLinks'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetMcpServerLinks'
+                'Missing the required parameter $agent_id when calling getMcpServerLinks'
             );
         }
 
@@ -5142,38 +5142,38 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetSubAgentLinks
+     * Operation getSubAgentLinks
      *
      * Get Sub Agent Links
      *
      * @param  int $agent_id agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetSubAgentLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSubAgentLinks'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\SubAgentLinksResponseSchema
      */
-    public function agentsGetSubAgentLinks($agent_id, string $contentType = self::contentTypes['agentsGetSubAgentLinks'][0])
+    public function getSubAgentLinks($agent_id, string $contentType = self::contentTypes['getSubAgentLinks'][0])
     {
-        list($response) = $this->agentsGetSubAgentLinksWithHttpInfo($agent_id, $contentType);
+        list($response) = $this->getSubAgentLinksWithHttpInfo($agent_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsGetSubAgentLinksWithHttpInfo
+     * Operation getSubAgentLinksWithHttpInfo
      *
      * Get Sub Agent Links
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetSubAgentLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSubAgentLinks'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\SubAgentLinksResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsGetSubAgentLinksWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetSubAgentLinks'][0])
+    public function getSubAgentLinksWithHttpInfo($agent_id, string $contentType = self::contentTypes['getSubAgentLinks'][0])
     {
-        $request = $this->agentsGetSubAgentLinksRequest($agent_id, $contentType);
+        $request = $this->getSubAgentLinksRequest($agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5246,19 +5246,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetSubAgentLinksAsync
+     * Operation getSubAgentLinksAsync
      *
      * Get Sub Agent Links
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetSubAgentLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSubAgentLinks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetSubAgentLinksAsync($agent_id, string $contentType = self::contentTypes['agentsGetSubAgentLinks'][0])
+    public function getSubAgentLinksAsync($agent_id, string $contentType = self::contentTypes['getSubAgentLinks'][0])
     {
-        return $this->agentsGetSubAgentLinksAsyncWithHttpInfo($agent_id, $contentType)
+        return $this->getSubAgentLinksAsyncWithHttpInfo($agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5267,20 +5267,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsGetSubAgentLinksAsyncWithHttpInfo
+     * Operation getSubAgentLinksAsyncWithHttpInfo
      *
      * Get Sub Agent Links
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetSubAgentLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSubAgentLinks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsGetSubAgentLinksAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['agentsGetSubAgentLinks'][0])
+    public function getSubAgentLinksAsyncWithHttpInfo($agent_id, string $contentType = self::contentTypes['getSubAgentLinks'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\SubAgentLinksResponseSchema';
-        $request = $this->agentsGetSubAgentLinksRequest($agent_id, $contentType);
+        $request = $this->getSubAgentLinksRequest($agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5327,21 +5327,21 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsGetSubAgentLinks'
+     * Create request for operation 'getSubAgentLinks'
      *
      * @param  int $agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsGetSubAgentLinks'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSubAgentLinks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsGetSubAgentLinksRequest($agent_id, string $contentType = self::contentTypes['agentsGetSubAgentLinks'][0])
+    public function getSubAgentLinksRequest($agent_id, string $contentType = self::contentTypes['getSubAgentLinks'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsGetSubAgentLinks'
+                'Missing the required parameter $agent_id when calling getSubAgentLinks'
             );
         }
 
@@ -5427,42 +5427,42 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsLinkMcpServer
+     * Operation linkMcpServer
      *
      * Link Mcp Server
      *
      * @param  int $agent_id agent_id (required)
      * @param  int $server_id server_id (required)
      * @param  \Ibexa\AgentPlatform\Model\LinkMCPServerPayloadSchema $link_mcp_server_payload_schema link_mcp_server_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkMcpServer'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentMCPServerLinkResponseSchema
      */
-    public function agentsLinkMcpServer($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['agentsLinkMcpServer'][0])
+    public function linkMcpServer($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['linkMcpServer'][0])
     {
-        list($response) = $this->agentsLinkMcpServerWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType);
+        list($response) = $this->linkMcpServerWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsLinkMcpServerWithHttpInfo
+     * Operation linkMcpServerWithHttpInfo
      *
      * Link Mcp Server
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
      * @param  \Ibexa\AgentPlatform\Model\LinkMCPServerPayloadSchema $link_mcp_server_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkMcpServer'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentMCPServerLinkResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsLinkMcpServerWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['agentsLinkMcpServer'][0])
+    public function linkMcpServerWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['linkMcpServer'][0])
     {
-        $request = $this->agentsLinkMcpServerRequest($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType);
+        $request = $this->linkMcpServerRequest($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5535,21 +5535,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsLinkMcpServerAsync
+     * Operation linkMcpServerAsync
      *
      * Link Mcp Server
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
      * @param  \Ibexa\AgentPlatform\Model\LinkMCPServerPayloadSchema $link_mcp_server_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkMcpServer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsLinkMcpServerAsync($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['agentsLinkMcpServer'][0])
+    public function linkMcpServerAsync($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['linkMcpServer'][0])
     {
-        return $this->agentsLinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType)
+        return $this->linkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5558,22 +5558,22 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsLinkMcpServerAsyncWithHttpInfo
+     * Operation linkMcpServerAsyncWithHttpInfo
      *
      * Link Mcp Server
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
      * @param  \Ibexa\AgentPlatform\Model\LinkMCPServerPayloadSchema $link_mcp_server_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkMcpServer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsLinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['agentsLinkMcpServer'][0])
+    public function linkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['linkMcpServer'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentMCPServerLinkResponseSchema';
-        $request = $this->agentsLinkMcpServerRequest($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType);
+        $request = $this->linkMcpServerRequest($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5620,37 +5620,37 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsLinkMcpServer'
+     * Create request for operation 'linkMcpServer'
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
      * @param  \Ibexa\AgentPlatform\Model\LinkMCPServerPayloadSchema $link_mcp_server_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkMcpServer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsLinkMcpServerRequest($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['agentsLinkMcpServer'][0])
+    public function linkMcpServerRequest($agent_id, $server_id, $link_mcp_server_payload_schema, string $contentType = self::contentTypes['linkMcpServer'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsLinkMcpServer'
+                'Missing the required parameter $agent_id when calling linkMcpServer'
             );
         }
 
         // verify the required parameter 'server_id' is set
         if ($server_id === null || (is_array($server_id) && count($server_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $server_id when calling agentsLinkMcpServer'
+                'Missing the required parameter $server_id when calling linkMcpServer'
             );
         }
 
         // verify the required parameter 'link_mcp_server_payload_schema' is set
         if ($link_mcp_server_payload_schema === null || (is_array($link_mcp_server_payload_schema) && count($link_mcp_server_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $link_mcp_server_payload_schema when calling agentsLinkMcpServer'
+                'Missing the required parameter $link_mcp_server_payload_schema when calling linkMcpServer'
             );
         }
 
@@ -5755,40 +5755,40 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsLinkSubAgent
+     * Operation linkSubAgent
      *
      * Link Sub Agent
      *
      * @param  int $agent_id agent_id (required)
      * @param  int $sub_agent_id sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkSubAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\SubAgentLinkResponseSchema
      */
-    public function agentsLinkSubAgent($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsLinkSubAgent'][0])
+    public function linkSubAgent($agent_id, $sub_agent_id, string $contentType = self::contentTypes['linkSubAgent'][0])
     {
-        list($response) = $this->agentsLinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, $contentType);
+        list($response) = $this->linkSubAgentWithHttpInfo($agent_id, $sub_agent_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsLinkSubAgentWithHttpInfo
+     * Operation linkSubAgentWithHttpInfo
      *
      * Link Sub Agent
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkSubAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\SubAgentLinkResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsLinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsLinkSubAgent'][0])
+    public function linkSubAgentWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['linkSubAgent'][0])
     {
-        $request = $this->agentsLinkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
+        $request = $this->linkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5861,20 +5861,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsLinkSubAgentAsync
+     * Operation linkSubAgentAsync
      *
      * Link Sub Agent
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkSubAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsLinkSubAgentAsync($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsLinkSubAgent'][0])
+    public function linkSubAgentAsync($agent_id, $sub_agent_id, string $contentType = self::contentTypes['linkSubAgent'][0])
     {
-        return $this->agentsLinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, $contentType)
+        return $this->linkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5883,21 +5883,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsLinkSubAgentAsyncWithHttpInfo
+     * Operation linkSubAgentAsyncWithHttpInfo
      *
      * Link Sub Agent
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkSubAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsLinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsLinkSubAgent'][0])
+    public function linkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['linkSubAgent'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\SubAgentLinkResponseSchema';
-        $request = $this->agentsLinkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
+        $request = $this->linkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5944,29 +5944,29 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsLinkSubAgent'
+     * Create request for operation 'linkSubAgent'
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsLinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['linkSubAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsLinkSubAgentRequest($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsLinkSubAgent'][0])
+    public function linkSubAgentRequest($agent_id, $sub_agent_id, string $contentType = self::contentTypes['linkSubAgent'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsLinkSubAgent'
+                'Missing the required parameter $agent_id when calling linkSubAgent'
             );
         }
 
         // verify the required parameter 'sub_agent_id' is set
         if ($sub_agent_id === null || (is_array($sub_agent_id) && count($sub_agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sub_agent_id when calling agentsLinkSubAgent'
+                'Missing the required parameter $sub_agent_id when calling linkSubAgent'
             );
         }
 
@@ -6060,7 +6060,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListAgentEvaluationTargets
+     * Operation listAgentEvaluationTargets
      *
      * List Agent Evaluation Targets
      *
@@ -6071,20 +6071,20 @@ class AgentsApi
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgentEvaluationTargets'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgentEvaluationTargets'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\EvaluationTargetListResponseSchema
      */
-    public function agentsListAgentEvaluationTargets($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['agentsListAgentEvaluationTargets'][0])
+    public function listAgentEvaluationTargets($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['listAgentEvaluationTargets'][0])
     {
-        list($response) = $this->agentsListAgentEvaluationTargetsWithHttpInfo($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType);
+        list($response) = $this->listAgentEvaluationTargetsWithHttpInfo($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsListAgentEvaluationTargetsWithHttpInfo
+     * Operation listAgentEvaluationTargetsWithHttpInfo
      *
      * List Agent Evaluation Targets
      *
@@ -6095,15 +6095,15 @@ class AgentsApi
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgentEvaluationTargets'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgentEvaluationTargets'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\EvaluationTargetListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsListAgentEvaluationTargetsWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['agentsListAgentEvaluationTargets'][0])
+    public function listAgentEvaluationTargetsWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['listAgentEvaluationTargets'][0])
     {
-        $request = $this->agentsListAgentEvaluationTargetsRequest($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType);
+        $request = $this->listAgentEvaluationTargetsRequest($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6176,7 +6176,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListAgentEvaluationTargetsAsync
+     * Operation listAgentEvaluationTargetsAsync
      *
      * List Agent Evaluation Targets
      *
@@ -6187,14 +6187,14 @@ class AgentsApi
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgentEvaluationTargets'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgentEvaluationTargets'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsListAgentEvaluationTargetsAsync($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['agentsListAgentEvaluationTargets'][0])
+    public function listAgentEvaluationTargetsAsync($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['listAgentEvaluationTargets'][0])
     {
-        return $this->agentsListAgentEvaluationTargetsAsyncWithHttpInfo($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType)
+        return $this->listAgentEvaluationTargetsAsyncWithHttpInfo($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6203,7 +6203,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListAgentEvaluationTargetsAsyncWithHttpInfo
+     * Operation listAgentEvaluationTargetsAsyncWithHttpInfo
      *
      * List Agent Evaluation Targets
      *
@@ -6214,15 +6214,15 @@ class AgentsApi
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgentEvaluationTargets'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgentEvaluationTargets'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsListAgentEvaluationTargetsAsyncWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['agentsListAgentEvaluationTargets'][0])
+    public function listAgentEvaluationTargetsAsyncWithHttpInfo($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['listAgentEvaluationTargets'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\EvaluationTargetListResponseSchema';
-        $request = $this->agentsListAgentEvaluationTargetsRequest($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType);
+        $request = $this->listAgentEvaluationTargetsRequest($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6269,7 +6269,7 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsListAgentEvaluationTargets'
+     * Create request for operation 'listAgentEvaluationTargets'
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
@@ -6278,18 +6278,18 @@ class AgentsApi
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgentEvaluationTargets'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgentEvaluationTargets'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsListAgentEvaluationTargetsRequest($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['agentsListAgentEvaluationTargets'][0])
+    public function listAgentEvaluationTargetsRequest($agent_id, $organisation_id = null, $target_type = null, $outcome = null, $skip = 0, $limit = 25, $daterange = null, string $contentType = self::contentTypes['listAgentEvaluationTargets'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsListAgentEvaluationTargets'
+                'Missing the required parameter $agent_id when calling listAgentEvaluationTargets'
             );
         }
 
@@ -6297,14 +6297,14 @@ class AgentsApi
 
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling AgentsApi.agentsListAgentEvaluationTargets, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling AgentsApi.listAgentEvaluationTargets, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.agentsListAgentEvaluationTargets, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.listAgentEvaluationTargets, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.agentsListAgentEvaluationTargets, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.listAgentEvaluationTargets, must be bigger than or equal to 1.');
         }
         
 
@@ -6444,7 +6444,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListAgents
+     * Operation listAgents
      *
      * List Agents
      *
@@ -6452,20 +6452,20 @@ class AgentsApi
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $search Search agents by name (case-insensitive substring match). Must be 3–128 characters. (optional)
      * @param  string|null $status Filter agents by status (&#x60;enabled&#x60; or &#x60;disabled&#x60;). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgents'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentListResponseSchema
      */
-    public function agentsListAgents($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['agentsListAgents'][0])
+    public function listAgents($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['listAgents'][0])
     {
-        list($response) = $this->agentsListAgentsWithHttpInfo($skip, $limit, $search, $status, $contentType);
+        list($response) = $this->listAgentsWithHttpInfo($skip, $limit, $search, $status, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsListAgentsWithHttpInfo
+     * Operation listAgentsWithHttpInfo
      *
      * List Agents
      *
@@ -6473,15 +6473,15 @@ class AgentsApi
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $search Search agents by name (case-insensitive substring match). Must be 3–128 characters. (optional)
      * @param  string|null $status Filter agents by status (&#x60;enabled&#x60; or &#x60;disabled&#x60;). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgents'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsListAgentsWithHttpInfo($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['agentsListAgents'][0])
+    public function listAgentsWithHttpInfo($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['listAgents'][0])
     {
-        $request = $this->agentsListAgentsRequest($skip, $limit, $search, $status, $contentType);
+        $request = $this->listAgentsRequest($skip, $limit, $search, $status, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6554,7 +6554,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListAgentsAsync
+     * Operation listAgentsAsync
      *
      * List Agents
      *
@@ -6562,14 +6562,14 @@ class AgentsApi
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $search Search agents by name (case-insensitive substring match). Must be 3–128 characters. (optional)
      * @param  string|null $status Filter agents by status (&#x60;enabled&#x60; or &#x60;disabled&#x60;). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsListAgentsAsync($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['agentsListAgents'][0])
+    public function listAgentsAsync($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['listAgents'][0])
     {
-        return $this->agentsListAgentsAsyncWithHttpInfo($skip, $limit, $search, $status, $contentType)
+        return $this->listAgentsAsyncWithHttpInfo($skip, $limit, $search, $status, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6578,7 +6578,7 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListAgentsAsyncWithHttpInfo
+     * Operation listAgentsAsyncWithHttpInfo
      *
      * List Agents
      *
@@ -6586,15 +6586,15 @@ class AgentsApi
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $search Search agents by name (case-insensitive substring match). Must be 3–128 characters. (optional)
      * @param  string|null $status Filter agents by status (&#x60;enabled&#x60; or &#x60;disabled&#x60;). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsListAgentsAsyncWithHttpInfo($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['agentsListAgents'][0])
+    public function listAgentsAsyncWithHttpInfo($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['listAgents'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentListResponseSchema';
-        $request = $this->agentsListAgentsRequest($skip, $limit, $search, $status, $contentType);
+        $request = $this->listAgentsRequest($skip, $limit, $search, $status, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6641,36 +6641,36 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsListAgents'
+     * Create request for operation 'listAgents'
      *
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $search Search agents by name (case-insensitive substring match). Must be 3–128 characters. (optional)
      * @param  string|null $status Filter agents by status (&#x60;enabled&#x60; or &#x60;disabled&#x60;). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListAgents'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAgents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsListAgentsRequest($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['agentsListAgents'][0])
+    public function listAgentsRequest($skip = 0, $limit = 25, $search = null, $status = null, string $contentType = self::contentTypes['listAgents'][0])
     {
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling AgentsApi.agentsListAgents, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling AgentsApi.listAgents, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.agentsListAgents, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.listAgents, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.agentsListAgents, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AgentsApi.listAgents, must be bigger than or equal to 1.');
         }
         
         if ($search !== null && strlen($search) > 128) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling AgentsApi.agentsListAgents, must be smaller than or equal to 128.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling AgentsApi.listAgents, must be smaller than or equal to 128.');
         }
         if ($search !== null && strlen($search) < 3) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling AgentsApi.agentsListAgents, must be bigger than or equal to 3.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling AgentsApi.listAgents, must be bigger than or equal to 3.');
         }
         
 
@@ -6784,36 +6784,36 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListContextWindowStrategies
+     * Operation listContextWindowStrategies
      *
      * List Context Window Strategies
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListContextWindowStrategies'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listContextWindowStrategies'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ContextWindowStrategyListResponseSchema
      */
-    public function agentsListContextWindowStrategies(string $contentType = self::contentTypes['agentsListContextWindowStrategies'][0])
+    public function listContextWindowStrategies(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
-        list($response) = $this->agentsListContextWindowStrategiesWithHttpInfo($contentType);
+        list($response) = $this->listContextWindowStrategiesWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation agentsListContextWindowStrategiesWithHttpInfo
+     * Operation listContextWindowStrategiesWithHttpInfo
      *
      * List Context Window Strategies
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListContextWindowStrategies'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listContextWindowStrategies'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ContextWindowStrategyListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsListContextWindowStrategiesWithHttpInfo(string $contentType = self::contentTypes['agentsListContextWindowStrategies'][0])
+    public function listContextWindowStrategiesWithHttpInfo(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
-        $request = $this->agentsListContextWindowStrategiesRequest($contentType);
+        $request = $this->listContextWindowStrategiesRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6886,18 +6886,18 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListContextWindowStrategiesAsync
+     * Operation listContextWindowStrategiesAsync
      *
      * List Context Window Strategies
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListContextWindowStrategies'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listContextWindowStrategies'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsListContextWindowStrategiesAsync(string $contentType = self::contentTypes['agentsListContextWindowStrategies'][0])
+    public function listContextWindowStrategiesAsync(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
-        return $this->agentsListContextWindowStrategiesAsyncWithHttpInfo($contentType)
+        return $this->listContextWindowStrategiesAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6906,19 +6906,19 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsListContextWindowStrategiesAsyncWithHttpInfo
+     * Operation listContextWindowStrategiesAsyncWithHttpInfo
      *
      * List Context Window Strategies
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListContextWindowStrategies'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listContextWindowStrategies'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsListContextWindowStrategiesAsyncWithHttpInfo(string $contentType = self::contentTypes['agentsListContextWindowStrategies'][0])
+    public function listContextWindowStrategiesAsyncWithHttpInfo(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ContextWindowStrategyListResponseSchema';
-        $request = $this->agentsListContextWindowStrategiesRequest($contentType);
+        $request = $this->listContextWindowStrategiesRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6965,14 +6965,14 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsListContextWindowStrategies'
+     * Create request for operation 'listContextWindowStrategies'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsListContextWindowStrategies'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listContextWindowStrategies'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsListContextWindowStrategiesRequest(string $contentType = self::contentTypes['agentsListContextWindowStrategies'][0])
+    public function listContextWindowStrategiesRequest(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
 
 
@@ -7049,39 +7049,39 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUnlinkMcpServer
+     * Operation unlinkMcpServer
      *
      * Unlink Mcp Server
      *
      * @param  int $agent_id agent_id (required)
      * @param  int $server_id server_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkMcpServer'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function agentsUnlinkMcpServer($agent_id, $server_id, string $contentType = self::contentTypes['agentsUnlinkMcpServer'][0])
+    public function unlinkMcpServer($agent_id, $server_id, string $contentType = self::contentTypes['unlinkMcpServer'][0])
     {
-        $this->agentsUnlinkMcpServerWithHttpInfo($agent_id, $server_id, $contentType);
+        $this->unlinkMcpServerWithHttpInfo($agent_id, $server_id, $contentType);
     }
 
     /**
-     * Operation agentsUnlinkMcpServerWithHttpInfo
+     * Operation unlinkMcpServerWithHttpInfo
      *
      * Unlink Mcp Server
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkMcpServer'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsUnlinkMcpServerWithHttpInfo($agent_id, $server_id, string $contentType = self::contentTypes['agentsUnlinkMcpServer'][0])
+    public function unlinkMcpServerWithHttpInfo($agent_id, $server_id, string $contentType = self::contentTypes['unlinkMcpServer'][0])
     {
-        $request = $this->agentsUnlinkMcpServerRequest($agent_id, $server_id, $contentType);
+        $request = $this->unlinkMcpServerRequest($agent_id, $server_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7118,20 +7118,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUnlinkMcpServerAsync
+     * Operation unlinkMcpServerAsync
      *
      * Unlink Mcp Server
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkMcpServer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsUnlinkMcpServerAsync($agent_id, $server_id, string $contentType = self::contentTypes['agentsUnlinkMcpServer'][0])
+    public function unlinkMcpServerAsync($agent_id, $server_id, string $contentType = self::contentTypes['unlinkMcpServer'][0])
     {
-        return $this->agentsUnlinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $contentType)
+        return $this->unlinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7140,21 +7140,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUnlinkMcpServerAsyncWithHttpInfo
+     * Operation unlinkMcpServerAsyncWithHttpInfo
      *
      * Unlink Mcp Server
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkMcpServer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsUnlinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, string $contentType = self::contentTypes['agentsUnlinkMcpServer'][0])
+    public function unlinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, string $contentType = self::contentTypes['unlinkMcpServer'][0])
     {
         $returnType = '';
-        $request = $this->agentsUnlinkMcpServerRequest($agent_id, $server_id, $contentType);
+        $request = $this->unlinkMcpServerRequest($agent_id, $server_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7188,29 +7188,29 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsUnlinkMcpServer'
+     * Create request for operation 'unlinkMcpServer'
      *
      * @param  int $agent_id (required)
      * @param  int $server_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkMcpServer'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkMcpServer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsUnlinkMcpServerRequest($agent_id, $server_id, string $contentType = self::contentTypes['agentsUnlinkMcpServer'][0])
+    public function unlinkMcpServerRequest($agent_id, $server_id, string $contentType = self::contentTypes['unlinkMcpServer'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsUnlinkMcpServer'
+                'Missing the required parameter $agent_id when calling unlinkMcpServer'
             );
         }
 
         // verify the required parameter 'server_id' is set
         if ($server_id === null || (is_array($server_id) && count($server_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $server_id when calling agentsUnlinkMcpServer'
+                'Missing the required parameter $server_id when calling unlinkMcpServer'
             );
         }
 
@@ -7304,39 +7304,39 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUnlinkSubAgent
+     * Operation unlinkSubAgent
      *
      * Unlink Sub Agent
      *
      * @param  int $agent_id agent_id (required)
      * @param  int $sub_agent_id sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkSubAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function agentsUnlinkSubAgent($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsUnlinkSubAgent'][0])
+    public function unlinkSubAgent($agent_id, $sub_agent_id, string $contentType = self::contentTypes['unlinkSubAgent'][0])
     {
-        $this->agentsUnlinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, $contentType);
+        $this->unlinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, $contentType);
     }
 
     /**
-     * Operation agentsUnlinkSubAgentWithHttpInfo
+     * Operation unlinkSubAgentWithHttpInfo
      *
      * Unlink Sub Agent
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkSubAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsUnlinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsUnlinkSubAgent'][0])
+    public function unlinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['unlinkSubAgent'][0])
     {
-        $request = $this->agentsUnlinkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
+        $request = $this->unlinkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7373,20 +7373,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUnlinkSubAgentAsync
+     * Operation unlinkSubAgentAsync
      *
      * Unlink Sub Agent
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkSubAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsUnlinkSubAgentAsync($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsUnlinkSubAgent'][0])
+    public function unlinkSubAgentAsync($agent_id, $sub_agent_id, string $contentType = self::contentTypes['unlinkSubAgent'][0])
     {
-        return $this->agentsUnlinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, $contentType)
+        return $this->unlinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7395,21 +7395,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUnlinkSubAgentAsyncWithHttpInfo
+     * Operation unlinkSubAgentAsyncWithHttpInfo
      *
      * Unlink Sub Agent
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkSubAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsUnlinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsUnlinkSubAgent'][0])
+    public function unlinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, string $contentType = self::contentTypes['unlinkSubAgent'][0])
     {
         $returnType = '';
-        $request = $this->agentsUnlinkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
+        $request = $this->unlinkSubAgentRequest($agent_id, $sub_agent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7443,29 +7443,29 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsUnlinkSubAgent'
+     * Create request for operation 'unlinkSubAgent'
      *
      * @param  int $agent_id (required)
      * @param  int $sub_agent_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUnlinkSubAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unlinkSubAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsUnlinkSubAgentRequest($agent_id, $sub_agent_id, string $contentType = self::contentTypes['agentsUnlinkSubAgent'][0])
+    public function unlinkSubAgentRequest($agent_id, $sub_agent_id, string $contentType = self::contentTypes['unlinkSubAgent'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsUnlinkSubAgent'
+                'Missing the required parameter $agent_id when calling unlinkSubAgent'
             );
         }
 
         // verify the required parameter 'sub_agent_id' is set
         if ($sub_agent_id === null || (is_array($sub_agent_id) && count($sub_agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sub_agent_id when calling agentsUnlinkSubAgent'
+                'Missing the required parameter $sub_agent_id when calling unlinkSubAgent'
             );
         }
 
@@ -7559,40 +7559,40 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUpdateAgent
+     * Operation updateAgent
      *
      * Update Agent
      *
      * @param  int $agent_id agent_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema $update_agent_payload_schema update_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUpdateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\UpdateAgentResponseSchema
      */
-    public function agentsUpdateAgent($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['agentsUpdateAgent'][0])
+    public function updateAgent($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['updateAgent'][0])
     {
-        list($response) = $this->agentsUpdateAgentWithHttpInfo($agent_id, $update_agent_payload_schema, $contentType);
+        list($response) = $this->updateAgentWithHttpInfo($agent_id, $update_agent_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation agentsUpdateAgentWithHttpInfo
+     * Operation updateAgentWithHttpInfo
      *
      * Update Agent
      *
      * @param  int $agent_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema $update_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUpdateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAgent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\UpdateAgentResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function agentsUpdateAgentWithHttpInfo($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['agentsUpdateAgent'][0])
+    public function updateAgentWithHttpInfo($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['updateAgent'][0])
     {
-        $request = $this->agentsUpdateAgentRequest($agent_id, $update_agent_payload_schema, $contentType);
+        $request = $this->updateAgentRequest($agent_id, $update_agent_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7665,20 +7665,20 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUpdateAgentAsync
+     * Operation updateAgentAsync
      *
      * Update Agent
      *
      * @param  int $agent_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema $update_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUpdateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsUpdateAgentAsync($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['agentsUpdateAgent'][0])
+    public function updateAgentAsync($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['updateAgent'][0])
     {
-        return $this->agentsUpdateAgentAsyncWithHttpInfo($agent_id, $update_agent_payload_schema, $contentType)
+        return $this->updateAgentAsyncWithHttpInfo($agent_id, $update_agent_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7687,21 +7687,21 @@ class AgentsApi
     }
 
     /**
-     * Operation agentsUpdateAgentAsyncWithHttpInfo
+     * Operation updateAgentAsyncWithHttpInfo
      *
      * Update Agent
      *
      * @param  int $agent_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema $update_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUpdateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function agentsUpdateAgentAsyncWithHttpInfo($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['agentsUpdateAgent'][0])
+    public function updateAgentAsyncWithHttpInfo($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['updateAgent'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\UpdateAgentResponseSchema';
-        $request = $this->agentsUpdateAgentRequest($agent_id, $update_agent_payload_schema, $contentType);
+        $request = $this->updateAgentRequest($agent_id, $update_agent_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7748,29 +7748,29 @@ class AgentsApi
     }
 
     /**
-     * Create request for operation 'agentsUpdateAgent'
+     * Create request for operation 'updateAgent'
      *
      * @param  int $agent_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema $update_agent_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['agentsUpdateAgent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAgent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function agentsUpdateAgentRequest($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['agentsUpdateAgent'][0])
+    public function updateAgentRequest($agent_id, $update_agent_payload_schema, string $contentType = self::contentTypes['updateAgent'][0])
     {
 
         // verify the required parameter 'agent_id' is set
         if ($agent_id === null || (is_array($agent_id) && count($agent_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $agent_id when calling agentsUpdateAgent'
+                'Missing the required parameter $agent_id when calling updateAgent'
             );
         }
 
         // verify the required parameter 'update_agent_payload_schema' is set
         if ($update_agent_payload_schema === null || (is_array($update_agent_payload_schema) && count($update_agent_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_agent_payload_schema when calling agentsUpdateAgent'
+                'Missing the required parameter $update_agent_payload_schema when calling updateAgent'
             );
         }
 

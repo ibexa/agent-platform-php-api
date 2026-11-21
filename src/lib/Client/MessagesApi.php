@@ -74,16 +74,16 @@ class MessagesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'messagesAttachMessageStream' => [
+        'attachMessageStream' => [
             'application/json',
         ],
-        'messagesListMessages' => [
+        'listMessages' => [
             'application/json',
         ],
-        'messagesSendMessage' => [
+        'sendMessage' => [
             'application/json',
         ],
-        'messagesSendMessageStream' => [
+        'sendMessageStream' => [
             'application/json',
         ],
     ];
@@ -135,39 +135,39 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesAttachMessageStream
+     * Operation attachMessageStream
      *
      * Attach Message Stream
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  string|null $last_event_id last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesAttachMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachMessageStream'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function messagesAttachMessageStream($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['messagesAttachMessageStream'][0])
+    public function attachMessageStream($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['attachMessageStream'][0])
     {
-        $this->messagesAttachMessageStreamWithHttpInfo($conversation_id, $last_event_id, $contentType);
+        $this->attachMessageStreamWithHttpInfo($conversation_id, $last_event_id, $contentType);
     }
 
     /**
-     * Operation messagesAttachMessageStreamWithHttpInfo
+     * Operation attachMessageStreamWithHttpInfo
      *
      * Attach Message Stream
      *
      * @param  int $conversation_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesAttachMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachMessageStream'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function messagesAttachMessageStreamWithHttpInfo($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['messagesAttachMessageStream'][0])
+    public function attachMessageStreamWithHttpInfo($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['attachMessageStream'][0])
     {
-        $request = $this->messagesAttachMessageStreamRequest($conversation_id, $last_event_id, $contentType);
+        $request = $this->attachMessageStreamRequest($conversation_id, $last_event_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -204,20 +204,20 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesAttachMessageStreamAsync
+     * Operation attachMessageStreamAsync
      *
      * Attach Message Stream
      *
      * @param  int $conversation_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesAttachMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachMessageStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesAttachMessageStreamAsync($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['messagesAttachMessageStream'][0])
+    public function attachMessageStreamAsync($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['attachMessageStream'][0])
     {
-        return $this->messagesAttachMessageStreamAsyncWithHttpInfo($conversation_id, $last_event_id, $contentType)
+        return $this->attachMessageStreamAsyncWithHttpInfo($conversation_id, $last_event_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -226,21 +226,21 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesAttachMessageStreamAsyncWithHttpInfo
+     * Operation attachMessageStreamAsyncWithHttpInfo
      *
      * Attach Message Stream
      *
      * @param  int $conversation_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesAttachMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachMessageStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesAttachMessageStreamAsyncWithHttpInfo($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['messagesAttachMessageStream'][0])
+    public function attachMessageStreamAsyncWithHttpInfo($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['attachMessageStream'][0])
     {
         $returnType = '';
-        $request = $this->messagesAttachMessageStreamRequest($conversation_id, $last_event_id, $contentType);
+        $request = $this->attachMessageStreamRequest($conversation_id, $last_event_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -274,22 +274,22 @@ class MessagesApi
     }
 
     /**
-     * Create request for operation 'messagesAttachMessageStream'
+     * Create request for operation 'attachMessageStream'
      *
      * @param  int $conversation_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesAttachMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachMessageStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function messagesAttachMessageStreamRequest($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['messagesAttachMessageStream'][0])
+    public function attachMessageStreamRequest($conversation_id, $last_event_id = null, string $contentType = self::contentTypes['attachMessageStream'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling messagesAttachMessageStream'
+                'Missing the required parameter $conversation_id when calling attachMessageStream'
             );
         }
 
@@ -380,42 +380,42 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesListMessages
+     * Operation listMessages
      *
      * List Messages
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  string|null $cursor Pagination cursor (base64 encoded) (optional)
      * @param  int|null $limit Maximum number of messages to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesListMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\MessageListResponseSchema
      */
-    public function messagesListMessages($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['messagesListMessages'][0])
+    public function listMessages($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listMessages'][0])
     {
-        list($response) = $this->messagesListMessagesWithHttpInfo($conversation_id, $cursor, $limit, $contentType);
+        list($response) = $this->listMessagesWithHttpInfo($conversation_id, $cursor, $limit, $contentType);
         return $response;
     }
 
     /**
-     * Operation messagesListMessagesWithHttpInfo
+     * Operation listMessagesWithHttpInfo
      *
      * List Messages
      *
      * @param  int $conversation_id (required)
      * @param  string|null $cursor Pagination cursor (base64 encoded) (optional)
      * @param  int|null $limit Maximum number of messages to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesListMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\MessageListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function messagesListMessagesWithHttpInfo($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['messagesListMessages'][0])
+    public function listMessagesWithHttpInfo($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listMessages'][0])
     {
-        $request = $this->messagesListMessagesRequest($conversation_id, $cursor, $limit, $contentType);
+        $request = $this->listMessagesRequest($conversation_id, $cursor, $limit, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -488,21 +488,21 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesListMessagesAsync
+     * Operation listMessagesAsync
      *
      * List Messages
      *
      * @param  int $conversation_id (required)
      * @param  string|null $cursor Pagination cursor (base64 encoded) (optional)
      * @param  int|null $limit Maximum number of messages to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesListMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesListMessagesAsync($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['messagesListMessages'][0])
+    public function listMessagesAsync($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listMessages'][0])
     {
-        return $this->messagesListMessagesAsyncWithHttpInfo($conversation_id, $cursor, $limit, $contentType)
+        return $this->listMessagesAsyncWithHttpInfo($conversation_id, $cursor, $limit, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -511,22 +511,22 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesListMessagesAsyncWithHttpInfo
+     * Operation listMessagesAsyncWithHttpInfo
      *
      * List Messages
      *
      * @param  int $conversation_id (required)
      * @param  string|null $cursor Pagination cursor (base64 encoded) (optional)
      * @param  int|null $limit Maximum number of messages to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesListMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesListMessagesAsyncWithHttpInfo($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['messagesListMessages'][0])
+    public function listMessagesAsyncWithHttpInfo($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listMessages'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\MessageListResponseSchema';
-        $request = $this->messagesListMessagesRequest($conversation_id, $cursor, $limit, $contentType);
+        $request = $this->listMessagesRequest($conversation_id, $cursor, $limit, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -573,32 +573,32 @@ class MessagesApi
     }
 
     /**
-     * Create request for operation 'messagesListMessages'
+     * Create request for operation 'listMessages'
      *
      * @param  int $conversation_id (required)
      * @param  string|null $cursor Pagination cursor (base64 encoded) (optional)
      * @param  int|null $limit Maximum number of messages to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesListMessages'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function messagesListMessagesRequest($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['messagesListMessages'][0])
+    public function listMessagesRequest($conversation_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listMessages'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling messagesListMessages'
+                'Missing the required parameter $conversation_id when calling listMessages'
             );
         }
 
 
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling MessagesApi.messagesListMessages, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling MessagesApi.listMessages, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling MessagesApi.messagesListMessages, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling MessagesApi.listMessages, must be bigger than or equal to 1.');
         }
         
 
@@ -701,42 +701,42 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesSendMessage
+     * Operation sendMessage
      *
      * Send Message
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema send_message_payload_schema (required)
      * @param  string|null $x_tenant_key x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\SendMessageResponseSchema
      */
-    public function messagesSendMessage($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessage'][0])
+    public function sendMessage($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
-        list($response) = $this->messagesSendMessageWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
+        list($response) = $this->sendMessageWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
         return $response;
     }
 
     /**
-     * Operation messagesSendMessageWithHttpInfo
+     * Operation sendMessageWithHttpInfo
      *
      * Send Message
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\SendMessageResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function messagesSendMessageWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessage'][0])
+    public function sendMessageWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
-        $request = $this->messagesSendMessageRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
+        $request = $this->sendMessageRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -809,21 +809,21 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesSendMessageAsync
+     * Operation sendMessageAsync
      *
      * Send Message
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesSendMessageAsync($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessage'][0])
+    public function sendMessageAsync($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
-        return $this->messagesSendMessageAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType)
+        return $this->sendMessageAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -832,22 +832,22 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesSendMessageAsyncWithHttpInfo
+     * Operation sendMessageAsyncWithHttpInfo
      *
      * Send Message
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesSendMessageAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessage'][0])
+    public function sendMessageAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\SendMessageResponseSchema';
-        $request = $this->messagesSendMessageRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
+        $request = $this->sendMessageRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -894,30 +894,30 @@ class MessagesApi
     }
 
     /**
-     * Create request for operation 'messagesSendMessage'
+     * Create request for operation 'sendMessage'
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function messagesSendMessageRequest($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessage'][0])
+    public function sendMessageRequest($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling messagesSendMessage'
+                'Missing the required parameter $conversation_id when calling sendMessage'
             );
         }
 
         // verify the required parameter 'send_message_payload_schema' is set
         if ($send_message_payload_schema === null || (is_array($send_message_payload_schema) && count($send_message_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $send_message_payload_schema when calling messagesSendMessage'
+                'Missing the required parameter $send_message_payload_schema when calling sendMessage'
             );
         }
 
@@ -1019,41 +1019,41 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesSendMessageStream
+     * Operation sendMessageStream
      *
      * Send Message Stream
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema send_message_payload_schema (required)
      * @param  string|null $x_tenant_key x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessageStream'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function messagesSendMessageStream($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessageStream'][0])
+    public function sendMessageStream($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessageStream'][0])
     {
-        $this->messagesSendMessageStreamWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
+        $this->sendMessageStreamWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
     }
 
     /**
-     * Operation messagesSendMessageStreamWithHttpInfo
+     * Operation sendMessageStreamWithHttpInfo
      *
      * Send Message Stream
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessageStream'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function messagesSendMessageStreamWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessageStream'][0])
+    public function sendMessageStreamWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessageStream'][0])
     {
-        $request = $this->messagesSendMessageStreamRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
+        $request = $this->sendMessageStreamRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1090,21 +1090,21 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesSendMessageStreamAsync
+     * Operation sendMessageStreamAsync
      *
      * Send Message Stream
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessageStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesSendMessageStreamAsync($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessageStream'][0])
+    public function sendMessageStreamAsync($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessageStream'][0])
     {
-        return $this->messagesSendMessageStreamAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType)
+        return $this->sendMessageStreamAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1113,22 +1113,22 @@ class MessagesApi
     }
 
     /**
-     * Operation messagesSendMessageStreamAsyncWithHttpInfo
+     * Operation sendMessageStreamAsyncWithHttpInfo
      *
      * Send Message Stream
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessageStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function messagesSendMessageStreamAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessageStream'][0])
+    public function sendMessageStreamAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessageStream'][0])
     {
         $returnType = '';
-        $request = $this->messagesSendMessageStreamRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
+        $request = $this->sendMessageStreamRequest($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1162,30 +1162,30 @@ class MessagesApi
     }
 
     /**
-     * Create request for operation 'messagesSendMessageStream'
+     * Create request for operation 'sendMessageStream'
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\SendMessagePayloadSchema $send_message_payload_schema (required)
      * @param  string|null $x_tenant_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['messagesSendMessageStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessageStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function messagesSendMessageStreamRequest($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['messagesSendMessageStream'][0])
+    public function sendMessageStreamRequest($conversation_id, $send_message_payload_schema, $x_tenant_key = null, string $contentType = self::contentTypes['sendMessageStream'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling messagesSendMessageStream'
+                'Missing the required parameter $conversation_id when calling sendMessageStream'
             );
         }
 
         // verify the required parameter 'send_message_payload_schema' is set
         if ($send_message_payload_schema === null || (is_array($send_message_payload_schema) && count($send_message_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $send_message_payload_schema when calling messagesSendMessageStream'
+                'Missing the required parameter $send_message_payload_schema when calling sendMessageStream'
             );
         }
 

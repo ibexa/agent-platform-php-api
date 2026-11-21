@@ -74,25 +74,25 @@ class ExecutionsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'executionsAttachExecutionStream' => [
+        'attachExecutionStream' => [
             'application/json',
         ],
-        'executionsCancelExecution' => [
+        'cancelExecution' => [
             'application/json',
         ],
-        'executionsCreateExecution' => [
+        'createExecution' => [
             'application/json',
         ],
-        'executionsGetExecution' => [
+        'getExecution' => [
             'application/json',
         ],
-        'executionsListExecutionSteps' => [
+        'listExecutionSteps' => [
             'application/json',
         ],
-        'executionsListExecutions' => [
+        'listExecutions' => [
             'application/json',
         ],
-        'executionsRetryExecution' => [
+        'retryExecution' => [
             'application/json',
         ],
     ];
@@ -144,39 +144,39 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsAttachExecutionStream
+     * Operation attachExecutionStream
      *
      * Attach Execution Stream
      *
      * @param  int $execution_id execution_id (required)
      * @param  string|null $last_event_id last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsAttachExecutionStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachExecutionStream'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function executionsAttachExecutionStream($execution_id, $last_event_id = null, string $contentType = self::contentTypes['executionsAttachExecutionStream'][0])
+    public function attachExecutionStream($execution_id, $last_event_id = null, string $contentType = self::contentTypes['attachExecutionStream'][0])
     {
-        $this->executionsAttachExecutionStreamWithHttpInfo($execution_id, $last_event_id, $contentType);
+        $this->attachExecutionStreamWithHttpInfo($execution_id, $last_event_id, $contentType);
     }
 
     /**
-     * Operation executionsAttachExecutionStreamWithHttpInfo
+     * Operation attachExecutionStreamWithHttpInfo
      *
      * Attach Execution Stream
      *
      * @param  int $execution_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsAttachExecutionStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachExecutionStream'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsAttachExecutionStreamWithHttpInfo($execution_id, $last_event_id = null, string $contentType = self::contentTypes['executionsAttachExecutionStream'][0])
+    public function attachExecutionStreamWithHttpInfo($execution_id, $last_event_id = null, string $contentType = self::contentTypes['attachExecutionStream'][0])
     {
-        $request = $this->executionsAttachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
+        $request = $this->attachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -213,20 +213,20 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsAttachExecutionStreamAsync
+     * Operation attachExecutionStreamAsync
      *
      * Attach Execution Stream
      *
      * @param  int $execution_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsAttachExecutionStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachExecutionStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsAttachExecutionStreamAsync($execution_id, $last_event_id = null, string $contentType = self::contentTypes['executionsAttachExecutionStream'][0])
+    public function attachExecutionStreamAsync($execution_id, $last_event_id = null, string $contentType = self::contentTypes['attachExecutionStream'][0])
     {
-        return $this->executionsAttachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id, $contentType)
+        return $this->attachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -235,21 +235,21 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsAttachExecutionStreamAsyncWithHttpInfo
+     * Operation attachExecutionStreamAsyncWithHttpInfo
      *
      * Attach Execution Stream
      *
      * @param  int $execution_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsAttachExecutionStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachExecutionStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsAttachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id = null, string $contentType = self::contentTypes['executionsAttachExecutionStream'][0])
+    public function attachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id = null, string $contentType = self::contentTypes['attachExecutionStream'][0])
     {
         $returnType = '';
-        $request = $this->executionsAttachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
+        $request = $this->attachExecutionStreamRequest($execution_id, $last_event_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -283,22 +283,22 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsAttachExecutionStream'
+     * Create request for operation 'attachExecutionStream'
      *
      * @param  int $execution_id (required)
      * @param  string|null $last_event_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsAttachExecutionStream'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['attachExecutionStream'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsAttachExecutionStreamRequest($execution_id, $last_event_id = null, string $contentType = self::contentTypes['executionsAttachExecutionStream'][0])
+    public function attachExecutionStreamRequest($execution_id, $last_event_id = null, string $contentType = self::contentTypes['attachExecutionStream'][0])
     {
 
         // verify the required parameter 'execution_id' is set
         if ($execution_id === null || (is_array($execution_id) && count($execution_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $execution_id when calling executionsAttachExecutionStream'
+                'Missing the required parameter $execution_id when calling attachExecutionStream'
             );
         }
 
@@ -389,38 +389,38 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsCancelExecution
+     * Operation cancelExecution
      *
      * Cancel Execution
      *
      * @param  int $execution_id execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCancelExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ExecutionResponseSchema
      */
-    public function executionsCancelExecution($execution_id, string $contentType = self::contentTypes['executionsCancelExecution'][0])
+    public function cancelExecution($execution_id, string $contentType = self::contentTypes['cancelExecution'][0])
     {
-        list($response) = $this->executionsCancelExecutionWithHttpInfo($execution_id, $contentType);
+        list($response) = $this->cancelExecutionWithHttpInfo($execution_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation executionsCancelExecutionWithHttpInfo
+     * Operation cancelExecutionWithHttpInfo
      *
      * Cancel Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCancelExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsCancelExecutionWithHttpInfo($execution_id, string $contentType = self::contentTypes['executionsCancelExecution'][0])
+    public function cancelExecutionWithHttpInfo($execution_id, string $contentType = self::contentTypes['cancelExecution'][0])
     {
-        $request = $this->executionsCancelExecutionRequest($execution_id, $contentType);
+        $request = $this->cancelExecutionRequest($execution_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -493,19 +493,19 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsCancelExecutionAsync
+     * Operation cancelExecutionAsync
      *
      * Cancel Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCancelExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsCancelExecutionAsync($execution_id, string $contentType = self::contentTypes['executionsCancelExecution'][0])
+    public function cancelExecutionAsync($execution_id, string $contentType = self::contentTypes['cancelExecution'][0])
     {
-        return $this->executionsCancelExecutionAsyncWithHttpInfo($execution_id, $contentType)
+        return $this->cancelExecutionAsyncWithHttpInfo($execution_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -514,20 +514,20 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsCancelExecutionAsyncWithHttpInfo
+     * Operation cancelExecutionAsyncWithHttpInfo
      *
      * Cancel Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCancelExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsCancelExecutionAsyncWithHttpInfo($execution_id, string $contentType = self::contentTypes['executionsCancelExecution'][0])
+    public function cancelExecutionAsyncWithHttpInfo($execution_id, string $contentType = self::contentTypes['cancelExecution'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ExecutionResponseSchema';
-        $request = $this->executionsCancelExecutionRequest($execution_id, $contentType);
+        $request = $this->cancelExecutionRequest($execution_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -574,21 +574,21 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsCancelExecution'
+     * Create request for operation 'cancelExecution'
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCancelExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsCancelExecutionRequest($execution_id, string $contentType = self::contentTypes['executionsCancelExecution'][0])
+    public function cancelExecutionRequest($execution_id, string $contentType = self::contentTypes['cancelExecution'][0])
     {
 
         // verify the required parameter 'execution_id' is set
         if ($execution_id === null || (is_array($execution_id) && count($execution_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $execution_id when calling executionsCancelExecution'
+                'Missing the required parameter $execution_id when calling cancelExecution'
             );
         }
 
@@ -674,38 +674,38 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsCreateExecution
+     * Operation createExecution
      *
      * Create Execution
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateExecutionPayloadSchema $create_execution_payload_schema create_execution_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCreateExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema
      */
-    public function executionsCreateExecution($create_execution_payload_schema, string $contentType = self::contentTypes['executionsCreateExecution'][0])
+    public function createExecution($create_execution_payload_schema, string $contentType = self::contentTypes['createExecution'][0])
     {
-        list($response) = $this->executionsCreateExecutionWithHttpInfo($create_execution_payload_schema, $contentType);
+        list($response) = $this->createExecutionWithHttpInfo($create_execution_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation executionsCreateExecutionWithHttpInfo
+     * Operation createExecutionWithHttpInfo
      *
      * Create Execution
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateExecutionPayloadSchema $create_execution_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCreateExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsCreateExecutionWithHttpInfo($create_execution_payload_schema, string $contentType = self::contentTypes['executionsCreateExecution'][0])
+    public function createExecutionWithHttpInfo($create_execution_payload_schema, string $contentType = self::contentTypes['createExecution'][0])
     {
-        $request = $this->executionsCreateExecutionRequest($create_execution_payload_schema, $contentType);
+        $request = $this->createExecutionRequest($create_execution_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -778,19 +778,19 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsCreateExecutionAsync
+     * Operation createExecutionAsync
      *
      * Create Execution
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateExecutionPayloadSchema $create_execution_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCreateExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsCreateExecutionAsync($create_execution_payload_schema, string $contentType = self::contentTypes['executionsCreateExecution'][0])
+    public function createExecutionAsync($create_execution_payload_schema, string $contentType = self::contentTypes['createExecution'][0])
     {
-        return $this->executionsCreateExecutionAsyncWithHttpInfo($create_execution_payload_schema, $contentType)
+        return $this->createExecutionAsyncWithHttpInfo($create_execution_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -799,20 +799,20 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsCreateExecutionAsyncWithHttpInfo
+     * Operation createExecutionAsyncWithHttpInfo
      *
      * Create Execution
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateExecutionPayloadSchema $create_execution_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCreateExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsCreateExecutionAsyncWithHttpInfo($create_execution_payload_schema, string $contentType = self::contentTypes['executionsCreateExecution'][0])
+    public function createExecutionAsyncWithHttpInfo($create_execution_payload_schema, string $contentType = self::contentTypes['createExecution'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema';
-        $request = $this->executionsCreateExecutionRequest($create_execution_payload_schema, $contentType);
+        $request = $this->createExecutionRequest($create_execution_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -859,21 +859,21 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsCreateExecution'
+     * Create request for operation 'createExecution'
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateExecutionPayloadSchema $create_execution_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsCreateExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsCreateExecutionRequest($create_execution_payload_schema, string $contentType = self::contentTypes['executionsCreateExecution'][0])
+    public function createExecutionRequest($create_execution_payload_schema, string $contentType = self::contentTypes['createExecution'][0])
     {
 
         // verify the required parameter 'create_execution_payload_schema' is set
         if ($create_execution_payload_schema === null || (is_array($create_execution_payload_schema) && count($create_execution_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_execution_payload_schema when calling executionsCreateExecution'
+                'Missing the required parameter $create_execution_payload_schema when calling createExecution'
             );
         }
 
@@ -962,38 +962,38 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsGetExecution
+     * Operation getExecution
      *
      * Get Execution
      *
      * @param  int $execution_id execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsGetExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ExecutionResponseSchema
      */
-    public function executionsGetExecution($execution_id, string $contentType = self::contentTypes['executionsGetExecution'][0])
+    public function getExecution($execution_id, string $contentType = self::contentTypes['getExecution'][0])
     {
-        list($response) = $this->executionsGetExecutionWithHttpInfo($execution_id, $contentType);
+        list($response) = $this->getExecutionWithHttpInfo($execution_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation executionsGetExecutionWithHttpInfo
+     * Operation getExecutionWithHttpInfo
      *
      * Get Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsGetExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsGetExecutionWithHttpInfo($execution_id, string $contentType = self::contentTypes['executionsGetExecution'][0])
+    public function getExecutionWithHttpInfo($execution_id, string $contentType = self::contentTypes['getExecution'][0])
     {
-        $request = $this->executionsGetExecutionRequest($execution_id, $contentType);
+        $request = $this->getExecutionRequest($execution_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1066,19 +1066,19 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsGetExecutionAsync
+     * Operation getExecutionAsync
      *
      * Get Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsGetExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsGetExecutionAsync($execution_id, string $contentType = self::contentTypes['executionsGetExecution'][0])
+    public function getExecutionAsync($execution_id, string $contentType = self::contentTypes['getExecution'][0])
     {
-        return $this->executionsGetExecutionAsyncWithHttpInfo($execution_id, $contentType)
+        return $this->getExecutionAsyncWithHttpInfo($execution_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1087,20 +1087,20 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsGetExecutionAsyncWithHttpInfo
+     * Operation getExecutionAsyncWithHttpInfo
      *
      * Get Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsGetExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsGetExecutionAsyncWithHttpInfo($execution_id, string $contentType = self::contentTypes['executionsGetExecution'][0])
+    public function getExecutionAsyncWithHttpInfo($execution_id, string $contentType = self::contentTypes['getExecution'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ExecutionResponseSchema';
-        $request = $this->executionsGetExecutionRequest($execution_id, $contentType);
+        $request = $this->getExecutionRequest($execution_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1147,21 +1147,21 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsGetExecution'
+     * Create request for operation 'getExecution'
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsGetExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsGetExecutionRequest($execution_id, string $contentType = self::contentTypes['executionsGetExecution'][0])
+    public function getExecutionRequest($execution_id, string $contentType = self::contentTypes['getExecution'][0])
     {
 
         // verify the required parameter 'execution_id' is set
         if ($execution_id === null || (is_array($execution_id) && count($execution_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $execution_id when calling executionsGetExecution'
+                'Missing the required parameter $execution_id when calling getExecution'
             );
         }
 
@@ -1247,42 +1247,42 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsListExecutionSteps
+     * Operation listExecutionSteps
      *
      * List Execution Steps
      *
      * @param  int $execution_id execution_id (required)
      * @param  int|null $cursor Resume after this step&#39;s &#x60;order&#x60;. Omit to start from the beginning of the run (optional)
      * @param  int|null $limit Maximum number of steps to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutionSteps'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutionSteps'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ExecutionStepListResponseSchema
      */
-    public function executionsListExecutionSteps($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['executionsListExecutionSteps'][0])
+    public function listExecutionSteps($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listExecutionSteps'][0])
     {
-        list($response) = $this->executionsListExecutionStepsWithHttpInfo($execution_id, $cursor, $limit, $contentType);
+        list($response) = $this->listExecutionStepsWithHttpInfo($execution_id, $cursor, $limit, $contentType);
         return $response;
     }
 
     /**
-     * Operation executionsListExecutionStepsWithHttpInfo
+     * Operation listExecutionStepsWithHttpInfo
      *
      * List Execution Steps
      *
      * @param  int $execution_id (required)
      * @param  int|null $cursor Resume after this step&#39;s &#x60;order&#x60;. Omit to start from the beginning of the run (optional)
      * @param  int|null $limit Maximum number of steps to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutionSteps'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutionSteps'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ExecutionStepListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsListExecutionStepsWithHttpInfo($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['executionsListExecutionSteps'][0])
+    public function listExecutionStepsWithHttpInfo($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listExecutionSteps'][0])
     {
-        $request = $this->executionsListExecutionStepsRequest($execution_id, $cursor, $limit, $contentType);
+        $request = $this->listExecutionStepsRequest($execution_id, $cursor, $limit, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1355,21 +1355,21 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsListExecutionStepsAsync
+     * Operation listExecutionStepsAsync
      *
      * List Execution Steps
      *
      * @param  int $execution_id (required)
      * @param  int|null $cursor Resume after this step&#39;s &#x60;order&#x60;. Omit to start from the beginning of the run (optional)
      * @param  int|null $limit Maximum number of steps to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutionSteps'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutionSteps'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsListExecutionStepsAsync($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['executionsListExecutionSteps'][0])
+    public function listExecutionStepsAsync($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listExecutionSteps'][0])
     {
-        return $this->executionsListExecutionStepsAsyncWithHttpInfo($execution_id, $cursor, $limit, $contentType)
+        return $this->listExecutionStepsAsyncWithHttpInfo($execution_id, $cursor, $limit, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1378,22 +1378,22 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsListExecutionStepsAsyncWithHttpInfo
+     * Operation listExecutionStepsAsyncWithHttpInfo
      *
      * List Execution Steps
      *
      * @param  int $execution_id (required)
      * @param  int|null $cursor Resume after this step&#39;s &#x60;order&#x60;. Omit to start from the beginning of the run (optional)
      * @param  int|null $limit Maximum number of steps to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutionSteps'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutionSteps'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsListExecutionStepsAsyncWithHttpInfo($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['executionsListExecutionSteps'][0])
+    public function listExecutionStepsAsyncWithHttpInfo($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listExecutionSteps'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ExecutionStepListResponseSchema';
-        $request = $this->executionsListExecutionStepsRequest($execution_id, $cursor, $limit, $contentType);
+        $request = $this->listExecutionStepsRequest($execution_id, $cursor, $limit, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1440,32 +1440,32 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsListExecutionSteps'
+     * Create request for operation 'listExecutionSteps'
      *
      * @param  int $execution_id (required)
      * @param  int|null $cursor Resume after this step&#39;s &#x60;order&#x60;. Omit to start from the beginning of the run (optional)
      * @param  int|null $limit Maximum number of steps to return (optional, default to 25)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutionSteps'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutionSteps'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsListExecutionStepsRequest($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['executionsListExecutionSteps'][0])
+    public function listExecutionStepsRequest($execution_id, $cursor = null, $limit = 25, string $contentType = self::contentTypes['listExecutionSteps'][0])
     {
 
         // verify the required parameter 'execution_id' is set
         if ($execution_id === null || (is_array($execution_id) && count($execution_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $execution_id when calling executionsListExecutionSteps'
+                'Missing the required parameter $execution_id when calling listExecutionSteps'
             );
         }
 
 
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.executionsListExecutionSteps, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.listExecutionSteps, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.executionsListExecutionSteps, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.listExecutionSteps, must be bigger than or equal to 1.');
         }
         
 
@@ -1568,7 +1568,7 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsListExecutions
+     * Operation listExecutions
      *
      * List Executions
      *
@@ -1586,20 +1586,20 @@ class ExecutionsApi
      * @param  \Ibexa\AgentPlatform\Model\CreditsMax|null $credits_max Filter executions whose total consumed credits are at most this value. Executions with no recorded credit spend never match. (optional)
      * @param  string|null $search Case-sensitive substring filter on the execution ID. (optional)
      * @param  string|null $daterange Filter executions by start date, as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted. Executions that have not started yet never match. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutions'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ExecutionListResponseSchema
      */
-    public function executionsListExecutions($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['executionsListExecutions'][0])
+    public function listExecutions($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['listExecutions'][0])
     {
-        list($response) = $this->executionsListExecutionsWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
+        list($response) = $this->listExecutionsWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation executionsListExecutionsWithHttpInfo
+     * Operation listExecutionsWithHttpInfo
      *
      * List Executions
      *
@@ -1617,15 +1617,15 @@ class ExecutionsApi
      * @param  \Ibexa\AgentPlatform\Model\CreditsMax|null $credits_max Filter executions whose total consumed credits are at most this value. Executions with no recorded credit spend never match. (optional)
      * @param  string|null $search Case-sensitive substring filter on the execution ID. (optional)
      * @param  string|null $daterange Filter executions by start date, as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted. Executions that have not started yet never match. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutions'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ExecutionListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsListExecutionsWithHttpInfo($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['executionsListExecutions'][0])
+    public function listExecutionsWithHttpInfo($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['listExecutions'][0])
     {
-        $request = $this->executionsListExecutionsRequest($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
+        $request = $this->listExecutionsRequest($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1698,7 +1698,7 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsListExecutionsAsync
+     * Operation listExecutionsAsync
      *
      * List Executions
      *
@@ -1716,14 +1716,14 @@ class ExecutionsApi
      * @param  \Ibexa\AgentPlatform\Model\CreditsMax|null $credits_max Filter executions whose total consumed credits are at most this value. Executions with no recorded credit spend never match. (optional)
      * @param  string|null $search Case-sensitive substring filter on the execution ID. (optional)
      * @param  string|null $daterange Filter executions by start date, as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted. Executions that have not started yet never match. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsListExecutionsAsync($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['executionsListExecutions'][0])
+    public function listExecutionsAsync($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['listExecutions'][0])
     {
-        return $this->executionsListExecutionsAsyncWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType)
+        return $this->listExecutionsAsyncWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1732,7 +1732,7 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsListExecutionsAsyncWithHttpInfo
+     * Operation listExecutionsAsyncWithHttpInfo
      *
      * List Executions
      *
@@ -1750,15 +1750,15 @@ class ExecutionsApi
      * @param  \Ibexa\AgentPlatform\Model\CreditsMax|null $credits_max Filter executions whose total consumed credits are at most this value. Executions with no recorded credit spend never match. (optional)
      * @param  string|null $search Case-sensitive substring filter on the execution ID. (optional)
      * @param  string|null $daterange Filter executions by start date, as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted. Executions that have not started yet never match. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsListExecutionsAsyncWithHttpInfo($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['executionsListExecutions'][0])
+    public function listExecutionsAsyncWithHttpInfo($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['listExecutions'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ExecutionListResponseSchema';
-        $request = $this->executionsListExecutionsRequest($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
+        $request = $this->listExecutionsRequest($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1805,7 +1805,7 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsListExecutions'
+     * Create request for operation 'listExecutions'
      *
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
@@ -1821,27 +1821,27 @@ class ExecutionsApi
      * @param  \Ibexa\AgentPlatform\Model\CreditsMax|null $credits_max Filter executions whose total consumed credits are at most this value. Executions with no recorded credit spend never match. (optional)
      * @param  string|null $search Case-sensitive substring filter on the execution ID. (optional)
      * @param  string|null $daterange Filter executions by start date, as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted. Executions that have not started yet never match. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsListExecutions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listExecutions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsListExecutionsRequest($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['executionsListExecutions'][0])
+    public function listExecutionsRequest($skip = 0, $limit = 25, $agent_id = null, $status = null, $id = null, $created_by = null, $trigger_definition_id = null, $trigger_type = null, $duration_min = null, $duration_max = null, $credits_min = null, $credits_max = null, $search = null, $daterange = null, string $contentType = self::contentTypes['listExecutions'][0])
     {
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling ExecutionsApi.executionsListExecutions, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling ExecutionsApi.listExecutions, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.executionsListExecutions, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.listExecutions, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.executionsListExecutions, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ExecutionsApi.listExecutions, must be bigger than or equal to 1.');
         }
         
         if ($agent_id !== null && $agent_id < 1) {
-            throw new \InvalidArgumentException('invalid value for "$agent_id" when calling ExecutionsApi.executionsListExecutions, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$agent_id" when calling ExecutionsApi.listExecutions, must be bigger than or equal to 1.');
         }
         
 
@@ -1850,17 +1850,17 @@ class ExecutionsApi
 
 
         if ($duration_min !== null && $duration_min < 0) {
-            throw new \InvalidArgumentException('invalid value for "$duration_min" when calling ExecutionsApi.executionsListExecutions, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$duration_min" when calling ExecutionsApi.listExecutions, must be bigger than or equal to 0.');
         }
         
         if ($duration_max !== null && $duration_max < 0) {
-            throw new \InvalidArgumentException('invalid value for "$duration_max" when calling ExecutionsApi.executionsListExecutions, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$duration_max" when calling ExecutionsApi.listExecutions, must be bigger than or equal to 0.');
         }
         
 
 
         if ($search !== null && strlen($search) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling ExecutionsApi.executionsListExecutions, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling ExecutionsApi.listExecutions, must be bigger than or equal to 1.');
         }
         
 
@@ -2064,38 +2064,38 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsRetryExecution
+     * Operation retryExecution
      *
      * Retry Execution
      *
      * @param  int $execution_id execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsRetryExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema
      */
-    public function executionsRetryExecution($execution_id, string $contentType = self::contentTypes['executionsRetryExecution'][0])
+    public function retryExecution($execution_id, string $contentType = self::contentTypes['retryExecution'][0])
     {
-        list($response) = $this->executionsRetryExecutionWithHttpInfo($execution_id, $contentType);
+        list($response) = $this->retryExecutionWithHttpInfo($execution_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation executionsRetryExecutionWithHttpInfo
+     * Operation retryExecutionWithHttpInfo
      *
      * Retry Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsRetryExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryExecution'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function executionsRetryExecutionWithHttpInfo($execution_id, string $contentType = self::contentTypes['executionsRetryExecution'][0])
+    public function retryExecutionWithHttpInfo($execution_id, string $contentType = self::contentTypes['retryExecution'][0])
     {
-        $request = $this->executionsRetryExecutionRequest($execution_id, $contentType);
+        $request = $this->retryExecutionRequest($execution_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2168,19 +2168,19 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsRetryExecutionAsync
+     * Operation retryExecutionAsync
      *
      * Retry Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsRetryExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsRetryExecutionAsync($execution_id, string $contentType = self::contentTypes['executionsRetryExecution'][0])
+    public function retryExecutionAsync($execution_id, string $contentType = self::contentTypes['retryExecution'][0])
     {
-        return $this->executionsRetryExecutionAsyncWithHttpInfo($execution_id, $contentType)
+        return $this->retryExecutionAsyncWithHttpInfo($execution_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2189,20 +2189,20 @@ class ExecutionsApi
     }
 
     /**
-     * Operation executionsRetryExecutionAsyncWithHttpInfo
+     * Operation retryExecutionAsyncWithHttpInfo
      *
      * Retry Execution
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsRetryExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function executionsRetryExecutionAsyncWithHttpInfo($execution_id, string $contentType = self::contentTypes['executionsRetryExecution'][0])
+    public function retryExecutionAsyncWithHttpInfo($execution_id, string $contentType = self::contentTypes['retryExecution'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema';
-        $request = $this->executionsRetryExecutionRequest($execution_id, $contentType);
+        $request = $this->retryExecutionRequest($execution_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2249,21 +2249,21 @@ class ExecutionsApi
     }
 
     /**
-     * Create request for operation 'executionsRetryExecution'
+     * Create request for operation 'retryExecution'
      *
      * @param  int $execution_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['executionsRetryExecution'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryExecution'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function executionsRetryExecutionRequest($execution_id, string $contentType = self::contentTypes['executionsRetryExecution'][0])
+    public function retryExecutionRequest($execution_id, string $contentType = self::contentTypes['retryExecution'][0])
     {
 
         // verify the required parameter 'execution_id' is set
         if ($execution_id === null || (is_array($execution_id) && count($execution_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $execution_id when calling executionsRetryExecution'
+                'Missing the required parameter $execution_id when calling retryExecution'
             );
         }
 

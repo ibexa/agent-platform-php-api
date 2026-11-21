@@ -74,10 +74,10 @@ class WebhooksApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'webhooksReceiveRemoteSourceWebhook' => [
+        'receiveRemoteSourceWebhook' => [
             'application/json',
         ],
-        'webhooksReceiveWebhook' => [
+        'receiveWebhook' => [
             'application/json',
         ],
     ];
@@ -129,38 +129,38 @@ class WebhooksApi
     }
 
     /**
-     * Operation webhooksReceiveRemoteSourceWebhook
+     * Operation receiveRemoteSourceWebhook
      *
      * Receive a remote trigger source delivery
      *
      * @param  string $token token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveRemoteSourceWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveRemoteSourceWebhook'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\RemoteSourceWebhookResponseSchema
      */
-    public function webhooksReceiveRemoteSourceWebhook($token, string $contentType = self::contentTypes['webhooksReceiveRemoteSourceWebhook'][0])
+    public function receiveRemoteSourceWebhook($token, string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0])
     {
-        list($response) = $this->webhooksReceiveRemoteSourceWebhookWithHttpInfo($token, $contentType);
+        list($response) = $this->receiveRemoteSourceWebhookWithHttpInfo($token, $contentType);
         return $response;
     }
 
     /**
-     * Operation webhooksReceiveRemoteSourceWebhookWithHttpInfo
+     * Operation receiveRemoteSourceWebhookWithHttpInfo
      *
      * Receive a remote trigger source delivery
      *
      * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveRemoteSourceWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveRemoteSourceWebhook'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\RemoteSourceWebhookResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webhooksReceiveRemoteSourceWebhookWithHttpInfo($token, string $contentType = self::contentTypes['webhooksReceiveRemoteSourceWebhook'][0])
+    public function receiveRemoteSourceWebhookWithHttpInfo($token, string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0])
     {
-        $request = $this->webhooksReceiveRemoteSourceWebhookRequest($token, $contentType);
+        $request = $this->receiveRemoteSourceWebhookRequest($token, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -233,19 +233,19 @@ class WebhooksApi
     }
 
     /**
-     * Operation webhooksReceiveRemoteSourceWebhookAsync
+     * Operation receiveRemoteSourceWebhookAsync
      *
      * Receive a remote trigger source delivery
      *
      * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveRemoteSourceWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveRemoteSourceWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webhooksReceiveRemoteSourceWebhookAsync($token, string $contentType = self::contentTypes['webhooksReceiveRemoteSourceWebhook'][0])
+    public function receiveRemoteSourceWebhookAsync($token, string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0])
     {
-        return $this->webhooksReceiveRemoteSourceWebhookAsyncWithHttpInfo($token, $contentType)
+        return $this->receiveRemoteSourceWebhookAsyncWithHttpInfo($token, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -254,20 +254,20 @@ class WebhooksApi
     }
 
     /**
-     * Operation webhooksReceiveRemoteSourceWebhookAsyncWithHttpInfo
+     * Operation receiveRemoteSourceWebhookAsyncWithHttpInfo
      *
      * Receive a remote trigger source delivery
      *
      * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveRemoteSourceWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveRemoteSourceWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webhooksReceiveRemoteSourceWebhookAsyncWithHttpInfo($token, string $contentType = self::contentTypes['webhooksReceiveRemoteSourceWebhook'][0])
+    public function receiveRemoteSourceWebhookAsyncWithHttpInfo($token, string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\RemoteSourceWebhookResponseSchema';
-        $request = $this->webhooksReceiveRemoteSourceWebhookRequest($token, $contentType);
+        $request = $this->receiveRemoteSourceWebhookRequest($token, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -314,21 +314,21 @@ class WebhooksApi
     }
 
     /**
-     * Create request for operation 'webhooksReceiveRemoteSourceWebhook'
+     * Create request for operation 'receiveRemoteSourceWebhook'
      *
      * @param  string $token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveRemoteSourceWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveRemoteSourceWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webhooksReceiveRemoteSourceWebhookRequest($token, string $contentType = self::contentTypes['webhooksReceiveRemoteSourceWebhook'][0])
+    public function receiveRemoteSourceWebhookRequest($token, string $contentType = self::contentTypes['receiveRemoteSourceWebhook'][0])
     {
 
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token when calling webhooksReceiveRemoteSourceWebhook'
+                'Missing the required parameter $token when calling receiveRemoteSourceWebhook'
             );
         }
 
@@ -410,40 +410,40 @@ class WebhooksApi
     }
 
     /**
-     * Operation webhooksReceiveWebhook
+     * Operation receiveWebhook
      *
      * Receive webhook
      *
      * @param  string $token token (required)
      * @param  array<string,mixed>|null $request_body request_body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveWebhook'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\WebhookResponseSchema
      */
-    public function webhooksReceiveWebhook($token, $request_body = null, string $contentType = self::contentTypes['webhooksReceiveWebhook'][0])
+    public function receiveWebhook($token, $request_body = null, string $contentType = self::contentTypes['receiveWebhook'][0])
     {
-        list($response) = $this->webhooksReceiveWebhookWithHttpInfo($token, $request_body, $contentType);
+        list($response) = $this->receiveWebhookWithHttpInfo($token, $request_body, $contentType);
         return $response;
     }
 
     /**
-     * Operation webhooksReceiveWebhookWithHttpInfo
+     * Operation receiveWebhookWithHttpInfo
      *
      * Receive webhook
      *
      * @param  string $token (required)
      * @param  array<string,mixed>|null $request_body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveWebhook'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\WebhookResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function webhooksReceiveWebhookWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['webhooksReceiveWebhook'][0])
+    public function receiveWebhookWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['receiveWebhook'][0])
     {
-        $request = $this->webhooksReceiveWebhookRequest($token, $request_body, $contentType);
+        $request = $this->receiveWebhookRequest($token, $request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -516,20 +516,20 @@ class WebhooksApi
     }
 
     /**
-     * Operation webhooksReceiveWebhookAsync
+     * Operation receiveWebhookAsync
      *
      * Receive webhook
      *
      * @param  string $token (required)
      * @param  array<string,mixed>|null $request_body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webhooksReceiveWebhookAsync($token, $request_body = null, string $contentType = self::contentTypes['webhooksReceiveWebhook'][0])
+    public function receiveWebhookAsync($token, $request_body = null, string $contentType = self::contentTypes['receiveWebhook'][0])
     {
-        return $this->webhooksReceiveWebhookAsyncWithHttpInfo($token, $request_body, $contentType)
+        return $this->receiveWebhookAsyncWithHttpInfo($token, $request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -538,21 +538,21 @@ class WebhooksApi
     }
 
     /**
-     * Operation webhooksReceiveWebhookAsyncWithHttpInfo
+     * Operation receiveWebhookAsyncWithHttpInfo
      *
      * Receive webhook
      *
      * @param  string $token (required)
      * @param  array<string,mixed>|null $request_body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function webhooksReceiveWebhookAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['webhooksReceiveWebhook'][0])
+    public function receiveWebhookAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['receiveWebhook'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\WebhookResponseSchema';
-        $request = $this->webhooksReceiveWebhookRequest($token, $request_body, $contentType);
+        $request = $this->receiveWebhookRequest($token, $request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -599,22 +599,22 @@ class WebhooksApi
     }
 
     /**
-     * Create request for operation 'webhooksReceiveWebhook'
+     * Create request for operation 'receiveWebhook'
      *
      * @param  string $token (required)
      * @param  array<string,mixed>|null $request_body (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['webhooksReceiveWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['receiveWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function webhooksReceiveWebhookRequest($token, $request_body = null, string $contentType = self::contentTypes['webhooksReceiveWebhook'][0])
+    public function receiveWebhookRequest($token, $request_body = null, string $contentType = self::contentTypes['receiveWebhook'][0])
     {
 
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token when calling webhooksReceiveWebhook'
+                'Missing the required parameter $token when calling receiveWebhook'
             );
         }
 

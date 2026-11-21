@@ -74,16 +74,16 @@ class LoginApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'loginLogin' => [
+        'login' => [
             'application/x-www-form-urlencoded',
         ],
-        'loginLogout' => [
+        'logout' => [
             'application/json',
         ],
-        'loginLogoutAll' => [
+        'logoutAll' => [
             'application/json',
         ],
-        'loginRefreshToken' => [
+        'refreshToken' => [
             'application/json',
         ],
     ];
@@ -135,7 +135,7 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogin
+     * Operation login
      *
      * Login
      *
@@ -145,20 +145,20 @@ class LoginApi
      * @param  string|null $scope scope (optional, default to '')
      * @param  string|null $client_id client_id (optional)
      * @param  string|null $client_secret client_secret (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogin'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AccessTokenResponseSchema
      */
-    public function loginLogin($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['loginLogin'][0])
+    public function login($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['login'][0])
     {
-        list($response) = $this->loginLoginWithHttpInfo($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType);
+        list($response) = $this->loginWithHttpInfo($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType);
         return $response;
     }
 
     /**
-     * Operation loginLoginWithHttpInfo
+     * Operation loginWithHttpInfo
      *
      * Login
      *
@@ -168,15 +168,15 @@ class LoginApi
      * @param  string|null $scope (optional, default to '')
      * @param  string|null $client_id (optional)
      * @param  string|null $client_secret (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogin'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AccessTokenResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function loginLoginWithHttpInfo($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['loginLogin'][0])
+    public function loginWithHttpInfo($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['login'][0])
     {
-        $request = $this->loginLoginRequest($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType);
+        $request = $this->loginRequest($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -249,7 +249,7 @@ class LoginApi
     }
 
     /**
-     * Operation loginLoginAsync
+     * Operation loginAsync
      *
      * Login
      *
@@ -259,14 +259,14 @@ class LoginApi
      * @param  string|null $scope (optional, default to '')
      * @param  string|null $client_id (optional)
      * @param  string|null $client_secret (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogin'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginLoginAsync($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['loginLogin'][0])
+    public function loginAsync($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['login'][0])
     {
-        return $this->loginLoginAsyncWithHttpInfo($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType)
+        return $this->loginAsyncWithHttpInfo($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -275,7 +275,7 @@ class LoginApi
     }
 
     /**
-     * Operation loginLoginAsyncWithHttpInfo
+     * Operation loginAsyncWithHttpInfo
      *
      * Login
      *
@@ -285,15 +285,15 @@ class LoginApi
      * @param  string|null $scope (optional, default to '')
      * @param  string|null $client_id (optional)
      * @param  string|null $client_secret (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogin'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginLoginAsyncWithHttpInfo($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['loginLogin'][0])
+    public function loginAsyncWithHttpInfo($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['login'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AccessTokenResponseSchema';
-        $request = $this->loginLoginRequest($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType);
+        $request = $this->loginRequest($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -340,7 +340,7 @@ class LoginApi
     }
 
     /**
-     * Create request for operation 'loginLogin'
+     * Create request for operation 'login'
      *
      * @param  string $username (required)
      * @param  string $password (required)
@@ -348,30 +348,30 @@ class LoginApi
      * @param  string|null $scope (optional, default to '')
      * @param  string|null $client_id (optional)
      * @param  string|null $client_secret (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogin'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function loginLoginRequest($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['loginLogin'][0])
+    public function loginRequest($username, $password, $grant_type = null, $scope = '', $client_id = null, $client_secret = null, string $contentType = self::contentTypes['login'][0])
     {
 
         // verify the required parameter 'username' is set
         if ($username === null || (is_array($username) && count($username) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $username when calling loginLogin'
+                'Missing the required parameter $username when calling login'
             );
         }
 
         // verify the required parameter 'password' is set
         if ($password === null || (is_array($password) && count($password) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $password when calling loginLogin'
+                'Missing the required parameter $password when calling login'
             );
         }
 
         if ($grant_type !== null && !preg_match("/^password$/", $grant_type)) {
-            throw new \InvalidArgumentException("invalid value for \"grant_type\" when calling LoginApi.loginLogin, must conform to the pattern /^password$/.");
+            throw new \InvalidArgumentException("invalid value for \"grant_type\" when calling LoginApi.login, must conform to the pattern /^password$/.");
         }
         
 
@@ -461,37 +461,37 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogout
+     * Operation logout
      *
      * Logout
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogout'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function loginLogout($refresh_token_request_schema, string $contentType = self::contentTypes['loginLogout'][0])
+    public function logout($refresh_token_request_schema, string $contentType = self::contentTypes['logout'][0])
     {
-        $this->loginLogoutWithHttpInfo($refresh_token_request_schema, $contentType);
+        $this->logoutWithHttpInfo($refresh_token_request_schema, $contentType);
     }
 
     /**
-     * Operation loginLogoutWithHttpInfo
+     * Operation logoutWithHttpInfo
      *
      * Logout
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogout'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function loginLogoutWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['loginLogout'][0])
+    public function logoutWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['logout'][0])
     {
-        $request = $this->loginLogoutRequest($refresh_token_request_schema, $contentType);
+        $request = $this->logoutRequest($refresh_token_request_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -528,19 +528,19 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogoutAsync
+     * Operation logoutAsync
      *
      * Logout
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogout'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginLogoutAsync($refresh_token_request_schema, string $contentType = self::contentTypes['loginLogout'][0])
+    public function logoutAsync($refresh_token_request_schema, string $contentType = self::contentTypes['logout'][0])
     {
-        return $this->loginLogoutAsyncWithHttpInfo($refresh_token_request_schema, $contentType)
+        return $this->logoutAsyncWithHttpInfo($refresh_token_request_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -549,20 +549,20 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogoutAsyncWithHttpInfo
+     * Operation logoutAsyncWithHttpInfo
      *
      * Logout
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogout'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginLogoutAsyncWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['loginLogout'][0])
+    public function logoutAsyncWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['logout'][0])
     {
         $returnType = '';
-        $request = $this->loginLogoutRequest($refresh_token_request_schema, $contentType);
+        $request = $this->logoutRequest($refresh_token_request_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -596,21 +596,21 @@ class LoginApi
     }
 
     /**
-     * Create request for operation 'loginLogout'
+     * Create request for operation 'logout'
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogout'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function loginLogoutRequest($refresh_token_request_schema, string $contentType = self::contentTypes['loginLogout'][0])
+    public function logoutRequest($refresh_token_request_schema, string $contentType = self::contentTypes['logout'][0])
     {
 
         // verify the required parameter 'refresh_token_request_schema' is set
         if ($refresh_token_request_schema === null || (is_array($refresh_token_request_schema) && count($refresh_token_request_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $refresh_token_request_schema when calling loginLogout'
+                'Missing the required parameter $refresh_token_request_schema when calling logout'
             );
         }
 
@@ -699,35 +699,35 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogoutAll
+     * Operation logoutAll
      *
      * Logout All
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogoutAll'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutAll'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function loginLogoutAll(string $contentType = self::contentTypes['loginLogoutAll'][0])
+    public function logoutAll(string $contentType = self::contentTypes['logoutAll'][0])
     {
-        $this->loginLogoutAllWithHttpInfo($contentType);
+        $this->logoutAllWithHttpInfo($contentType);
     }
 
     /**
-     * Operation loginLogoutAllWithHttpInfo
+     * Operation logoutAllWithHttpInfo
      *
      * Logout All
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogoutAll'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutAll'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function loginLogoutAllWithHttpInfo(string $contentType = self::contentTypes['loginLogoutAll'][0])
+    public function logoutAllWithHttpInfo(string $contentType = self::contentTypes['logoutAll'][0])
     {
-        $request = $this->loginLogoutAllRequest($contentType);
+        $request = $this->logoutAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -764,18 +764,18 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogoutAllAsync
+     * Operation logoutAllAsync
      *
      * Logout All
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogoutAll'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginLogoutAllAsync(string $contentType = self::contentTypes['loginLogoutAll'][0])
+    public function logoutAllAsync(string $contentType = self::contentTypes['logoutAll'][0])
     {
-        return $this->loginLogoutAllAsyncWithHttpInfo($contentType)
+        return $this->logoutAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -784,19 +784,19 @@ class LoginApi
     }
 
     /**
-     * Operation loginLogoutAllAsyncWithHttpInfo
+     * Operation logoutAllAsyncWithHttpInfo
      *
      * Logout All
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogoutAll'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginLogoutAllAsyncWithHttpInfo(string $contentType = self::contentTypes['loginLogoutAll'][0])
+    public function logoutAllAsyncWithHttpInfo(string $contentType = self::contentTypes['logoutAll'][0])
     {
         $returnType = '';
-        $request = $this->loginLogoutAllRequest($contentType);
+        $request = $this->logoutAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -830,14 +830,14 @@ class LoginApi
     }
 
     /**
-     * Create request for operation 'loginLogoutAll'
+     * Create request for operation 'logoutAll'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginLogoutAll'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function loginLogoutAllRequest(string $contentType = self::contentTypes['loginLogoutAll'][0])
+    public function logoutAllRequest(string $contentType = self::contentTypes['logoutAll'][0])
     {
 
 
@@ -914,38 +914,38 @@ class LoginApi
     }
 
     /**
-     * Operation loginRefreshToken
+     * Operation refreshToken
      *
      * Refresh Token
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginRefreshToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AccessTokenResponseSchema
      */
-    public function loginRefreshToken($refresh_token_request_schema, string $contentType = self::contentTypes['loginRefreshToken'][0])
+    public function refreshToken($refresh_token_request_schema, string $contentType = self::contentTypes['refreshToken'][0])
     {
-        list($response) = $this->loginRefreshTokenWithHttpInfo($refresh_token_request_schema, $contentType);
+        list($response) = $this->refreshTokenWithHttpInfo($refresh_token_request_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation loginRefreshTokenWithHttpInfo
+     * Operation refreshTokenWithHttpInfo
      *
      * Refresh Token
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginRefreshToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AccessTokenResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function loginRefreshTokenWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['loginRefreshToken'][0])
+    public function refreshTokenWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['refreshToken'][0])
     {
-        $request = $this->loginRefreshTokenRequest($refresh_token_request_schema, $contentType);
+        $request = $this->refreshTokenRequest($refresh_token_request_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1018,19 +1018,19 @@ class LoginApi
     }
 
     /**
-     * Operation loginRefreshTokenAsync
+     * Operation refreshTokenAsync
      *
      * Refresh Token
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginRefreshToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginRefreshTokenAsync($refresh_token_request_schema, string $contentType = self::contentTypes['loginRefreshToken'][0])
+    public function refreshTokenAsync($refresh_token_request_schema, string $contentType = self::contentTypes['refreshToken'][0])
     {
-        return $this->loginRefreshTokenAsyncWithHttpInfo($refresh_token_request_schema, $contentType)
+        return $this->refreshTokenAsyncWithHttpInfo($refresh_token_request_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1039,20 +1039,20 @@ class LoginApi
     }
 
     /**
-     * Operation loginRefreshTokenAsyncWithHttpInfo
+     * Operation refreshTokenAsyncWithHttpInfo
      *
      * Refresh Token
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginRefreshToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginRefreshTokenAsyncWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['loginRefreshToken'][0])
+    public function refreshTokenAsyncWithHttpInfo($refresh_token_request_schema, string $contentType = self::contentTypes['refreshToken'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AccessTokenResponseSchema';
-        $request = $this->loginRefreshTokenRequest($refresh_token_request_schema, $contentType);
+        $request = $this->refreshTokenRequest($refresh_token_request_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1099,21 +1099,21 @@ class LoginApi
     }
 
     /**
-     * Create request for operation 'loginRefreshToken'
+     * Create request for operation 'refreshToken'
      *
      * @param  \Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema $refresh_token_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginRefreshToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refreshToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function loginRefreshTokenRequest($refresh_token_request_schema, string $contentType = self::contentTypes['loginRefreshToken'][0])
+    public function refreshTokenRequest($refresh_token_request_schema, string $contentType = self::contentTypes['refreshToken'][0])
     {
 
         // verify the required parameter 'refresh_token_request_schema' is set
         if ($refresh_token_request_schema === null || (is_array($refresh_token_request_schema) && count($refresh_token_request_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $refresh_token_request_schema when calling loginRefreshToken'
+                'Missing the required parameter $refresh_token_request_schema when calling refreshToken'
             );
         }
 

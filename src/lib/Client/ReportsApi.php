@@ -74,28 +74,28 @@ class ReportsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'reportsDeleteReport' => [
+        'deleteReport' => [
             'application/json',
         ],
-        'reportsGetReport' => [
+        'getReport' => [
             'application/json',
         ],
-        'reportsListReports' => [
+        'listReports' => [
             'application/json',
         ],
-        'reportsPublishReport' => [
+        'publishReport' => [
             'application/json',
         ],
-        'reportsReturnReportToDraft' => [
+        'returnReportToDraft' => [
             'application/json',
         ],
-        'reportsSubmitReportForReview' => [
+        'submitReportForReview' => [
             'application/json',
         ],
-        'reportsUnpublishReport' => [
+        'unpublishReport' => [
             'application/json',
         ],
-        'reportsUpdateActionItem' => [
+        'updateActionItem' => [
             'application/json',
         ],
     ];
@@ -147,37 +147,37 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsDeleteReport
+     * Operation deleteReport
      *
      * Delete Report
      *
      * @param  int $report_id report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsDeleteReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function reportsDeleteReport($report_id, string $contentType = self::contentTypes['reportsDeleteReport'][0])
+    public function deleteReport($report_id, string $contentType = self::contentTypes['deleteReport'][0])
     {
-        $this->reportsDeleteReportWithHttpInfo($report_id, $contentType);
+        $this->deleteReportWithHttpInfo($report_id, $contentType);
     }
 
     /**
-     * Operation reportsDeleteReportWithHttpInfo
+     * Operation deleteReportWithHttpInfo
      *
      * Delete Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsDeleteReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsDeleteReportWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsDeleteReport'][0])
+    public function deleteReportWithHttpInfo($report_id, string $contentType = self::contentTypes['deleteReport'][0])
     {
-        $request = $this->reportsDeleteReportRequest($report_id, $contentType);
+        $request = $this->deleteReportRequest($report_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -214,19 +214,19 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsDeleteReportAsync
+     * Operation deleteReportAsync
      *
      * Delete Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsDeleteReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsDeleteReportAsync($report_id, string $contentType = self::contentTypes['reportsDeleteReport'][0])
+    public function deleteReportAsync($report_id, string $contentType = self::contentTypes['deleteReport'][0])
     {
-        return $this->reportsDeleteReportAsyncWithHttpInfo($report_id, $contentType)
+        return $this->deleteReportAsyncWithHttpInfo($report_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -235,20 +235,20 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsDeleteReportAsyncWithHttpInfo
+     * Operation deleteReportAsyncWithHttpInfo
      *
      * Delete Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsDeleteReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsDeleteReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsDeleteReport'][0])
+    public function deleteReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['deleteReport'][0])
     {
         $returnType = '';
-        $request = $this->reportsDeleteReportRequest($report_id, $contentType);
+        $request = $this->deleteReportRequest($report_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -282,21 +282,21 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsDeleteReport'
+     * Create request for operation 'deleteReport'
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsDeleteReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsDeleteReportRequest($report_id, string $contentType = self::contentTypes['reportsDeleteReport'][0])
+    public function deleteReportRequest($report_id, string $contentType = self::contentTypes['deleteReport'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsDeleteReport'
+                'Missing the required parameter $report_id when calling deleteReport'
             );
         }
 
@@ -382,38 +382,38 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsGetReport
+     * Operation getReport
      *
      * Get Report
      *
      * @param  int $report_id report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsGetReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportResponseSchema
      */
-    public function reportsGetReport($report_id, string $contentType = self::contentTypes['reportsGetReport'][0])
+    public function getReport($report_id, string $contentType = self::contentTypes['getReport'][0])
     {
-        list($response) = $this->reportsGetReportWithHttpInfo($report_id, $contentType);
+        list($response) = $this->getReportWithHttpInfo($report_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsGetReportWithHttpInfo
+     * Operation getReportWithHttpInfo
      *
      * Get Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsGetReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsGetReportWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsGetReport'][0])
+    public function getReportWithHttpInfo($report_id, string $contentType = self::contentTypes['getReport'][0])
     {
-        $request = $this->reportsGetReportRequest($report_id, $contentType);
+        $request = $this->getReportRequest($report_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -486,19 +486,19 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsGetReportAsync
+     * Operation getReportAsync
      *
      * Get Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsGetReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsGetReportAsync($report_id, string $contentType = self::contentTypes['reportsGetReport'][0])
+    public function getReportAsync($report_id, string $contentType = self::contentTypes['getReport'][0])
     {
-        return $this->reportsGetReportAsyncWithHttpInfo($report_id, $contentType)
+        return $this->getReportAsyncWithHttpInfo($report_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -507,20 +507,20 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsGetReportAsyncWithHttpInfo
+     * Operation getReportAsyncWithHttpInfo
      *
      * Get Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsGetReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsGetReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsGetReport'][0])
+    public function getReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['getReport'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportResponseSchema';
-        $request = $this->reportsGetReportRequest($report_id, $contentType);
+        $request = $this->getReportRequest($report_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -567,21 +567,21 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsGetReport'
+     * Create request for operation 'getReport'
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsGetReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsGetReportRequest($report_id, string $contentType = self::contentTypes['reportsGetReport'][0])
+    public function getReportRequest($report_id, string $contentType = self::contentTypes['getReport'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsGetReport'
+                'Missing the required parameter $report_id when calling getReport'
             );
         }
 
@@ -667,7 +667,7 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsListReports
+     * Operation listReports
      *
      * List Reports
      *
@@ -677,20 +677,20 @@ class ReportsApi
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
      * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsListReports'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportListResponseSchema
      */
-    public function reportsListReports($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['reportsListReports'][0])
+    public function listReports($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['listReports'][0])
     {
-        list($response) = $this->reportsListReportsWithHttpInfo($skip, $limit, $daterange, $search, $agent_id, $status, $contentType);
+        list($response) = $this->listReportsWithHttpInfo($skip, $limit, $daterange, $search, $agent_id, $status, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsListReportsWithHttpInfo
+     * Operation listReportsWithHttpInfo
      *
      * List Reports
      *
@@ -700,15 +700,15 @@ class ReportsApi
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
      * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsListReports'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsListReportsWithHttpInfo($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['reportsListReports'][0])
+    public function listReportsWithHttpInfo($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['listReports'][0])
     {
-        $request = $this->reportsListReportsRequest($skip, $limit, $daterange, $search, $agent_id, $status, $contentType);
+        $request = $this->listReportsRequest($skip, $limit, $daterange, $search, $agent_id, $status, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -781,7 +781,7 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsListReportsAsync
+     * Operation listReportsAsync
      *
      * List Reports
      *
@@ -791,14 +791,14 @@ class ReportsApi
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
      * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsListReports'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsListReportsAsync($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['reportsListReports'][0])
+    public function listReportsAsync($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['listReports'][0])
     {
-        return $this->reportsListReportsAsyncWithHttpInfo($skip, $limit, $daterange, $search, $agent_id, $status, $contentType)
+        return $this->listReportsAsyncWithHttpInfo($skip, $limit, $daterange, $search, $agent_id, $status, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -807,7 +807,7 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsListReportsAsyncWithHttpInfo
+     * Operation listReportsAsyncWithHttpInfo
      *
      * List Reports
      *
@@ -817,15 +817,15 @@ class ReportsApi
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
      * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsListReports'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsListReportsAsyncWithHttpInfo($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['reportsListReports'][0])
+    public function listReportsAsyncWithHttpInfo($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['listReports'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportListResponseSchema';
-        $request = $this->reportsListReportsRequest($skip, $limit, $daterange, $search, $agent_id, $status, $contentType);
+        $request = $this->listReportsRequest($skip, $limit, $daterange, $search, $agent_id, $status, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -872,7 +872,7 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsListReports'
+     * Create request for operation 'listReports'
      *
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
@@ -880,31 +880,31 @@ class ReportsApi
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
      * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsListReports'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsListReportsRequest($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['reportsListReports'][0])
+    public function listReportsRequest($skip = 0, $limit = 25, $daterange = null, $search = null, $agent_id = null, $status = null, string $contentType = self::contentTypes['listReports'][0])
     {
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling ReportsApi.reportsListReports, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling ReportsApi.listReports, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ReportsApi.reportsListReports, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ReportsApi.listReports, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ReportsApi.reportsListReports, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ReportsApi.listReports, must be bigger than or equal to 1.');
         }
         
 
         if ($search !== null && strlen($search) > 255) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling ReportsApi.reportsListReports, must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling ReportsApi.listReports, must be smaller than or equal to 255.');
         }
         if ($search !== null && strlen($search) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling ReportsApi.reportsListReports, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling ReportsApi.listReports, must be bigger than or equal to 1.');
         }
         
 
@@ -1037,38 +1037,38 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsPublishReport
+     * Operation publishReport
      *
      * Publish Report
      *
      * @param  int $report_id report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsPublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportResponseSchema
      */
-    public function reportsPublishReport($report_id, string $contentType = self::contentTypes['reportsPublishReport'][0])
+    public function publishReport($report_id, string $contentType = self::contentTypes['publishReport'][0])
     {
-        list($response) = $this->reportsPublishReportWithHttpInfo($report_id, $contentType);
+        list($response) = $this->publishReportWithHttpInfo($report_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsPublishReportWithHttpInfo
+     * Operation publishReportWithHttpInfo
      *
      * Publish Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsPublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsPublishReportWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsPublishReport'][0])
+    public function publishReportWithHttpInfo($report_id, string $contentType = self::contentTypes['publishReport'][0])
     {
-        $request = $this->reportsPublishReportRequest($report_id, $contentType);
+        $request = $this->publishReportRequest($report_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1141,19 +1141,19 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsPublishReportAsync
+     * Operation publishReportAsync
      *
      * Publish Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsPublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsPublishReportAsync($report_id, string $contentType = self::contentTypes['reportsPublishReport'][0])
+    public function publishReportAsync($report_id, string $contentType = self::contentTypes['publishReport'][0])
     {
-        return $this->reportsPublishReportAsyncWithHttpInfo($report_id, $contentType)
+        return $this->publishReportAsyncWithHttpInfo($report_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1162,20 +1162,20 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsPublishReportAsyncWithHttpInfo
+     * Operation publishReportAsyncWithHttpInfo
      *
      * Publish Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsPublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsPublishReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsPublishReport'][0])
+    public function publishReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['publishReport'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportResponseSchema';
-        $request = $this->reportsPublishReportRequest($report_id, $contentType);
+        $request = $this->publishReportRequest($report_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1222,21 +1222,21 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsPublishReport'
+     * Create request for operation 'publishReport'
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsPublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsPublishReportRequest($report_id, string $contentType = self::contentTypes['reportsPublishReport'][0])
+    public function publishReportRequest($report_id, string $contentType = self::contentTypes['publishReport'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsPublishReport'
+                'Missing the required parameter $report_id when calling publishReport'
             );
         }
 
@@ -1322,38 +1322,38 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsReturnReportToDraft
+     * Operation returnReportToDraft
      *
      * Return Report To Draft
      *
      * @param  int $report_id report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsReturnReportToDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['returnReportToDraft'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportResponseSchema
      */
-    public function reportsReturnReportToDraft($report_id, string $contentType = self::contentTypes['reportsReturnReportToDraft'][0])
+    public function returnReportToDraft($report_id, string $contentType = self::contentTypes['returnReportToDraft'][0])
     {
-        list($response) = $this->reportsReturnReportToDraftWithHttpInfo($report_id, $contentType);
+        list($response) = $this->returnReportToDraftWithHttpInfo($report_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsReturnReportToDraftWithHttpInfo
+     * Operation returnReportToDraftWithHttpInfo
      *
      * Return Report To Draft
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsReturnReportToDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['returnReportToDraft'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsReturnReportToDraftWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsReturnReportToDraft'][0])
+    public function returnReportToDraftWithHttpInfo($report_id, string $contentType = self::contentTypes['returnReportToDraft'][0])
     {
-        $request = $this->reportsReturnReportToDraftRequest($report_id, $contentType);
+        $request = $this->returnReportToDraftRequest($report_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1426,19 +1426,19 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsReturnReportToDraftAsync
+     * Operation returnReportToDraftAsync
      *
      * Return Report To Draft
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsReturnReportToDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['returnReportToDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsReturnReportToDraftAsync($report_id, string $contentType = self::contentTypes['reportsReturnReportToDraft'][0])
+    public function returnReportToDraftAsync($report_id, string $contentType = self::contentTypes['returnReportToDraft'][0])
     {
-        return $this->reportsReturnReportToDraftAsyncWithHttpInfo($report_id, $contentType)
+        return $this->returnReportToDraftAsyncWithHttpInfo($report_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1447,20 +1447,20 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsReturnReportToDraftAsyncWithHttpInfo
+     * Operation returnReportToDraftAsyncWithHttpInfo
      *
      * Return Report To Draft
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsReturnReportToDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['returnReportToDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsReturnReportToDraftAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsReturnReportToDraft'][0])
+    public function returnReportToDraftAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['returnReportToDraft'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportResponseSchema';
-        $request = $this->reportsReturnReportToDraftRequest($report_id, $contentType);
+        $request = $this->returnReportToDraftRequest($report_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1507,21 +1507,21 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsReturnReportToDraft'
+     * Create request for operation 'returnReportToDraft'
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsReturnReportToDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['returnReportToDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsReturnReportToDraftRequest($report_id, string $contentType = self::contentTypes['reportsReturnReportToDraft'][0])
+    public function returnReportToDraftRequest($report_id, string $contentType = self::contentTypes['returnReportToDraft'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsReturnReportToDraft'
+                'Missing the required parameter $report_id when calling returnReportToDraft'
             );
         }
 
@@ -1607,38 +1607,38 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsSubmitReportForReview
+     * Operation submitReportForReview
      *
      * Submit Report For Review
      *
      * @param  int $report_id report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsSubmitReportForReview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitReportForReview'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportResponseSchema
      */
-    public function reportsSubmitReportForReview($report_id, string $contentType = self::contentTypes['reportsSubmitReportForReview'][0])
+    public function submitReportForReview($report_id, string $contentType = self::contentTypes['submitReportForReview'][0])
     {
-        list($response) = $this->reportsSubmitReportForReviewWithHttpInfo($report_id, $contentType);
+        list($response) = $this->submitReportForReviewWithHttpInfo($report_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsSubmitReportForReviewWithHttpInfo
+     * Operation submitReportForReviewWithHttpInfo
      *
      * Submit Report For Review
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsSubmitReportForReview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitReportForReview'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsSubmitReportForReviewWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsSubmitReportForReview'][0])
+    public function submitReportForReviewWithHttpInfo($report_id, string $contentType = self::contentTypes['submitReportForReview'][0])
     {
-        $request = $this->reportsSubmitReportForReviewRequest($report_id, $contentType);
+        $request = $this->submitReportForReviewRequest($report_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1711,19 +1711,19 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsSubmitReportForReviewAsync
+     * Operation submitReportForReviewAsync
      *
      * Submit Report For Review
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsSubmitReportForReview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitReportForReview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsSubmitReportForReviewAsync($report_id, string $contentType = self::contentTypes['reportsSubmitReportForReview'][0])
+    public function submitReportForReviewAsync($report_id, string $contentType = self::contentTypes['submitReportForReview'][0])
     {
-        return $this->reportsSubmitReportForReviewAsyncWithHttpInfo($report_id, $contentType)
+        return $this->submitReportForReviewAsyncWithHttpInfo($report_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1732,20 +1732,20 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsSubmitReportForReviewAsyncWithHttpInfo
+     * Operation submitReportForReviewAsyncWithHttpInfo
      *
      * Submit Report For Review
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsSubmitReportForReview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitReportForReview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsSubmitReportForReviewAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsSubmitReportForReview'][0])
+    public function submitReportForReviewAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['submitReportForReview'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportResponseSchema';
-        $request = $this->reportsSubmitReportForReviewRequest($report_id, $contentType);
+        $request = $this->submitReportForReviewRequest($report_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1792,21 +1792,21 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsSubmitReportForReview'
+     * Create request for operation 'submitReportForReview'
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsSubmitReportForReview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitReportForReview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsSubmitReportForReviewRequest($report_id, string $contentType = self::contentTypes['reportsSubmitReportForReview'][0])
+    public function submitReportForReviewRequest($report_id, string $contentType = self::contentTypes['submitReportForReview'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsSubmitReportForReview'
+                'Missing the required parameter $report_id when calling submitReportForReview'
             );
         }
 
@@ -1892,38 +1892,38 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsUnpublishReport
+     * Operation unpublishReport
      *
      * Unpublish Report
      *
      * @param  int $report_id report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUnpublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unpublishReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportResponseSchema
      */
-    public function reportsUnpublishReport($report_id, string $contentType = self::contentTypes['reportsUnpublishReport'][0])
+    public function unpublishReport($report_id, string $contentType = self::contentTypes['unpublishReport'][0])
     {
-        list($response) = $this->reportsUnpublishReportWithHttpInfo($report_id, $contentType);
+        list($response) = $this->unpublishReportWithHttpInfo($report_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsUnpublishReportWithHttpInfo
+     * Operation unpublishReportWithHttpInfo
      *
      * Unpublish Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUnpublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unpublishReport'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsUnpublishReportWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsUnpublishReport'][0])
+    public function unpublishReportWithHttpInfo($report_id, string $contentType = self::contentTypes['unpublishReport'][0])
     {
-        $request = $this->reportsUnpublishReportRequest($report_id, $contentType);
+        $request = $this->unpublishReportRequest($report_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1996,19 +1996,19 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsUnpublishReportAsync
+     * Operation unpublishReportAsync
      *
      * Unpublish Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUnpublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unpublishReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsUnpublishReportAsync($report_id, string $contentType = self::contentTypes['reportsUnpublishReport'][0])
+    public function unpublishReportAsync($report_id, string $contentType = self::contentTypes['unpublishReport'][0])
     {
-        return $this->reportsUnpublishReportAsyncWithHttpInfo($report_id, $contentType)
+        return $this->unpublishReportAsyncWithHttpInfo($report_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2017,20 +2017,20 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsUnpublishReportAsyncWithHttpInfo
+     * Operation unpublishReportAsyncWithHttpInfo
      *
      * Unpublish Report
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUnpublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unpublishReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsUnpublishReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['reportsUnpublishReport'][0])
+    public function unpublishReportAsyncWithHttpInfo($report_id, string $contentType = self::contentTypes['unpublishReport'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportResponseSchema';
-        $request = $this->reportsUnpublishReportRequest($report_id, $contentType);
+        $request = $this->unpublishReportRequest($report_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2077,21 +2077,21 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsUnpublishReport'
+     * Create request for operation 'unpublishReport'
      *
      * @param  int $report_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUnpublishReport'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unpublishReport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsUnpublishReportRequest($report_id, string $contentType = self::contentTypes['reportsUnpublishReport'][0])
+    public function unpublishReportRequest($report_id, string $contentType = self::contentTypes['unpublishReport'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsUnpublishReport'
+                'Missing the required parameter $report_id when calling unpublishReport'
             );
         }
 
@@ -2177,7 +2177,7 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsUpdateActionItem
+     * Operation updateActionItem
      *
      * Update Action Item
      *
@@ -2185,20 +2185,20 @@ class ReportsApi
      * @param  string $block_id block_id (required)
      * @param  int $line_id line_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateActionItemPayloadSchema $update_action_item_payload_schema update_action_item_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUpdateActionItem'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateActionItem'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ReportResponseSchema
      */
-    public function reportsUpdateActionItem($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['reportsUpdateActionItem'][0])
+    public function updateActionItem($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['updateActionItem'][0])
     {
-        list($response) = $this->reportsUpdateActionItemWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType);
+        list($response) = $this->updateActionItemWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation reportsUpdateActionItemWithHttpInfo
+     * Operation updateActionItemWithHttpInfo
      *
      * Update Action Item
      *
@@ -2206,15 +2206,15 @@ class ReportsApi
      * @param  string $block_id (required)
      * @param  int $line_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateActionItemPayloadSchema $update_action_item_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUpdateActionItem'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateActionItem'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ReportResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reportsUpdateActionItemWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['reportsUpdateActionItem'][0])
+    public function updateActionItemWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['updateActionItem'][0])
     {
-        $request = $this->reportsUpdateActionItemRequest($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType);
+        $request = $this->updateActionItemRequest($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2287,7 +2287,7 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsUpdateActionItemAsync
+     * Operation updateActionItemAsync
      *
      * Update Action Item
      *
@@ -2295,14 +2295,14 @@ class ReportsApi
      * @param  string $block_id (required)
      * @param  int $line_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateActionItemPayloadSchema $update_action_item_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUpdateActionItem'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateActionItem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsUpdateActionItemAsync($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['reportsUpdateActionItem'][0])
+    public function updateActionItemAsync($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['updateActionItem'][0])
     {
-        return $this->reportsUpdateActionItemAsyncWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType)
+        return $this->updateActionItemAsyncWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2311,7 +2311,7 @@ class ReportsApi
     }
 
     /**
-     * Operation reportsUpdateActionItemAsyncWithHttpInfo
+     * Operation updateActionItemAsyncWithHttpInfo
      *
      * Update Action Item
      *
@@ -2319,15 +2319,15 @@ class ReportsApi
      * @param  string $block_id (required)
      * @param  int $line_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateActionItemPayloadSchema $update_action_item_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUpdateActionItem'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateActionItem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reportsUpdateActionItemAsyncWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['reportsUpdateActionItem'][0])
+    public function updateActionItemAsyncWithHttpInfo($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['updateActionItem'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ReportResponseSchema';
-        $request = $this->reportsUpdateActionItemRequest($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType);
+        $request = $this->updateActionItemRequest($report_id, $block_id, $line_id, $update_action_item_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2374,45 +2374,45 @@ class ReportsApi
     }
 
     /**
-     * Create request for operation 'reportsUpdateActionItem'
+     * Create request for operation 'updateActionItem'
      *
      * @param  int $report_id (required)
      * @param  string $block_id (required)
      * @param  int $line_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateActionItemPayloadSchema $update_action_item_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reportsUpdateActionItem'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateActionItem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reportsUpdateActionItemRequest($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['reportsUpdateActionItem'][0])
+    public function updateActionItemRequest($report_id, $block_id, $line_id, $update_action_item_payload_schema, string $contentType = self::contentTypes['updateActionItem'][0])
     {
 
         // verify the required parameter 'report_id' is set
         if ($report_id === null || (is_array($report_id) && count($report_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $report_id when calling reportsUpdateActionItem'
+                'Missing the required parameter $report_id when calling updateActionItem'
             );
         }
 
         // verify the required parameter 'block_id' is set
         if ($block_id === null || (is_array($block_id) && count($block_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $block_id when calling reportsUpdateActionItem'
+                'Missing the required parameter $block_id when calling updateActionItem'
             );
         }
 
         // verify the required parameter 'line_id' is set
         if ($line_id === null || (is_array($line_id) && count($line_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $line_id when calling reportsUpdateActionItem'
+                'Missing the required parameter $line_id when calling updateActionItem'
             );
         }
 
         // verify the required parameter 'update_action_item_payload_schema' is set
         if ($update_action_item_payload_schema === null || (is_array($update_action_item_payload_schema) && count($update_action_item_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_action_item_payload_schema when calling reportsUpdateActionItem'
+                'Missing the required parameter $update_action_item_payload_schema when calling updateActionItem'
             );
         }
 

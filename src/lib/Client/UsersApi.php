@@ -74,19 +74,19 @@ class UsersApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'usersDeleteAvatarMe' => [
+        'deleteAvatarMe' => [
             'application/json',
         ],
-        'usersReadUserMe' => [
+        'readUserMe' => [
             'application/json',
         ],
-        'usersUpdatePasswordMe' => [
+        'updatePasswordMe' => [
             'application/json',
         ],
-        'usersUpdateUserMe' => [
+        'updateUserMe' => [
             'application/json',
         ],
-        'usersUploadAvatarMe' => [
+        'uploadAvatarMe' => [
             'multipart/form-data',
         ],
     ];
@@ -138,35 +138,35 @@ class UsersApi
     }
 
     /**
-     * Operation usersDeleteAvatarMe
+     * Operation deleteAvatarMe
      *
      * Delete Avatar Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersDeleteAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAvatarMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function usersDeleteAvatarMe(string $contentType = self::contentTypes['usersDeleteAvatarMe'][0])
+    public function deleteAvatarMe(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
-        $this->usersDeleteAvatarMeWithHttpInfo($contentType);
+        $this->deleteAvatarMeWithHttpInfo($contentType);
     }
 
     /**
-     * Operation usersDeleteAvatarMeWithHttpInfo
+     * Operation deleteAvatarMeWithHttpInfo
      *
      * Delete Avatar Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersDeleteAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAvatarMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function usersDeleteAvatarMeWithHttpInfo(string $contentType = self::contentTypes['usersDeleteAvatarMe'][0])
+    public function deleteAvatarMeWithHttpInfo(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
-        $request = $this->usersDeleteAvatarMeRequest($contentType);
+        $request = $this->deleteAvatarMeRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -203,18 +203,18 @@ class UsersApi
     }
 
     /**
-     * Operation usersDeleteAvatarMeAsync
+     * Operation deleteAvatarMeAsync
      *
      * Delete Avatar Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersDeleteAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAvatarMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersDeleteAvatarMeAsync(string $contentType = self::contentTypes['usersDeleteAvatarMe'][0])
+    public function deleteAvatarMeAsync(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
-        return $this->usersDeleteAvatarMeAsyncWithHttpInfo($contentType)
+        return $this->deleteAvatarMeAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -223,19 +223,19 @@ class UsersApi
     }
 
     /**
-     * Operation usersDeleteAvatarMeAsyncWithHttpInfo
+     * Operation deleteAvatarMeAsyncWithHttpInfo
      *
      * Delete Avatar Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersDeleteAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAvatarMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersDeleteAvatarMeAsyncWithHttpInfo(string $contentType = self::contentTypes['usersDeleteAvatarMe'][0])
+    public function deleteAvatarMeAsyncWithHttpInfo(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
         $returnType = '';
-        $request = $this->usersDeleteAvatarMeRequest($contentType);
+        $request = $this->deleteAvatarMeRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -269,14 +269,14 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'usersDeleteAvatarMe'
+     * Create request for operation 'deleteAvatarMe'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersDeleteAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAvatarMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function usersDeleteAvatarMeRequest(string $contentType = self::contentTypes['usersDeleteAvatarMe'][0])
+    public function deleteAvatarMeRequest(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
 
 
@@ -353,36 +353,36 @@ class UsersApi
     }
 
     /**
-     * Operation usersReadUserMe
+     * Operation readUserMe
      *
      * Read User Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersReadUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readUserMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\UserMeResponseSchema
      */
-    public function usersReadUserMe(string $contentType = self::contentTypes['usersReadUserMe'][0])
+    public function readUserMe(string $contentType = self::contentTypes['readUserMe'][0])
     {
-        list($response) = $this->usersReadUserMeWithHttpInfo($contentType);
+        list($response) = $this->readUserMeWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation usersReadUserMeWithHttpInfo
+     * Operation readUserMeWithHttpInfo
      *
      * Read User Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersReadUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readUserMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\UserMeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function usersReadUserMeWithHttpInfo(string $contentType = self::contentTypes['usersReadUserMe'][0])
+    public function readUserMeWithHttpInfo(string $contentType = self::contentTypes['readUserMe'][0])
     {
-        $request = $this->usersReadUserMeRequest($contentType);
+        $request = $this->readUserMeRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -455,18 +455,18 @@ class UsersApi
     }
 
     /**
-     * Operation usersReadUserMeAsync
+     * Operation readUserMeAsync
      *
      * Read User Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersReadUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readUserMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersReadUserMeAsync(string $contentType = self::contentTypes['usersReadUserMe'][0])
+    public function readUserMeAsync(string $contentType = self::contentTypes['readUserMe'][0])
     {
-        return $this->usersReadUserMeAsyncWithHttpInfo($contentType)
+        return $this->readUserMeAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -475,19 +475,19 @@ class UsersApi
     }
 
     /**
-     * Operation usersReadUserMeAsyncWithHttpInfo
+     * Operation readUserMeAsyncWithHttpInfo
      *
      * Read User Me
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersReadUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readUserMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersReadUserMeAsyncWithHttpInfo(string $contentType = self::contentTypes['usersReadUserMe'][0])
+    public function readUserMeAsyncWithHttpInfo(string $contentType = self::contentTypes['readUserMe'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\UserMeResponseSchema';
-        $request = $this->usersReadUserMeRequest($contentType);
+        $request = $this->readUserMeRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -534,14 +534,14 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'usersReadUserMe'
+     * Create request for operation 'readUserMe'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersReadUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readUserMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function usersReadUserMeRequest(string $contentType = self::contentTypes['usersReadUserMe'][0])
+    public function readUserMeRequest(string $contentType = self::contentTypes['readUserMe'][0])
     {
 
 
@@ -618,38 +618,38 @@ class UsersApi
     }
 
     /**
-     * Operation usersUpdatePasswordMe
+     * Operation updatePasswordMe
      *
      * Update Password Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdatePasswordRequestSchema $user_update_password_request_schema user_update_password_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdatePasswordMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePasswordMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AppApiRoutesSchemasMessageResponseSchema
      */
-    public function usersUpdatePasswordMe($user_update_password_request_schema, string $contentType = self::contentTypes['usersUpdatePasswordMe'][0])
+    public function updatePasswordMe($user_update_password_request_schema, string $contentType = self::contentTypes['updatePasswordMe'][0])
     {
-        list($response) = $this->usersUpdatePasswordMeWithHttpInfo($user_update_password_request_schema, $contentType);
+        list($response) = $this->updatePasswordMeWithHttpInfo($user_update_password_request_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation usersUpdatePasswordMeWithHttpInfo
+     * Operation updatePasswordMeWithHttpInfo
      *
      * Update Password Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdatePasswordRequestSchema $user_update_password_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdatePasswordMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePasswordMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AppApiRoutesSchemasMessageResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function usersUpdatePasswordMeWithHttpInfo($user_update_password_request_schema, string $contentType = self::contentTypes['usersUpdatePasswordMe'][0])
+    public function updatePasswordMeWithHttpInfo($user_update_password_request_schema, string $contentType = self::contentTypes['updatePasswordMe'][0])
     {
-        $request = $this->usersUpdatePasswordMeRequest($user_update_password_request_schema, $contentType);
+        $request = $this->updatePasswordMeRequest($user_update_password_request_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -722,19 +722,19 @@ class UsersApi
     }
 
     /**
-     * Operation usersUpdatePasswordMeAsync
+     * Operation updatePasswordMeAsync
      *
      * Update Password Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdatePasswordRequestSchema $user_update_password_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdatePasswordMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePasswordMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersUpdatePasswordMeAsync($user_update_password_request_schema, string $contentType = self::contentTypes['usersUpdatePasswordMe'][0])
+    public function updatePasswordMeAsync($user_update_password_request_schema, string $contentType = self::contentTypes['updatePasswordMe'][0])
     {
-        return $this->usersUpdatePasswordMeAsyncWithHttpInfo($user_update_password_request_schema, $contentType)
+        return $this->updatePasswordMeAsyncWithHttpInfo($user_update_password_request_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -743,20 +743,20 @@ class UsersApi
     }
 
     /**
-     * Operation usersUpdatePasswordMeAsyncWithHttpInfo
+     * Operation updatePasswordMeAsyncWithHttpInfo
      *
      * Update Password Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdatePasswordRequestSchema $user_update_password_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdatePasswordMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePasswordMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersUpdatePasswordMeAsyncWithHttpInfo($user_update_password_request_schema, string $contentType = self::contentTypes['usersUpdatePasswordMe'][0])
+    public function updatePasswordMeAsyncWithHttpInfo($user_update_password_request_schema, string $contentType = self::contentTypes['updatePasswordMe'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AppApiRoutesSchemasMessageResponseSchema';
-        $request = $this->usersUpdatePasswordMeRequest($user_update_password_request_schema, $contentType);
+        $request = $this->updatePasswordMeRequest($user_update_password_request_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -803,21 +803,21 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'usersUpdatePasswordMe'
+     * Create request for operation 'updatePasswordMe'
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdatePasswordRequestSchema $user_update_password_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdatePasswordMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePasswordMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function usersUpdatePasswordMeRequest($user_update_password_request_schema, string $contentType = self::contentTypes['usersUpdatePasswordMe'][0])
+    public function updatePasswordMeRequest($user_update_password_request_schema, string $contentType = self::contentTypes['updatePasswordMe'][0])
     {
 
         // verify the required parameter 'user_update_password_request_schema' is set
         if ($user_update_password_request_schema === null || (is_array($user_update_password_request_schema) && count($user_update_password_request_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_update_password_request_schema when calling usersUpdatePasswordMe'
+                'Missing the required parameter $user_update_password_request_schema when calling updatePasswordMe'
             );
         }
 
@@ -906,38 +906,38 @@ class UsersApi
     }
 
     /**
-     * Operation usersUpdateUserMe
+     * Operation updateUserMe
      *
      * Update User Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdateMeRequestSchema $user_update_me_request_schema user_update_me_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdateUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUserMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\UserMeResponseSchema
      */
-    public function usersUpdateUserMe($user_update_me_request_schema, string $contentType = self::contentTypes['usersUpdateUserMe'][0])
+    public function updateUserMe($user_update_me_request_schema, string $contentType = self::contentTypes['updateUserMe'][0])
     {
-        list($response) = $this->usersUpdateUserMeWithHttpInfo($user_update_me_request_schema, $contentType);
+        list($response) = $this->updateUserMeWithHttpInfo($user_update_me_request_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation usersUpdateUserMeWithHttpInfo
+     * Operation updateUserMeWithHttpInfo
      *
      * Update User Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdateMeRequestSchema $user_update_me_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdateUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUserMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\UserMeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function usersUpdateUserMeWithHttpInfo($user_update_me_request_schema, string $contentType = self::contentTypes['usersUpdateUserMe'][0])
+    public function updateUserMeWithHttpInfo($user_update_me_request_schema, string $contentType = self::contentTypes['updateUserMe'][0])
     {
-        $request = $this->usersUpdateUserMeRequest($user_update_me_request_schema, $contentType);
+        $request = $this->updateUserMeRequest($user_update_me_request_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1010,19 +1010,19 @@ class UsersApi
     }
 
     /**
-     * Operation usersUpdateUserMeAsync
+     * Operation updateUserMeAsync
      *
      * Update User Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdateMeRequestSchema $user_update_me_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdateUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUserMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersUpdateUserMeAsync($user_update_me_request_schema, string $contentType = self::contentTypes['usersUpdateUserMe'][0])
+    public function updateUserMeAsync($user_update_me_request_schema, string $contentType = self::contentTypes['updateUserMe'][0])
     {
-        return $this->usersUpdateUserMeAsyncWithHttpInfo($user_update_me_request_schema, $contentType)
+        return $this->updateUserMeAsyncWithHttpInfo($user_update_me_request_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1031,20 +1031,20 @@ class UsersApi
     }
 
     /**
-     * Operation usersUpdateUserMeAsyncWithHttpInfo
+     * Operation updateUserMeAsyncWithHttpInfo
      *
      * Update User Me
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdateMeRequestSchema $user_update_me_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdateUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUserMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersUpdateUserMeAsyncWithHttpInfo($user_update_me_request_schema, string $contentType = self::contentTypes['usersUpdateUserMe'][0])
+    public function updateUserMeAsyncWithHttpInfo($user_update_me_request_schema, string $contentType = self::contentTypes['updateUserMe'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\UserMeResponseSchema';
-        $request = $this->usersUpdateUserMeRequest($user_update_me_request_schema, $contentType);
+        $request = $this->updateUserMeRequest($user_update_me_request_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1091,21 +1091,21 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'usersUpdateUserMe'
+     * Create request for operation 'updateUserMe'
      *
      * @param  \Ibexa\AgentPlatform\Model\UserUpdateMeRequestSchema $user_update_me_request_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUpdateUserMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUserMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function usersUpdateUserMeRequest($user_update_me_request_schema, string $contentType = self::contentTypes['usersUpdateUserMe'][0])
+    public function updateUserMeRequest($user_update_me_request_schema, string $contentType = self::contentTypes['updateUserMe'][0])
     {
 
         // verify the required parameter 'user_update_me_request_schema' is set
         if ($user_update_me_request_schema === null || (is_array($user_update_me_request_schema) && count($user_update_me_request_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_update_me_request_schema when calling usersUpdateUserMe'
+                'Missing the required parameter $user_update_me_request_schema when calling updateUserMe'
             );
         }
 
@@ -1194,38 +1194,38 @@ class UsersApi
     }
 
     /**
-     * Operation usersUploadAvatarMe
+     * Operation uploadAvatarMe
      *
      * Upload Avatar Me
      *
      * @param  \SplFileObject $file file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUploadAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAvatarMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\UserMeResponseSchema
      */
-    public function usersUploadAvatarMe($file, string $contentType = self::contentTypes['usersUploadAvatarMe'][0])
+    public function uploadAvatarMe($file, string $contentType = self::contentTypes['uploadAvatarMe'][0])
     {
-        list($response) = $this->usersUploadAvatarMeWithHttpInfo($file, $contentType);
+        list($response) = $this->uploadAvatarMeWithHttpInfo($file, $contentType);
         return $response;
     }
 
     /**
-     * Operation usersUploadAvatarMeWithHttpInfo
+     * Operation uploadAvatarMeWithHttpInfo
      *
      * Upload Avatar Me
      *
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUploadAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAvatarMe'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\UserMeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function usersUploadAvatarMeWithHttpInfo($file, string $contentType = self::contentTypes['usersUploadAvatarMe'][0])
+    public function uploadAvatarMeWithHttpInfo($file, string $contentType = self::contentTypes['uploadAvatarMe'][0])
     {
-        $request = $this->usersUploadAvatarMeRequest($file, $contentType);
+        $request = $this->uploadAvatarMeRequest($file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1298,19 +1298,19 @@ class UsersApi
     }
 
     /**
-     * Operation usersUploadAvatarMeAsync
+     * Operation uploadAvatarMeAsync
      *
      * Upload Avatar Me
      *
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUploadAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAvatarMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersUploadAvatarMeAsync($file, string $contentType = self::contentTypes['usersUploadAvatarMe'][0])
+    public function uploadAvatarMeAsync($file, string $contentType = self::contentTypes['uploadAvatarMe'][0])
     {
-        return $this->usersUploadAvatarMeAsyncWithHttpInfo($file, $contentType)
+        return $this->uploadAvatarMeAsyncWithHttpInfo($file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1319,20 +1319,20 @@ class UsersApi
     }
 
     /**
-     * Operation usersUploadAvatarMeAsyncWithHttpInfo
+     * Operation uploadAvatarMeAsyncWithHttpInfo
      *
      * Upload Avatar Me
      *
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUploadAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAvatarMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function usersUploadAvatarMeAsyncWithHttpInfo($file, string $contentType = self::contentTypes['usersUploadAvatarMe'][0])
+    public function uploadAvatarMeAsyncWithHttpInfo($file, string $contentType = self::contentTypes['uploadAvatarMe'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\UserMeResponseSchema';
-        $request = $this->usersUploadAvatarMeRequest($file, $contentType);
+        $request = $this->uploadAvatarMeRequest($file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1379,21 +1379,21 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'usersUploadAvatarMe'
+     * Create request for operation 'uploadAvatarMe'
      *
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersUploadAvatarMe'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadAvatarMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function usersUploadAvatarMeRequest($file, string $contentType = self::contentTypes['usersUploadAvatarMe'][0])
+    public function uploadAvatarMeRequest($file, string $contentType = self::contentTypes['uploadAvatarMe'][0])
     {
 
         // verify the required parameter 'file' is set
         if ($file === null || (is_array($file) && count($file) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling usersUploadAvatarMe'
+                'Missing the required parameter $file when calling uploadAvatarMe'
             );
         }
 

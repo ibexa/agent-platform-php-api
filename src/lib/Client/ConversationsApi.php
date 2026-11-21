@@ -74,28 +74,28 @@ class ConversationsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'conversationsBookmarkConversation' => [
+        'bookmarkConversation' => [
             'application/json',
         ],
-        'conversationsCreateConversation' => [
+        'createConversation' => [
             'application/json',
         ],
-        'conversationsDeleteConversation' => [
+        'deleteConversation' => [
             'application/json',
         ],
-        'conversationsForkConversation' => [
+        'forkConversation' => [
             'application/json',
         ],
-        'conversationsGetConversation' => [
+        'getConversation' => [
             'application/json',
         ],
-        'conversationsListConversations' => [
+        'listConversations' => [
             'application/json',
         ],
-        'conversationsSubmitConversationFeedback' => [
+        'submitConversationFeedback' => [
             'application/json',
         ],
-        'conversationsUpdateConversation' => [
+        'updateConversation' => [
             'application/json',
         ],
     ];
@@ -147,39 +147,39 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsBookmarkConversation
+     * Operation bookmarkConversation
      *
      * Bookmark Conversation
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationBookmarkPayloadSchema $conversation_bookmark_payload_schema conversation_bookmark_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsBookmarkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bookmarkConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function conversationsBookmarkConversation($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['conversationsBookmarkConversation'][0])
+    public function bookmarkConversation($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['bookmarkConversation'][0])
     {
-        $this->conversationsBookmarkConversationWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType);
+        $this->bookmarkConversationWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType);
     }
 
     /**
-     * Operation conversationsBookmarkConversationWithHttpInfo
+     * Operation bookmarkConversationWithHttpInfo
      *
      * Bookmark Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationBookmarkPayloadSchema $conversation_bookmark_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsBookmarkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bookmarkConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsBookmarkConversationWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['conversationsBookmarkConversation'][0])
+    public function bookmarkConversationWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['bookmarkConversation'][0])
     {
-        $request = $this->conversationsBookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, $contentType);
+        $request = $this->bookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -216,20 +216,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsBookmarkConversationAsync
+     * Operation bookmarkConversationAsync
      *
      * Bookmark Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationBookmarkPayloadSchema $conversation_bookmark_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsBookmarkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bookmarkConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsBookmarkConversationAsync($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['conversationsBookmarkConversation'][0])
+    public function bookmarkConversationAsync($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['bookmarkConversation'][0])
     {
-        return $this->conversationsBookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType)
+        return $this->bookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -238,21 +238,21 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsBookmarkConversationAsyncWithHttpInfo
+     * Operation bookmarkConversationAsyncWithHttpInfo
      *
      * Bookmark Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationBookmarkPayloadSchema $conversation_bookmark_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsBookmarkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bookmarkConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsBookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['conversationsBookmarkConversation'][0])
+    public function bookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['bookmarkConversation'][0])
     {
         $returnType = '';
-        $request = $this->conversationsBookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, $contentType);
+        $request = $this->bookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -286,29 +286,29 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsBookmarkConversation'
+     * Create request for operation 'bookmarkConversation'
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationBookmarkPayloadSchema $conversation_bookmark_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsBookmarkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['bookmarkConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsBookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['conversationsBookmarkConversation'][0])
+    public function bookmarkConversationRequest($conversation_id, $conversation_bookmark_payload_schema, string $contentType = self::contentTypes['bookmarkConversation'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling conversationsBookmarkConversation'
+                'Missing the required parameter $conversation_id when calling bookmarkConversation'
             );
         }
 
         // verify the required parameter 'conversation_bookmark_payload_schema' is set
         if ($conversation_bookmark_payload_schema === null || (is_array($conversation_bookmark_payload_schema) && count($conversation_bookmark_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_bookmark_payload_schema when calling conversationsBookmarkConversation'
+                'Missing the required parameter $conversation_bookmark_payload_schema when calling bookmarkConversation'
             );
         }
 
@@ -405,38 +405,38 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsCreateConversation
+     * Operation createConversation
      *
      * Create Conversation
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateConversationPayloadSchema $create_conversation_payload_schema create_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsCreateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ConversationResponseSchema
      */
-    public function conversationsCreateConversation($create_conversation_payload_schema, string $contentType = self::contentTypes['conversationsCreateConversation'][0])
+    public function createConversation($create_conversation_payload_schema, string $contentType = self::contentTypes['createConversation'][0])
     {
-        list($response) = $this->conversationsCreateConversationWithHttpInfo($create_conversation_payload_schema, $contentType);
+        list($response) = $this->createConversationWithHttpInfo($create_conversation_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation conversationsCreateConversationWithHttpInfo
+     * Operation createConversationWithHttpInfo
      *
      * Create Conversation
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateConversationPayloadSchema $create_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsCreateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsCreateConversationWithHttpInfo($create_conversation_payload_schema, string $contentType = self::contentTypes['conversationsCreateConversation'][0])
+    public function createConversationWithHttpInfo($create_conversation_payload_schema, string $contentType = self::contentTypes['createConversation'][0])
     {
-        $request = $this->conversationsCreateConversationRequest($create_conversation_payload_schema, $contentType);
+        $request = $this->createConversationRequest($create_conversation_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -509,19 +509,19 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsCreateConversationAsync
+     * Operation createConversationAsync
      *
      * Create Conversation
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateConversationPayloadSchema $create_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsCreateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsCreateConversationAsync($create_conversation_payload_schema, string $contentType = self::contentTypes['conversationsCreateConversation'][0])
+    public function createConversationAsync($create_conversation_payload_schema, string $contentType = self::contentTypes['createConversation'][0])
     {
-        return $this->conversationsCreateConversationAsyncWithHttpInfo($create_conversation_payload_schema, $contentType)
+        return $this->createConversationAsyncWithHttpInfo($create_conversation_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -530,20 +530,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsCreateConversationAsyncWithHttpInfo
+     * Operation createConversationAsyncWithHttpInfo
      *
      * Create Conversation
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateConversationPayloadSchema $create_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsCreateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsCreateConversationAsyncWithHttpInfo($create_conversation_payload_schema, string $contentType = self::contentTypes['conversationsCreateConversation'][0])
+    public function createConversationAsyncWithHttpInfo($create_conversation_payload_schema, string $contentType = self::contentTypes['createConversation'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
-        $request = $this->conversationsCreateConversationRequest($create_conversation_payload_schema, $contentType);
+        $request = $this->createConversationRequest($create_conversation_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -590,21 +590,21 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsCreateConversation'
+     * Create request for operation 'createConversation'
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateConversationPayloadSchema $create_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsCreateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsCreateConversationRequest($create_conversation_payload_schema, string $contentType = self::contentTypes['conversationsCreateConversation'][0])
+    public function createConversationRequest($create_conversation_payload_schema, string $contentType = self::contentTypes['createConversation'][0])
     {
 
         // verify the required parameter 'create_conversation_payload_schema' is set
         if ($create_conversation_payload_schema === null || (is_array($create_conversation_payload_schema) && count($create_conversation_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_conversation_payload_schema when calling conversationsCreateConversation'
+                'Missing the required parameter $create_conversation_payload_schema when calling createConversation'
             );
         }
 
@@ -693,37 +693,37 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsDeleteConversation
+     * Operation deleteConversation
      *
      * Delete Conversation
      *
      * @param  int $conversation_id conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsDeleteConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function conversationsDeleteConversation($conversation_id, string $contentType = self::contentTypes['conversationsDeleteConversation'][0])
+    public function deleteConversation($conversation_id, string $contentType = self::contentTypes['deleteConversation'][0])
     {
-        $this->conversationsDeleteConversationWithHttpInfo($conversation_id, $contentType);
+        $this->deleteConversationWithHttpInfo($conversation_id, $contentType);
     }
 
     /**
-     * Operation conversationsDeleteConversationWithHttpInfo
+     * Operation deleteConversationWithHttpInfo
      *
      * Delete Conversation
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsDeleteConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsDeleteConversationWithHttpInfo($conversation_id, string $contentType = self::contentTypes['conversationsDeleteConversation'][0])
+    public function deleteConversationWithHttpInfo($conversation_id, string $contentType = self::contentTypes['deleteConversation'][0])
     {
-        $request = $this->conversationsDeleteConversationRequest($conversation_id, $contentType);
+        $request = $this->deleteConversationRequest($conversation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -760,19 +760,19 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsDeleteConversationAsync
+     * Operation deleteConversationAsync
      *
      * Delete Conversation
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsDeleteConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsDeleteConversationAsync($conversation_id, string $contentType = self::contentTypes['conversationsDeleteConversation'][0])
+    public function deleteConversationAsync($conversation_id, string $contentType = self::contentTypes['deleteConversation'][0])
     {
-        return $this->conversationsDeleteConversationAsyncWithHttpInfo($conversation_id, $contentType)
+        return $this->deleteConversationAsyncWithHttpInfo($conversation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -781,20 +781,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsDeleteConversationAsyncWithHttpInfo
+     * Operation deleteConversationAsyncWithHttpInfo
      *
      * Delete Conversation
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsDeleteConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsDeleteConversationAsyncWithHttpInfo($conversation_id, string $contentType = self::contentTypes['conversationsDeleteConversation'][0])
+    public function deleteConversationAsyncWithHttpInfo($conversation_id, string $contentType = self::contentTypes['deleteConversation'][0])
     {
         $returnType = '';
-        $request = $this->conversationsDeleteConversationRequest($conversation_id, $contentType);
+        $request = $this->deleteConversationRequest($conversation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -828,21 +828,21 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsDeleteConversation'
+     * Create request for operation 'deleteConversation'
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsDeleteConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsDeleteConversationRequest($conversation_id, string $contentType = self::contentTypes['conversationsDeleteConversation'][0])
+    public function deleteConversationRequest($conversation_id, string $contentType = self::contentTypes['deleteConversation'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling conversationsDeleteConversation'
+                'Missing the required parameter $conversation_id when calling deleteConversation'
             );
         }
 
@@ -928,40 +928,40 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsForkConversation
+     * Operation forkConversation
      *
      * Fork Conversation
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ForkConversationPayloadSchema $fork_conversation_payload_schema fork_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsForkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['forkConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ConversationResponseSchema
      */
-    public function conversationsForkConversation($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['conversationsForkConversation'][0])
+    public function forkConversation($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['forkConversation'][0])
     {
-        list($response) = $this->conversationsForkConversationWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType);
+        list($response) = $this->forkConversationWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation conversationsForkConversationWithHttpInfo
+     * Operation forkConversationWithHttpInfo
      *
      * Fork Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ForkConversationPayloadSchema $fork_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsForkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['forkConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsForkConversationWithHttpInfo($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['conversationsForkConversation'][0])
+    public function forkConversationWithHttpInfo($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['forkConversation'][0])
     {
-        $request = $this->conversationsForkConversationRequest($conversation_id, $fork_conversation_payload_schema, $contentType);
+        $request = $this->forkConversationRequest($conversation_id, $fork_conversation_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1034,20 +1034,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsForkConversationAsync
+     * Operation forkConversationAsync
      *
      * Fork Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ForkConversationPayloadSchema $fork_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsForkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['forkConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsForkConversationAsync($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['conversationsForkConversation'][0])
+    public function forkConversationAsync($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['forkConversation'][0])
     {
-        return $this->conversationsForkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType)
+        return $this->forkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1056,21 +1056,21 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsForkConversationAsyncWithHttpInfo
+     * Operation forkConversationAsyncWithHttpInfo
      *
      * Fork Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ForkConversationPayloadSchema $fork_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsForkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['forkConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsForkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['conversationsForkConversation'][0])
+    public function forkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['forkConversation'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
-        $request = $this->conversationsForkConversationRequest($conversation_id, $fork_conversation_payload_schema, $contentType);
+        $request = $this->forkConversationRequest($conversation_id, $fork_conversation_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1117,29 +1117,29 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsForkConversation'
+     * Create request for operation 'forkConversation'
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ForkConversationPayloadSchema $fork_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsForkConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['forkConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsForkConversationRequest($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['conversationsForkConversation'][0])
+    public function forkConversationRequest($conversation_id, $fork_conversation_payload_schema, string $contentType = self::contentTypes['forkConversation'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling conversationsForkConversation'
+                'Missing the required parameter $conversation_id when calling forkConversation'
             );
         }
 
         // verify the required parameter 'fork_conversation_payload_schema' is set
         if ($fork_conversation_payload_schema === null || (is_array($fork_conversation_payload_schema) && count($fork_conversation_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $fork_conversation_payload_schema when calling conversationsForkConversation'
+                'Missing the required parameter $fork_conversation_payload_schema when calling forkConversation'
             );
         }
 
@@ -1236,38 +1236,38 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsGetConversation
+     * Operation getConversation
      *
      * Get Conversation
      *
      * @param  int $conversation_id conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsGetConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ConversationResponseSchema
      */
-    public function conversationsGetConversation($conversation_id, string $contentType = self::contentTypes['conversationsGetConversation'][0])
+    public function getConversation($conversation_id, string $contentType = self::contentTypes['getConversation'][0])
     {
-        list($response) = $this->conversationsGetConversationWithHttpInfo($conversation_id, $contentType);
+        list($response) = $this->getConversationWithHttpInfo($conversation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation conversationsGetConversationWithHttpInfo
+     * Operation getConversationWithHttpInfo
      *
      * Get Conversation
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsGetConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsGetConversationWithHttpInfo($conversation_id, string $contentType = self::contentTypes['conversationsGetConversation'][0])
+    public function getConversationWithHttpInfo($conversation_id, string $contentType = self::contentTypes['getConversation'][0])
     {
-        $request = $this->conversationsGetConversationRequest($conversation_id, $contentType);
+        $request = $this->getConversationRequest($conversation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1340,19 +1340,19 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsGetConversationAsync
+     * Operation getConversationAsync
      *
      * Get Conversation
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsGetConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsGetConversationAsync($conversation_id, string $contentType = self::contentTypes['conversationsGetConversation'][0])
+    public function getConversationAsync($conversation_id, string $contentType = self::contentTypes['getConversation'][0])
     {
-        return $this->conversationsGetConversationAsyncWithHttpInfo($conversation_id, $contentType)
+        return $this->getConversationAsyncWithHttpInfo($conversation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1361,20 +1361,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsGetConversationAsyncWithHttpInfo
+     * Operation getConversationAsyncWithHttpInfo
      *
      * Get Conversation
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsGetConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsGetConversationAsyncWithHttpInfo($conversation_id, string $contentType = self::contentTypes['conversationsGetConversation'][0])
+    public function getConversationAsyncWithHttpInfo($conversation_id, string $contentType = self::contentTypes['getConversation'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
-        $request = $this->conversationsGetConversationRequest($conversation_id, $contentType);
+        $request = $this->getConversationRequest($conversation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1421,21 +1421,21 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsGetConversation'
+     * Create request for operation 'getConversation'
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsGetConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsGetConversationRequest($conversation_id, string $contentType = self::contentTypes['conversationsGetConversation'][0])
+    public function getConversationRequest($conversation_id, string $contentType = self::contentTypes['getConversation'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling conversationsGetConversation'
+                'Missing the required parameter $conversation_id when calling getConversation'
             );
         }
 
@@ -1521,7 +1521,7 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsListConversations
+     * Operation listConversations
      *
      * List Conversations
      *
@@ -1530,20 +1530,20 @@ class ConversationsApi
      * @param  int|null $agent Filter conversations by agent ID (optional) (optional)
      * @param  string|null $search Filter conversations by subject (optional, case-insensitive, partial match) (optional)
      * @param  bool|null $is_bookmarked Filter conversations by bookmark state (optional) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsListConversations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversations'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ConversationListResponseSchema
      */
-    public function conversationsListConversations($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['conversationsListConversations'][0])
+    public function listConversations($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['listConversations'][0])
     {
-        list($response) = $this->conversationsListConversationsWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
+        list($response) = $this->listConversationsWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
         return $response;
     }
 
     /**
-     * Operation conversationsListConversationsWithHttpInfo
+     * Operation listConversationsWithHttpInfo
      *
      * List Conversations
      *
@@ -1552,15 +1552,15 @@ class ConversationsApi
      * @param  int|null $agent Filter conversations by agent ID (optional) (optional)
      * @param  string|null $search Filter conversations by subject (optional, case-insensitive, partial match) (optional)
      * @param  bool|null $is_bookmarked Filter conversations by bookmark state (optional) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsListConversations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversations'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ConversationListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsListConversationsWithHttpInfo($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['conversationsListConversations'][0])
+    public function listConversationsWithHttpInfo($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['listConversations'][0])
     {
-        $request = $this->conversationsListConversationsRequest($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
+        $request = $this->listConversationsRequest($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1633,7 +1633,7 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsListConversationsAsync
+     * Operation listConversationsAsync
      *
      * List Conversations
      *
@@ -1642,14 +1642,14 @@ class ConversationsApi
      * @param  int|null $agent Filter conversations by agent ID (optional) (optional)
      * @param  string|null $search Filter conversations by subject (optional, case-insensitive, partial match) (optional)
      * @param  bool|null $is_bookmarked Filter conversations by bookmark state (optional) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsListConversations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsListConversationsAsync($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['conversationsListConversations'][0])
+    public function listConversationsAsync($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['listConversations'][0])
     {
-        return $this->conversationsListConversationsAsyncWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType)
+        return $this->listConversationsAsyncWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1658,7 +1658,7 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsListConversationsAsyncWithHttpInfo
+     * Operation listConversationsAsyncWithHttpInfo
      *
      * List Conversations
      *
@@ -1667,15 +1667,15 @@ class ConversationsApi
      * @param  int|null $agent Filter conversations by agent ID (optional) (optional)
      * @param  string|null $search Filter conversations by subject (optional, case-insensitive, partial match) (optional)
      * @param  bool|null $is_bookmarked Filter conversations by bookmark state (optional) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsListConversations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsListConversationsAsyncWithHttpInfo($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['conversationsListConversations'][0])
+    public function listConversationsAsyncWithHttpInfo($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['listConversations'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ConversationListResponseSchema';
-        $request = $this->conversationsListConversationsRequest($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
+        $request = $this->listConversationsRequest($skip, $limit, $agent, $search, $is_bookmarked, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1722,41 +1722,41 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsListConversations'
+     * Create request for operation 'listConversations'
      *
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  int|null $agent Filter conversations by agent ID (optional) (optional)
      * @param  string|null $search Filter conversations by subject (optional, case-insensitive, partial match) (optional)
      * @param  bool|null $is_bookmarked Filter conversations by bookmark state (optional) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsListConversations'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listConversations'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsListConversationsRequest($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['conversationsListConversations'][0])
+    public function listConversationsRequest($skip = 0, $limit = 25, $agent = null, $search = null, $is_bookmarked = null, string $contentType = self::contentTypes['listConversations'][0])
     {
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling ConversationsApi.conversationsListConversations, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling ConversationsApi.listConversations, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ConversationsApi.conversationsListConversations, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ConversationsApi.listConversations, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling ConversationsApi.conversationsListConversations, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling ConversationsApi.listConversations, must be bigger than or equal to 1.');
         }
         
         if ($agent !== null && $agent < 1) {
-            throw new \InvalidArgumentException('invalid value for "$agent" when calling ConversationsApi.conversationsListConversations, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$agent" when calling ConversationsApi.listConversations, must be bigger than or equal to 1.');
         }
         
         if ($search !== null && strlen($search) > 255) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling ConversationsApi.conversationsListConversations, must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling ConversationsApi.listConversations, must be smaller than or equal to 255.');
         }
         if ($search !== null && strlen($search) < 3) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling ConversationsApi.conversationsListConversations, must be bigger than or equal to 3.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling ConversationsApi.listConversations, must be bigger than or equal to 3.');
         }
         
 
@@ -1879,39 +1879,39 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsSubmitConversationFeedback
+     * Operation submitConversationFeedback
      *
      * Submit Conversation Feedback
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema $conversation_feedback_payload_schema conversation_feedback_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsSubmitConversationFeedback'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitConversationFeedback'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function conversationsSubmitConversationFeedback($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['conversationsSubmitConversationFeedback'][0])
+    public function submitConversationFeedback($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['submitConversationFeedback'][0])
     {
-        $this->conversationsSubmitConversationFeedbackWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType);
+        $this->submitConversationFeedbackWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType);
     }
 
     /**
-     * Operation conversationsSubmitConversationFeedbackWithHttpInfo
+     * Operation submitConversationFeedbackWithHttpInfo
      *
      * Submit Conversation Feedback
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema $conversation_feedback_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsSubmitConversationFeedback'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitConversationFeedback'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsSubmitConversationFeedbackWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['conversationsSubmitConversationFeedback'][0])
+    public function submitConversationFeedbackWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['submitConversationFeedback'][0])
     {
-        $request = $this->conversationsSubmitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, $contentType);
+        $request = $this->submitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1948,20 +1948,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsSubmitConversationFeedbackAsync
+     * Operation submitConversationFeedbackAsync
      *
      * Submit Conversation Feedback
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema $conversation_feedback_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsSubmitConversationFeedback'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitConversationFeedback'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsSubmitConversationFeedbackAsync($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['conversationsSubmitConversationFeedback'][0])
+    public function submitConversationFeedbackAsync($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['submitConversationFeedback'][0])
     {
-        return $this->conversationsSubmitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType)
+        return $this->submitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1970,21 +1970,21 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsSubmitConversationFeedbackAsyncWithHttpInfo
+     * Operation submitConversationFeedbackAsyncWithHttpInfo
      *
      * Submit Conversation Feedback
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema $conversation_feedback_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsSubmitConversationFeedback'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitConversationFeedback'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsSubmitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['conversationsSubmitConversationFeedback'][0])
+    public function submitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['submitConversationFeedback'][0])
     {
         $returnType = '';
-        $request = $this->conversationsSubmitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, $contentType);
+        $request = $this->submitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2018,29 +2018,29 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsSubmitConversationFeedback'
+     * Create request for operation 'submitConversationFeedback'
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema $conversation_feedback_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsSubmitConversationFeedback'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitConversationFeedback'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsSubmitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['conversationsSubmitConversationFeedback'][0])
+    public function submitConversationFeedbackRequest($conversation_id, $conversation_feedback_payload_schema, string $contentType = self::contentTypes['submitConversationFeedback'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling conversationsSubmitConversationFeedback'
+                'Missing the required parameter $conversation_id when calling submitConversationFeedback'
             );
         }
 
         // verify the required parameter 'conversation_feedback_payload_schema' is set
         if ($conversation_feedback_payload_schema === null || (is_array($conversation_feedback_payload_schema) && count($conversation_feedback_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_feedback_payload_schema when calling conversationsSubmitConversationFeedback'
+                'Missing the required parameter $conversation_feedback_payload_schema when calling submitConversationFeedback'
             );
         }
 
@@ -2137,40 +2137,40 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsUpdateConversation
+     * Operation updateConversation
      *
      * Update Conversation
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateConversationPayloadSchema $update_conversation_payload_schema update_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsUpdateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\ConversationResponseSchema
      */
-    public function conversationsUpdateConversation($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['conversationsUpdateConversation'][0])
+    public function updateConversation($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['updateConversation'][0])
     {
-        list($response) = $this->conversationsUpdateConversationWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType);
+        list($response) = $this->updateConversationWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation conversationsUpdateConversationWithHttpInfo
+     * Operation updateConversationWithHttpInfo
      *
      * Update Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateConversationPayloadSchema $update_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsUpdateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConversation'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function conversationsUpdateConversationWithHttpInfo($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['conversationsUpdateConversation'][0])
+    public function updateConversationWithHttpInfo($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['updateConversation'][0])
     {
-        $request = $this->conversationsUpdateConversationRequest($conversation_id, $update_conversation_payload_schema, $contentType);
+        $request = $this->updateConversationRequest($conversation_id, $update_conversation_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2243,20 +2243,20 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsUpdateConversationAsync
+     * Operation updateConversationAsync
      *
      * Update Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateConversationPayloadSchema $update_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsUpdateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsUpdateConversationAsync($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['conversationsUpdateConversation'][0])
+    public function updateConversationAsync($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['updateConversation'][0])
     {
-        return $this->conversationsUpdateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType)
+        return $this->updateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2265,21 +2265,21 @@ class ConversationsApi
     }
 
     /**
-     * Operation conversationsUpdateConversationAsyncWithHttpInfo
+     * Operation updateConversationAsyncWithHttpInfo
      *
      * Update Conversation
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateConversationPayloadSchema $update_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsUpdateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function conversationsUpdateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['conversationsUpdateConversation'][0])
+    public function updateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['updateConversation'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\ConversationResponseSchema';
-        $request = $this->conversationsUpdateConversationRequest($conversation_id, $update_conversation_payload_schema, $contentType);
+        $request = $this->updateConversationRequest($conversation_id, $update_conversation_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2326,29 +2326,29 @@ class ConversationsApi
     }
 
     /**
-     * Create request for operation 'conversationsUpdateConversation'
+     * Create request for operation 'updateConversation'
      *
      * @param  int $conversation_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateConversationPayloadSchema $update_conversation_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['conversationsUpdateConversation'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateConversation'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function conversationsUpdateConversationRequest($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['conversationsUpdateConversation'][0])
+    public function updateConversationRequest($conversation_id, $update_conversation_payload_schema, string $contentType = self::contentTypes['updateConversation'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling conversationsUpdateConversation'
+                'Missing the required parameter $conversation_id when calling updateConversation'
             );
         }
 
         // verify the required parameter 'update_conversation_payload_schema' is set
         if ($update_conversation_payload_schema === null || (is_array($update_conversation_payload_schema) && count($update_conversation_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_conversation_payload_schema when calling conversationsUpdateConversation'
+                'Missing the required parameter $update_conversation_payload_schema when calling updateConversation'
             );
         }
 

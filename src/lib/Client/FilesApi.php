@@ -74,19 +74,19 @@ class FilesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'filesDeleteFile' => [
+        'deleteFile' => [
             'application/json',
         ],
-        'filesDownloadFile' => [
+        'downloadFile' => [
             'application/json',
         ],
-        'filesDownloadFileByToken' => [
+        'downloadFileByToken' => [
             'application/json',
         ],
-        'filesListFiles' => [
+        'listFiles' => [
             'application/json',
         ],
-        'filesUploadFile' => [
+        'uploadFile' => [
             'multipart/form-data',
         ],
     ];
@@ -138,39 +138,39 @@ class FilesApi
     }
 
     /**
-     * Operation filesDeleteFile
+     * Operation deleteFile
      *
      * Delete File
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  string $file_id file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDeleteFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function filesDeleteFile($conversation_id, $file_id, string $contentType = self::contentTypes['filesDeleteFile'][0])
+    public function deleteFile($conversation_id, $file_id, string $contentType = self::contentTypes['deleteFile'][0])
     {
-        $this->filesDeleteFileWithHttpInfo($conversation_id, $file_id, $contentType);
+        $this->deleteFileWithHttpInfo($conversation_id, $file_id, $contentType);
     }
 
     /**
-     * Operation filesDeleteFileWithHttpInfo
+     * Operation deleteFileWithHttpInfo
      *
      * Delete File
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDeleteFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function filesDeleteFileWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['filesDeleteFile'][0])
+    public function deleteFileWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['deleteFile'][0])
     {
-        $request = $this->filesDeleteFileRequest($conversation_id, $file_id, $contentType);
+        $request = $this->deleteFileRequest($conversation_id, $file_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -207,20 +207,20 @@ class FilesApi
     }
 
     /**
-     * Operation filesDeleteFileAsync
+     * Operation deleteFileAsync
      *
      * Delete File
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDeleteFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesDeleteFileAsync($conversation_id, $file_id, string $contentType = self::contentTypes['filesDeleteFile'][0])
+    public function deleteFileAsync($conversation_id, $file_id, string $contentType = self::contentTypes['deleteFile'][0])
     {
-        return $this->filesDeleteFileAsyncWithHttpInfo($conversation_id, $file_id, $contentType)
+        return $this->deleteFileAsyncWithHttpInfo($conversation_id, $file_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -229,21 +229,21 @@ class FilesApi
     }
 
     /**
-     * Operation filesDeleteFileAsyncWithHttpInfo
+     * Operation deleteFileAsyncWithHttpInfo
      *
      * Delete File
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDeleteFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesDeleteFileAsyncWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['filesDeleteFile'][0])
+    public function deleteFileAsyncWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['deleteFile'][0])
     {
         $returnType = '';
-        $request = $this->filesDeleteFileRequest($conversation_id, $file_id, $contentType);
+        $request = $this->deleteFileRequest($conversation_id, $file_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -277,29 +277,29 @@ class FilesApi
     }
 
     /**
-     * Create request for operation 'filesDeleteFile'
+     * Create request for operation 'deleteFile'
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDeleteFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function filesDeleteFileRequest($conversation_id, $file_id, string $contentType = self::contentTypes['filesDeleteFile'][0])
+    public function deleteFileRequest($conversation_id, $file_id, string $contentType = self::contentTypes['deleteFile'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling filesDeleteFile'
+                'Missing the required parameter $conversation_id when calling deleteFile'
             );
         }
 
         // verify the required parameter 'file_id' is set
         if ($file_id === null || (is_array($file_id) && count($file_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file_id when calling filesDeleteFile'
+                'Missing the required parameter $file_id when calling deleteFile'
             );
         }
 
@@ -393,40 +393,40 @@ class FilesApi
     }
 
     /**
-     * Operation filesDownloadFile
+     * Operation downloadFile
      *
      * Download File
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  string $file_id file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public function filesDownloadFile($conversation_id, $file_id, string $contentType = self::contentTypes['filesDownloadFile'][0])
+    public function downloadFile($conversation_id, $file_id, string $contentType = self::contentTypes['downloadFile'][0])
     {
-        list($response) = $this->filesDownloadFileWithHttpInfo($conversation_id, $file_id, $contentType);
+        list($response) = $this->downloadFileWithHttpInfo($conversation_id, $file_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation filesDownloadFileWithHttpInfo
+     * Operation downloadFileWithHttpInfo
      *
      * Download File
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
      */
-    public function filesDownloadFileWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['filesDownloadFile'][0])
+    public function downloadFileWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['downloadFile'][0])
     {
-        $request = $this->filesDownloadFileRequest($conversation_id, $file_id, $contentType);
+        $request = $this->downloadFileRequest($conversation_id, $file_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -499,20 +499,20 @@ class FilesApi
     }
 
     /**
-     * Operation filesDownloadFileAsync
+     * Operation downloadFileAsync
      *
      * Download File
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesDownloadFileAsync($conversation_id, $file_id, string $contentType = self::contentTypes['filesDownloadFile'][0])
+    public function downloadFileAsync($conversation_id, $file_id, string $contentType = self::contentTypes['downloadFile'][0])
     {
-        return $this->filesDownloadFileAsyncWithHttpInfo($conversation_id, $file_id, $contentType)
+        return $this->downloadFileAsyncWithHttpInfo($conversation_id, $file_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -521,21 +521,21 @@ class FilesApi
     }
 
     /**
-     * Operation filesDownloadFileAsyncWithHttpInfo
+     * Operation downloadFileAsyncWithHttpInfo
      *
      * Download File
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesDownloadFileAsyncWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['filesDownloadFile'][0])
+    public function downloadFileAsyncWithHttpInfo($conversation_id, $file_id, string $contentType = self::contentTypes['downloadFile'][0])
     {
         $returnType = 'mixed';
-        $request = $this->filesDownloadFileRequest($conversation_id, $file_id, $contentType);
+        $request = $this->downloadFileRequest($conversation_id, $file_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -582,29 +582,29 @@ class FilesApi
     }
 
     /**
-     * Create request for operation 'filesDownloadFile'
+     * Create request for operation 'downloadFile'
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function filesDownloadFileRequest($conversation_id, $file_id, string $contentType = self::contentTypes['filesDownloadFile'][0])
+    public function downloadFileRequest($conversation_id, $file_id, string $contentType = self::contentTypes['downloadFile'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling filesDownloadFile'
+                'Missing the required parameter $conversation_id when calling downloadFile'
             );
         }
 
         // verify the required parameter 'file_id' is set
         if ($file_id === null || (is_array($file_id) && count($file_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file_id when calling filesDownloadFile'
+                'Missing the required parameter $file_id when calling downloadFile'
             );
         }
 
@@ -698,42 +698,42 @@ class FilesApi
     }
 
     /**
-     * Operation filesDownloadFileByToken
+     * Operation downloadFileByToken
      *
      * Download File By Token
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  string $file_id file_id (required)
      * @param  string $token Short-lived file download token. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFileByToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFileByToken'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public function filesDownloadFileByToken($conversation_id, $file_id, $token, string $contentType = self::contentTypes['filesDownloadFileByToken'][0])
+    public function downloadFileByToken($conversation_id, $file_id, $token, string $contentType = self::contentTypes['downloadFileByToken'][0])
     {
-        list($response) = $this->filesDownloadFileByTokenWithHttpInfo($conversation_id, $file_id, $token, $contentType);
+        list($response) = $this->downloadFileByTokenWithHttpInfo($conversation_id, $file_id, $token, $contentType);
         return $response;
     }
 
     /**
-     * Operation filesDownloadFileByTokenWithHttpInfo
+     * Operation downloadFileByTokenWithHttpInfo
      *
      * Download File By Token
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
      * @param  string $token Short-lived file download token. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFileByToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFileByToken'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
      */
-    public function filesDownloadFileByTokenWithHttpInfo($conversation_id, $file_id, $token, string $contentType = self::contentTypes['filesDownloadFileByToken'][0])
+    public function downloadFileByTokenWithHttpInfo($conversation_id, $file_id, $token, string $contentType = self::contentTypes['downloadFileByToken'][0])
     {
-        $request = $this->filesDownloadFileByTokenRequest($conversation_id, $file_id, $token, $contentType);
+        $request = $this->downloadFileByTokenRequest($conversation_id, $file_id, $token, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -806,21 +806,21 @@ class FilesApi
     }
 
     /**
-     * Operation filesDownloadFileByTokenAsync
+     * Operation downloadFileByTokenAsync
      *
      * Download File By Token
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
      * @param  string $token Short-lived file download token. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFileByToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFileByToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesDownloadFileByTokenAsync($conversation_id, $file_id, $token, string $contentType = self::contentTypes['filesDownloadFileByToken'][0])
+    public function downloadFileByTokenAsync($conversation_id, $file_id, $token, string $contentType = self::contentTypes['downloadFileByToken'][0])
     {
-        return $this->filesDownloadFileByTokenAsyncWithHttpInfo($conversation_id, $file_id, $token, $contentType)
+        return $this->downloadFileByTokenAsyncWithHttpInfo($conversation_id, $file_id, $token, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -829,22 +829,22 @@ class FilesApi
     }
 
     /**
-     * Operation filesDownloadFileByTokenAsyncWithHttpInfo
+     * Operation downloadFileByTokenAsyncWithHttpInfo
      *
      * Download File By Token
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
      * @param  string $token Short-lived file download token. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFileByToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFileByToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesDownloadFileByTokenAsyncWithHttpInfo($conversation_id, $file_id, $token, string $contentType = self::contentTypes['filesDownloadFileByToken'][0])
+    public function downloadFileByTokenAsyncWithHttpInfo($conversation_id, $file_id, $token, string $contentType = self::contentTypes['downloadFileByToken'][0])
     {
         $returnType = 'mixed';
-        $request = $this->filesDownloadFileByTokenRequest($conversation_id, $file_id, $token, $contentType);
+        $request = $this->downloadFileByTokenRequest($conversation_id, $file_id, $token, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -891,37 +891,37 @@ class FilesApi
     }
 
     /**
-     * Create request for operation 'filesDownloadFileByToken'
+     * Create request for operation 'downloadFileByToken'
      *
      * @param  int $conversation_id (required)
      * @param  string $file_id (required)
      * @param  string $token Short-lived file download token. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesDownloadFileByToken'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['downloadFileByToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function filesDownloadFileByTokenRequest($conversation_id, $file_id, $token, string $contentType = self::contentTypes['filesDownloadFileByToken'][0])
+    public function downloadFileByTokenRequest($conversation_id, $file_id, $token, string $contentType = self::contentTypes['downloadFileByToken'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling filesDownloadFileByToken'
+                'Missing the required parameter $conversation_id when calling downloadFileByToken'
             );
         }
 
         // verify the required parameter 'file_id' is set
         if ($file_id === null || (is_array($file_id) && count($file_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file_id when calling filesDownloadFileByToken'
+                'Missing the required parameter $file_id when calling downloadFileByToken'
             );
         }
 
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token when calling filesDownloadFileByToken'
+                'Missing the required parameter $token when calling downloadFileByToken'
             );
         }
 
@@ -1020,38 +1020,38 @@ class FilesApi
     }
 
     /**
-     * Operation filesListFiles
+     * Operation listFiles
      *
      * List Files
      *
      * @param  int $conversation_id conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesListFiles'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFiles'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\FileResponseSchema[]
      */
-    public function filesListFiles($conversation_id, string $contentType = self::contentTypes['filesListFiles'][0])
+    public function listFiles($conversation_id, string $contentType = self::contentTypes['listFiles'][0])
     {
-        list($response) = $this->filesListFilesWithHttpInfo($conversation_id, $contentType);
+        list($response) = $this->listFilesWithHttpInfo($conversation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation filesListFilesWithHttpInfo
+     * Operation listFilesWithHttpInfo
      *
      * List Files
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesListFiles'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFiles'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\FileResponseSchema[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function filesListFilesWithHttpInfo($conversation_id, string $contentType = self::contentTypes['filesListFiles'][0])
+    public function listFilesWithHttpInfo($conversation_id, string $contentType = self::contentTypes['listFiles'][0])
     {
-        $request = $this->filesListFilesRequest($conversation_id, $contentType);
+        $request = $this->listFilesRequest($conversation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1124,19 +1124,19 @@ class FilesApi
     }
 
     /**
-     * Operation filesListFilesAsync
+     * Operation listFilesAsync
      *
      * List Files
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesListFiles'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesListFilesAsync($conversation_id, string $contentType = self::contentTypes['filesListFiles'][0])
+    public function listFilesAsync($conversation_id, string $contentType = self::contentTypes['listFiles'][0])
     {
-        return $this->filesListFilesAsyncWithHttpInfo($conversation_id, $contentType)
+        return $this->listFilesAsyncWithHttpInfo($conversation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1145,20 +1145,20 @@ class FilesApi
     }
 
     /**
-     * Operation filesListFilesAsyncWithHttpInfo
+     * Operation listFilesAsyncWithHttpInfo
      *
      * List Files
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesListFiles'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesListFilesAsyncWithHttpInfo($conversation_id, string $contentType = self::contentTypes['filesListFiles'][0])
+    public function listFilesAsyncWithHttpInfo($conversation_id, string $contentType = self::contentTypes['listFiles'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\FileResponseSchema[]';
-        $request = $this->filesListFilesRequest($conversation_id, $contentType);
+        $request = $this->listFilesRequest($conversation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1205,21 +1205,21 @@ class FilesApi
     }
 
     /**
-     * Create request for operation 'filesListFiles'
+     * Create request for operation 'listFiles'
      *
      * @param  int $conversation_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesListFiles'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFiles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function filesListFilesRequest($conversation_id, string $contentType = self::contentTypes['filesListFiles'][0])
+    public function listFilesRequest($conversation_id, string $contentType = self::contentTypes['listFiles'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling filesListFiles'
+                'Missing the required parameter $conversation_id when calling listFiles'
             );
         }
 
@@ -1305,40 +1305,40 @@ class FilesApi
     }
 
     /**
-     * Operation filesUploadFile
+     * Operation uploadFile
      *
      * Upload File
      *
      * @param  int $conversation_id conversation_id (required)
      * @param  \SplFileObject $file file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesUploadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\FileResponseSchema
      */
-    public function filesUploadFile($conversation_id, $file, string $contentType = self::contentTypes['filesUploadFile'][0])
+    public function uploadFile($conversation_id, $file, string $contentType = self::contentTypes['uploadFile'][0])
     {
-        list($response) = $this->filesUploadFileWithHttpInfo($conversation_id, $file, $contentType);
+        list($response) = $this->uploadFileWithHttpInfo($conversation_id, $file, $contentType);
         return $response;
     }
 
     /**
-     * Operation filesUploadFileWithHttpInfo
+     * Operation uploadFileWithHttpInfo
      *
      * Upload File
      *
      * @param  int $conversation_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesUploadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\FileResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function filesUploadFileWithHttpInfo($conversation_id, $file, string $contentType = self::contentTypes['filesUploadFile'][0])
+    public function uploadFileWithHttpInfo($conversation_id, $file, string $contentType = self::contentTypes['uploadFile'][0])
     {
-        $request = $this->filesUploadFileRequest($conversation_id, $file, $contentType);
+        $request = $this->uploadFileRequest($conversation_id, $file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1411,20 +1411,20 @@ class FilesApi
     }
 
     /**
-     * Operation filesUploadFileAsync
+     * Operation uploadFileAsync
      *
      * Upload File
      *
      * @param  int $conversation_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesUploadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesUploadFileAsync($conversation_id, $file, string $contentType = self::contentTypes['filesUploadFile'][0])
+    public function uploadFileAsync($conversation_id, $file, string $contentType = self::contentTypes['uploadFile'][0])
     {
-        return $this->filesUploadFileAsyncWithHttpInfo($conversation_id, $file, $contentType)
+        return $this->uploadFileAsyncWithHttpInfo($conversation_id, $file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1433,21 +1433,21 @@ class FilesApi
     }
 
     /**
-     * Operation filesUploadFileAsyncWithHttpInfo
+     * Operation uploadFileAsyncWithHttpInfo
      *
      * Upload File
      *
      * @param  int $conversation_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesUploadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function filesUploadFileAsyncWithHttpInfo($conversation_id, $file, string $contentType = self::contentTypes['filesUploadFile'][0])
+    public function uploadFileAsyncWithHttpInfo($conversation_id, $file, string $contentType = self::contentTypes['uploadFile'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\FileResponseSchema';
-        $request = $this->filesUploadFileRequest($conversation_id, $file, $contentType);
+        $request = $this->uploadFileRequest($conversation_id, $file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1494,29 +1494,29 @@ class FilesApi
     }
 
     /**
-     * Create request for operation 'filesUploadFile'
+     * Create request for operation 'uploadFile'
      *
      * @param  int $conversation_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['filesUploadFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function filesUploadFileRequest($conversation_id, $file, string $contentType = self::contentTypes['filesUploadFile'][0])
+    public function uploadFileRequest($conversation_id, $file, string $contentType = self::contentTypes['uploadFile'][0])
     {
 
         // verify the required parameter 'conversation_id' is set
         if ($conversation_id === null || (is_array($conversation_id) && count($conversation_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $conversation_id when calling filesUploadFile'
+                'Missing the required parameter $conversation_id when calling uploadFile'
             );
         }
 
         // verify the required parameter 'file' is set
         if ($file === null || (is_array($file) && count($file) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling filesUploadFile'
+                'Missing the required parameter $file when calling uploadFile'
             );
         }
 

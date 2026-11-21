@@ -74,28 +74,28 @@ class TriggersApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'triggersCreateTrigger' => [
+        'createTrigger' => [
             'application/json',
         ],
-        'triggersDeleteTrigger' => [
+        'deleteTrigger' => [
             'application/json',
         ],
-        'triggersGetTrigger' => [
+        'getTrigger' => [
             'application/json',
         ],
-        'triggersListTriggerCategories' => [
+        'listTriggerCategories' => [
             'application/json',
         ],
-        'triggersListTriggerDefinitions' => [
+        'listTriggerDefinitions' => [
             'application/json',
         ],
-        'triggersListTriggers' => [
+        'listTriggers' => [
             'application/json',
         ],
-        'triggersUpdateTrigger' => [
+        'updateTrigger' => [
             'application/json',
         ],
-        'triggersVerifyRemoteTriggerWebhook' => [
+        'verifyRemoteTriggerWebhook' => [
             'application/json',
         ],
     ];
@@ -147,38 +147,38 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersCreateTrigger
+     * Operation createTrigger
      *
      * Create Trigger
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateTriggerPayloadSchema $create_trigger_payload_schema create_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersCreateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\TriggerResponseSchema
      */
-    public function triggersCreateTrigger($create_trigger_payload_schema, string $contentType = self::contentTypes['triggersCreateTrigger'][0])
+    public function createTrigger($create_trigger_payload_schema, string $contentType = self::contentTypes['createTrigger'][0])
     {
-        list($response) = $this->triggersCreateTriggerWithHttpInfo($create_trigger_payload_schema, $contentType);
+        list($response) = $this->createTriggerWithHttpInfo($create_trigger_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation triggersCreateTriggerWithHttpInfo
+     * Operation createTriggerWithHttpInfo
      *
      * Create Trigger
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateTriggerPayloadSchema $create_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersCreateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\TriggerResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersCreateTriggerWithHttpInfo($create_trigger_payload_schema, string $contentType = self::contentTypes['triggersCreateTrigger'][0])
+    public function createTriggerWithHttpInfo($create_trigger_payload_schema, string $contentType = self::contentTypes['createTrigger'][0])
     {
-        $request = $this->triggersCreateTriggerRequest($create_trigger_payload_schema, $contentType);
+        $request = $this->createTriggerRequest($create_trigger_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -251,19 +251,19 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersCreateTriggerAsync
+     * Operation createTriggerAsync
      *
      * Create Trigger
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateTriggerPayloadSchema $create_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersCreateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersCreateTriggerAsync($create_trigger_payload_schema, string $contentType = self::contentTypes['triggersCreateTrigger'][0])
+    public function createTriggerAsync($create_trigger_payload_schema, string $contentType = self::contentTypes['createTrigger'][0])
     {
-        return $this->triggersCreateTriggerAsyncWithHttpInfo($create_trigger_payload_schema, $contentType)
+        return $this->createTriggerAsyncWithHttpInfo($create_trigger_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -272,20 +272,20 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersCreateTriggerAsyncWithHttpInfo
+     * Operation createTriggerAsyncWithHttpInfo
      *
      * Create Trigger
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateTriggerPayloadSchema $create_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersCreateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersCreateTriggerAsyncWithHttpInfo($create_trigger_payload_schema, string $contentType = self::contentTypes['triggersCreateTrigger'][0])
+    public function createTriggerAsyncWithHttpInfo($create_trigger_payload_schema, string $contentType = self::contentTypes['createTrigger'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\TriggerResponseSchema';
-        $request = $this->triggersCreateTriggerRequest($create_trigger_payload_schema, $contentType);
+        $request = $this->createTriggerRequest($create_trigger_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -332,21 +332,21 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersCreateTrigger'
+     * Create request for operation 'createTrigger'
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateTriggerPayloadSchema $create_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersCreateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersCreateTriggerRequest($create_trigger_payload_schema, string $contentType = self::contentTypes['triggersCreateTrigger'][0])
+    public function createTriggerRequest($create_trigger_payload_schema, string $contentType = self::contentTypes['createTrigger'][0])
     {
 
         // verify the required parameter 'create_trigger_payload_schema' is set
         if ($create_trigger_payload_schema === null || (is_array($create_trigger_payload_schema) && count($create_trigger_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_trigger_payload_schema when calling triggersCreateTrigger'
+                'Missing the required parameter $create_trigger_payload_schema when calling createTrigger'
             );
         }
 
@@ -435,37 +435,37 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersDeleteTrigger
+     * Operation deleteTrigger
      *
      * Delete Trigger
      *
      * @param  string $trigger_id trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersDeleteTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function triggersDeleteTrigger($trigger_id, string $contentType = self::contentTypes['triggersDeleteTrigger'][0])
+    public function deleteTrigger($trigger_id, string $contentType = self::contentTypes['deleteTrigger'][0])
     {
-        $this->triggersDeleteTriggerWithHttpInfo($trigger_id, $contentType);
+        $this->deleteTriggerWithHttpInfo($trigger_id, $contentType);
     }
 
     /**
-     * Operation triggersDeleteTriggerWithHttpInfo
+     * Operation deleteTriggerWithHttpInfo
      *
      * Delete Trigger
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersDeleteTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersDeleteTriggerWithHttpInfo($trigger_id, string $contentType = self::contentTypes['triggersDeleteTrigger'][0])
+    public function deleteTriggerWithHttpInfo($trigger_id, string $contentType = self::contentTypes['deleteTrigger'][0])
     {
-        $request = $this->triggersDeleteTriggerRequest($trigger_id, $contentType);
+        $request = $this->deleteTriggerRequest($trigger_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -502,19 +502,19 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersDeleteTriggerAsync
+     * Operation deleteTriggerAsync
      *
      * Delete Trigger
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersDeleteTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersDeleteTriggerAsync($trigger_id, string $contentType = self::contentTypes['triggersDeleteTrigger'][0])
+    public function deleteTriggerAsync($trigger_id, string $contentType = self::contentTypes['deleteTrigger'][0])
     {
-        return $this->triggersDeleteTriggerAsyncWithHttpInfo($trigger_id, $contentType)
+        return $this->deleteTriggerAsyncWithHttpInfo($trigger_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -523,20 +523,20 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersDeleteTriggerAsyncWithHttpInfo
+     * Operation deleteTriggerAsyncWithHttpInfo
      *
      * Delete Trigger
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersDeleteTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersDeleteTriggerAsyncWithHttpInfo($trigger_id, string $contentType = self::contentTypes['triggersDeleteTrigger'][0])
+    public function deleteTriggerAsyncWithHttpInfo($trigger_id, string $contentType = self::contentTypes['deleteTrigger'][0])
     {
         $returnType = '';
-        $request = $this->triggersDeleteTriggerRequest($trigger_id, $contentType);
+        $request = $this->deleteTriggerRequest($trigger_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -570,21 +570,21 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersDeleteTrigger'
+     * Create request for operation 'deleteTrigger'
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersDeleteTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersDeleteTriggerRequest($trigger_id, string $contentType = self::contentTypes['triggersDeleteTrigger'][0])
+    public function deleteTriggerRequest($trigger_id, string $contentType = self::contentTypes['deleteTrigger'][0])
     {
 
         // verify the required parameter 'trigger_id' is set
         if ($trigger_id === null || (is_array($trigger_id) && count($trigger_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $trigger_id when calling triggersDeleteTrigger'
+                'Missing the required parameter $trigger_id when calling deleteTrigger'
             );
         }
 
@@ -670,38 +670,38 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersGetTrigger
+     * Operation getTrigger
      *
      * Get Trigger
      *
      * @param  string $trigger_id trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersGetTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\TriggerResponseSchema
      */
-    public function triggersGetTrigger($trigger_id, string $contentType = self::contentTypes['triggersGetTrigger'][0])
+    public function getTrigger($trigger_id, string $contentType = self::contentTypes['getTrigger'][0])
     {
-        list($response) = $this->triggersGetTriggerWithHttpInfo($trigger_id, $contentType);
+        list($response) = $this->getTriggerWithHttpInfo($trigger_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation triggersGetTriggerWithHttpInfo
+     * Operation getTriggerWithHttpInfo
      *
      * Get Trigger
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersGetTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\TriggerResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersGetTriggerWithHttpInfo($trigger_id, string $contentType = self::contentTypes['triggersGetTrigger'][0])
+    public function getTriggerWithHttpInfo($trigger_id, string $contentType = self::contentTypes['getTrigger'][0])
     {
-        $request = $this->triggersGetTriggerRequest($trigger_id, $contentType);
+        $request = $this->getTriggerRequest($trigger_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -774,19 +774,19 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersGetTriggerAsync
+     * Operation getTriggerAsync
      *
      * Get Trigger
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersGetTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersGetTriggerAsync($trigger_id, string $contentType = self::contentTypes['triggersGetTrigger'][0])
+    public function getTriggerAsync($trigger_id, string $contentType = self::contentTypes['getTrigger'][0])
     {
-        return $this->triggersGetTriggerAsyncWithHttpInfo($trigger_id, $contentType)
+        return $this->getTriggerAsyncWithHttpInfo($trigger_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -795,20 +795,20 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersGetTriggerAsyncWithHttpInfo
+     * Operation getTriggerAsyncWithHttpInfo
      *
      * Get Trigger
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersGetTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersGetTriggerAsyncWithHttpInfo($trigger_id, string $contentType = self::contentTypes['triggersGetTrigger'][0])
+    public function getTriggerAsyncWithHttpInfo($trigger_id, string $contentType = self::contentTypes['getTrigger'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\TriggerResponseSchema';
-        $request = $this->triggersGetTriggerRequest($trigger_id, $contentType);
+        $request = $this->getTriggerRequest($trigger_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -855,21 +855,21 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersGetTrigger'
+     * Create request for operation 'getTrigger'
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersGetTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersGetTriggerRequest($trigger_id, string $contentType = self::contentTypes['triggersGetTrigger'][0])
+    public function getTriggerRequest($trigger_id, string $contentType = self::contentTypes['getTrigger'][0])
     {
 
         // verify the required parameter 'trigger_id' is set
         if ($trigger_id === null || (is_array($trigger_id) && count($trigger_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $trigger_id when calling triggersGetTrigger'
+                'Missing the required parameter $trigger_id when calling getTrigger'
             );
         }
 
@@ -955,36 +955,36 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggerCategories
+     * Operation listTriggerCategories
      *
      * List Trigger Categories
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerCategories'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerCategories'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\TriggerCategoryListResponseSchema
      */
-    public function triggersListTriggerCategories(string $contentType = self::contentTypes['triggersListTriggerCategories'][0])
+    public function listTriggerCategories(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
-        list($response) = $this->triggersListTriggerCategoriesWithHttpInfo($contentType);
+        list($response) = $this->listTriggerCategoriesWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation triggersListTriggerCategoriesWithHttpInfo
+     * Operation listTriggerCategoriesWithHttpInfo
      *
      * List Trigger Categories
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerCategories'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerCategories'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\TriggerCategoryListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersListTriggerCategoriesWithHttpInfo(string $contentType = self::contentTypes['triggersListTriggerCategories'][0])
+    public function listTriggerCategoriesWithHttpInfo(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
-        $request = $this->triggersListTriggerCategoriesRequest($contentType);
+        $request = $this->listTriggerCategoriesRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1057,18 +1057,18 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggerCategoriesAsync
+     * Operation listTriggerCategoriesAsync
      *
      * List Trigger Categories
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerCategories'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersListTriggerCategoriesAsync(string $contentType = self::contentTypes['triggersListTriggerCategories'][0])
+    public function listTriggerCategoriesAsync(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
-        return $this->triggersListTriggerCategoriesAsyncWithHttpInfo($contentType)
+        return $this->listTriggerCategoriesAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1077,19 +1077,19 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggerCategoriesAsyncWithHttpInfo
+     * Operation listTriggerCategoriesAsyncWithHttpInfo
      *
      * List Trigger Categories
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerCategories'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersListTriggerCategoriesAsyncWithHttpInfo(string $contentType = self::contentTypes['triggersListTriggerCategories'][0])
+    public function listTriggerCategoriesAsyncWithHttpInfo(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\TriggerCategoryListResponseSchema';
-        $request = $this->triggersListTriggerCategoriesRequest($contentType);
+        $request = $this->listTriggerCategoriesRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1136,14 +1136,14 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersListTriggerCategories'
+     * Create request for operation 'listTriggerCategories'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerCategories'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerCategories'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersListTriggerCategoriesRequest(string $contentType = self::contentTypes['triggersListTriggerCategories'][0])
+    public function listTriggerCategoriesRequest(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
 
 
@@ -1220,36 +1220,36 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggerDefinitions
+     * Operation listTriggerDefinitions
      *
      * List Trigger Definitions
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerDefinitions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerDefinitions'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\TriggerDefinitionListResponseSchema
      */
-    public function triggersListTriggerDefinitions(string $contentType = self::contentTypes['triggersListTriggerDefinitions'][0])
+    public function listTriggerDefinitions(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
-        list($response) = $this->triggersListTriggerDefinitionsWithHttpInfo($contentType);
+        list($response) = $this->listTriggerDefinitionsWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation triggersListTriggerDefinitionsWithHttpInfo
+     * Operation listTriggerDefinitionsWithHttpInfo
      *
      * List Trigger Definitions
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerDefinitions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerDefinitions'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\TriggerDefinitionListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersListTriggerDefinitionsWithHttpInfo(string $contentType = self::contentTypes['triggersListTriggerDefinitions'][0])
+    public function listTriggerDefinitionsWithHttpInfo(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
-        $request = $this->triggersListTriggerDefinitionsRequest($contentType);
+        $request = $this->listTriggerDefinitionsRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1322,18 +1322,18 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggerDefinitionsAsync
+     * Operation listTriggerDefinitionsAsync
      *
      * List Trigger Definitions
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerDefinitions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerDefinitions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersListTriggerDefinitionsAsync(string $contentType = self::contentTypes['triggersListTriggerDefinitions'][0])
+    public function listTriggerDefinitionsAsync(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
-        return $this->triggersListTriggerDefinitionsAsyncWithHttpInfo($contentType)
+        return $this->listTriggerDefinitionsAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1342,19 +1342,19 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggerDefinitionsAsyncWithHttpInfo
+     * Operation listTriggerDefinitionsAsyncWithHttpInfo
      *
      * List Trigger Definitions
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerDefinitions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerDefinitions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersListTriggerDefinitionsAsyncWithHttpInfo(string $contentType = self::contentTypes['triggersListTriggerDefinitions'][0])
+    public function listTriggerDefinitionsAsyncWithHttpInfo(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\TriggerDefinitionListResponseSchema';
-        $request = $this->triggersListTriggerDefinitionsRequest($contentType);
+        $request = $this->listTriggerDefinitionsRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1401,14 +1401,14 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersListTriggerDefinitions'
+     * Create request for operation 'listTriggerDefinitions'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggerDefinitions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggerDefinitions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersListTriggerDefinitionsRequest(string $contentType = self::contentTypes['triggersListTriggerDefinitions'][0])
+    public function listTriggerDefinitionsRequest(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
 
 
@@ -1485,7 +1485,7 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggers
+     * Operation listTriggers
      *
      * List Triggers
      *
@@ -1494,20 +1494,20 @@ class TriggersApi
      * @param  string|null $definition_id Filter triggers by definition id (optional)
      * @param  int|null $agent_id Filter triggers by agent ID (optional)
      * @param  bool|null $is_active Filter triggers by active status (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggers'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggers'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\TriggerListResponseSchema
      */
-    public function triggersListTriggers($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['triggersListTriggers'][0])
+    public function listTriggers($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['listTriggers'][0])
     {
-        list($response) = $this->triggersListTriggersWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
+        list($response) = $this->listTriggersWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
         return $response;
     }
 
     /**
-     * Operation triggersListTriggersWithHttpInfo
+     * Operation listTriggersWithHttpInfo
      *
      * List Triggers
      *
@@ -1516,15 +1516,15 @@ class TriggersApi
      * @param  string|null $definition_id Filter triggers by definition id (optional)
      * @param  int|null $agent_id Filter triggers by agent ID (optional)
      * @param  bool|null $is_active Filter triggers by active status (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggers'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggers'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\TriggerListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersListTriggersWithHttpInfo($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['triggersListTriggers'][0])
+    public function listTriggersWithHttpInfo($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['listTriggers'][0])
     {
-        $request = $this->triggersListTriggersRequest($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
+        $request = $this->listTriggersRequest($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1597,7 +1597,7 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggersAsync
+     * Operation listTriggersAsync
      *
      * List Triggers
      *
@@ -1606,14 +1606,14 @@ class TriggersApi
      * @param  string|null $definition_id Filter triggers by definition id (optional)
      * @param  int|null $agent_id Filter triggers by agent ID (optional)
      * @param  bool|null $is_active Filter triggers by active status (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggers'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersListTriggersAsync($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['triggersListTriggers'][0])
+    public function listTriggersAsync($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['listTriggers'][0])
     {
-        return $this->triggersListTriggersAsyncWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType)
+        return $this->listTriggersAsyncWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1622,7 +1622,7 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersListTriggersAsyncWithHttpInfo
+     * Operation listTriggersAsyncWithHttpInfo
      *
      * List Triggers
      *
@@ -1631,15 +1631,15 @@ class TriggersApi
      * @param  string|null $definition_id Filter triggers by definition id (optional)
      * @param  int|null $agent_id Filter triggers by agent ID (optional)
      * @param  bool|null $is_active Filter triggers by active status (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggers'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersListTriggersAsyncWithHttpInfo($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['triggersListTriggers'][0])
+    public function listTriggersAsyncWithHttpInfo($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['listTriggers'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\TriggerListResponseSchema';
-        $request = $this->triggersListTriggersRequest($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
+        $request = $this->listTriggersRequest($skip, $limit, $definition_id, $agent_id, $is_active, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1686,35 +1686,35 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersListTriggers'
+     * Create request for operation 'listTriggers'
      *
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $definition_id Filter triggers by definition id (optional)
      * @param  int|null $agent_id Filter triggers by agent ID (optional)
      * @param  bool|null $is_active Filter triggers by active status (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersListTriggers'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTriggers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersListTriggersRequest($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['triggersListTriggers'][0])
+    public function listTriggersRequest($skip = 0, $limit = 25, $definition_id = null, $agent_id = null, $is_active = null, string $contentType = self::contentTypes['listTriggers'][0])
     {
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling TriggersApi.triggersListTriggers, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling TriggersApi.listTriggers, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling TriggersApi.triggersListTriggers, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling TriggersApi.listTriggers, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling TriggersApi.triggersListTriggers, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling TriggersApi.listTriggers, must be bigger than or equal to 1.');
         }
         
 
         if ($agent_id !== null && $agent_id < 1) {
-            throw new \InvalidArgumentException('invalid value for "$agent_id" when calling TriggersApi.triggersListTriggers, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$agent_id" when calling TriggersApi.listTriggers, must be bigger than or equal to 1.');
         }
         
 
@@ -1837,40 +1837,40 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersUpdateTrigger
+     * Operation updateTrigger
      *
      * Update Trigger
      *
      * @param  string $trigger_id trigger_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateTriggerPayloadSchema $update_trigger_payload_schema update_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersUpdateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\TriggerResponseSchema
      */
-    public function triggersUpdateTrigger($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['triggersUpdateTrigger'][0])
+    public function updateTrigger($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['updateTrigger'][0])
     {
-        list($response) = $this->triggersUpdateTriggerWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType);
+        list($response) = $this->updateTriggerWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation triggersUpdateTriggerWithHttpInfo
+     * Operation updateTriggerWithHttpInfo
      *
      * Update Trigger
      *
      * @param  string $trigger_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateTriggerPayloadSchema $update_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersUpdateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTrigger'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\TriggerResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersUpdateTriggerWithHttpInfo($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['triggersUpdateTrigger'][0])
+    public function updateTriggerWithHttpInfo($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['updateTrigger'][0])
     {
-        $request = $this->triggersUpdateTriggerRequest($trigger_id, $update_trigger_payload_schema, $contentType);
+        $request = $this->updateTriggerRequest($trigger_id, $update_trigger_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1943,20 +1943,20 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersUpdateTriggerAsync
+     * Operation updateTriggerAsync
      *
      * Update Trigger
      *
      * @param  string $trigger_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateTriggerPayloadSchema $update_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersUpdateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersUpdateTriggerAsync($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['triggersUpdateTrigger'][0])
+    public function updateTriggerAsync($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['updateTrigger'][0])
     {
-        return $this->triggersUpdateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType)
+        return $this->updateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1965,21 +1965,21 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersUpdateTriggerAsyncWithHttpInfo
+     * Operation updateTriggerAsyncWithHttpInfo
      *
      * Update Trigger
      *
      * @param  string $trigger_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateTriggerPayloadSchema $update_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersUpdateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersUpdateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['triggersUpdateTrigger'][0])
+    public function updateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['updateTrigger'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\TriggerResponseSchema';
-        $request = $this->triggersUpdateTriggerRequest($trigger_id, $update_trigger_payload_schema, $contentType);
+        $request = $this->updateTriggerRequest($trigger_id, $update_trigger_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2026,29 +2026,29 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersUpdateTrigger'
+     * Create request for operation 'updateTrigger'
      *
      * @param  string $trigger_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateTriggerPayloadSchema $update_trigger_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersUpdateTrigger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateTrigger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersUpdateTriggerRequest($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['triggersUpdateTrigger'][0])
+    public function updateTriggerRequest($trigger_id, $update_trigger_payload_schema, string $contentType = self::contentTypes['updateTrigger'][0])
     {
 
         // verify the required parameter 'trigger_id' is set
         if ($trigger_id === null || (is_array($trigger_id) && count($trigger_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $trigger_id when calling triggersUpdateTrigger'
+                'Missing the required parameter $trigger_id when calling updateTrigger'
             );
         }
 
         // verify the required parameter 'update_trigger_payload_schema' is set
         if ($update_trigger_payload_schema === null || (is_array($update_trigger_payload_schema) && count($update_trigger_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_trigger_payload_schema when calling triggersUpdateTrigger'
+                'Missing the required parameter $update_trigger_payload_schema when calling updateTrigger'
             );
         }
 
@@ -2145,38 +2145,38 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersVerifyRemoteTriggerWebhook
+     * Operation verifyRemoteTriggerWebhook
      *
      * Verify Remote Trigger Webhook
      *
      * @param  string $trigger_id trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersVerifyRemoteTriggerWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyRemoteTriggerWebhook'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\RemoteWebhookVerificationResponseSchema
      */
-    public function triggersVerifyRemoteTriggerWebhook($trigger_id, string $contentType = self::contentTypes['triggersVerifyRemoteTriggerWebhook'][0])
+    public function verifyRemoteTriggerWebhook($trigger_id, string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0])
     {
-        list($response) = $this->triggersVerifyRemoteTriggerWebhookWithHttpInfo($trigger_id, $contentType);
+        list($response) = $this->verifyRemoteTriggerWebhookWithHttpInfo($trigger_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation triggersVerifyRemoteTriggerWebhookWithHttpInfo
+     * Operation verifyRemoteTriggerWebhookWithHttpInfo
      *
      * Verify Remote Trigger Webhook
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersVerifyRemoteTriggerWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyRemoteTriggerWebhook'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\RemoteWebhookVerificationResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function triggersVerifyRemoteTriggerWebhookWithHttpInfo($trigger_id, string $contentType = self::contentTypes['triggersVerifyRemoteTriggerWebhook'][0])
+    public function verifyRemoteTriggerWebhookWithHttpInfo($trigger_id, string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0])
     {
-        $request = $this->triggersVerifyRemoteTriggerWebhookRequest($trigger_id, $contentType);
+        $request = $this->verifyRemoteTriggerWebhookRequest($trigger_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2249,19 +2249,19 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersVerifyRemoteTriggerWebhookAsync
+     * Operation verifyRemoteTriggerWebhookAsync
      *
      * Verify Remote Trigger Webhook
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersVerifyRemoteTriggerWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyRemoteTriggerWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersVerifyRemoteTriggerWebhookAsync($trigger_id, string $contentType = self::contentTypes['triggersVerifyRemoteTriggerWebhook'][0])
+    public function verifyRemoteTriggerWebhookAsync($trigger_id, string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0])
     {
-        return $this->triggersVerifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, $contentType)
+        return $this->verifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2270,20 +2270,20 @@ class TriggersApi
     }
 
     /**
-     * Operation triggersVerifyRemoteTriggerWebhookAsyncWithHttpInfo
+     * Operation verifyRemoteTriggerWebhookAsyncWithHttpInfo
      *
      * Verify Remote Trigger Webhook
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersVerifyRemoteTriggerWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyRemoteTriggerWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggersVerifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, string $contentType = self::contentTypes['triggersVerifyRemoteTriggerWebhook'][0])
+    public function verifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\RemoteWebhookVerificationResponseSchema';
-        $request = $this->triggersVerifyRemoteTriggerWebhookRequest($trigger_id, $contentType);
+        $request = $this->verifyRemoteTriggerWebhookRequest($trigger_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2330,21 +2330,21 @@ class TriggersApi
     }
 
     /**
-     * Create request for operation 'triggersVerifyRemoteTriggerWebhook'
+     * Create request for operation 'verifyRemoteTriggerWebhook'
      *
      * @param  string $trigger_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['triggersVerifyRemoteTriggerWebhook'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['verifyRemoteTriggerWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggersVerifyRemoteTriggerWebhookRequest($trigger_id, string $contentType = self::contentTypes['triggersVerifyRemoteTriggerWebhook'][0])
+    public function verifyRemoteTriggerWebhookRequest($trigger_id, string $contentType = self::contentTypes['verifyRemoteTriggerWebhook'][0])
     {
 
         // verify the required parameter 'trigger_id' is set
         if ($trigger_id === null || (is_array($trigger_id) && count($trigger_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $trigger_id when calling triggersVerifyRemoteTriggerWebhook'
+                'Missing the required parameter $trigger_id when calling verifyRemoteTriggerWebhook'
             );
         }
 

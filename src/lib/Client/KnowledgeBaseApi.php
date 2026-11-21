@@ -74,76 +74,76 @@ class KnowledgeBaseApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'knowledgeBaseCreateDocumentFromFile' => [
+        'baseCreateDocumentFromFile' => [
             'multipart/form-data',
         ],
-        'knowledgeBaseCreateNode' => [
+        'baseCreateNode' => [
             'application/json',
         ],
-        'knowledgeBaseDeleteKnowledgeDocumentAttachment' => [
+        'baseDeleteKnowledgeDocumentAttachment' => [
             'application/json',
         ],
-        'knowledgeBaseDeleteNode' => [
+        'baseDeleteNode' => [
             'application/json',
         ],
-        'knowledgeBaseDiscardDocumentDraft' => [
+        'baseDiscardDocumentDraft' => [
             'application/json',
         ],
-        'knowledgeBaseGetDocument' => [
+        'baseGetDocument' => [
             'application/json',
         ],
-        'knowledgeBaseGetDocumentVersion' => [
+        'baseGetDocumentVersion' => [
             'application/json',
         ],
-        'knowledgeBaseGetKnowledgeDocumentAttachmentContent' => [
+        'baseGetKnowledgeDocumentAttachmentContent' => [
             'application/json',
         ],
-        'knowledgeBaseGetNode' => [
+        'baseGetNode' => [
             'application/json',
         ],
-        'knowledgeBaseGetOverview' => [
+        'baseGetOverview' => [
             'application/json',
         ],
-        'knowledgeBaseListAgentsUsingKnowledgeNode' => [
+        'baseListAgentsUsingKnowledgeNode' => [
             'application/json',
         ],
-        'knowledgeBaseListDocumentVersions' => [
+        'baseListDocumentVersions' => [
             'application/json',
         ],
-        'knowledgeBaseListKnowledgeDocumentAttachments' => [
+        'baseListKnowledgeDocumentAttachments' => [
             'application/json',
         ],
-        'knowledgeBaseListMostCitedDocuments' => [
+        'baseListMostCitedDocuments' => [
             'application/json',
         ],
-        'knowledgeBaseListNodeTree' => [
+        'baseListNodeTree' => [
             'application/json',
         ],
-        'knowledgeBaseListNodes' => [
+        'baseListNodes' => [
             'application/json',
         ],
-        'knowledgeBaseMoveNode' => [
+        'baseMoveNode' => [
             'application/json',
         ],
-        'knowledgeBasePublishDocumentVersion' => [
+        'basePublishDocumentVersion' => [
             'application/json',
         ],
-        'knowledgeBaseRestoreDocumentVersionAsDraft' => [
+        'baseRestoreDocumentVersionAsDraft' => [
             'application/json',
         ],
-        'knowledgeBaseRollbackDocumentVersion' => [
+        'baseRollbackDocumentVersion' => [
             'application/json',
         ],
-        'knowledgeBaseSuggestDocumentTitle' => [
+        'baseSuggestDocumentTitle' => [
             'application/json',
         ],
-        'knowledgeBaseUpdateDocumentContent' => [
+        'baseUpdateDocumentContent' => [
             'application/json',
         ],
-        'knowledgeBaseUpdateNode' => [
+        'baseUpdateNode' => [
             'application/json',
         ],
-        'knowledgeBaseUploadKnowledgeDocumentAttachment' => [
+        'baseUploadKnowledgeDocumentAttachment' => [
             'multipart/form-data',
         ],
     ];
@@ -195,7 +195,7 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseCreateDocumentFromFile
+     * Operation baseCreateDocumentFromFile
      *
      * Create Document From File
      *
@@ -203,20 +203,20 @@ class KnowledgeBaseApi
      * @param  int|null $parent_id parent_id (optional)
      * @param  string|null $name name (optional)
      * @param  string|null $summary summary (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateDocumentFromFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateDocumentFromFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema
      */
-    public function knowledgeBaseCreateDocumentFromFile($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['knowledgeBaseCreateDocumentFromFile'][0])
+    public function baseCreateDocumentFromFile($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0])
     {
-        list($response) = $this->knowledgeBaseCreateDocumentFromFileWithHttpInfo($file, $parent_id, $name, $summary, $contentType);
+        list($response) = $this->baseCreateDocumentFromFileWithHttpInfo($file, $parent_id, $name, $summary, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseCreateDocumentFromFileWithHttpInfo
+     * Operation baseCreateDocumentFromFileWithHttpInfo
      *
      * Create Document From File
      *
@@ -224,15 +224,15 @@ class KnowledgeBaseApi
      * @param  int|null $parent_id (optional)
      * @param  string|null $name (optional)
      * @param  string|null $summary (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateDocumentFromFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateDocumentFromFile'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseCreateDocumentFromFileWithHttpInfo($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['knowledgeBaseCreateDocumentFromFile'][0])
+    public function baseCreateDocumentFromFileWithHttpInfo($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0])
     {
-        $request = $this->knowledgeBaseCreateDocumentFromFileRequest($file, $parent_id, $name, $summary, $contentType);
+        $request = $this->baseCreateDocumentFromFileRequest($file, $parent_id, $name, $summary, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -305,7 +305,7 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseCreateDocumentFromFileAsync
+     * Operation baseCreateDocumentFromFileAsync
      *
      * Create Document From File
      *
@@ -313,14 +313,14 @@ class KnowledgeBaseApi
      * @param  int|null $parent_id (optional)
      * @param  string|null $name (optional)
      * @param  string|null $summary (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateDocumentFromFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateDocumentFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseCreateDocumentFromFileAsync($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['knowledgeBaseCreateDocumentFromFile'][0])
+    public function baseCreateDocumentFromFileAsync($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0])
     {
-        return $this->knowledgeBaseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id, $name, $summary, $contentType)
+        return $this->baseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id, $name, $summary, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -329,7 +329,7 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseCreateDocumentFromFileAsyncWithHttpInfo
+     * Operation baseCreateDocumentFromFileAsyncWithHttpInfo
      *
      * Create Document From File
      *
@@ -337,15 +337,15 @@ class KnowledgeBaseApi
      * @param  int|null $parent_id (optional)
      * @param  string|null $name (optional)
      * @param  string|null $summary (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateDocumentFromFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateDocumentFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['knowledgeBaseCreateDocumentFromFile'][0])
+    public function baseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
-        $request = $this->knowledgeBaseCreateDocumentFromFileRequest($file, $parent_id, $name, $summary, $contentType);
+        $request = $this->baseCreateDocumentFromFileRequest($file, $parent_id, $name, $summary, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -392,31 +392,31 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseCreateDocumentFromFile'
+     * Create request for operation 'baseCreateDocumentFromFile'
      *
      * @param  \SplFileObject $file (required)
      * @param  int|null $parent_id (optional)
      * @param  string|null $name (optional)
      * @param  string|null $summary (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateDocumentFromFile'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateDocumentFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseCreateDocumentFromFileRequest($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['knowledgeBaseCreateDocumentFromFile'][0])
+    public function baseCreateDocumentFromFileRequest($file, $parent_id = null, $name = null, $summary = null, string $contentType = self::contentTypes['baseCreateDocumentFromFile'][0])
     {
 
         // verify the required parameter 'file' is set
         if ($file === null || (is_array($file) && count($file) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling knowledgeBaseCreateDocumentFromFile'
+                'Missing the required parameter $file when calling baseCreateDocumentFromFile'
             );
         }
 
 
 
         if ($summary !== null && strlen($summary) > 2000) {
-            throw new \InvalidArgumentException('invalid length for "$summary" when calling KnowledgeBaseApi.knowledgeBaseCreateDocumentFromFile, must be smaller than or equal to 2000.');
+            throw new \InvalidArgumentException('invalid length for "$summary" when calling KnowledgeBaseApi.baseCreateDocumentFromFile, must be smaller than or equal to 2000.');
         }
         
 
@@ -506,38 +506,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseCreateNode
+     * Operation baseCreateNode
      *
      * Create Node
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateNodePayloadSchema $create_node_payload_schema create_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema
      */
-    public function knowledgeBaseCreateNode($create_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseCreateNode'][0])
+    public function baseCreateNode($create_node_payload_schema, string $contentType = self::contentTypes['baseCreateNode'][0])
     {
-        list($response) = $this->knowledgeBaseCreateNodeWithHttpInfo($create_node_payload_schema, $contentType);
+        list($response) = $this->baseCreateNodeWithHttpInfo($create_node_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseCreateNodeWithHttpInfo
+     * Operation baseCreateNodeWithHttpInfo
      *
      * Create Node
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateNodePayloadSchema $create_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseCreateNodeWithHttpInfo($create_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseCreateNode'][0])
+    public function baseCreateNodeWithHttpInfo($create_node_payload_schema, string $contentType = self::contentTypes['baseCreateNode'][0])
     {
-        $request = $this->knowledgeBaseCreateNodeRequest($create_node_payload_schema, $contentType);
+        $request = $this->baseCreateNodeRequest($create_node_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -610,19 +610,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseCreateNodeAsync
+     * Operation baseCreateNodeAsync
      *
      * Create Node
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateNodePayloadSchema $create_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseCreateNodeAsync($create_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseCreateNode'][0])
+    public function baseCreateNodeAsync($create_node_payload_schema, string $contentType = self::contentTypes['baseCreateNode'][0])
     {
-        return $this->knowledgeBaseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, $contentType)
+        return $this->baseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -631,20 +631,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseCreateNodeAsyncWithHttpInfo
+     * Operation baseCreateNodeAsyncWithHttpInfo
      *
      * Create Node
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateNodePayloadSchema $create_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseCreateNode'][0])
+    public function baseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, string $contentType = self::contentTypes['baseCreateNode'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
-        $request = $this->knowledgeBaseCreateNodeRequest($create_node_payload_schema, $contentType);
+        $request = $this->baseCreateNodeRequest($create_node_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -691,21 +691,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseCreateNode'
+     * Create request for operation 'baseCreateNode'
      *
      * @param  \Ibexa\AgentPlatform\Model\CreateNodePayloadSchema $create_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseCreateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseCreateNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseCreateNodeRequest($create_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseCreateNode'][0])
+    public function baseCreateNodeRequest($create_node_payload_schema, string $contentType = self::contentTypes['baseCreateNode'][0])
     {
 
         // verify the required parameter 'create_node_payload_schema' is set
         if ($create_node_payload_schema === null || (is_array($create_node_payload_schema) && count($create_node_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_node_payload_schema when calling knowledgeBaseCreateNode'
+                'Missing the required parameter $create_node_payload_schema when calling baseCreateNode'
             );
         }
 
@@ -794,39 +794,39 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDeleteKnowledgeDocumentAttachment
+     * Operation baseDeleteKnowledgeDocumentAttachment
      *
      * Delete Knowledge Document Attachment
      *
      * @param  int $node_id node_id (required)
      * @param  string $attachment_id attachment_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function knowledgeBaseDeleteKnowledgeDocumentAttachment($node_id, $attachment_id, string $contentType = self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'][0])
+    public function baseDeleteKnowledgeDocumentAttachment($node_id, $attachment_id, string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0])
     {
-        $this->knowledgeBaseDeleteKnowledgeDocumentAttachmentWithHttpInfo($node_id, $attachment_id, $contentType);
+        $this->baseDeleteKnowledgeDocumentAttachmentWithHttpInfo($node_id, $attachment_id, $contentType);
     }
 
     /**
-     * Operation knowledgeBaseDeleteKnowledgeDocumentAttachmentWithHttpInfo
+     * Operation baseDeleteKnowledgeDocumentAttachmentWithHttpInfo
      *
      * Delete Knowledge Document Attachment
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseDeleteKnowledgeDocumentAttachmentWithHttpInfo($node_id, $attachment_id, string $contentType = self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'][0])
+    public function baseDeleteKnowledgeDocumentAttachmentWithHttpInfo($node_id, $attachment_id, string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0])
     {
-        $request = $this->knowledgeBaseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, $contentType);
+        $request = $this->baseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -863,20 +863,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDeleteKnowledgeDocumentAttachmentAsync
+     * Operation baseDeleteKnowledgeDocumentAttachmentAsync
      *
      * Delete Knowledge Document Attachment
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseDeleteKnowledgeDocumentAttachmentAsync($node_id, $attachment_id, string $contentType = self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'][0])
+    public function baseDeleteKnowledgeDocumentAttachmentAsync($node_id, $attachment_id, string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0])
     {
-        return $this->knowledgeBaseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, $contentType)
+        return $this->baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -885,21 +885,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo
+     * Operation baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo
      *
      * Delete Knowledge Document Attachment
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, string $contentType = self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'][0])
+    public function baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0])
     {
         $returnType = '';
-        $request = $this->knowledgeBaseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, $contentType);
+        $request = $this->baseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -933,29 +933,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseDeleteKnowledgeDocumentAttachment'
+     * Create request for operation 'baseDeleteKnowledgeDocumentAttachment'
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, string $contentType = self::contentTypes['knowledgeBaseDeleteKnowledgeDocumentAttachment'][0])
+    public function baseDeleteKnowledgeDocumentAttachmentRequest($node_id, $attachment_id, string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseDeleteKnowledgeDocumentAttachment'
+                'Missing the required parameter $node_id when calling baseDeleteKnowledgeDocumentAttachment'
             );
         }
 
         // verify the required parameter 'attachment_id' is set
         if ($attachment_id === null || (is_array($attachment_id) && count($attachment_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $attachment_id when calling knowledgeBaseDeleteKnowledgeDocumentAttachment'
+                'Missing the required parameter $attachment_id when calling baseDeleteKnowledgeDocumentAttachment'
             );
         }
 
@@ -1049,37 +1049,37 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDeleteNode
+     * Operation baseDeleteNode
      *
      * Delete Node
      *
      * @param  int $node_id node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function knowledgeBaseDeleteNode($node_id, string $contentType = self::contentTypes['knowledgeBaseDeleteNode'][0])
+    public function baseDeleteNode($node_id, string $contentType = self::contentTypes['baseDeleteNode'][0])
     {
-        $this->knowledgeBaseDeleteNodeWithHttpInfo($node_id, $contentType);
+        $this->baseDeleteNodeWithHttpInfo($node_id, $contentType);
     }
 
     /**
-     * Operation knowledgeBaseDeleteNodeWithHttpInfo
+     * Operation baseDeleteNodeWithHttpInfo
      *
      * Delete Node
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseDeleteNodeWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseDeleteNode'][0])
+    public function baseDeleteNodeWithHttpInfo($node_id, string $contentType = self::contentTypes['baseDeleteNode'][0])
     {
-        $request = $this->knowledgeBaseDeleteNodeRequest($node_id, $contentType);
+        $request = $this->baseDeleteNodeRequest($node_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1116,19 +1116,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDeleteNodeAsync
+     * Operation baseDeleteNodeAsync
      *
      * Delete Node
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseDeleteNodeAsync($node_id, string $contentType = self::contentTypes['knowledgeBaseDeleteNode'][0])
+    public function baseDeleteNodeAsync($node_id, string $contentType = self::contentTypes['baseDeleteNode'][0])
     {
-        return $this->knowledgeBaseDeleteNodeAsyncWithHttpInfo($node_id, $contentType)
+        return $this->baseDeleteNodeAsyncWithHttpInfo($node_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1137,20 +1137,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDeleteNodeAsyncWithHttpInfo
+     * Operation baseDeleteNodeAsyncWithHttpInfo
      *
      * Delete Node
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseDeleteNodeAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseDeleteNode'][0])
+    public function baseDeleteNodeAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['baseDeleteNode'][0])
     {
         $returnType = '';
-        $request = $this->knowledgeBaseDeleteNodeRequest($node_id, $contentType);
+        $request = $this->baseDeleteNodeRequest($node_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1184,21 +1184,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseDeleteNode'
+     * Create request for operation 'baseDeleteNode'
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDeleteNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDeleteNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseDeleteNodeRequest($node_id, string $contentType = self::contentTypes['knowledgeBaseDeleteNode'][0])
+    public function baseDeleteNodeRequest($node_id, string $contentType = self::contentTypes['baseDeleteNode'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseDeleteNode'
+                'Missing the required parameter $node_id when calling baseDeleteNode'
             );
         }
 
@@ -1284,39 +1284,39 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDiscardDocumentDraft
+     * Operation baseDiscardDocumentDraft
      *
      * Discard Document Draft
      *
      * @param  int $node_id node_id (required)
      * @param  int $version_id version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDiscardDocumentDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDiscardDocumentDraft'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function knowledgeBaseDiscardDocumentDraft($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseDiscardDocumentDraft'][0])
+    public function baseDiscardDocumentDraft($node_id, $version_id, string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0])
     {
-        $this->knowledgeBaseDiscardDocumentDraftWithHttpInfo($node_id, $version_id, $contentType);
+        $this->baseDiscardDocumentDraftWithHttpInfo($node_id, $version_id, $contentType);
     }
 
     /**
-     * Operation knowledgeBaseDiscardDocumentDraftWithHttpInfo
+     * Operation baseDiscardDocumentDraftWithHttpInfo
      *
      * Discard Document Draft
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDiscardDocumentDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDiscardDocumentDraft'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseDiscardDocumentDraftWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseDiscardDocumentDraft'][0])
+    public function baseDiscardDocumentDraftWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0])
     {
-        $request = $this->knowledgeBaseDiscardDocumentDraftRequest($node_id, $version_id, $contentType);
+        $request = $this->baseDiscardDocumentDraftRequest($node_id, $version_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1353,20 +1353,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDiscardDocumentDraftAsync
+     * Operation baseDiscardDocumentDraftAsync
      *
      * Discard Document Draft
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDiscardDocumentDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDiscardDocumentDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseDiscardDocumentDraftAsync($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseDiscardDocumentDraft'][0])
+    public function baseDiscardDocumentDraftAsync($node_id, $version_id, string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0])
     {
-        return $this->knowledgeBaseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)
+        return $this->baseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1375,21 +1375,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseDiscardDocumentDraftAsyncWithHttpInfo
+     * Operation baseDiscardDocumentDraftAsyncWithHttpInfo
      *
      * Discard Document Draft
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDiscardDocumentDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDiscardDocumentDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseDiscardDocumentDraft'][0])
+    public function baseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0])
     {
         $returnType = '';
-        $request = $this->knowledgeBaseDiscardDocumentDraftRequest($node_id, $version_id, $contentType);
+        $request = $this->baseDiscardDocumentDraftRequest($node_id, $version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1423,29 +1423,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseDiscardDocumentDraft'
+     * Create request for operation 'baseDiscardDocumentDraft'
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseDiscardDocumentDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseDiscardDocumentDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseDiscardDocumentDraftRequest($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseDiscardDocumentDraft'][0])
+    public function baseDiscardDocumentDraftRequest($node_id, $version_id, string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseDiscardDocumentDraft'
+                'Missing the required parameter $node_id when calling baseDiscardDocumentDraft'
             );
         }
 
         // verify the required parameter 'version_id' is set
         if ($version_id === null || (is_array($version_id) && count($version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $version_id when calling knowledgeBaseDiscardDocumentDraft'
+                'Missing the required parameter $version_id when calling baseDiscardDocumentDraft'
             );
         }
 
@@ -1539,38 +1539,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetDocument
+     * Operation baseGetDocument
      *
      * Get Document
      *
      * @param  int $node_id node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocument'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocument'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema
      */
-    public function knowledgeBaseGetDocument($node_id, string $contentType = self::contentTypes['knowledgeBaseGetDocument'][0])
+    public function baseGetDocument($node_id, string $contentType = self::contentTypes['baseGetDocument'][0])
     {
-        list($response) = $this->knowledgeBaseGetDocumentWithHttpInfo($node_id, $contentType);
+        list($response) = $this->baseGetDocumentWithHttpInfo($node_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentWithHttpInfo
+     * Operation baseGetDocumentWithHttpInfo
      *
      * Get Document
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocument'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocument'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseGetDocumentWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseGetDocument'][0])
+    public function baseGetDocumentWithHttpInfo($node_id, string $contentType = self::contentTypes['baseGetDocument'][0])
     {
-        $request = $this->knowledgeBaseGetDocumentRequest($node_id, $contentType);
+        $request = $this->baseGetDocumentRequest($node_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1643,19 +1643,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentAsync
+     * Operation baseGetDocumentAsync
      *
      * Get Document
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocument'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocument'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetDocumentAsync($node_id, string $contentType = self::contentTypes['knowledgeBaseGetDocument'][0])
+    public function baseGetDocumentAsync($node_id, string $contentType = self::contentTypes['baseGetDocument'][0])
     {
-        return $this->knowledgeBaseGetDocumentAsyncWithHttpInfo($node_id, $contentType)
+        return $this->baseGetDocumentAsyncWithHttpInfo($node_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1664,20 +1664,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentAsyncWithHttpInfo
+     * Operation baseGetDocumentAsyncWithHttpInfo
      *
      * Get Document
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocument'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocument'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetDocumentAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseGetDocument'][0])
+    public function baseGetDocumentAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['baseGetDocument'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema';
-        $request = $this->knowledgeBaseGetDocumentRequest($node_id, $contentType);
+        $request = $this->baseGetDocumentRequest($node_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1724,21 +1724,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseGetDocument'
+     * Create request for operation 'baseGetDocument'
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocument'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocument'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseGetDocumentRequest($node_id, string $contentType = self::contentTypes['knowledgeBaseGetDocument'][0])
+    public function baseGetDocumentRequest($node_id, string $contentType = self::contentTypes['baseGetDocument'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseGetDocument'
+                'Missing the required parameter $node_id when calling baseGetDocument'
             );
         }
 
@@ -1824,40 +1824,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentVersion
+     * Operation baseGetDocumentVersion
      *
      * Get Document Version
      *
      * @param  int $node_id node_id (required)
      * @param  int $version_id version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocumentVersion'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema
      */
-    public function knowledgeBaseGetDocumentVersion($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseGetDocumentVersion'][0])
+    public function baseGetDocumentVersion($node_id, $version_id, string $contentType = self::contentTypes['baseGetDocumentVersion'][0])
     {
-        list($response) = $this->knowledgeBaseGetDocumentVersionWithHttpInfo($node_id, $version_id, $contentType);
+        list($response) = $this->baseGetDocumentVersionWithHttpInfo($node_id, $version_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentVersionWithHttpInfo
+     * Operation baseGetDocumentVersionWithHttpInfo
      *
      * Get Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocumentVersion'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseGetDocumentVersionWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseGetDocumentVersion'][0])
+    public function baseGetDocumentVersionWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseGetDocumentVersion'][0])
     {
-        $request = $this->knowledgeBaseGetDocumentVersionRequest($node_id, $version_id, $contentType);
+        $request = $this->baseGetDocumentVersionRequest($node_id, $version_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1930,20 +1930,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentVersionAsync
+     * Operation baseGetDocumentVersionAsync
      *
      * Get Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetDocumentVersionAsync($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseGetDocumentVersion'][0])
+    public function baseGetDocumentVersionAsync($node_id, $version_id, string $contentType = self::contentTypes['baseGetDocumentVersion'][0])
     {
-        return $this->knowledgeBaseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
+        return $this->baseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1952,21 +1952,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetDocumentVersionAsyncWithHttpInfo
+     * Operation baseGetDocumentVersionAsyncWithHttpInfo
      *
      * Get Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseGetDocumentVersion'][0])
+    public function baseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseGetDocumentVersion'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
-        $request = $this->knowledgeBaseGetDocumentVersionRequest($node_id, $version_id, $contentType);
+        $request = $this->baseGetDocumentVersionRequest($node_id, $version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2013,29 +2013,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseGetDocumentVersion'
+     * Create request for operation 'baseGetDocumentVersion'
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseGetDocumentVersionRequest($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseGetDocumentVersion'][0])
+    public function baseGetDocumentVersionRequest($node_id, $version_id, string $contentType = self::contentTypes['baseGetDocumentVersion'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseGetDocumentVersion'
+                'Missing the required parameter $node_id when calling baseGetDocumentVersion'
             );
         }
 
         // verify the required parameter 'version_id' is set
         if ($version_id === null || (is_array($version_id) && count($version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $version_id when calling knowledgeBaseGetDocumentVersion'
+                'Missing the required parameter $version_id when calling baseGetDocumentVersion'
             );
         }
 
@@ -2129,42 +2129,42 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetKnowledgeDocumentAttachmentContent
+     * Operation baseGetKnowledgeDocumentAttachmentContent
      *
      * Get Knowledge Document Attachment Content
      *
      * @param  int $node_id node_id (required)
      * @param  string $attachment_id attachment_id (required)
      * @param  string $token Signed token from the attachment&#39;s &#x60;url&#x60;. It names the attachment, document and organisation, and expires. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public function knowledgeBaseGetKnowledgeDocumentAttachmentContent($node_id, $attachment_id, $token, string $contentType = self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'][0])
+    public function baseGetKnowledgeDocumentAttachmentContent($node_id, $attachment_id, $token, string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0])
     {
-        list($response) = $this->knowledgeBaseGetKnowledgeDocumentAttachmentContentWithHttpInfo($node_id, $attachment_id, $token, $contentType);
+        list($response) = $this->baseGetKnowledgeDocumentAttachmentContentWithHttpInfo($node_id, $attachment_id, $token, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseGetKnowledgeDocumentAttachmentContentWithHttpInfo
+     * Operation baseGetKnowledgeDocumentAttachmentContentWithHttpInfo
      *
      * Get Knowledge Document Attachment Content
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
      * @param  string $token Signed token from the attachment&#39;s &#x60;url&#x60;. It names the attachment, document and organisation, and expires. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseGetKnowledgeDocumentAttachmentContentWithHttpInfo($node_id, $attachment_id, $token, string $contentType = self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'][0])
+    public function baseGetKnowledgeDocumentAttachmentContentWithHttpInfo($node_id, $attachment_id, $token, string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0])
     {
-        $request = $this->knowledgeBaseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, $contentType);
+        $request = $this->baseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2237,21 +2237,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetKnowledgeDocumentAttachmentContentAsync
+     * Operation baseGetKnowledgeDocumentAttachmentContentAsync
      *
      * Get Knowledge Document Attachment Content
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
      * @param  string $token Signed token from the attachment&#39;s &#x60;url&#x60;. It names the attachment, document and organisation, and expires. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetKnowledgeDocumentAttachmentContentAsync($node_id, $attachment_id, $token, string $contentType = self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'][0])
+    public function baseGetKnowledgeDocumentAttachmentContentAsync($node_id, $attachment_id, $token, string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0])
     {
-        return $this->knowledgeBaseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, $contentType)
+        return $this->baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2260,22 +2260,22 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo
+     * Operation baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo
      *
      * Get Knowledge Document Attachment Content
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
      * @param  string $token Signed token from the attachment&#39;s &#x60;url&#x60;. It names the attachment, document and organisation, and expires. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, string $contentType = self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'][0])
+    public function baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0])
     {
         $returnType = 'mixed';
-        $request = $this->knowledgeBaseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, $contentType);
+        $request = $this->baseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2322,37 +2322,37 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseGetKnowledgeDocumentAttachmentContent'
+     * Create request for operation 'baseGetKnowledgeDocumentAttachmentContent'
      *
      * @param  int $node_id (required)
      * @param  string $attachment_id (required)
      * @param  string $token Signed token from the attachment&#39;s &#x60;url&#x60;. It names the attachment, document and organisation, and expires. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, string $contentType = self::contentTypes['knowledgeBaseGetKnowledgeDocumentAttachmentContent'][0])
+    public function baseGetKnowledgeDocumentAttachmentContentRequest($node_id, $attachment_id, $token, string $contentType = self::contentTypes['baseGetKnowledgeDocumentAttachmentContent'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseGetKnowledgeDocumentAttachmentContent'
+                'Missing the required parameter $node_id when calling baseGetKnowledgeDocumentAttachmentContent'
             );
         }
 
         // verify the required parameter 'attachment_id' is set
         if ($attachment_id === null || (is_array($attachment_id) && count($attachment_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $attachment_id when calling knowledgeBaseGetKnowledgeDocumentAttachmentContent'
+                'Missing the required parameter $attachment_id when calling baseGetKnowledgeDocumentAttachmentContent'
             );
         }
 
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token when calling knowledgeBaseGetKnowledgeDocumentAttachmentContent'
+                'Missing the required parameter $token when calling baseGetKnowledgeDocumentAttachmentContent'
             );
         }
 
@@ -2451,38 +2451,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetNode
+     * Operation baseGetNode
      *
      * Get Node
      *
      * @param  int $node_id node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema
      */
-    public function knowledgeBaseGetNode($node_id, string $contentType = self::contentTypes['knowledgeBaseGetNode'][0])
+    public function baseGetNode($node_id, string $contentType = self::contentTypes['baseGetNode'][0])
     {
-        list($response) = $this->knowledgeBaseGetNodeWithHttpInfo($node_id, $contentType);
+        list($response) = $this->baseGetNodeWithHttpInfo($node_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseGetNodeWithHttpInfo
+     * Operation baseGetNodeWithHttpInfo
      *
      * Get Node
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseGetNodeWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseGetNode'][0])
+    public function baseGetNodeWithHttpInfo($node_id, string $contentType = self::contentTypes['baseGetNode'][0])
     {
-        $request = $this->knowledgeBaseGetNodeRequest($node_id, $contentType);
+        $request = $this->baseGetNodeRequest($node_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2555,19 +2555,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetNodeAsync
+     * Operation baseGetNodeAsync
      *
      * Get Node
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetNodeAsync($node_id, string $contentType = self::contentTypes['knowledgeBaseGetNode'][0])
+    public function baseGetNodeAsync($node_id, string $contentType = self::contentTypes['baseGetNode'][0])
     {
-        return $this->knowledgeBaseGetNodeAsyncWithHttpInfo($node_id, $contentType)
+        return $this->baseGetNodeAsyncWithHttpInfo($node_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2576,20 +2576,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetNodeAsyncWithHttpInfo
+     * Operation baseGetNodeAsyncWithHttpInfo
      *
      * Get Node
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetNodeAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseGetNode'][0])
+    public function baseGetNodeAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['baseGetNode'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
-        $request = $this->knowledgeBaseGetNodeRequest($node_id, $contentType);
+        $request = $this->baseGetNodeRequest($node_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2636,21 +2636,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseGetNode'
+     * Create request for operation 'baseGetNode'
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseGetNodeRequest($node_id, string $contentType = self::contentTypes['knowledgeBaseGetNode'][0])
+    public function baseGetNodeRequest($node_id, string $contentType = self::contentTypes['baseGetNode'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseGetNode'
+                'Missing the required parameter $node_id when calling baseGetNode'
             );
         }
 
@@ -2736,40 +2736,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetOverview
+     * Operation baseGetOverview
      *
      * Get Overview
      *
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeBaseOverviewResponseSchema
      */
-    public function knowledgeBaseGetOverview($group = null, $daterange = null, string $contentType = self::contentTypes['knowledgeBaseGetOverview'][0])
+    public function baseGetOverview($group = null, $daterange = null, string $contentType = self::contentTypes['baseGetOverview'][0])
     {
-        list($response) = $this->knowledgeBaseGetOverviewWithHttpInfo($group, $daterange, $contentType);
+        list($response) = $this->baseGetOverviewWithHttpInfo($group, $daterange, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseGetOverviewWithHttpInfo
+     * Operation baseGetOverviewWithHttpInfo
      *
      * Get Overview
      *
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeBaseOverviewResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseGetOverviewWithHttpInfo($group = null, $daterange = null, string $contentType = self::contentTypes['knowledgeBaseGetOverview'][0])
+    public function baseGetOverviewWithHttpInfo($group = null, $daterange = null, string $contentType = self::contentTypes['baseGetOverview'][0])
     {
-        $request = $this->knowledgeBaseGetOverviewRequest($group, $daterange, $contentType);
+        $request = $this->baseGetOverviewRequest($group, $daterange, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2842,20 +2842,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetOverviewAsync
+     * Operation baseGetOverviewAsync
      *
      * Get Overview
      *
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetOverviewAsync($group = null, $daterange = null, string $contentType = self::contentTypes['knowledgeBaseGetOverview'][0])
+    public function baseGetOverviewAsync($group = null, $daterange = null, string $contentType = self::contentTypes['baseGetOverview'][0])
     {
-        return $this->knowledgeBaseGetOverviewAsyncWithHttpInfo($group, $daterange, $contentType)
+        return $this->baseGetOverviewAsyncWithHttpInfo($group, $daterange, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2864,21 +2864,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseGetOverviewAsyncWithHttpInfo
+     * Operation baseGetOverviewAsyncWithHttpInfo
      *
      * Get Overview
      *
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseGetOverviewAsyncWithHttpInfo($group = null, $daterange = null, string $contentType = self::contentTypes['knowledgeBaseGetOverview'][0])
+    public function baseGetOverviewAsyncWithHttpInfo($group = null, $daterange = null, string $contentType = self::contentTypes['baseGetOverview'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeBaseOverviewResponseSchema';
-        $request = $this->knowledgeBaseGetOverviewRequest($group, $daterange, $contentType);
+        $request = $this->baseGetOverviewRequest($group, $daterange, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2925,16 +2925,16 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseGetOverview'
+     * Create request for operation 'baseGetOverview'
      *
      * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseGetOverview'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseGetOverviewRequest($group = null, $daterange = null, string $contentType = self::contentTypes['knowledgeBaseGetOverview'][0])
+    public function baseGetOverviewRequest($group = null, $daterange = null, string $contentType = self::contentTypes['baseGetOverview'][0])
     {
 
 
@@ -3031,42 +3031,42 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListAgentsUsingKnowledgeNode
+     * Operation baseListAgentsUsingKnowledgeNode
      *
      * List Agents Using Knowledge Node
      *
      * @param  int $node_id node_id (required)
      * @param  int|null $skip skip (optional, default to 0)
      * @param  int|null $limit limit (optional, default to 100)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\AgentsUsingKnowledgeNodeListResponseSchema
      */
-    public function knowledgeBaseListAgentsUsingKnowledgeNode($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'][0])
+    public function baseListAgentsUsingKnowledgeNode($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0])
     {
-        list($response) = $this->knowledgeBaseListAgentsUsingKnowledgeNodeWithHttpInfo($node_id, $skip, $limit, $contentType);
+        list($response) = $this->baseListAgentsUsingKnowledgeNodeWithHttpInfo($node_id, $skip, $limit, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseListAgentsUsingKnowledgeNodeWithHttpInfo
+     * Operation baseListAgentsUsingKnowledgeNodeWithHttpInfo
      *
      * List Agents Using Knowledge Node
      *
      * @param  int $node_id (required)
      * @param  int|null $skip (optional, default to 0)
      * @param  int|null $limit (optional, default to 100)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\AgentsUsingKnowledgeNodeListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseListAgentsUsingKnowledgeNodeWithHttpInfo($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'][0])
+    public function baseListAgentsUsingKnowledgeNodeWithHttpInfo($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0])
     {
-        $request = $this->knowledgeBaseListAgentsUsingKnowledgeNodeRequest($node_id, $skip, $limit, $contentType);
+        $request = $this->baseListAgentsUsingKnowledgeNodeRequest($node_id, $skip, $limit, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3139,21 +3139,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListAgentsUsingKnowledgeNodeAsync
+     * Operation baseListAgentsUsingKnowledgeNodeAsync
      *
      * List Agents Using Knowledge Node
      *
      * @param  int $node_id (required)
      * @param  int|null $skip (optional, default to 0)
      * @param  int|null $limit (optional, default to 100)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListAgentsUsingKnowledgeNodeAsync($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'][0])
+    public function baseListAgentsUsingKnowledgeNodeAsync($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0])
     {
-        return $this->knowledgeBaseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip, $limit, $contentType)
+        return $this->baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip, $limit, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3162,22 +3162,22 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo
+     * Operation baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo
      *
      * List Agents Using Knowledge Node
      *
      * @param  int $node_id (required)
      * @param  int|null $skip (optional, default to 0)
      * @param  int|null $limit (optional, default to 100)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'][0])
+    public function baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\AgentsUsingKnowledgeNodeListResponseSchema';
-        $request = $this->knowledgeBaseListAgentsUsingKnowledgeNodeRequest($node_id, $skip, $limit, $contentType);
+        $request = $this->baseListAgentsUsingKnowledgeNodeRequest($node_id, $skip, $limit, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3224,35 +3224,35 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseListAgentsUsingKnowledgeNode'
+     * Create request for operation 'baseListAgentsUsingKnowledgeNode'
      *
      * @param  int $node_id (required)
      * @param  int|null $skip (optional, default to 0)
      * @param  int|null $limit (optional, default to 100)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListAgentsUsingKnowledgeNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseListAgentsUsingKnowledgeNodeRequest($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['knowledgeBaseListAgentsUsingKnowledgeNode'][0])
+    public function baseListAgentsUsingKnowledgeNodeRequest($node_id, $skip = 0, $limit = 100, string $contentType = self::contentTypes['baseListAgentsUsingKnowledgeNode'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseListAgentsUsingKnowledgeNode'
+                'Missing the required parameter $node_id when calling baseListAgentsUsingKnowledgeNode'
             );
         }
 
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling KnowledgeBaseApi.knowledgeBaseListAgentsUsingKnowledgeNode, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling KnowledgeBaseApi.baseListAgentsUsingKnowledgeNode, must be bigger than or equal to 0.');
         }
         
         if ($limit !== null && $limit > 500) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.knowledgeBaseListAgentsUsingKnowledgeNode, must be smaller than or equal to 500.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.baseListAgentsUsingKnowledgeNode, must be smaller than or equal to 500.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.knowledgeBaseListAgentsUsingKnowledgeNode, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.baseListAgentsUsingKnowledgeNode, must be bigger than or equal to 1.');
         }
         
 
@@ -3355,38 +3355,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListDocumentVersions
+     * Operation baseListDocumentVersions
      *
      * List Document Versions
      *
      * @param  int $node_id node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListDocumentVersions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListDocumentVersions'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionListResponseSchema
      */
-    public function knowledgeBaseListDocumentVersions($node_id, string $contentType = self::contentTypes['knowledgeBaseListDocumentVersions'][0])
+    public function baseListDocumentVersions($node_id, string $contentType = self::contentTypes['baseListDocumentVersions'][0])
     {
-        list($response) = $this->knowledgeBaseListDocumentVersionsWithHttpInfo($node_id, $contentType);
+        list($response) = $this->baseListDocumentVersionsWithHttpInfo($node_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseListDocumentVersionsWithHttpInfo
+     * Operation baseListDocumentVersionsWithHttpInfo
      *
      * List Document Versions
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListDocumentVersions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListDocumentVersions'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseListDocumentVersionsWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseListDocumentVersions'][0])
+    public function baseListDocumentVersionsWithHttpInfo($node_id, string $contentType = self::contentTypes['baseListDocumentVersions'][0])
     {
-        $request = $this->knowledgeBaseListDocumentVersionsRequest($node_id, $contentType);
+        $request = $this->baseListDocumentVersionsRequest($node_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3459,19 +3459,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListDocumentVersionsAsync
+     * Operation baseListDocumentVersionsAsync
      *
      * List Document Versions
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListDocumentVersions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListDocumentVersions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListDocumentVersionsAsync($node_id, string $contentType = self::contentTypes['knowledgeBaseListDocumentVersions'][0])
+    public function baseListDocumentVersionsAsync($node_id, string $contentType = self::contentTypes['baseListDocumentVersions'][0])
     {
-        return $this->knowledgeBaseListDocumentVersionsAsyncWithHttpInfo($node_id, $contentType)
+        return $this->baseListDocumentVersionsAsyncWithHttpInfo($node_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3480,20 +3480,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListDocumentVersionsAsyncWithHttpInfo
+     * Operation baseListDocumentVersionsAsyncWithHttpInfo
      *
      * List Document Versions
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListDocumentVersions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListDocumentVersions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListDocumentVersionsAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseListDocumentVersions'][0])
+    public function baseListDocumentVersionsAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['baseListDocumentVersions'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionListResponseSchema';
-        $request = $this->knowledgeBaseListDocumentVersionsRequest($node_id, $contentType);
+        $request = $this->baseListDocumentVersionsRequest($node_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3540,21 +3540,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseListDocumentVersions'
+     * Create request for operation 'baseListDocumentVersions'
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListDocumentVersions'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListDocumentVersions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseListDocumentVersionsRequest($node_id, string $contentType = self::contentTypes['knowledgeBaseListDocumentVersions'][0])
+    public function baseListDocumentVersionsRequest($node_id, string $contentType = self::contentTypes['baseListDocumentVersions'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseListDocumentVersions'
+                'Missing the required parameter $node_id when calling baseListDocumentVersions'
             );
         }
 
@@ -3640,38 +3640,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListKnowledgeDocumentAttachments
+     * Operation baseListKnowledgeDocumentAttachments
      *
      * List Knowledge Document Attachments
      *
      * @param  int $node_id node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListKnowledgeDocumentAttachments'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentListResponseSchema
      */
-    public function knowledgeBaseListKnowledgeDocumentAttachments($node_id, string $contentType = self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'][0])
+    public function baseListKnowledgeDocumentAttachments($node_id, string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0])
     {
-        list($response) = $this->knowledgeBaseListKnowledgeDocumentAttachmentsWithHttpInfo($node_id, $contentType);
+        list($response) = $this->baseListKnowledgeDocumentAttachmentsWithHttpInfo($node_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseListKnowledgeDocumentAttachmentsWithHttpInfo
+     * Operation baseListKnowledgeDocumentAttachmentsWithHttpInfo
      *
      * List Knowledge Document Attachments
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListKnowledgeDocumentAttachments'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseListKnowledgeDocumentAttachmentsWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'][0])
+    public function baseListKnowledgeDocumentAttachmentsWithHttpInfo($node_id, string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0])
     {
-        $request = $this->knowledgeBaseListKnowledgeDocumentAttachmentsRequest($node_id, $contentType);
+        $request = $this->baseListKnowledgeDocumentAttachmentsRequest($node_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3744,19 +3744,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListKnowledgeDocumentAttachmentsAsync
+     * Operation baseListKnowledgeDocumentAttachmentsAsync
      *
      * List Knowledge Document Attachments
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListKnowledgeDocumentAttachments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListKnowledgeDocumentAttachmentsAsync($node_id, string $contentType = self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'][0])
+    public function baseListKnowledgeDocumentAttachmentsAsync($node_id, string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0])
     {
-        return $this->knowledgeBaseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, $contentType)
+        return $this->baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3765,20 +3765,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo
+     * Operation baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo
      *
      * List Knowledge Document Attachments
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListKnowledgeDocumentAttachments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'][0])
+    public function baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentListResponseSchema';
-        $request = $this->knowledgeBaseListKnowledgeDocumentAttachmentsRequest($node_id, $contentType);
+        $request = $this->baseListKnowledgeDocumentAttachmentsRequest($node_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3825,21 +3825,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseListKnowledgeDocumentAttachments'
+     * Create request for operation 'baseListKnowledgeDocumentAttachments'
      *
      * @param  int $node_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListKnowledgeDocumentAttachments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseListKnowledgeDocumentAttachmentsRequest($node_id, string $contentType = self::contentTypes['knowledgeBaseListKnowledgeDocumentAttachments'][0])
+    public function baseListKnowledgeDocumentAttachmentsRequest($node_id, string $contentType = self::contentTypes['baseListKnowledgeDocumentAttachments'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseListKnowledgeDocumentAttachments'
+                'Missing the required parameter $node_id when calling baseListKnowledgeDocumentAttachments'
             );
         }
 
@@ -3925,38 +3925,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListMostCitedDocuments
+     * Operation baseListMostCitedDocuments
      *
      * List Most Cited Documents
      *
      * @param  int|null $limit Maximum number of documents to return, most-cited first. (optional, default to 10)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListMostCitedDocuments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListMostCitedDocuments'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema
      */
-    public function knowledgeBaseListMostCitedDocuments($limit = 10, string $contentType = self::contentTypes['knowledgeBaseListMostCitedDocuments'][0])
+    public function baseListMostCitedDocuments($limit = 10, string $contentType = self::contentTypes['baseListMostCitedDocuments'][0])
     {
-        list($response) = $this->knowledgeBaseListMostCitedDocumentsWithHttpInfo($limit, $contentType);
+        list($response) = $this->baseListMostCitedDocumentsWithHttpInfo($limit, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseListMostCitedDocumentsWithHttpInfo
+     * Operation baseListMostCitedDocumentsWithHttpInfo
      *
      * List Most Cited Documents
      *
      * @param  int|null $limit Maximum number of documents to return, most-cited first. (optional, default to 10)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListMostCitedDocuments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListMostCitedDocuments'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseListMostCitedDocumentsWithHttpInfo($limit = 10, string $contentType = self::contentTypes['knowledgeBaseListMostCitedDocuments'][0])
+    public function baseListMostCitedDocumentsWithHttpInfo($limit = 10, string $contentType = self::contentTypes['baseListMostCitedDocuments'][0])
     {
-        $request = $this->knowledgeBaseListMostCitedDocumentsRequest($limit, $contentType);
+        $request = $this->baseListMostCitedDocumentsRequest($limit, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4029,19 +4029,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListMostCitedDocumentsAsync
+     * Operation baseListMostCitedDocumentsAsync
      *
      * List Most Cited Documents
      *
      * @param  int|null $limit Maximum number of documents to return, most-cited first. (optional, default to 10)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListMostCitedDocuments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListMostCitedDocuments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListMostCitedDocumentsAsync($limit = 10, string $contentType = self::contentTypes['knowledgeBaseListMostCitedDocuments'][0])
+    public function baseListMostCitedDocumentsAsync($limit = 10, string $contentType = self::contentTypes['baseListMostCitedDocuments'][0])
     {
-        return $this->knowledgeBaseListMostCitedDocumentsAsyncWithHttpInfo($limit, $contentType)
+        return $this->baseListMostCitedDocumentsAsyncWithHttpInfo($limit, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4050,20 +4050,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListMostCitedDocumentsAsyncWithHttpInfo
+     * Operation baseListMostCitedDocumentsAsyncWithHttpInfo
      *
      * List Most Cited Documents
      *
      * @param  int|null $limit Maximum number of documents to return, most-cited first. (optional, default to 10)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListMostCitedDocuments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListMostCitedDocuments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListMostCitedDocumentsAsyncWithHttpInfo($limit = 10, string $contentType = self::contentTypes['knowledgeBaseListMostCitedDocuments'][0])
+    public function baseListMostCitedDocumentsAsyncWithHttpInfo($limit = 10, string $contentType = self::contentTypes['baseListMostCitedDocuments'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema';
-        $request = $this->knowledgeBaseListMostCitedDocumentsRequest($limit, $contentType);
+        $request = $this->baseListMostCitedDocumentsRequest($limit, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4110,22 +4110,22 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseListMostCitedDocuments'
+     * Create request for operation 'baseListMostCitedDocuments'
      *
      * @param  int|null $limit Maximum number of documents to return, most-cited first. (optional, default to 10)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListMostCitedDocuments'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListMostCitedDocuments'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseListMostCitedDocumentsRequest($limit = 10, string $contentType = self::contentTypes['knowledgeBaseListMostCitedDocuments'][0])
+    public function baseListMostCitedDocumentsRequest($limit = 10, string $contentType = self::contentTypes['baseListMostCitedDocuments'][0])
     {
 
         if ($limit !== null && $limit > 100) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.knowledgeBaseListMostCitedDocuments, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.baseListMostCitedDocuments, must be smaller than or equal to 100.');
         }
         if ($limit !== null && $limit < 1) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.knowledgeBaseListMostCitedDocuments, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling KnowledgeBaseApi.baseListMostCitedDocuments, must be bigger than or equal to 1.');
         }
         
 
@@ -4211,7 +4211,7 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListNodeTree
+     * Operation baseListNodeTree
      *
      * List Node Tree
      *
@@ -4219,20 +4219,20 @@ class KnowledgeBaseApi
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodeTree'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeTreeResponseSchema[]
      */
-    public function knowledgeBaseListNodeTree($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['knowledgeBaseListNodeTree'][0])
+    public function baseListNodeTree($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['baseListNodeTree'][0])
     {
-        list($response) = $this->knowledgeBaseListNodeTreeWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType);
+        list($response) = $this->baseListNodeTreeWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseListNodeTreeWithHttpInfo
+     * Operation baseListNodeTreeWithHttpInfo
      *
      * List Node Tree
      *
@@ -4240,15 +4240,15 @@ class KnowledgeBaseApi
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodeTree'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeTreeResponseSchema[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseListNodeTreeWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['knowledgeBaseListNodeTree'][0])
+    public function baseListNodeTreeWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['baseListNodeTree'][0])
     {
-        $request = $this->knowledgeBaseListNodeTreeRequest($sort_by, $sort_order, $root_id, $search, $contentType);
+        $request = $this->baseListNodeTreeRequest($sort_by, $sort_order, $root_id, $search, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4321,7 +4321,7 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListNodeTreeAsync
+     * Operation baseListNodeTreeAsync
      *
      * List Node Tree
      *
@@ -4329,14 +4329,14 @@ class KnowledgeBaseApi
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodeTree'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListNodeTreeAsync($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['knowledgeBaseListNodeTree'][0])
+    public function baseListNodeTreeAsync($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['baseListNodeTree'][0])
     {
-        return $this->knowledgeBaseListNodeTreeAsyncWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType)
+        return $this->baseListNodeTreeAsyncWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4345,7 +4345,7 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListNodeTreeAsyncWithHttpInfo
+     * Operation baseListNodeTreeAsyncWithHttpInfo
      *
      * List Node Tree
      *
@@ -4353,15 +4353,15 @@ class KnowledgeBaseApi
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodeTree'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListNodeTreeAsyncWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['knowledgeBaseListNodeTree'][0])
+    public function baseListNodeTreeAsyncWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['baseListNodeTree'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeTreeResponseSchema[]';
-        $request = $this->knowledgeBaseListNodeTreeRequest($sort_by, $sort_order, $root_id, $search, $contentType);
+        $request = $this->baseListNodeTreeRequest($sort_by, $sort_order, $root_id, $search, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4408,31 +4408,31 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseListNodeTree'
+     * Create request for operation 'baseListNodeTree'
      *
      * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodeTree'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseListNodeTreeRequest($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['knowledgeBaseListNodeTree'][0])
+    public function baseListNodeTreeRequest($sort_by = 'name', $sort_order = 'asc', $root_id = null, $search = null, string $contentType = self::contentTypes['baseListNodeTree'][0])
     {
 
 
 
         if ($root_id !== null && $root_id < 1) {
-            throw new \InvalidArgumentException('invalid value for "$root_id" when calling KnowledgeBaseApi.knowledgeBaseListNodeTree, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$root_id" when calling KnowledgeBaseApi.baseListNodeTree, must be bigger than or equal to 1.');
         }
         
         if ($search !== null && strlen($search) > 255) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling KnowledgeBaseApi.knowledgeBaseListNodeTree, must be smaller than or equal to 255.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling KnowledgeBaseApi.baseListNodeTree, must be smaller than or equal to 255.');
         }
         if ($search !== null && strlen($search) < 3) {
-            throw new \InvalidArgumentException('invalid length for "$search" when calling KnowledgeBaseApi.knowledgeBaseListNodeTree, must be bigger than or equal to 3.');
+            throw new \InvalidArgumentException('invalid length for "$search" when calling KnowledgeBaseApi.baseListNodeTree, must be bigger than or equal to 3.');
         }
         
 
@@ -4545,42 +4545,42 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListNodes
+     * Operation baseListNodes
      *
      * List Nodes
      *
      * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema
      */
-    public function knowledgeBaseListNodes($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['knowledgeBaseListNodes'][0])
+    public function baseListNodes($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['baseListNodes'][0])
     {
-        list($response) = $this->knowledgeBaseListNodesWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType);
+        list($response) = $this->baseListNodesWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseListNodesWithHttpInfo
+     * Operation baseListNodesWithHttpInfo
      *
      * List Nodes
      *
      * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseListNodesWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['knowledgeBaseListNodes'][0])
+    public function baseListNodesWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['baseListNodes'][0])
     {
-        $request = $this->knowledgeBaseListNodesRequest($sort_by, $sort_order, $parent_id, $contentType);
+        $request = $this->baseListNodesRequest($sort_by, $sort_order, $parent_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4653,21 +4653,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListNodesAsync
+     * Operation baseListNodesAsync
      *
      * List Nodes
      *
      * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListNodesAsync($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['knowledgeBaseListNodes'][0])
+    public function baseListNodesAsync($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['baseListNodes'][0])
     {
-        return $this->knowledgeBaseListNodesAsyncWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType)
+        return $this->baseListNodesAsyncWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4676,22 +4676,22 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseListNodesAsyncWithHttpInfo
+     * Operation baseListNodesAsyncWithHttpInfo
      *
      * List Nodes
      *
      * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseListNodesAsyncWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['knowledgeBaseListNodes'][0])
+    public function baseListNodesAsyncWithHttpInfo($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['baseListNodes'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema';
-        $request = $this->knowledgeBaseListNodesRequest($sort_by, $sort_order, $parent_id, $contentType);
+        $request = $this->baseListNodesRequest($sort_by, $sort_order, $parent_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4738,23 +4738,23 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseListNodes'
+     * Create request for operation 'baseListNodes'
      *
      * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
      * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseListNodes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseListNodesRequest($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['knowledgeBaseListNodes'][0])
+    public function baseListNodesRequest($sort_by = 'name', $sort_order = 'asc', $parent_id = null, string $contentType = self::contentTypes['baseListNodes'][0])
     {
 
 
 
         if ($parent_id !== null && $parent_id < 1) {
-            throw new \InvalidArgumentException('invalid value for "$parent_id" when calling KnowledgeBaseApi.knowledgeBaseListNodes, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid value for "$parent_id" when calling KnowledgeBaseApi.baseListNodes, must be bigger than or equal to 1.');
         }
         
 
@@ -4858,40 +4858,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseMoveNode
+     * Operation baseMoveNode
      *
      * Move Node
      *
      * @param  int $node_id node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\MoveNodePayloadSchema $move_node_payload_schema move_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseMoveNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseMoveNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema
      */
-    public function knowledgeBaseMoveNode($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseMoveNode'][0])
+    public function baseMoveNode($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['baseMoveNode'][0])
     {
-        list($response) = $this->knowledgeBaseMoveNodeWithHttpInfo($node_id, $move_node_payload_schema, $contentType);
+        list($response) = $this->baseMoveNodeWithHttpInfo($node_id, $move_node_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseMoveNodeWithHttpInfo
+     * Operation baseMoveNodeWithHttpInfo
      *
      * Move Node
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\MoveNodePayloadSchema $move_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseMoveNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseMoveNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseMoveNodeWithHttpInfo($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseMoveNode'][0])
+    public function baseMoveNodeWithHttpInfo($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['baseMoveNode'][0])
     {
-        $request = $this->knowledgeBaseMoveNodeRequest($node_id, $move_node_payload_schema, $contentType);
+        $request = $this->baseMoveNodeRequest($node_id, $move_node_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4964,20 +4964,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseMoveNodeAsync
+     * Operation baseMoveNodeAsync
      *
      * Move Node
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\MoveNodePayloadSchema $move_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseMoveNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseMoveNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseMoveNodeAsync($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseMoveNode'][0])
+    public function baseMoveNodeAsync($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['baseMoveNode'][0])
     {
-        return $this->knowledgeBaseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, $contentType)
+        return $this->baseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4986,21 +4986,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseMoveNodeAsyncWithHttpInfo
+     * Operation baseMoveNodeAsyncWithHttpInfo
      *
      * Move Node
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\MoveNodePayloadSchema $move_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseMoveNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseMoveNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseMoveNode'][0])
+    public function baseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['baseMoveNode'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
-        $request = $this->knowledgeBaseMoveNodeRequest($node_id, $move_node_payload_schema, $contentType);
+        $request = $this->baseMoveNodeRequest($node_id, $move_node_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5047,29 +5047,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseMoveNode'
+     * Create request for operation 'baseMoveNode'
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\MoveNodePayloadSchema $move_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseMoveNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseMoveNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseMoveNodeRequest($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseMoveNode'][0])
+    public function baseMoveNodeRequest($node_id, $move_node_payload_schema, string $contentType = self::contentTypes['baseMoveNode'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseMoveNode'
+                'Missing the required parameter $node_id when calling baseMoveNode'
             );
         }
 
         // verify the required parameter 'move_node_payload_schema' is set
         if ($move_node_payload_schema === null || (is_array($move_node_payload_schema) && count($move_node_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $move_node_payload_schema when calling knowledgeBaseMoveNode'
+                'Missing the required parameter $move_node_payload_schema when calling baseMoveNode'
             );
         }
 
@@ -5166,40 +5166,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBasePublishDocumentVersion
+     * Operation basePublishDocumentVersion
      *
      * Publish Document Version
      *
      * @param  int $node_id node_id (required)
      * @param  int $version_id version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBasePublishDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['basePublishDocumentVersion'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema
      */
-    public function knowledgeBasePublishDocumentVersion($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBasePublishDocumentVersion'][0])
+    public function basePublishDocumentVersion($node_id, $version_id, string $contentType = self::contentTypes['basePublishDocumentVersion'][0])
     {
-        list($response) = $this->knowledgeBasePublishDocumentVersionWithHttpInfo($node_id, $version_id, $contentType);
+        list($response) = $this->basePublishDocumentVersionWithHttpInfo($node_id, $version_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBasePublishDocumentVersionWithHttpInfo
+     * Operation basePublishDocumentVersionWithHttpInfo
      *
      * Publish Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBasePublishDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['basePublishDocumentVersion'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBasePublishDocumentVersionWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBasePublishDocumentVersion'][0])
+    public function basePublishDocumentVersionWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['basePublishDocumentVersion'][0])
     {
-        $request = $this->knowledgeBasePublishDocumentVersionRequest($node_id, $version_id, $contentType);
+        $request = $this->basePublishDocumentVersionRequest($node_id, $version_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5272,20 +5272,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBasePublishDocumentVersionAsync
+     * Operation basePublishDocumentVersionAsync
      *
      * Publish Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBasePublishDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['basePublishDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBasePublishDocumentVersionAsync($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBasePublishDocumentVersion'][0])
+    public function basePublishDocumentVersionAsync($node_id, $version_id, string $contentType = self::contentTypes['basePublishDocumentVersion'][0])
     {
-        return $this->knowledgeBasePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
+        return $this->basePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5294,21 +5294,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBasePublishDocumentVersionAsyncWithHttpInfo
+     * Operation basePublishDocumentVersionAsyncWithHttpInfo
      *
      * Publish Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBasePublishDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['basePublishDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBasePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBasePublishDocumentVersion'][0])
+    public function basePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['basePublishDocumentVersion'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
-        $request = $this->knowledgeBasePublishDocumentVersionRequest($node_id, $version_id, $contentType);
+        $request = $this->basePublishDocumentVersionRequest($node_id, $version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5355,29 +5355,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBasePublishDocumentVersion'
+     * Create request for operation 'basePublishDocumentVersion'
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBasePublishDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['basePublishDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBasePublishDocumentVersionRequest($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBasePublishDocumentVersion'][0])
+    public function basePublishDocumentVersionRequest($node_id, $version_id, string $contentType = self::contentTypes['basePublishDocumentVersion'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBasePublishDocumentVersion'
+                'Missing the required parameter $node_id when calling basePublishDocumentVersion'
             );
         }
 
         // verify the required parameter 'version_id' is set
         if ($version_id === null || (is_array($version_id) && count($version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $version_id when calling knowledgeBasePublishDocumentVersion'
+                'Missing the required parameter $version_id when calling basePublishDocumentVersion'
             );
         }
 
@@ -5471,40 +5471,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseRestoreDocumentVersionAsDraft
+     * Operation baseRestoreDocumentVersionAsDraft
      *
      * Restore Document Version As Draft
      *
      * @param  int $node_id node_id (required)
      * @param  int $version_id version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema
      */
-    public function knowledgeBaseRestoreDocumentVersionAsDraft($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'][0])
+    public function baseRestoreDocumentVersionAsDraft($node_id, $version_id, string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0])
     {
-        list($response) = $this->knowledgeBaseRestoreDocumentVersionAsDraftWithHttpInfo($node_id, $version_id, $contentType);
+        list($response) = $this->baseRestoreDocumentVersionAsDraftWithHttpInfo($node_id, $version_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseRestoreDocumentVersionAsDraftWithHttpInfo
+     * Operation baseRestoreDocumentVersionAsDraftWithHttpInfo
      *
      * Restore Document Version As Draft
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseRestoreDocumentVersionAsDraftWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'][0])
+    public function baseRestoreDocumentVersionAsDraftWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0])
     {
-        $request = $this->knowledgeBaseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, $contentType);
+        $request = $this->baseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5577,20 +5577,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseRestoreDocumentVersionAsDraftAsync
+     * Operation baseRestoreDocumentVersionAsDraftAsync
      *
      * Restore Document Version As Draft
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseRestoreDocumentVersionAsDraftAsync($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'][0])
+    public function baseRestoreDocumentVersionAsDraftAsync($node_id, $version_id, string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0])
     {
-        return $this->knowledgeBaseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)
+        return $this->baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5599,21 +5599,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseRestoreDocumentVersionAsDraftAsyncWithHttpInfo
+     * Operation baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo
      *
      * Restore Document Version As Draft
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'][0])
+    public function baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
-        $request = $this->knowledgeBaseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, $contentType);
+        $request = $this->baseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5660,29 +5660,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseRestoreDocumentVersionAsDraft'
+     * Create request for operation 'baseRestoreDocumentVersionAsDraft'
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRestoreDocumentVersionAsDraft'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRestoreDocumentVersionAsDraft'][0])
+    public function baseRestoreDocumentVersionAsDraftRequest($node_id, $version_id, string $contentType = self::contentTypes['baseRestoreDocumentVersionAsDraft'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseRestoreDocumentVersionAsDraft'
+                'Missing the required parameter $node_id when calling baseRestoreDocumentVersionAsDraft'
             );
         }
 
         // verify the required parameter 'version_id' is set
         if ($version_id === null || (is_array($version_id) && count($version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $version_id when calling knowledgeBaseRestoreDocumentVersionAsDraft'
+                'Missing the required parameter $version_id when calling baseRestoreDocumentVersionAsDraft'
             );
         }
 
@@ -5776,40 +5776,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseRollbackDocumentVersion
+     * Operation baseRollbackDocumentVersion
      *
      * Rollback Document Version
      *
      * @param  int $node_id node_id (required)
      * @param  int $version_id version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRollbackDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRollbackDocumentVersion'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema
      */
-    public function knowledgeBaseRollbackDocumentVersion($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRollbackDocumentVersion'][0])
+    public function baseRollbackDocumentVersion($node_id, $version_id, string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0])
     {
-        list($response) = $this->knowledgeBaseRollbackDocumentVersionWithHttpInfo($node_id, $version_id, $contentType);
+        list($response) = $this->baseRollbackDocumentVersionWithHttpInfo($node_id, $version_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseRollbackDocumentVersionWithHttpInfo
+     * Operation baseRollbackDocumentVersionWithHttpInfo
      *
      * Rollback Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRollbackDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRollbackDocumentVersion'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseRollbackDocumentVersionWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRollbackDocumentVersion'][0])
+    public function baseRollbackDocumentVersionWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0])
     {
-        $request = $this->knowledgeBaseRollbackDocumentVersionRequest($node_id, $version_id, $contentType);
+        $request = $this->baseRollbackDocumentVersionRequest($node_id, $version_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5882,20 +5882,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseRollbackDocumentVersionAsync
+     * Operation baseRollbackDocumentVersionAsync
      *
      * Rollback Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRollbackDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRollbackDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseRollbackDocumentVersionAsync($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRollbackDocumentVersion'][0])
+    public function baseRollbackDocumentVersionAsync($node_id, $version_id, string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0])
     {
-        return $this->knowledgeBaseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
+        return $this->baseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5904,21 +5904,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseRollbackDocumentVersionAsyncWithHttpInfo
+     * Operation baseRollbackDocumentVersionAsyncWithHttpInfo
      *
      * Rollback Document Version
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRollbackDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRollbackDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRollbackDocumentVersion'][0])
+    public function baseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema';
-        $request = $this->knowledgeBaseRollbackDocumentVersionRequest($node_id, $version_id, $contentType);
+        $request = $this->baseRollbackDocumentVersionRequest($node_id, $version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5965,29 +5965,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseRollbackDocumentVersion'
+     * Create request for operation 'baseRollbackDocumentVersion'
      *
      * @param  int $node_id (required)
      * @param  int $version_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseRollbackDocumentVersion'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseRollbackDocumentVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseRollbackDocumentVersionRequest($node_id, $version_id, string $contentType = self::contentTypes['knowledgeBaseRollbackDocumentVersion'][0])
+    public function baseRollbackDocumentVersionRequest($node_id, $version_id, string $contentType = self::contentTypes['baseRollbackDocumentVersion'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseRollbackDocumentVersion'
+                'Missing the required parameter $node_id when calling baseRollbackDocumentVersion'
             );
         }
 
         // verify the required parameter 'version_id' is set
         if ($version_id === null || (is_array($version_id) && count($version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $version_id when calling knowledgeBaseRollbackDocumentVersion'
+                'Missing the required parameter $version_id when calling baseRollbackDocumentVersion'
             );
         }
 
@@ -6081,38 +6081,38 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseSuggestDocumentTitle
+     * Operation baseSuggestDocumentTitle
      *
      * Suggest Document Title
      *
      * @param  \Ibexa\AgentPlatform\Model\SuggestDocumentTitlePayloadSchema $suggest_document_title_payload_schema suggest_document_title_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseSuggestDocumentTitle'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseSuggestDocumentTitle'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\SuggestDocumentTitleResponseSchema
      */
-    public function knowledgeBaseSuggestDocumentTitle($suggest_document_title_payload_schema, string $contentType = self::contentTypes['knowledgeBaseSuggestDocumentTitle'][0])
+    public function baseSuggestDocumentTitle($suggest_document_title_payload_schema, string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0])
     {
-        list($response) = $this->knowledgeBaseSuggestDocumentTitleWithHttpInfo($suggest_document_title_payload_schema, $contentType);
+        list($response) = $this->baseSuggestDocumentTitleWithHttpInfo($suggest_document_title_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseSuggestDocumentTitleWithHttpInfo
+     * Operation baseSuggestDocumentTitleWithHttpInfo
      *
      * Suggest Document Title
      *
      * @param  \Ibexa\AgentPlatform\Model\SuggestDocumentTitlePayloadSchema $suggest_document_title_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseSuggestDocumentTitle'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseSuggestDocumentTitle'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\SuggestDocumentTitleResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseSuggestDocumentTitleWithHttpInfo($suggest_document_title_payload_schema, string $contentType = self::contentTypes['knowledgeBaseSuggestDocumentTitle'][0])
+    public function baseSuggestDocumentTitleWithHttpInfo($suggest_document_title_payload_schema, string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0])
     {
-        $request = $this->knowledgeBaseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, $contentType);
+        $request = $this->baseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6185,19 +6185,19 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseSuggestDocumentTitleAsync
+     * Operation baseSuggestDocumentTitleAsync
      *
      * Suggest Document Title
      *
      * @param  \Ibexa\AgentPlatform\Model\SuggestDocumentTitlePayloadSchema $suggest_document_title_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseSuggestDocumentTitle'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseSuggestDocumentTitle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseSuggestDocumentTitleAsync($suggest_document_title_payload_schema, string $contentType = self::contentTypes['knowledgeBaseSuggestDocumentTitle'][0])
+    public function baseSuggestDocumentTitleAsync($suggest_document_title_payload_schema, string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0])
     {
-        return $this->knowledgeBaseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, $contentType)
+        return $this->baseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6206,20 +6206,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseSuggestDocumentTitleAsyncWithHttpInfo
+     * Operation baseSuggestDocumentTitleAsyncWithHttpInfo
      *
      * Suggest Document Title
      *
      * @param  \Ibexa\AgentPlatform\Model\SuggestDocumentTitlePayloadSchema $suggest_document_title_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseSuggestDocumentTitle'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseSuggestDocumentTitle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, string $contentType = self::contentTypes['knowledgeBaseSuggestDocumentTitle'][0])
+    public function baseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\SuggestDocumentTitleResponseSchema';
-        $request = $this->knowledgeBaseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, $contentType);
+        $request = $this->baseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6266,21 +6266,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseSuggestDocumentTitle'
+     * Create request for operation 'baseSuggestDocumentTitle'
      *
      * @param  \Ibexa\AgentPlatform\Model\SuggestDocumentTitlePayloadSchema $suggest_document_title_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseSuggestDocumentTitle'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseSuggestDocumentTitle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, string $contentType = self::contentTypes['knowledgeBaseSuggestDocumentTitle'][0])
+    public function baseSuggestDocumentTitleRequest($suggest_document_title_payload_schema, string $contentType = self::contentTypes['baseSuggestDocumentTitle'][0])
     {
 
         // verify the required parameter 'suggest_document_title_payload_schema' is set
         if ($suggest_document_title_payload_schema === null || (is_array($suggest_document_title_payload_schema) && count($suggest_document_title_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $suggest_document_title_payload_schema when calling knowledgeBaseSuggestDocumentTitle'
+                'Missing the required parameter $suggest_document_title_payload_schema when calling baseSuggestDocumentTitle'
             );
         }
 
@@ -6369,40 +6369,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUpdateDocumentContent
+     * Operation baseUpdateDocumentContent
      *
      * Update Document Content
      *
      * @param  int $node_id node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateDocumentContentPayloadSchema $update_document_content_payload_schema update_document_content_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateDocumentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateDocumentContent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema
      */
-    public function knowledgeBaseUpdateDocumentContent($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateDocumentContent'][0])
+    public function baseUpdateDocumentContent($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['baseUpdateDocumentContent'][0])
     {
-        list($response) = $this->knowledgeBaseUpdateDocumentContentWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType);
+        list($response) = $this->baseUpdateDocumentContentWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseUpdateDocumentContentWithHttpInfo
+     * Operation baseUpdateDocumentContentWithHttpInfo
      *
      * Update Document Content
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateDocumentContentPayloadSchema $update_document_content_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateDocumentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateDocumentContent'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseUpdateDocumentContentWithHttpInfo($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateDocumentContent'][0])
+    public function baseUpdateDocumentContentWithHttpInfo($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['baseUpdateDocumentContent'][0])
     {
-        $request = $this->knowledgeBaseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, $contentType);
+        $request = $this->baseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6475,20 +6475,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUpdateDocumentContentAsync
+     * Operation baseUpdateDocumentContentAsync
      *
      * Update Document Content
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateDocumentContentPayloadSchema $update_document_content_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateDocumentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateDocumentContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseUpdateDocumentContentAsync($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateDocumentContent'][0])
+    public function baseUpdateDocumentContentAsync($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['baseUpdateDocumentContent'][0])
     {
-        return $this->knowledgeBaseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType)
+        return $this->baseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6497,21 +6497,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUpdateDocumentContentAsyncWithHttpInfo
+     * Operation baseUpdateDocumentContentAsyncWithHttpInfo
      *
      * Update Document Content
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateDocumentContentPayloadSchema $update_document_content_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateDocumentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateDocumentContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateDocumentContent'][0])
+    public function baseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['baseUpdateDocumentContent'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema';
-        $request = $this->knowledgeBaseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, $contentType);
+        $request = $this->baseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6558,29 +6558,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseUpdateDocumentContent'
+     * Create request for operation 'baseUpdateDocumentContent'
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateDocumentContentPayloadSchema $update_document_content_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateDocumentContent'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateDocumentContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateDocumentContent'][0])
+    public function baseUpdateDocumentContentRequest($node_id, $update_document_content_payload_schema, string $contentType = self::contentTypes['baseUpdateDocumentContent'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseUpdateDocumentContent'
+                'Missing the required parameter $node_id when calling baseUpdateDocumentContent'
             );
         }
 
         // verify the required parameter 'update_document_content_payload_schema' is set
         if ($update_document_content_payload_schema === null || (is_array($update_document_content_payload_schema) && count($update_document_content_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_document_content_payload_schema when calling knowledgeBaseUpdateDocumentContent'
+                'Missing the required parameter $update_document_content_payload_schema when calling baseUpdateDocumentContent'
             );
         }
 
@@ -6677,40 +6677,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUpdateNode
+     * Operation baseUpdateNode
      *
      * Update Node
      *
      * @param  int $node_id node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateNodePayloadSchema $update_node_payload_schema update_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema
      */
-    public function knowledgeBaseUpdateNode($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateNode'][0])
+    public function baseUpdateNode($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['baseUpdateNode'][0])
     {
-        list($response) = $this->knowledgeBaseUpdateNodeWithHttpInfo($node_id, $update_node_payload_schema, $contentType);
+        list($response) = $this->baseUpdateNodeWithHttpInfo($node_id, $update_node_payload_schema, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseUpdateNodeWithHttpInfo
+     * Operation baseUpdateNodeWithHttpInfo
      *
      * Update Node
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateNodePayloadSchema $update_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateNode'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseUpdateNodeWithHttpInfo($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateNode'][0])
+    public function baseUpdateNodeWithHttpInfo($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['baseUpdateNode'][0])
     {
-        $request = $this->knowledgeBaseUpdateNodeRequest($node_id, $update_node_payload_schema, $contentType);
+        $request = $this->baseUpdateNodeRequest($node_id, $update_node_payload_schema, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6783,20 +6783,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUpdateNodeAsync
+     * Operation baseUpdateNodeAsync
      *
      * Update Node
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateNodePayloadSchema $update_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseUpdateNodeAsync($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateNode'][0])
+    public function baseUpdateNodeAsync($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['baseUpdateNode'][0])
     {
-        return $this->knowledgeBaseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, $contentType)
+        return $this->baseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6805,21 +6805,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUpdateNodeAsyncWithHttpInfo
+     * Operation baseUpdateNodeAsyncWithHttpInfo
      *
      * Update Node
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateNodePayloadSchema $update_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateNode'][0])
+    public function baseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['baseUpdateNode'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema';
-        $request = $this->knowledgeBaseUpdateNodeRequest($node_id, $update_node_payload_schema, $contentType);
+        $request = $this->baseUpdateNodeRequest($node_id, $update_node_payload_schema, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6866,29 +6866,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseUpdateNode'
+     * Create request for operation 'baseUpdateNode'
      *
      * @param  int $node_id (required)
      * @param  \Ibexa\AgentPlatform\Model\UpdateNodePayloadSchema $update_node_payload_schema (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUpdateNode'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUpdateNode'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseUpdateNodeRequest($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['knowledgeBaseUpdateNode'][0])
+    public function baseUpdateNodeRequest($node_id, $update_node_payload_schema, string $contentType = self::contentTypes['baseUpdateNode'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseUpdateNode'
+                'Missing the required parameter $node_id when calling baseUpdateNode'
             );
         }
 
         // verify the required parameter 'update_node_payload_schema' is set
         if ($update_node_payload_schema === null || (is_array($update_node_payload_schema) && count($update_node_payload_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_node_payload_schema when calling knowledgeBaseUpdateNode'
+                'Missing the required parameter $update_node_payload_schema when calling baseUpdateNode'
             );
         }
 
@@ -6985,40 +6985,40 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUploadKnowledgeDocumentAttachment
+     * Operation baseUploadKnowledgeDocumentAttachment
      *
      * Upload Knowledge Document Attachment
      *
      * @param  int $node_id node_id (required)
      * @param  \SplFileObject $file file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentResponseSchema
      */
-    public function knowledgeBaseUploadKnowledgeDocumentAttachment($node_id, $file, string $contentType = self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'][0])
+    public function baseUploadKnowledgeDocumentAttachment($node_id, $file, string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0])
     {
-        list($response) = $this->knowledgeBaseUploadKnowledgeDocumentAttachmentWithHttpInfo($node_id, $file, $contentType);
+        list($response) = $this->baseUploadKnowledgeDocumentAttachmentWithHttpInfo($node_id, $file, $contentType);
         return $response;
     }
 
     /**
-     * Operation knowledgeBaseUploadKnowledgeDocumentAttachmentWithHttpInfo
+     * Operation baseUploadKnowledgeDocumentAttachmentWithHttpInfo
      *
      * Upload Knowledge Document Attachment
      *
      * @param  int $node_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \Ibexa\AgentPlatform\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentResponseSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function knowledgeBaseUploadKnowledgeDocumentAttachmentWithHttpInfo($node_id, $file, string $contentType = self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'][0])
+    public function baseUploadKnowledgeDocumentAttachmentWithHttpInfo($node_id, $file, string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0])
     {
-        $request = $this->knowledgeBaseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, $contentType);
+        $request = $this->baseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7091,20 +7091,20 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUploadKnowledgeDocumentAttachmentAsync
+     * Operation baseUploadKnowledgeDocumentAttachmentAsync
      *
      * Upload Knowledge Document Attachment
      *
      * @param  int $node_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseUploadKnowledgeDocumentAttachmentAsync($node_id, $file, string $contentType = self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'][0])
+    public function baseUploadKnowledgeDocumentAttachmentAsync($node_id, $file, string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0])
     {
-        return $this->knowledgeBaseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, $contentType)
+        return $this->baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7113,21 +7113,21 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Operation knowledgeBaseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo
+     * Operation baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo
      *
      * Upload Knowledge Document Attachment
      *
      * @param  int $node_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function knowledgeBaseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, string $contentType = self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'][0])
+    public function baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0])
     {
         $returnType = '\Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentResponseSchema';
-        $request = $this->knowledgeBaseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, $contentType);
+        $request = $this->baseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7174,29 +7174,29 @@ class KnowledgeBaseApi
     }
 
     /**
-     * Create request for operation 'knowledgeBaseUploadKnowledgeDocumentAttachment'
+     * Create request for operation 'baseUploadKnowledgeDocumentAttachment'
      *
      * @param  int $node_id (required)
      * @param  \SplFileObject $file (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseUploadKnowledgeDocumentAttachment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function knowledgeBaseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, string $contentType = self::contentTypes['knowledgeBaseUploadKnowledgeDocumentAttachment'][0])
+    public function baseUploadKnowledgeDocumentAttachmentRequest($node_id, $file, string $contentType = self::contentTypes['baseUploadKnowledgeDocumentAttachment'][0])
     {
 
         // verify the required parameter 'node_id' is set
         if ($node_id === null || (is_array($node_id) && count($node_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $node_id when calling knowledgeBaseUploadKnowledgeDocumentAttachment'
+                'Missing the required parameter $node_id when calling baseUploadKnowledgeDocumentAttachment'
             );
         }
 
         // verify the required parameter 'file' is set
         if ($file === null || (is_array($file) && count($file) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling knowledgeBaseUploadKnowledgeDocumentAttachment'
+                'Missing the required parameter $file when calling baseUploadKnowledgeDocumentAttachment'
             );
         }
 

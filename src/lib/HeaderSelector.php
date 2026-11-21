@@ -211,14 +211,14 @@ class HeaderSelector
 
     /**
      * @param array[] $headers
-     * @param float   $currentWeight
+     * @param int     $currentWeight
      * @param bool    $hasMoreThan28Headers
      *
      * @return string[] array of adjusted "Accept" headers
      */
     private function adjustWeight(
         array $headers,
-        float &$currentWeight,
+        int &$currentWeight,
         bool $hasMoreThan28Headers
     ): array {
         usort($headers, static function (
@@ -296,6 +296,6 @@ class HeaderSelector
             return $currentWeight - 1;
         }
 
-        return $currentWeight - 10 ** floor(log10($currentWeight - 1));
+        return $currentWeight - 10 ** (int) floor(log10($currentWeight - 1));
     }
 }

@@ -83,6 +83,8 @@ return `static` from setters. Scalar and collection getters remain nullable
 because a model can be constructed before required values are populated.
 The model metadata method is `getOpenAPIModelName()`; `getModelName()` is
 reserved for a schema field of that name.
+The `HeaderSelector` template override keeps Accept-header quality weights
+integer-valued for strict PHP type checking.
 
 ## COPYRIGHT
 

@@ -1,4 +1,4 @@
-# Ibexa Agent Platform API
+# Ibexa Agentic Marketing Platform API
 
 For installation, authentication, usage examples, API overview, and architecture,
 see the [PHP developer guide](docs/README.md).

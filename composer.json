@@ -1,6 +1,6 @@
 {
     "name": "ibexa/agent-platform-api",
-    "description": "PHP client for the Ibexa Agent Platform API",
+    "description": "PHP client for the Ibexa Agentic Marketing Platform REST API",
     "license": "(GPL-2.0-only or proprietary)",
     "type": "library",
     "authors": [

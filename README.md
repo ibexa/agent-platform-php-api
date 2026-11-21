@@ -59,10 +59,10 @@ if (!$username || !$password) {
 
 $config = (new Configuration())->setHost('https://api.ibexa.ai');
 $httpClient = new Client();
-$tokens = (new LoginApi($httpClient, $config))->loginLogin($username, $password);
+$tokens = (new LoginApi($httpClient, $config))->login($username, $password);
 $config->setAccessToken($tokens->getAccessToken());
 
-$agents = (new AgentsApi($httpClient, $config))->agentsListAgents();
+$agents = (new AgentsApi($httpClient, $config))->listAgents();
 foreach ($agents->getAgents() as $agent) {
     echo $agent->getId() . ': ' . $agent->getName() . PHP_EOL;
 }

@@ -8,7 +8,8 @@ see the [PHP developer guide](docs/README.md).
 ### Requirements
 
 PHP 8.3–8.x with the `curl`, `json`, and `mbstring` extensions, and Composer.
-The generated clients use Guzzle for synchronous and asynchronous requests.
+The generated clients use Symfony HttpClient. PSR-7 request construction
+uses `guzzlehttp/psr7`; the Guzzle HTTP client is not required.
 
 ### Composer
 
@@ -43,10 +44,10 @@ Set the environment variables `AGENT_PLATFORM_USERNAME` and
 
 require __DIR__ . '/vendor/autoload.php';
 
-use GuzzleHttp\Client;
 use Ibexa\AgentPlatform\Client\AgentsApi;
 use Ibexa\AgentPlatform\Client\LoginApi;
 use Ibexa\AgentPlatform\Configuration;
+use Symfony\Component\HttpClient\HttpClient;
 
 $username = getenv('AGENT_PLATFORM_USERNAME');
 $password = getenv('AGENT_PLATFORM_PASSWORD');
@@ -55,7 +56,7 @@ if (!$username || !$password) {
 }
 
 $config = (new Configuration())->setHost('https://api.ibexa.ai');
-$httpClient = new Client();
+$httpClient = HttpClient::create();
 $tokens = (new LoginApi($httpClient, $config))->login($username, $password);
 $config->setAccessToken($tokens->getAccessToken());
 
@@ -69,12 +70,56 @@ Replace the host with your deployment's origin, without `/api/v1`. See the
 [developer guide](docs/README.md) for token refresh, error handling, and more
 examples.
 
+## Asynchronous requests and streaming
+
+Async methods start a request and return an `AsyncResult`. Call `wait()` to
+obtain the same model as the synchronous method; `*AsyncWithHttpInfo()->wait()`
+returns `[$model, $statusCode, $headers]`. Multiple requests can be started
+before waiting. Results and exceptions are cached on repeated calls to `wait()`.
+
+```php
+use Ibexa\AgentPlatform\Client\AgentsApi;
+
+$agentsApi = new AgentsApi($httpClient, $config);
+$pending = $agentsApi->listAgentsAsync();
+$agents = $pending->wait();
+```
+
+Streaming operations expose generated `*StreamEvents()` methods that yield
+`ServerSentEventSchema` objects:
+
+```php
+use Ibexa\AgentPlatform\Client\ExecutionsApi;
+$executions = new ExecutionsApi($httpClient, $config);
+foreach ($executions->attachExecutionStreamEvents(42) as $event) {
+    echo $event->getEvent() . ': ' . $event->getData() . PHP_EOL;
+}
+```
+
+`MessagesApi` also provides `attachMessageStreamEvents()` and
+`sendMessageStreamEvents()`. The event model exposes `getData()`, `getEvent()`,
+`getId()` and `getRetry()`; retry is in milliseconds. Symfony defaults missing
+event types to `message`, missing IDs to an empty string, and missing retry to
+zero. The data is a string; decode it separately if the application expects JSON.
+
+Automatic reconnection and redirects are disabled, including for POST streams.
+For attachment streams, callers can explicitly reconnect with the last event ID.
+Release the iterator when stopping early to cancel the response. HTTP and network
+errors raise `ApiException`. The older generated stream convenience methods do
+not return stream data. `StreamClient::stream()` remains available for raw bytes.
+
+This migration changes constructor injection from Guzzle to Symfony's
+`HttpClientInterface` and replaces Guzzle promises with `AsyncResult`; `then()`
+and other Guzzle promise APIs are no longer available.
+
 ## Regenerating the client
 
 The client is generated from the checked-in `generator/openapi.json` snapshot
 using OpenAPI Generator 7.27.0 and the overrides in `generator/templates`.
-Install Docker, then run `./update.sh` from any directory. Update the snapshot
-deliberately when adopting API changes; the script does not fetch the live API.
+Install Composer dependencies and Docker, then run `./update.sh` from any
+directory. The preprocessing step derives a shared event schema and marks SSE
+operations before generation; it fails if their item schemas differ. Update the
+snapshot deliberately when adopting API changes; the script does not fetch the live API.
 The snapshot contains streaming response `itemSchema` fields which the
 generator's validator does not recognize, so generation skips validation.
 

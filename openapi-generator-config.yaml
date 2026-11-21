@@ -1,5 +1,5 @@
 generatorName: php
-inputSpec: /local/generator/openapi.json
+inputSpec: /spec/openapi.json
 outputDir: /local/src
 skipValidateSpec: true
 
@@ -17,6 +17,8 @@ globalProperties:
   skipFormModel: false
 
 additionalProperties:
+  # The upstream PHP generator requires a library selection; api.mustache
+  # overrides its Guzzle transport with Symfony HttpClient.
   library: guzzle
   srcBasePath: lib
   composerPackageName: ibexa/agent-platform-api

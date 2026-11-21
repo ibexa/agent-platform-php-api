@@ -8,11 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\AgentPlatform;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Response;
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\Client\AgentsApi;
 use Ibexa\AgentPlatform\Configuration;
@@ -25,6 +20,8 @@ use Ibexa\AgentPlatform\Model\ModelReference;
 use Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\MockHttpClient;
+use Symfony\Component\HttpClient\Response\MockResponse;
 
 final class GeneratedClientTest extends TestCase
 {
@@ -119,29 +116,27 @@ final class GeneratedClientTest extends TestCase
 
     public function testRequestAuthenticationAndResponse(): void
     {
-        $requests = [];
-        $stack = HandlerStack::create(new MockHandler([
-            new Response(200, ['Content-Type' => 'application/json'], '{"agents":[],"total_count":0}'),
-        ]));
-        $stack->push(Middleware::history($requests));
+        $request = new MockResponse('{"agents":[],"total_count":0}', [
+            'response_headers' => ['Content-Type' => 'application/json'],
+        ]);
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('token');
-        $client = new AgentsApi(new Client(['handler' => $stack]), $config);
+        $client = new AgentsApi(new MockHttpClient($request), $config);
 
         $response = $client->listAgents(5, 10);
 
         self::assertSame([], $response->getAgents());
         self::assertSame(0, $response->getTotalCount());
-        self::assertSame('Bearer token', $requests[0]['request']->getHeaderLine('Authorization'));
-        self::assertSame('/api/v1/agents/', $requests[0]['request']->getUri()->getPath());
-        self::assertSame('skip=5&limit=10', $requests[0]['request']->getUri()->getQuery());
+        self::assertContains('Authorization: Bearer token', $request->getRequestOptions()['headers']);
+        self::assertSame('https://example.test/api/v1/agents/?skip=5&limit=10', $request->getRequestUrl());
     }
 
     public function testHttpErrorIsReported(): void
     {
-        $stack = HandlerStack::create(new MockHandler([
-            new Response(403, ['Content-Type' => 'application/json'], '{"detail":"Forbidden"}'),
-        ]));
-        $client = new AgentsApi(new Client(['handler' => $stack]));
+        $response = new MockResponse('{"detail":"Forbidden"}', [
+            'http_code' => 403,
+            'response_headers' => ['Content-Type' => 'application/json'],
+        ]);
+        $client = new AgentsApi(new MockHttpClient($response));
 
         try {
             $client->listAgents();
@@ -154,10 +149,7 @@ final class GeneratedClientTest extends TestCase
 
     public function testAsyncResponse(): void
     {
-        $stack = HandlerStack::create(new MockHandler([
-            new Response(200, ['Content-Type' => 'application/json'], '{"agents":[],"total_count":0}'),
-        ]));
-        $client = new AgentsApi(new Client(['handler' => $stack]));
+        $client = new AgentsApi(new MockHttpClient(new MockResponse('{"agents":[],"total_count":0}')));
 
         $response = $client->listAgentsAsync()->wait();
 

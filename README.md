@@ -132,6 +132,10 @@ The model metadata method is `getOpenAPIModelName()`; `getModelName()` is
 reserved for a schema field of that name.
 The `HeaderSelector` template override keeps Accept-header quality weights
 integer-valued for strict PHP type checking.
+The supporting `ApiException`, `Configuration`, and `ObjectSerializer`
+templates also provide native type hints. Configuration setters enforce their
+documented argument types; serializer values that can hold different kinds of
+data remain `mixed`.
 
 ## Tests and coverage
 

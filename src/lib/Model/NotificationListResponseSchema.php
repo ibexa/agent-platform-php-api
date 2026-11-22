@@ -144,16 +144,6 @@ class NotificationListResponseSchema implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -285,7 +275,6 @@ class NotificationListResponseSchema implements ModelInterface, ArrayAccess, \Js
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -372,7 +361,7 @@ class NotificationListResponseSchema implements ModelInterface, ArrayAccess, \Js
             $index = array_search('next_before_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['next_before_id'] = $next_before_id;

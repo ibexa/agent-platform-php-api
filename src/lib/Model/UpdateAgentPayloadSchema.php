@@ -201,16 +201,6 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -418,7 +408,6 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -697,7 +686,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $description && (mb_strlen($description) > 1000)) {
@@ -735,7 +724,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('language_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['language_model_provider_id'] = $language_model_provider_id;
@@ -769,7 +758,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['model_id'] = $model_id;
@@ -803,7 +792,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('input_schema', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['input_schema'] = $input_schema;
@@ -837,7 +826,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('output_schema', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['output_schema'] = $output_schema;
@@ -925,7 +914,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('eval_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['eval_config'] = $eval_config;
@@ -959,7 +948,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('graph_recursion_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $graph_recursion_limit && ($graph_recursion_limit > 100)) {
@@ -1027,7 +1016,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('agents_catalog_entry_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $agents_catalog_entry_id && ($agents_catalog_entry_id <= 0)) {
@@ -1065,7 +1054,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
             $index = array_search('impact_metric', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['impact_metric'] = $impact_metric;

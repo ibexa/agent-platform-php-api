@@ -148,16 +148,6 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -297,7 +287,6 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -384,7 +373,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
             $index = array_search('parent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['parent_id'] = $parent_id;
@@ -418,7 +407,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
             $index = array_search('name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['name'] = $name;
@@ -452,7 +441,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $summary && (mb_strlen($summary) > 2000)) {

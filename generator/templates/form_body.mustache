@@ -1,4 +1,5 @@
-if ($multipart) {
+{{^isMultipart}}if ($multipart) {
+{{/isMultipart}}
     $multipartContents = [];
     foreach ($formParams as $formParamName => $formParamValue) {
         $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
@@ -12,7 +13,7 @@ if ($multipart) {
     // for HTTP post (form)
     $httpBody = new MultipartStream($multipartContents);
 
-} elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+{{^isMultipart}}} elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
     # if Content-Type contains "application/json", json_encode the form parameters
     try {
         $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
@@ -23,3 +24,4 @@ if ($multipart) {
     // for HTTP post (form)
     $httpBody = ObjectSerializer::buildQuery($formParams);
 }
+{{/isMultipart}}

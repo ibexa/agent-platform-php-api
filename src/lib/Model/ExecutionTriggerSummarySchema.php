@@ -153,16 +153,6 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -306,7 +296,6 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -372,7 +361,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
             $index = array_search('id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['id'] = $id;
@@ -406,7 +395,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
             $index = array_search('definition_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['definition_id'] = $definition_id;
@@ -467,7 +456,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
             $index = array_search('label', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['label'] = $label;
@@ -501,7 +490,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['description'] = $description;

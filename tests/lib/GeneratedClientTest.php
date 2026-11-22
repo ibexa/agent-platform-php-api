@@ -23,6 +23,7 @@ use Ibexa\AgentPlatform\Model\ModelReference;
 use Ibexa\AgentPlatform\Model\ModelShortlistResponseSchema;
 use Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
+use Ibexa\AgentPlatform\ResponseStatus;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
@@ -59,6 +60,22 @@ final class GeneratedClientTest extends TestCase
         self::assertSame([-1, 1], $feedback->getFeedbackRateAllowableValues());
         self::assertSame($feedback, $feedback->setFeedbackRate(-1));
         self::assertSame(-1, $feedback->getFeedbackRate());
+    }
+
+    public function testResponseStatusRangeBoundaries(): void
+    {
+        self::assertTrue(ResponseStatus::withinRange('2XX', 200));
+        self::assertTrue(ResponseStatus::withinRange('2XX', 299));
+        self::assertFalse(ResponseStatus::withinRange('2XX', 199));
+        self::assertFalse(ResponseStatus::withinRange('2XX', 300));
+    }
+
+    public function testRequiredPathParameterIsStillValidated(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Missing the required parameter $agent_id');
+
+        (new AgentsApi())->deleteAgentRequest(null);
     }
 
     public function testGeneratedAccessorTypesMatchSerializerTypes(): void

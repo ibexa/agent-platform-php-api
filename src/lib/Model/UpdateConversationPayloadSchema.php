@@ -144,16 +144,6 @@ class UpdateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -285,7 +275,6 @@ class UpdateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -342,7 +331,7 @@ class UpdateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('subject', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $subject && (mb_strlen($subject) > 255)) {
@@ -380,7 +369,7 @@ class UpdateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('context', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['context'] = $context;

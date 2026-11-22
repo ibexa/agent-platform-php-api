@@ -210,16 +210,6 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -439,7 +429,6 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -673,7 +662,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('duration', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['duration'] = $duration;
@@ -707,7 +696,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('trigger', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['trigger'] = $trigger;
@@ -741,7 +730,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_by'] = $created_by;
@@ -775,7 +764,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('updated_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_by'] = $updated_by;
@@ -809,7 +798,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('conversation_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['conversation_id'] = $conversation_id;
@@ -843,7 +832,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('result', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['result'] = $result;
@@ -904,7 +893,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('started_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['started_at'] = $started_at;
@@ -938,7 +927,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('finished_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['finished_at'] = $finished_at;
@@ -972,7 +961,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -1006,7 +995,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;
@@ -1040,7 +1029,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('usage', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['usage'] = $usage;
@@ -1074,7 +1063,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('credits', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['credits'] = $credits;
@@ -1108,7 +1097,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('language_model', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['language_model'] = $language_model;
@@ -1250,7 +1239,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['summary'] = $summary;

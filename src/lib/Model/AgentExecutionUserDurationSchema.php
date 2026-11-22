@@ -147,16 +147,6 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -292,7 +282,6 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -352,7 +341,7 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
             $index = array_search('user_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['user_id'] = $user_id;
@@ -413,7 +402,7 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
             $index = array_search('average_duration_seconds', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['average_duration_seconds'] = $average_duration_seconds;

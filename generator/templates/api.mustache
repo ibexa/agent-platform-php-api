@@ -30,6 +30,7 @@ use {{invokerPackage}}\FormDataProcessor;
 use {{invokerPackage}}\HeaderSelector;
 use {{invokerPackage}}\HttpTransport;
 use {{invokerPackage}}\ObjectSerializer;
+use {{invokerPackage}}\ResponseStatus;
 use {{invokerPackage}}\StreamClient;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -274,7 +275,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
             {{/-last}}
             {{/responses}}
 
-            {{#responses}}{{#dataType}}{{#isRange}}{{^isWildcard}}if ($this->responseWithinRangeCode('{{code}}', $statusCode)) {
+            {{#responses}}{{#dataType}}{{#isRange}}{{^isWildcard}}if (ResponseStatus::withinRange('{{code}}', $statusCode)) {
                 return $this->handleResponseWithDataType(
                     '{{{dataType}}}',
                     $request,
@@ -308,7 +309,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
         {{/responses}}
             }
         {{#responses}}{{#dataType}}{{#isRange}}{{^isWildcard}}
-            if ($this->responseWithinRangeCode('{{code}}', $e->getCode())) {
+            if (ResponseStatus::withinRange('{{code}}', $e->getCode())) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '{{{dataType}}}',
@@ -576,7 +577,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
             '{{style}}', // style
             {{#isExplode}}true{{/isExplode}}{{^isExplode}}false{{/isExplode}}, // explode
             {{required}} // required
-        ) ?? []);
+        ));
         {{/queryParams}}
 
         {{#headerParams}}
@@ -586,9 +587,11 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
             ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
         }
         {{/collectionFormat}}
-        if (${{paramName}} !== null) {
+        {{^required}}if (${{paramName}} !== null) {
+        {{/required}}
             $headerParams['{{baseName}}'] = ObjectSerializer::toHeaderValue(${{paramName}});
-        }
+        {{^required}}}
+        {{/required}}
         {{/headerParams}}
 
         {{#pathParams}}
@@ -598,13 +601,15 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
             ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
         }
         {{/collectionFormat}}
-        if (${{paramName}} !== null) {
+        {{^required}}if (${{paramName}} !== null) {
+        {{/required}}
             $resourcePath = str_replace(
                 {{=<< >>=}}'{<<baseName>>}'<<={{ }}=>>,
                 ObjectSerializer::toPathValue(${{paramName}}),
                 $resourcePath
             );
-        }
+        {{^required}}}
+        {{/required}}
         {{/pathParams}}
 
         {{#formParams}}
@@ -648,15 +653,23 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
                 $httpBody = ${{paramName}};
             }
         {{^required}}
+        {{#formParams}}
+        {{#-first}}
         } elseif (count($formParams) > 0) {
             {{>form_body}}
+        {{/-first}}
+        {{/formParams}}
         }
         {{/required}}
         {{/bodyParams}}
         {{^bodyParams}}
+        {{#formParams}}
+        {{#-first}}
         if (count($formParams) > 0) {
             {{>form_body}}
         }
+        {{/-first}}
+        {{/formParams}}
         {{/bodyParams}}
 
         {{#authMethods}}
@@ -801,14 +814,5 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
         ];
     }
 
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }
 {{/operations}}

@@ -141,16 +141,6 @@ class AgentMetricsSchema implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -278,7 +268,6 @@ class AgentMetricsSchema implements ModelInterface, ArrayAccess, \JsonSerializab
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -331,7 +320,7 @@ class AgentMetricsSchema implements ModelInterface, ArrayAccess, \JsonSerializab
             $index = array_search('success_ratio', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['success_ratio'] = $success_ratio;

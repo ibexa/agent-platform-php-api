@@ -162,16 +162,6 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -327,7 +317,6 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -456,7 +445,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('full_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['full_name'] = $full_name;
@@ -598,7 +587,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('avatar_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['avatar_url'] = $avatar_url;

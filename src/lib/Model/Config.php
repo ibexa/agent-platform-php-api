@@ -172,16 +172,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -353,7 +343,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -406,7 +395,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('hour', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['hour'] = $hour;
@@ -440,7 +429,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('minute', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['minute'] = $minute;
@@ -474,7 +463,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('day_of_week', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['day_of_week'] = $day_of_week;
@@ -508,7 +497,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('day_of_month', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['day_of_month'] = $day_of_month;
@@ -542,7 +531,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('month', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['month'] = $month;
@@ -576,7 +565,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('signature_required', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['signature_required'] = $signature_required;
@@ -610,7 +599,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('rate_limit_per_minute', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['rate_limit_per_minute'] = $rate_limit_per_minute;
@@ -644,7 +633,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('ip_allowlist', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['ip_allowlist'] = $ip_allowlist;
@@ -678,7 +667,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('signature_header_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['signature_header_name'] = $signature_header_name;
@@ -712,7 +701,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('timestamp_header_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['timestamp_header_name'] = $timestamp_header_name;
@@ -746,7 +735,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('idempotency_header_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['idempotency_header_name'] = $idempotency_header_name;
@@ -780,7 +769,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('message_filter', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['message_filter'] = $message_filter;

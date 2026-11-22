@@ -150,16 +150,6 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -299,7 +289,6 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -365,7 +354,7 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
             $index = array_search('configured_sample_size', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['configured_sample_size'] = $configured_sample_size;
@@ -399,7 +388,7 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
             $index = array_search('actual_rate', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['actual_rate'] = $actual_rate;

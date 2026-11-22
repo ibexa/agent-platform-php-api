@@ -150,16 +150,6 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -299,7 +289,6 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -389,7 +378,7 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('cost_amount', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['cost_amount'] = $cost_amount;
@@ -423,7 +412,7 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('cost_currency', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['cost_currency'] = $cost_currency;

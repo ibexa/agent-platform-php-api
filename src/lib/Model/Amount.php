@@ -138,16 +138,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -251,27 +241,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      *                      initializing the model
      */
     public function __construct(?array $data = null) {}
-
-    /**
-     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-     * $this->openAPINullablesSetToNull array.
-     *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
-     */
-    private function setIfExists(
-        string $variableName,
-        array $fields,
-        $defaultValue
-    ): void {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
 
     /**
      * Show all the invalid properties with reasons.

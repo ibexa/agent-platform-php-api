@@ -1,6 +1,7 @@
 parameters:
-    level: 3
+    level: 4
     phpVersion: 80300
+    treatPhpDocTypesAsCertain: false
     paths:
         - src/lib
         - tests

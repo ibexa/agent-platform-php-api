@@ -168,16 +168,6 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -341,7 +331,6 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -615,7 +604,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_by'] = $created_by;
@@ -649,7 +638,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $description && (mb_strlen($description) > 1000)) {

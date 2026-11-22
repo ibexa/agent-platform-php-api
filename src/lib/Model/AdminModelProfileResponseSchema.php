@@ -213,16 +213,6 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -446,7 +436,6 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -737,7 +726,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('family', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['family'] = $family;
@@ -960,7 +949,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('context_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['context_limit'] = $context_limit;
@@ -994,7 +983,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('input_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['input_limit'] = $input_limit;
@@ -1028,7 +1017,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('output_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['output_limit'] = $output_limit;
@@ -1062,7 +1051,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('knowledge', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['knowledge'] = $knowledge;
@@ -1096,7 +1085,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('release_date', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['release_date'] = $release_date;
@@ -1130,7 +1119,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('last_updated', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['last_updated'] = $last_updated;
@@ -1164,7 +1153,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -1198,7 +1187,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;
@@ -1232,7 +1221,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('comment', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['comment'] = $comment;
@@ -1266,7 +1255,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('docs_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['docs_url'] = $docs_url;
@@ -1300,7 +1289,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('current_pricing', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['current_pricing'] = $current_pricing;

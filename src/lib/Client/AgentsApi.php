@@ -34,7 +34,6 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\AsyncResult;
@@ -575,13 +574,11 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -590,32 +587,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -806,13 +777,11 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -821,32 +790,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1054,16 +997,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1072,32 +1013,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1345,7 +1260,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $group,
@@ -1354,7 +1269,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $metric_id,
@@ -1363,7 +1278,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $target_type,
@@ -1372,7 +1287,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -1381,16 +1296,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1399,32 +1312,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1652,7 +1539,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $target_type,
@@ -1661,7 +1548,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -1670,16 +1557,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1688,32 +1573,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1931,7 +1790,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -1940,16 +1799,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1958,32 +1815,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -2221,7 +2052,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $group,
@@ -2230,7 +2061,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $target_type,
@@ -2239,7 +2070,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -2248,16 +2079,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2266,32 +2095,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -2516,24 +2319,20 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
         // path params
-        if ($target_id !== null) {
-            $resourcePath = str_replace(
-                '{target_id}',
-                ObjectSerializer::toPathValue($target_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{target_id}',
+            ObjectSerializer::toPathValue($target_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2542,32 +2341,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -2775,16 +2548,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2793,32 +2564,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3043,7 +2788,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -3052,16 +2797,14 @@ class AgentsApi
             'form', // style
             true, // explode
             true // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3070,32 +2813,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3286,13 +3003,11 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3301,32 +3016,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3554,7 +3243,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $user_id,
@@ -3563,7 +3252,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -3572,16 +3261,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3590,32 +3277,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3843,7 +3504,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $group,
@@ -3852,7 +3513,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -3861,16 +3522,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3879,32 +3538,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4122,7 +3755,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -4131,16 +3764,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4149,32 +3780,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4365,13 +3970,11 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4380,32 +3983,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4596,13 +4173,11 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4611,32 +4186,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4861,21 +4410,17 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
         // path params
-        if ($server_id !== null) {
-            $resourcePath = str_replace(
-                '{server_id}',
-                ObjectSerializer::toPathValue($server_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{server_id}',
+            ObjectSerializer::toPathValue($server_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5101,21 +4646,17 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
         // path params
-        if ($sub_agent_id !== null) {
-            $resourcePath = str_replace(
-                '{sub_agent_id}',
-                ObjectSerializer::toPathValue($sub_agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{sub_agent_id}',
+            ObjectSerializer::toPathValue($sub_agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5124,32 +4665,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -5418,7 +4933,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $target_type,
@@ -5427,7 +4942,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $outcome,
@@ -5436,7 +4951,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $skip,
@@ -5445,7 +4960,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $limit,
@@ -5454,7 +4969,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -5463,16 +4978,14 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5481,32 +4994,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -5745,7 +5232,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $limit,
@@ -5754,7 +5241,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $search,
@@ -5763,7 +5250,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $status,
@@ -5772,7 +5259,7 @@ class AgentsApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5781,32 +5268,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -5981,32 +5442,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -6189,21 +5624,17 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
         // path params
-        if ($server_id !== null) {
-            $resourcePath = str_replace(
-                '{server_id}',
-                ObjectSerializer::toPathValue($server_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{server_id}',
+            ObjectSerializer::toPathValue($server_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -6212,32 +5643,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -6420,21 +5825,17 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
         // path params
-        if ($sub_agent_id !== null) {
-            $resourcePath = str_replace(
-                '{sub_agent_id}',
-                ObjectSerializer::toPathValue($sub_agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{sub_agent_id}',
+            ObjectSerializer::toPathValue($sub_agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -6443,32 +5844,6 @@ class AgentsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -6676,13 +6051,11 @@ class AgentsApi
         $multipart = false;
 
         // path params
-        if ($agent_id !== null) {
-            $resourcePath = str_replace(
-                '{agent_id}',
-                ObjectSerializer::toPathValue($agent_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{agent_id}',
+            ObjectSerializer::toPathValue($agent_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -6760,15 +6133,5 @@ class AgentsApi
             $response->getStatusCode(),
             $response->getHeaders(),
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

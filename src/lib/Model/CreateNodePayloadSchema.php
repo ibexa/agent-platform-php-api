@@ -159,16 +159,6 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -320,7 +310,6 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -452,7 +441,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('parent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['parent_id'] = $parent_id;
@@ -513,7 +502,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('source_file_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['source_file_id'] = $source_file_id;
@@ -547,7 +536,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $summary && (mb_strlen($summary) > 2000)) {
@@ -585,7 +574,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('metadata', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['metadata'] = $metadata;

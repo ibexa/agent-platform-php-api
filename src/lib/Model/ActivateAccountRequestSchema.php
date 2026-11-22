@@ -148,16 +148,6 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -297,7 +287,6 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -384,7 +373,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('job_position', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $job_position && (mb_strlen($job_position) > 255)) {
@@ -422,7 +411,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('job_activities', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['job_activities'] = $job_activities;
@@ -456,7 +445,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('newsletter_consent', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['newsletter_consent'] = $newsletter_consent;

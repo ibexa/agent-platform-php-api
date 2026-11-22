@@ -183,16 +183,6 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -376,7 +366,6 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -580,7 +569,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('slug', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['slug'] = $slug;
@@ -614,7 +603,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('parent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['parent_id'] = $parent_id;
@@ -648,7 +637,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('path', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['path'] = $path;
@@ -682,7 +671,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['summary'] = $summary;
@@ -743,7 +732,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('metadata', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['metadata'] = $metadata;
@@ -777,7 +766,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_by'] = $created_by;
@@ -811,7 +800,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('updated_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_by'] = $updated_by;
@@ -845,7 +834,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -879,7 +868,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;
@@ -913,7 +902,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('name_translations', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['name_translations'] = $name_translations;

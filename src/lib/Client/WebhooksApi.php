@@ -34,7 +34,6 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform\Client;
 
-use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\AsyncResult;
@@ -302,13 +301,11 @@ class WebhooksApi
         $multipart = false;
 
         // path params
-        if ($token !== null) {
-            $resourcePath = str_replace(
-                '{token}',
-                ObjectSerializer::toPathValue($token),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{token}',
+            ObjectSerializer::toPathValue($token),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -317,32 +314,6 @@ class WebhooksApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -538,13 +509,11 @@ class WebhooksApi
         $multipart = false;
 
         // path params
-        if ($token !== null) {
-            $resourcePath = str_replace(
-                '{token}',
-                ObjectSerializer::toPathValue($token),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{token}',
+            ObjectSerializer::toPathValue($token),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -563,31 +532,6 @@ class WebhooksApi
                 }
             } else {
                 $httpBody = $request_body;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -644,15 +588,5 @@ class WebhooksApi
             $response->getStatusCode(),
             $response->getHeaders(),
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

@@ -200,9 +200,10 @@ final class ServerSentEventTest extends TestCase
 
     public function testPublicApiAlsoGeneratesEventMethods(): void
     {
-        self::assertTrue(method_exists(PublicApi::class, 'attachExecutionStreamEvents'));
-        self::assertTrue(method_exists(PublicApi::class, 'attachMessageStreamEvents'));
-        self::assertTrue(method_exists(PublicApi::class, 'sendMessageStreamEvents'));
+        $api = new \ReflectionClass(PublicApi::class);
+        foreach (['attachExecutionStreamEvents', 'attachMessageStreamEvents', 'sendMessageStreamEvents'] as $method) {
+            self::assertTrue($api->hasMethod($method));
+        }
     }
 
     /**

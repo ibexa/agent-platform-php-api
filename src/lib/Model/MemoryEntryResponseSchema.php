@@ -166,16 +166,6 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -339,7 +329,6 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -450,7 +439,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('value', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['value'] = $value;
@@ -619,7 +608,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('expires_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['expires_at'] = $expires_at;
@@ -653,7 +642,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -687,7 +676,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;

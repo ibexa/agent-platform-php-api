@@ -180,16 +180,6 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -369,7 +359,6 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -543,7 +532,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['summary'] = $summary;
@@ -604,7 +593,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('default_language_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_language_model_provider_id'] = $default_language_model_provider_id;
@@ -638,7 +627,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('default_model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_model_id'] = $default_model_id;
@@ -672,7 +661,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('default_embedding_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_embedding_model_provider_id'] = $default_embedding_model_provider_id;
@@ -706,7 +695,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('default_embedding_model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_embedding_model_id'] = $default_embedding_model_id;
@@ -740,7 +729,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('default_assistant_agent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_assistant_agent_id'] = $default_assistant_agent_id;
@@ -774,7 +763,7 @@ class OrganisationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('logo_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['logo_url'] = $logo_url;

@@ -183,16 +183,6 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -376,7 +366,6 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -568,7 +557,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('verified_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['verified_at'] = $verified_at;
@@ -602,7 +591,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('verification_error', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['verification_error'] = $verification_error;
@@ -690,7 +679,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('mcp_catalog_entry_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mcp_catalog_entry_id'] = $mcp_catalog_entry_id;
@@ -724,7 +713,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('mcp_catalog_entry', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mcp_catalog_entry'] = $mcp_catalog_entry;
@@ -758,7 +747,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('icons', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['icons'] = $icons;
@@ -792,7 +781,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('auth_scheme', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_scheme'] = $auth_scheme;
@@ -826,7 +815,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('auth_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_config'] = $auth_config;

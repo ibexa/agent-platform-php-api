@@ -171,16 +171,6 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -348,7 +338,6 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -516,7 +505,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['description'] = $description;
@@ -577,7 +566,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('tool_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['tool_name'] = $tool_name;
@@ -611,7 +600,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('tool_args', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['tool_args'] = $tool_args;
@@ -645,7 +634,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('tool_result', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['tool_result'] = $tool_result;
@@ -679,7 +668,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('mcp_server_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mcp_server_id'] = $mcp_server_id;
@@ -713,7 +702,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('mcp_server_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mcp_server_name'] = $mcp_server_name;

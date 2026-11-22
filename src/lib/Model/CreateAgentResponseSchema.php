@@ -213,16 +213,6 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -446,7 +436,6 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -791,7 +780,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_by'] = $created_by;
@@ -825,7 +814,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $description && (mb_strlen($description) > 1000)) {
@@ -863,7 +852,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('language_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['language_model_provider_id'] = $language_model_provider_id;
@@ -897,7 +886,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['model_id'] = $model_id;
@@ -931,7 +920,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('is_model_valid', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['is_model_valid'] = $is_model_valid;
@@ -965,7 +954,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('input_schema', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['input_schema'] = $input_schema;
@@ -999,7 +988,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('output_schema', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['output_schema'] = $output_schema;
@@ -1087,7 +1076,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('eval_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['eval_config'] = $eval_config;
@@ -1121,7 +1110,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('graph_recursion_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $graph_recursion_limit && ($graph_recursion_limit > 100)) {
@@ -1189,7 +1178,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('agents_catalog_entry_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $agents_catalog_entry_id && ($agents_catalog_entry_id <= 0)) {
@@ -1227,7 +1216,7 @@ class CreateAgentResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('impact_metric', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['impact_metric'] = $impact_metric;

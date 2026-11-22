@@ -147,16 +147,6 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -292,7 +282,6 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -345,7 +334,7 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('src', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['src'] = $src;
@@ -379,7 +368,7 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('mime_type', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mime_type'] = $mime_type;
@@ -413,7 +402,7 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('sizes', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['sizes'] = $sizes;

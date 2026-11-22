@@ -144,16 +144,6 @@ class SetCredentialsPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -285,7 +275,6 @@ class SetCredentialsPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -338,7 +327,7 @@ class SetCredentialsPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('credentials', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['credentials'] = $credentials;
@@ -372,7 +361,7 @@ class SetCredentialsPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
             $index = array_search('config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['config'] = $config;

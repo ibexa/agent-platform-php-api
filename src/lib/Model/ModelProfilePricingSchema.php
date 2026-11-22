@@ -168,16 +168,6 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -341,7 +331,6 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -452,7 +441,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -486,7 +475,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('text_input', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['text_input'] = $text_input;
@@ -520,7 +509,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('text_output', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['text_output'] = $text_output;
@@ -554,7 +543,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('cache_read', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['cache_read'] = $cache_read;
@@ -588,7 +577,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('cache_write', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['cache_write'] = $cache_write;
@@ -622,7 +611,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('audio_input', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['audio_input'] = $audio_input;
@@ -656,7 +645,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('audio_output', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['audio_output'] = $audio_output;
@@ -690,7 +679,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('image_input', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['image_input'] = $image_input;
@@ -724,7 +713,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('image_output', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['image_output'] = $image_output;

@@ -174,16 +174,6 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -355,7 +345,6 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -617,7 +606,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $description && (mb_strlen($description) > 1000)) {
@@ -736,7 +725,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('agents_catalog_entry_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $agents_catalog_entry_id && ($agents_catalog_entry_id <= 0)) {
@@ -774,7 +763,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('impact_metric', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['impact_metric'] = $impact_metric;

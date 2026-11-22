@@ -153,16 +153,6 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -306,7 +296,6 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -402,7 +391,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['name'] = $name;
@@ -436,7 +425,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('agent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['agent_id'] = $agent_id;
@@ -470,7 +459,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('user_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['user_id'] = $user_id;
@@ -504,7 +493,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('avatar_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['avatar_url'] = $avatar_url;

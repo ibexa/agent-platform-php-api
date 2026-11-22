@@ -153,16 +153,6 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -306,7 +296,6 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -429,7 +418,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('started_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['started_at'] = $started_at;
@@ -463,7 +452,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -497,7 +486,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('trigger', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['trigger'] = $trigger;

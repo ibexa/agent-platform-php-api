@@ -156,16 +156,6 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -313,7 +303,6 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -490,7 +479,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
             $index = array_search('auth_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_config'] = $auth_config;

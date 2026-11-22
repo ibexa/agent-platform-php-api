@@ -162,16 +162,6 @@ class CreateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -327,7 +317,6 @@ class CreateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -441,7 +430,7 @@ class CreateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['config'] = $config;
@@ -502,7 +491,7 @@ class CreateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('mcp_catalog_entry_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mcp_catalog_entry_id'] = $mcp_catalog_entry_id;
@@ -536,7 +525,7 @@ class CreateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('auth_scheme', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_scheme'] = $auth_scheme;
@@ -570,7 +559,7 @@ class CreateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('auth_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_config'] = $auth_config;

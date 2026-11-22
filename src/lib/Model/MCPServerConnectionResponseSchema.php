@@ -153,16 +153,6 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -306,7 +296,6 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -402,7 +391,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('scheme', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['scheme'] = $scheme;
@@ -436,7 +425,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['config'] = $config;
@@ -470,7 +459,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('connected_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['connected_at'] = $connected_at;
@@ -504,7 +493,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
             $index = array_search('expires_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['expires_at'] = $expires_at;

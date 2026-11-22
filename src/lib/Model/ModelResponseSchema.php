@@ -201,16 +201,6 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -418,7 +408,6 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -538,7 +527,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('created', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created'] = $created;
@@ -626,7 +615,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('family', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['family'] = $family;
@@ -660,7 +649,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('weights', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['weights'] = $weights;
@@ -694,7 +683,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('tool_call', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['tool_call'] = $tool_call;
@@ -728,7 +717,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('reasoning', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['reasoning'] = $reasoning;
@@ -762,7 +751,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('structured_output', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['structured_output'] = $structured_output;
@@ -796,7 +785,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('temperature', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['temperature'] = $temperature;
@@ -830,7 +819,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('input_type', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['input_type'] = $input_type;
@@ -864,7 +853,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('output_type', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['output_type'] = $output_type;
@@ -898,7 +887,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('context_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['context_limit'] = $context_limit;
@@ -932,7 +921,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('input_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['input_limit'] = $input_limit;
@@ -966,7 +955,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('output_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['output_limit'] = $output_limit;
@@ -1000,7 +989,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('knowledge', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['knowledge'] = $knowledge;
@@ -1034,7 +1023,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('comment', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['comment'] = $comment;
@@ -1068,7 +1057,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['summary'] = $summary;
@@ -1102,7 +1091,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('docs_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['docs_url'] = $docs_url;
@@ -1136,7 +1125,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('pricing', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['pricing'] = $pricing;

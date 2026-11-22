@@ -187,16 +187,6 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -388,7 +378,6 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -484,7 +473,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('vendor_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['vendor_name'] = $vendor_name;
@@ -518,7 +507,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('vendor_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['vendor_url'] = $vendor_url;
@@ -579,7 +568,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('website_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['website_url'] = $website_url;
@@ -613,7 +602,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('documentation_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['documentation_url'] = $documentation_url;
@@ -647,7 +636,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('icon_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['icon_url'] = $icon_url;
@@ -681,7 +670,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('color', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['color'] = $color;
@@ -715,7 +704,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('data_residency_country', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['data_residency_country'] = $data_residency_country;
@@ -749,7 +738,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('vendor_country', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['vendor_country'] = $vendor_country;
@@ -810,7 +799,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('auth_scheme', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_scheme'] = $auth_scheme;
@@ -844,7 +833,7 @@ class MCPCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('auth_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['auth_config'] = $auth_config;

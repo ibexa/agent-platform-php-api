@@ -156,16 +156,6 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -313,7 +303,6 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -366,7 +355,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['name'] = $name;
@@ -400,7 +389,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('title', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['title'] = $title;
@@ -434,7 +423,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('version', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['version'] = $version;
@@ -468,7 +457,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['description'] = $description;
@@ -502,7 +491,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('website_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['website_url'] = $website_url;
@@ -536,7 +525,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
             $index = array_search('icons', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['icons'] = $icons;

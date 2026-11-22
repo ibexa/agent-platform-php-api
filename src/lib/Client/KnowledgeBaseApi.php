@@ -438,30 +438,18 @@ class KnowledgeBaseApi
 
         // for model (json/xml)
         if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
+            $multipartContents = [];
+            foreach ($formParams as $formParamName => $formParamValue) {
+                $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                foreach ($formParamValueItems as $formParamValueItem) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValueItem,
+                    ];
                 }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+            // for HTTP post (form)
+            $httpBody = new MultipartStream($multipartContents);
         }
 
         // this endpoint requires OAuth (access token)
@@ -851,21 +839,17 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($attachment_id !== null) {
-            $resourcePath = str_replace(
-                '{attachment_id}',
-                ObjectSerializer::toPathValue($attachment_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{attachment_id}',
+            ObjectSerializer::toPathValue($attachment_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -874,32 +858,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1065,13 +1023,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1080,32 +1036,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1288,21 +1218,17 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($version_id !== null) {
-            $resourcePath = str_replace(
-                '{version_id}',
-                ObjectSerializer::toPathValue($version_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{version_id}',
+            ObjectSerializer::toPathValue($version_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1311,32 +1237,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1527,13 +1427,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1542,32 +1440,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -1775,21 +1647,17 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($version_id !== null) {
-            $resourcePath = str_replace(
-                '{version_id}',
-                ObjectSerializer::toPathValue($version_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{version_id}',
+            ObjectSerializer::toPathValue($version_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1798,32 +1666,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -2055,24 +1897,20 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             true // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($attachment_id !== null) {
-            $resourcePath = str_replace(
-                '{attachment_id}',
-                ObjectSerializer::toPathValue($attachment_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{attachment_id}',
+            ObjectSerializer::toPathValue($attachment_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2081,32 +1919,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2292,13 +2104,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2307,32 +2117,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -2533,7 +2317,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $daterange,
@@ -2542,7 +2326,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2551,32 +2335,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -2805,7 +2563,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $limit,
@@ -2814,16 +2572,14 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2832,32 +2588,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3048,13 +2778,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3063,32 +2791,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3279,13 +2981,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3294,32 +2994,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3517,7 +3191,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3526,32 +3200,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -3783,7 +3431,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $sort_order,
@@ -3792,7 +3440,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $root_id,
@@ -3801,7 +3449,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $search,
@@ -3810,7 +3458,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -3819,32 +3467,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4059,7 +3681,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $sort_order,
@@ -4068,7 +3690,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $parent_id,
@@ -4077,7 +3699,7 @@ class KnowledgeBaseApi
             'form', // style
             true, // explode
             false // required
-        ) ?? []);
+        ));
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4086,32 +3708,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4319,13 +3915,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4551,21 +4145,17 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($version_id !== null) {
-            $resourcePath = str_replace(
-                '{version_id}',
-                ObjectSerializer::toPathValue($version_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{version_id}',
+            ObjectSerializer::toPathValue($version_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4574,32 +4164,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -4807,21 +4371,17 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($version_id !== null) {
-            $resourcePath = str_replace(
-                '{version_id}',
-                ObjectSerializer::toPathValue($version_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{version_id}',
+            ObjectSerializer::toPathValue($version_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -4830,32 +4390,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -5063,21 +4597,17 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
         // path params
-        if ($version_id !== null) {
-            $resourcePath = str_replace(
-                '{version_id}',
-                ObjectSerializer::toPathValue($version_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{version_id}',
+            ObjectSerializer::toPathValue($version_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5086,32 +4616,6 @@ class KnowledgeBaseApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
 
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
@@ -5525,13 +5029,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5757,13 +5259,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -5989,13 +5489,11 @@ class KnowledgeBaseApi
         $multipart = false;
 
         // path params
-        if ($node_id !== null) {
-            $resourcePath = str_replace(
-                '{node_id}',
-                ObjectSerializer::toPathValue($node_id),
-                $resourcePath
-            );
-        }
+        $resourcePath = str_replace(
+            '{node_id}',
+            ObjectSerializer::toPathValue($node_id),
+            $resourcePath
+        );
 
         // form params
         $formDataProcessor = new FormDataProcessor();
@@ -6016,30 +5514,18 @@ class KnowledgeBaseApi
 
         // for model (json/xml)
         if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem,
-                        ];
-                    }
+            $multipartContents = [];
+            foreach ($formParams as $formParamName => $formParamValue) {
+                $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                foreach ($formParamValueItems as $formParamValueItem) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValueItem,
+                    ];
                 }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                // if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $e) {
-                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+            // for HTTP post (form)
+            $httpBody = new MultipartStream($multipartContents);
         }
 
         // this endpoint requires OAuth (access token)
@@ -6100,15 +5586,5 @@ class KnowledgeBaseApi
             $response->getStatusCode(),
             $response->getHeaders(),
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

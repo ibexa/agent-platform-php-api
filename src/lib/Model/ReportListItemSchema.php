@@ -174,16 +174,6 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -355,7 +345,6 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -526,7 +515,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['summary'] = $summary;
@@ -587,7 +576,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('owner_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['owner_id'] = $owner_id;
@@ -621,7 +610,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('agent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['agent_id'] = $agent_id;
@@ -655,7 +644,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('owner', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['owner'] = $owner;
@@ -689,7 +678,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('agent', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['agent'] = $agent;
@@ -723,7 +712,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('execution_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['execution_id'] = $execution_id;
@@ -757,7 +746,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -791,7 +780,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;

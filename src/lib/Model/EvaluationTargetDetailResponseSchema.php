@@ -165,16 +165,6 @@ class EvaluationTargetDetailResponseSchema implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -334,7 +324,6 @@ class EvaluationTargetDetailResponseSchema implements ModelInterface, ArrayAcces
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -469,7 +458,7 @@ class EvaluationTargetDetailResponseSchema implements ModelInterface, ArrayAcces
             $index = array_search('execution_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['execution_id'] = $execution_id;
@@ -503,7 +492,7 @@ class EvaluationTargetDetailResponseSchema implements ModelInterface, ArrayAcces
             $index = array_search('message_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['message_id'] = $message_id;
@@ -537,7 +526,7 @@ class EvaluationTargetDetailResponseSchema implements ModelInterface, ArrayAcces
             $index = array_search('conversation_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['conversation_id'] = $conversation_id;
@@ -571,7 +560,7 @@ class EvaluationTargetDetailResponseSchema implements ModelInterface, ArrayAcces
             $index = array_search('overall_score', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['overall_score'] = $overall_score;

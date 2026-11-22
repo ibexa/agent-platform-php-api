@@ -148,10 +148,12 @@ The generated suite checks request methods, paths and authentication, HTTP error
 handling, response types and SSE payload decoding. Its minimal fixtures do not
 replace API-specific validation and integration tests.
 
-Run `composer phpstan` for PHPStan level 3 analysis of the client, tests and
+Run `composer phpstan` for PHPStan level 4 analysis of the client, tests and
 OpenAPI preprocessing script. CI runs the same check on PHP 8.3. The unused
 constructor parameter warning is excluded for generated models, which share a
-constructor signature even when they have no properties.
+constructor signature even when they have no properties. PHPDoc types are not
+treated as certain, so generated runtime checks remain meaningful for callers
+that pass invalid values.
 
 Run all suites with `composer test`, or only generated tests with
 `composer test -- --testsuite generated`. To generate HTML and Clover coverage

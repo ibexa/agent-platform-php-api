@@ -168,16 +168,6 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -341,7 +331,6 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -444,7 +433,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $summary && (mb_strlen($summary) > 300)) {
@@ -482,7 +471,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('default_language_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_language_model_provider_id'] = $default_language_model_provider_id;
@@ -516,7 +505,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('default_model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $default_model_id && (mb_strlen($default_model_id) > 255)) {
@@ -554,7 +543,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('default_embedding_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_embedding_model_provider_id'] = $default_embedding_model_provider_id;
@@ -588,7 +577,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('default_embedding_model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $default_embedding_model_id && (mb_strlen($default_embedding_model_id) > 255)) {
@@ -626,7 +615,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('default_assistant_agent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['default_assistant_agent_id'] = $default_assistant_agent_id;
@@ -660,7 +649,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('budget_critical_threshold', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $budget_critical_threshold && ($budget_critical_threshold > 85)) {
@@ -698,7 +687,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('budget_warning_threshold', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['budget_warning_threshold'] = $budget_warning_threshold;
@@ -732,7 +721,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('budget_information_threshold', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $budget_information_threshold && ($budget_information_threshold < 30)) {

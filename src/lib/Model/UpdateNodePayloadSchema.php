@@ -147,16 +147,6 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -292,7 +282,6 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -357,7 +346,7 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $name && (mb_strlen($name) > 255)) {
@@ -398,7 +387,7 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $summary && (mb_strlen($summary) > 2000)) {
@@ -436,7 +425,7 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
             $index = array_search('metadata', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['metadata'] = $metadata;

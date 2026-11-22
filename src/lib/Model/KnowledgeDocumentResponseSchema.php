@@ -207,16 +207,6 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -432,7 +422,6 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -636,7 +625,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('slug', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['slug'] = $slug;
@@ -670,7 +659,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('parent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['parent_id'] = $parent_id;
@@ -704,7 +693,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('path', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['path'] = $path;
@@ -738,7 +727,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('summary', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['summary'] = $summary;
@@ -799,7 +788,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('metadata', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['metadata'] = $metadata;
@@ -860,7 +849,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('source_file_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['source_file_id'] = $source_file_id;
@@ -921,7 +910,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('parse_error', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['parse_error'] = $parse_error;
@@ -955,7 +944,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('publish_error', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['publish_error'] = $publish_error;
@@ -989,7 +978,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('published_version_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['published_version_id'] = $published_version_id;
@@ -1023,7 +1012,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('version_number', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['version_number'] = $version_number;
@@ -1057,7 +1046,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('status', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['status'] = $status;
@@ -1091,7 +1080,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('embedding_status', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['embedding_status'] = $embedding_status;
@@ -1125,7 +1114,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_by'] = $created_by;
@@ -1159,7 +1148,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('updated_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_by'] = $updated_by;
@@ -1193,7 +1182,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -1227,7 +1216,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;

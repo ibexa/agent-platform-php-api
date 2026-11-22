@@ -159,16 +159,6 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -320,7 +310,6 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -419,7 +408,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('organisation_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['organisation_id'] = $organisation_id;
@@ -453,7 +442,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('agent_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['agent_id'] = $agent_id;
@@ -487,7 +476,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_by'] = $created_by;
@@ -575,7 +564,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('response_format', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['response_format'] = $response_format;

@@ -165,16 +165,6 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -334,7 +324,6 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -478,7 +467,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
             $index = array_search('subject', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['subject'] = $subject;
@@ -512,7 +501,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
             $index = array_search('created_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['created_at'] = $created_at;
@@ -546,7 +535,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
             $index = array_search('updated_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['updated_at'] = $updated_at;
@@ -580,7 +569,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
             $index = array_search('feedback_rate', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['feedback_rate'] = $feedback_rate;
@@ -641,7 +630,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
             $index = array_search('parent_conversation_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['parent_conversation_id'] = $parent_conversation_id;

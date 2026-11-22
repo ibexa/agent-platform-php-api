@@ -154,16 +154,6 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -311,7 +301,6 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -455,7 +444,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
             $index = array_search('score', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['score'] = $score;
@@ -489,7 +478,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
             $index = array_search('reason', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['reason'] = $reason;
@@ -523,7 +512,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
             $index = array_search('metadata', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['metadata'] = $metadata;

@@ -166,16 +166,6 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -339,7 +329,6 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -504,7 +493,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('message', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['message'] = $message;
@@ -565,7 +554,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('resolved_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['resolved_by'] = $resolved_by;
@@ -599,7 +588,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('resolved_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['resolved_at'] = $resolved_at;
@@ -633,7 +622,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('decline_reason', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['decline_reason'] = $decline_reason;

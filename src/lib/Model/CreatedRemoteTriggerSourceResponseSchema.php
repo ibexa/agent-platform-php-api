@@ -180,16 +180,6 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -369,7 +359,6 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -735,7 +724,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
             $index = array_search('verified_at', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['verified_at'] = $verified_at;
@@ -823,7 +812,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
             $index = array_search('inbound_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['inbound_url'] = $inbound_url;

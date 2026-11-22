@@ -180,16 +180,6 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -369,7 +359,6 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -492,7 +481,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['id'] = $id;
@@ -526,7 +515,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('direction', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['direction'] = $direction;
@@ -560,7 +549,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('category', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['category'] = $category;
@@ -594,7 +583,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('funding_source', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['funding_source'] = $funding_source;
@@ -628,7 +617,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('amount', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['amount'] = $amount;
@@ -743,7 +732,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('balance_after', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['balance_after'] = $balance_after;
@@ -777,7 +766,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('ordered_by', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['ordered_by'] = $ordered_by;
@@ -811,7 +800,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('attribution', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['attribution'] = $attribution;
@@ -845,7 +834,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('execution', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['execution'] = $execution;
@@ -879,7 +868,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
             $index = array_search('plan_change', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['plan_change'] = $plan_change;

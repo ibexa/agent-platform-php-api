@@ -157,16 +157,6 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -318,7 +308,6 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -409,7 +398,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('initial_message', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['initial_message'] = $initial_message;
@@ -443,7 +432,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('model_references', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
 
@@ -481,7 +470,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('mcp_server_references', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['mcp_server_references'] = $mcp_server_references;
@@ -515,7 +504,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('agent_references', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['agent_references'] = $agent_references;
@@ -549,7 +538,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
             $index = array_search('inline_agents', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['inline_agents'] = $inline_agents;

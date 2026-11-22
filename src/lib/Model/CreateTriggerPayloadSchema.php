@@ -153,16 +153,6 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -306,7 +296,6 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -450,7 +439,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('agent_args', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['agent_args'] = $agent_args;
@@ -484,7 +473,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
             $index = array_search('response_format', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['response_format'] = $response_format;

@@ -159,16 +159,6 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -320,7 +310,6 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -373,7 +362,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('signature_required', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['signature_required'] = $signature_required;
@@ -407,7 +396,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('rate_limit_per_minute', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['rate_limit_per_minute'] = $rate_limit_per_minute;
@@ -441,7 +430,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('ip_allowlist', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['ip_allowlist'] = $ip_allowlist;
@@ -475,7 +464,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('signature_header_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['signature_header_name'] = $signature_header_name;
@@ -509,7 +498,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('timestamp_header_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['timestamp_header_name'] = $timestamp_header_name;
@@ -543,7 +532,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('idempotency_header_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['idempotency_header_name'] = $idempotency_header_name;
@@ -577,7 +566,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
             $index = array_search('message_filter', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['message_filter'] = $message_filter;

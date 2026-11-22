@@ -153,16 +153,6 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -306,7 +296,6 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -359,7 +348,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('hour', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['hour'] = $hour;
@@ -393,7 +382,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('minute', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['minute'] = $minute;
@@ -427,7 +416,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('day_of_week', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['day_of_week'] = $day_of_week;
@@ -461,7 +450,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('day_of_month', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['day_of_month'] = $day_of_month;
@@ -495,7 +484,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('month', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['month'] = $month;

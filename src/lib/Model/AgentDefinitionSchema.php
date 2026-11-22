@@ -178,16 +178,6 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -367,7 +357,6 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -549,7 +538,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['description'] = $description;
@@ -637,7 +626,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('language_model_provider_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['language_model_provider_id'] = $language_model_provider_id;
@@ -671,7 +660,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('model_id', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['model_id'] = $model_id;
@@ -786,7 +775,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('impact_metric', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['impact_metric'] = $impact_metric;
@@ -820,7 +809,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('eval_config', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['eval_config'] = $eval_config;
@@ -854,7 +843,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
             $index = array_search('recursion_limit', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['recursion_limit'] = $recursion_limit;

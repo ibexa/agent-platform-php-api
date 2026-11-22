@@ -165,16 +165,6 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -334,7 +324,6 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -550,7 +539,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('most_expensive_day', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['most_expensive_day'] = $most_expensive_day;
@@ -611,7 +600,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
             $index = array_search('top_agent', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['top_agent'] = $top_agent;

@@ -172,16 +172,6 @@ class AgentsCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -353,7 +343,6 @@ class AgentsCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \Js
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -479,7 +468,7 @@ class AgentsCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \Js
             $index = array_search('vendor_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['vendor_name'] = $vendor_name;
@@ -513,7 +502,7 @@ class AgentsCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \Js
             $index = array_search('color', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['color'] = $color;
@@ -547,7 +536,7 @@ class AgentsCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \Js
             $index = array_search('icon_url', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['icon_url'] = $icon_url;
@@ -608,7 +597,7 @@ class AgentsCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \Js
             $index = array_search('definition', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['definition'] = $definition;

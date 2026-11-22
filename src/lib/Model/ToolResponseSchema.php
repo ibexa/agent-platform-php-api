@@ -165,16 +165,6 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -334,7 +324,6 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -442,7 +431,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
             $index = array_search('title', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['title'] = $title;
@@ -503,7 +492,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
             $index = array_search('display_description', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['display_description'] = $display_description;
@@ -564,7 +553,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
             $index = array_search('output_schema', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['output_schema'] = $output_schema;
@@ -598,7 +587,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
             $index = array_search('annotations', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['annotations'] = $annotations;
@@ -659,7 +648,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
             $index = array_search('categories', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['categories'] = $categories;

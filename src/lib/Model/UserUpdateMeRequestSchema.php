@@ -159,16 +159,6 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null.
-     *
-     * @param bool[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
      * Checks if a property is nullable.
      *
      * @param string $property
@@ -320,7 +310,6 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && null === $fields[$variableName]) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
-
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
@@ -385,7 +374,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('full_name', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $full_name && (mb_strlen($full_name) > 255)) {
@@ -423,7 +412,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('email', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $email && (mb_strlen($email) > 255)) {
@@ -461,7 +450,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('job_position', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         if (null !== $job_position && (mb_strlen($job_position) > 255)) {
@@ -499,7 +488,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('job_activities', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['job_activities'] = $job_activities;
@@ -533,7 +522,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('newsletter_consent', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['newsletter_consent'] = $newsletter_consent;
@@ -594,7 +583,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
             $index = array_search('preferred_locale', $nullablesSetToNull);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+                $this->openAPINullablesSetToNull = $nullablesSetToNull;
             }
         }
         $this->container['preferred_locale'] = $preferred_locale;

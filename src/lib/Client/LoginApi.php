@@ -36,6 +36,7 @@ namespace Ibexa\AgentPlatform\Client;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Utils;
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\AsyncResult;
 use Ibexa\AgentPlatform\Configuration;
@@ -47,6 +48,7 @@ use Ibexa\AgentPlatform\Model\RefreshTokenRequestSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -437,7 +439,7 @@ class LoginApi
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $this->prepareRequestBody($httpBody)
         );
     }
 
@@ -619,7 +621,7 @@ class LoginApi
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $this->prepareRequestBody($httpBody)
         );
     }
 
@@ -769,7 +771,7 @@ class LoginApi
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $this->prepareRequestBody($httpBody)
         );
     }
 
@@ -971,8 +973,17 @@ class LoginApi
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $this->prepareRequestBody($httpBody)
         );
+    }
+
+    private function prepareRequestBody(mixed $body): string | StreamInterface | null
+    {
+        if ($body === '' || $body === null) {
+            return $body;
+        }
+
+        return Utils::streamFor($body);
     }
 
     /** @return array{mixed, int, array<string, string[]>} */

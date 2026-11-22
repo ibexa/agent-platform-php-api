@@ -167,7 +167,9 @@ final class SymfonyHttpClientTest extends TestCase
 
         $contentType = implode("\n", $headers);
         self::assertMatchesRegularExpression('/Content-Type: multipart\/form-data; boundary=([^\\s]+)/i', $contentType);
-        preg_match('/boundary=([^\\s]+)/i', $contentType, $matches);
+        if (preg_match('/boundary=([^\\s]+)/i', $contentType, $matches) !== 1) {
+            self::fail('Missing multipart boundary.');
+        }
         self::assertStringContainsString('--' . $matches[1], $body);
         self::assertStringContainsString('name="file"', $body);
         self::assertStringContainsString('final class SymfonyHttpClientTest', $body);

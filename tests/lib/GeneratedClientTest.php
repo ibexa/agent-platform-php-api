@@ -17,6 +17,7 @@ use Ibexa\AgentPlatform\Model\AdminModelProfileResponseSchema;
 use Ibexa\AgentPlatform\Model\AgentListItemResponseSchema;
 use Ibexa\AgentPlatform\Model\AgentListResponseSchema;
 use Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema;
+use Ibexa\AgentPlatform\Model\CreateAgentPayloadSchema;
 use Ibexa\AgentPlatform\Model\ExecutionResponseSchema;
 use Ibexa\AgentPlatform\Model\ExecutionStatus;
 use Ibexa\AgentPlatform\Model\ModelInterface;
@@ -33,7 +34,9 @@ final class GeneratedClientTest extends TestCase
 {
     public function testGeneratedModelClassesLoad(): void
     {
-        foreach (glob(__DIR__ . '/../../src/lib/Model/*.php') as $file) {
+        $files = glob(__DIR__ . '/../../src/lib/Model/*.php');
+        self::assertIsArray($files);
+        foreach ($files as $file) {
             $class = 'Ibexa\\AgentPlatform\\Model\\' . basename($file, '.php');
             self::assertTrue(class_exists($class) || interface_exists($class), $class);
         }
@@ -117,7 +120,9 @@ final class GeneratedClientTest extends TestCase
 
     public function testGeneratedAccessorTypesMatchSerializerTypes(): void
     {
-        foreach (glob(__DIR__ . '/../../src/lib/Model/*.php') as $file) {
+        $files = glob(__DIR__ . '/../../src/lib/Model/*.php');
+        self::assertIsArray($files);
+        foreach ($files as $file) {
             $class = 'Ibexa\\AgentPlatform\\Model\\' . basename($file, '.php');
             if (!class_exists($class) || !is_subclass_of($class, ModelInterface::class)) {
                 continue;
@@ -160,6 +165,50 @@ final class GeneratedClientTest extends TestCase
 
         $payload->setDescription('Updated');
         self::assertEquals($defaults + ['description' => 'Updated'], (array) ObjectSerializer::sanitizeForSerialization($payload));
+    }
+
+    public function testNonJsonRequestBodyPreservesStringableModels(): void
+    {
+        $payload = (new CreateAgentPayloadSchema())->setName('Assistant');
+        $request = (new AgentsApi())->createAgentRequest($payload, 'application/xml');
+
+        self::assertSame((string) $payload, (string) $request->getBody());
+        self::assertSame('application/xml', $request->getHeaderLine('Content-Type'));
+    }
+
+    /**
+     * @dataProvider modelStringSerializationProvider
+     */
+    public function testModelStringSerializationReportsInvalidJson(string $method): void
+    {
+        $payload = (new CreateAgentPayloadSchema())->setName("\xB1");
+        $this->expectException(\JsonException::class);
+        $payload->$method();
+    }
+
+    /** @return iterable<array{string}> */
+    public static function modelStringSerializationProvider(): iterable
+    {
+        yield ['__toString'];
+        yield ['toHeaderValue'];
+    }
+
+    public function testFileDeserializationReportsOpenFailure(): void
+    {
+        $directory = sys_get_temp_dir() . '/agent-platform-' . bin2hex(random_bytes(8));
+        self::assertTrue(mkdir($directory));
+        $previousConfig = Configuration::getDefaultConfiguration();
+        Configuration::setDefaultConfiguration((new Configuration())->setTempFolderPath(sys_get_temp_dir()));
+
+        try {
+            $this->expectException(\RuntimeException::class);
+            ObjectSerializer::deserialize('data', '\SplFileObject', [
+                'Content-Disposition' => ['inline; filename="' . basename($directory) . '"'],
+            ]);
+        } finally {
+            Configuration::setDefaultConfiguration($previousConfig);
+            rmdir($directory);
+        }
     }
 
     public function testEnumAndNestedModelDeserialization(): void

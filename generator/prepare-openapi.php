@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
-$spec = json_decode(file_get_contents(__DIR__ . '/openapi.json'), false, 512, JSON_THROW_ON_ERROR);
+$contents = file_get_contents(__DIR__ . '/openapi.json');
+if ($contents === false) {
+    throw new RuntimeException('Failed to read the OpenAPI specification.');
+}
+$spec = json_decode($contents, false, 512, JSON_THROW_ON_ERROR);
 $resultSchema = $spec->components->schemas->ExecutionResponseSchema->properties->result;
 if (($resultSchema->anyOf ?? null) != [(object) [], (object) ['type' => 'null']]) {
     throw new RuntimeException('Unexpected execution result schema.');
@@ -13,7 +17,7 @@ $count = 0;
 
 foreach ($spec->paths as $methods) {
     foreach ($methods as &$operation) {
-        if (!is_object($operation) || !isset($operation->responses)) {
+        if (!$operation instanceof stdClass || !isset($operation->responses)) {
             continue;
         }
         foreach ($operation->parameters ?? [] as $parameter) {
@@ -31,7 +35,7 @@ foreach ($spec->paths as $methods) {
             if ($itemSchema === null) {
                 continue;
             }
-            if (!is_object($itemSchema) || ($eventSchema !== null && $eventSchema != $itemSchema)) {
+            if (!$itemSchema instanceof stdClass || ($eventSchema !== null && $eventSchema != $itemSchema)) {
                 throw new RuntimeException('Streaming endpoints have incompatible event schemas.');
             }
             $eventSchema = $itemSchema;
@@ -48,6 +52,9 @@ if ($count === 0 || isset($spec->components->schemas->ServerSentEventSchema)) {
 }
 
 $eventSchema = clone $eventSchema;
+if (!isset($eventSchema->properties) || !$eventSchema->properties instanceof stdClass) {
+    throw new RuntimeException('Invalid server-sent event properties.');
+}
 $eventSchema->properties = clone $eventSchema->properties;
 $eventSchema->properties->data = (object) [
     'type' => 'object',

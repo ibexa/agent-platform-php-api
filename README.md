@@ -130,6 +130,7 @@ return `static` from setters. Scalar and collection getters remain nullable
 because a model can be constructed before required values are populated.
 The model metadata method is `getOpenAPIModelName()`; `getModelName()` is
 reserved for a schema field of that name.
+Model string and header serialization throw `JsonException` when encoding fails.
 The `HeaderSelector` template override keeps Accept-header quality weights
 integer-valued for strict PHP type checking.
 The supporting `ApiException`, `Configuration`, and `ObjectSerializer`
@@ -148,7 +149,7 @@ The generated suite checks request methods, paths and authentication, HTTP error
 handling, response types and SSE payload decoding. Its minimal fixtures do not
 replace API-specific validation and integration tests.
 
-Run `composer phpstan` for PHPStan level 6 analysis of the client, tests and
+Run `composer phpstan` for PHPStan level 7 analysis of the client, tests and
 OpenAPI preprocessing script. CI runs the same check on PHP 8.3. The unused
 constructor parameter warning is excluded for generated models, which share a
 constructor signature even when they have no properties. PHPDoc types are not

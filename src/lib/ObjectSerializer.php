@@ -116,7 +116,7 @@ class ObjectSerializer
                     }
                 }
             } else {
-                foreach ($data as $property => $value) {
+                foreach (is_iterable($data) ? $data : get_object_vars($data) as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
@@ -506,9 +506,12 @@ class ObjectSerializer
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . \DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
             } else {
                 $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+                if ($filename === false) {
+                    throw new \RuntimeException('Failed to create a temporary file for the response.');
+                }
             }
 
-            $file = fopen($filename, 'w');
+            $file = Utils::tryFopen($filename, 'w');
             while ($chunk = $data->read(200)) {
                 fwrite($file, $chunk);
             }

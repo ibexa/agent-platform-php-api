@@ -168,7 +168,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
     /**
      * If a nullable field gets set to null, insert it here.
      *
-     * @var bool[]
+     * @var array<int, string>
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -205,7 +205,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
     /**
      * Array of nullable field names deliberately set to null.
      *
-     * @return bool[]
+     * @return array<int, string>
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -1370,7 +1370,7 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
 
@@ -1381,6 +1381,6 @@ class AdminModelProfileResponseSchema implements ModelInterface, ArrayAccess, \J
      */
     public function toHeaderValue(): string
     {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_THROW_ON_ERROR);
     }
 }

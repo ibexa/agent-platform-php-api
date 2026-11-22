@@ -10,6 +10,7 @@ namespace Ibexa\Tests\AgentPlatform;
 
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\Configuration;
+use Ibexa\AgentPlatform\FormDataProcessor;
 use Ibexa\AgentPlatform\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
@@ -17,6 +18,8 @@ final class SupportingTypesTest extends TestCase
 {
     /**
      * @dataProvider supportingClassProvider
+     *
+     * @param class-string $class
      */
     public function testPublicSignaturesHaveNativeTypes(string $class): void
     {
@@ -74,5 +77,24 @@ final class SupportingTypesTest extends TestCase
         self::assertSame(42, ObjectSerializer::deserialize('42', 'int'));
         self::assertSame('a=b c', ObjectSerializer::buildQuery(['a' => 'b c'], false));
         self::assertSame('1|2', ObjectSerializer::serializeCollection([1, 2], 'pipes'));
+    }
+
+    public function testSerializerPreservesObjectAndIteratorProperties(): void
+    {
+        self::assertEquals((object) ['key' => 'value'], ObjectSerializer::sanitizeForSerialization((object) ['key' => 'value']));
+        self::assertEquals((object) ['key' => 'value'], ObjectSerializer::sanitizeForSerialization(new \ArrayIterator(['key' => 'value'])));
+    }
+
+    public function testFormProcessorPreservesObjectAndIteratorProperties(): void
+    {
+        $processor = new FormDataProcessor();
+
+        self::assertSame(
+            ['object' => ['key' => 'value'], 'iterator' => ['key' => 'value']],
+            $processor->prepare([
+                'object' => (object) ['key' => 'value'],
+                'iterator' => new \ArrayIterator(['key' => 'value']),
+            ])
+        );
     }
 }

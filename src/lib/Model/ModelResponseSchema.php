@@ -156,7 +156,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * If a nullable field gets set to null, insert it here.
      *
-     * @var bool[]
+     * @var array<int, string>
      */
     protected array $openAPINullablesSetToNull = [];
 
@@ -193,7 +193,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of nullable field names deliberately set to null.
      *
-     * @return bool[]
+     * @return array<int, string>
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -1206,7 +1206,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
 
@@ -1217,6 +1217,6 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function toHeaderValue(): string
     {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_THROW_ON_ERROR);
     }
 }

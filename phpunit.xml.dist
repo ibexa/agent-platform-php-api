@@ -16,5 +16,13 @@
         <testsuite name="lib">
             <directory>tests/lib</directory>
         </testsuite>
+        <testsuite name="generated">
+            <directory>tests/generated</directory>
+        </testsuite>
     </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">src/lib</directory>
+        </include>
+    </coverage>
 </phpunit>

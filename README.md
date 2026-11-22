@@ -133,6 +133,29 @@ reserved for a schema field of that name.
 The `HeaderSelector` template override keeps Accept-header quality weights
 integer-valued for strict PHP type checking.
 
+## Tests and coverage
+
+`./update.sh` also generates endpoint contract tests and model serialization
+checks under `tests/generated`. These files are replaced on regeneration; keep
+handwritten tests and realistic response fixtures under `tests/lib`.
+The PHP generator hardcodes its test directory; `update.sh` relocates the
+generated files into `tests/generated` before formatting them.
+The generated suite checks request methods, paths and authentication, HTTP error
+handling, response types and SSE payload decoding. Its minimal fixtures do not
+replace API-specific validation and integration tests.
+
+Run all suites with `composer test`, or only generated tests with
+`composer test -- --testsuite generated`. To generate HTML and Clover coverage
+reports, enable Xdebug coverage or PCOV:
+
+```bash
+XDEBUG_MODE=coverage composer test-coverage
+```
+
+Reports are written to `build/coverage/` and `build/coverage.xml`. Coverage
+includes `src/lib`, not generated test files. CI publishes the reports for PHP
+8.3 and checks that regenerated clients and tests match the committed files.
+
 ## COPYRIGHT
 
 Copyright (C) 1999-2026 Ibexa AS (formerly eZ Systems AS). All rights reserved.

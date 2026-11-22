@@ -9,10 +9,10 @@ openapiNormalizer:
 globalProperties:
   models: ""
   modelDocs: false
-  modelTests: false
+  modelTests: true
   apis: ""
   apiDocs: false
-  apiTests: false
+  apiTests: true
   supportingFiles: ""
   skipFormModel: false
 

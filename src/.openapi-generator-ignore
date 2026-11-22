@@ -30,6 +30,7 @@ git_push.sh
 phpunit.xml.dist
 README.md
 docs/
-test/
+test/Api/Admin*ApiTest.php
+test/Model/Admin*Test.php
 lib/Client/Admin*Api.php
 lib/Model/Admin*.php

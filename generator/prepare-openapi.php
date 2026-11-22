@@ -11,6 +11,16 @@ foreach ($spec->paths as $methods) {
         if (!is_object($operation) || !isset($operation->responses)) {
             continue;
         }
+        foreach ($operation->parameters ?? [] as $parameter) {
+            $schema = $parameter->schema ?? null;
+            if (isset($schema->{'$ref'})) {
+                $name = basename($schema->{'$ref'});
+                $schema = $spec->components->schemas->$name;
+            }
+            if (isset($schema->enum)) {
+                $parameter->{'x-contract-example'} = var_export($schema->enum[0], true);
+            }
+        }
         foreach ($operation->responses as $response) {
             $itemSchema = $response->content->{'text/event-stream'}->itemSchema ?? null;
             if ($itemSchema === null) {

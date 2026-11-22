@@ -344,7 +344,7 @@ class NotificationPreferenceResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param NotificationType $notification_type notification_type
      *
-     * @return self
+     * @return $this
      */
     public function setNotificationType($notification_type): static
     {
@@ -371,7 +371,7 @@ class NotificationPreferenceResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param NotificationChannel[] $channels Channels the type currently reaches the caller on
      *
-     * @return self
+     * @return $this
      */
     public function setChannels(?array $channels): static
     {
@@ -398,7 +398,7 @@ class NotificationPreferenceResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param bool $user_configurable Whether preferences apply at all; a type that is not configurable always reports its default channels and rejects a preference
      *
-     * @return self
+     * @return $this
      */
     public function setUserConfigurable(?bool $user_configurable): static
     {

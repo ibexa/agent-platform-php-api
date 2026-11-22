@@ -334,7 +334,7 @@ class TriggerDefinitionListResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param TriggerDefinitionResponseSchema[] $definitions definitions
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitions(?array $definitions): static
     {
@@ -361,7 +361,7 @@ class TriggerDefinitionListResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

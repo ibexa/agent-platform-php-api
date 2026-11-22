@@ -412,7 +412,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -439,7 +439,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $mcp_catalog_entry_id mcp_catalog_entry_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryId(?int $mcp_catalog_entry_id): static
     {
@@ -466,7 +466,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $user_id user_id
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -493,7 +493,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $message message
      *
-     * @return self
+     * @return $this
      */
     public function setMessage(?string $message): static
     {
@@ -527,7 +527,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param ToolRequestStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -554,7 +554,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $resolved_by resolved_by
      *
-     * @return self
+     * @return $this
      */
     public function setResolvedBy(?string $resolved_by): static
     {
@@ -588,7 +588,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $resolved_at resolved_at
      *
-     * @return self
+     * @return $this
      */
     public function setResolvedAt($resolved_at): static
     {
@@ -622,7 +622,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $decline_reason decline_reason
      *
-     * @return self
+     * @return $this
      */
     public function setDeclineReason(?string $decline_reason): static
     {
@@ -656,7 +656,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -683,7 +683,7 @@ class ToolRequestResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

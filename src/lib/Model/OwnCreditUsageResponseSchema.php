@@ -404,7 +404,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $user_id user_id
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -431,7 +431,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param \DateTime $date_from date_from
      *
-     * @return self
+     * @return $this
      */
     public function setDateFrom($date_from): static
     {
@@ -458,7 +458,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param \DateTime $date_to date_to
      *
-     * @return self
+     * @return $this
      */
     public function setDateTo($date_to): static
     {
@@ -485,7 +485,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param CreditUsagePeriodSchema[] $items One entry per day in the range, ascending. Days with no spend are present with zero amounts, so the series has no gaps.
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {
@@ -512,7 +512,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $avg_daily_spend Mean credits_spent per day across the range, zero days included.
      *
-     * @return self
+     * @return $this
      */
     public function setAvgDailySpend(?string $avg_daily_spend): static
     {
@@ -539,7 +539,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param CreditUsagePeriodSchema|null $most_expensive_day The single highest-spend day in the range. Ties go to the earliest day. Null when every day in the range spent nothing — there is no peak to report, not a peak on day one.
      *
-     * @return self
+     * @return $this
      */
     public function setMostExpensiveDay($most_expensive_day): static
     {
@@ -573,7 +573,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param CreditSpendComparisonResponseSchema $comparison Spend in this range against an equally long window immediately before it (preceding period; the previous window length matches the requested range).
      *
-     * @return self
+     * @return $this
      */
     public function setComparison($comparison): static
     {
@@ -600,7 +600,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param CreditTopAgentSchema|null $top_agent The agent the caller spent the most credits on in this range. Null when nothing in the range is attributed to an agent.
      *
-     * @return self
+     * @return $this
      */
     public function setTopAgent($top_agent): static
     {
@@ -634,7 +634,7 @@ class OwnCreditUsageResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param CreditCurrency $currency currency
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency($currency): static
     {

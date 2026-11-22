@@ -374,7 +374,7 @@ class ExecutionsComparisonResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param ExecutionsWindowStatsSchema $current current
      *
-     * @return self
+     * @return $this
      */
     public function setCurrent($current): static
     {
@@ -401,7 +401,7 @@ class ExecutionsComparisonResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param ExecutionsWindowStatsSchema $previous previous
      *
-     * @return self
+     * @return $this
      */
     public function setPrevious($previous): static
     {
@@ -428,7 +428,7 @@ class ExecutionsComparisonResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param SpendComparisonBasis $compare_to Which rule produced the previous window (see SpendComparisonBasis)
      *
-     * @return self
+     * @return $this
      */
     public function setCompareTo($compare_to): static
     {
@@ -455,7 +455,7 @@ class ExecutionsComparisonResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int $change Absolute change in total executions against the previous window
      *
-     * @return self
+     * @return $this
      */
     public function setChange(?int $change): static
     {
@@ -482,7 +482,7 @@ class ExecutionsComparisonResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $change_ratio change as a fraction of the previous window's total, or null when the previous window had no executions at all
      *
-     * @return self
+     * @return $this
      */
     public function setChangeRatio(?string $change_ratio): static
     {
@@ -516,7 +516,7 @@ class ExecutionsComparisonResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $average_credit_cost Average credits consumed per execution in the current window, or null when the window had no executions
      *
-     * @return self
+     * @return $this
      */
     public function setAverageCreditCost(?string $average_credit_cost): static
     {

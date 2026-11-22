@@ -424,7 +424,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -451,7 +451,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param NotificationType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -478,7 +478,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param NotificationPriority $priority priority
      *
-     * @return self
+     * @return $this
      */
     public function setPriority($priority): static
     {
@@ -505,7 +505,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param NotificationSenderSchema $sender sender
      *
-     * @return self
+     * @return $this
      */
     public function setSender($sender): static
     {
@@ -532,7 +532,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $subject subject
      *
-     * @return self
+     * @return $this
      */
     public function setSubject(?string $subject): static
     {
@@ -566,7 +566,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $body Rendered markdown body
      *
-     * @return self
+     * @return $this
      */
     public function setBody(?string $body): static
     {
@@ -593,7 +593,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param array<string,mixed> $payload Type-specific data for the client (deep links, template variables)
      *
-     * @return self
+     * @return $this
      */
     public function setPayload(?array $payload): static
     {
@@ -620,7 +620,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $group_key group_key
      *
-     * @return self
+     * @return $this
      */
     public function setGroupKey(?string $group_key): static
     {
@@ -654,7 +654,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $resolved_action_id resolved_action_id
      *
-     * @return self
+     * @return $this
      */
     public function setResolvedActionId(?string $resolved_action_id): static
     {
@@ -688,7 +688,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \DateTime|null $read_at read_at
      *
-     * @return self
+     * @return $this
      */
     public function setReadAt($read_at): static
     {
@@ -722,7 +722,7 @@ class NotificationResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

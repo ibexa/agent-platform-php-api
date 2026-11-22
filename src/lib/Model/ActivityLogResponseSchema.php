@@ -404,7 +404,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -431,7 +431,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $user_id user_id
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -458,7 +458,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param ActivityEventType $event_type event_type
      *
-     * @return self
+     * @return $this
      */
     public function setEventType($event_type): static
     {
@@ -485,7 +485,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $source_key source_key
      *
-     * @return self
+     * @return $this
      */
     public function setSourceKey(?string $source_key): static
     {
@@ -512,7 +512,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $title Human-readable summary, e.g. `User created agent \"Foo\"`.
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -539,7 +539,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $source_name Display name of the resource the entry is about, as it was when the entry was written (the agent's name for agent and execution entries).
      *
-     * @return self
+     * @return $this
      */
     public function setSourceName(?string $source_name): static
     {
@@ -573,7 +573,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param TriggerType|null $trigger_type How the run was started. Set on execution entries only.
      *
-     * @return self
+     * @return $this
      */
     public function setTriggerType($trigger_type): static
     {
@@ -607,7 +607,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param array<string,mixed>|null $payload Event details. Execution entries carry `execution_id`, the agent, its `product_units` and a `trigger` block (the trigger, its definition and its config without secrets). `EXECUTION_FINISHED` adds the run's final `status` and its `summary`. `summary` is read from the execution when the log is listed rather than stored, so it is null for a few seconds after the run ends (until the recap is written), for a run that failed, and once the run's conversation is deleted or the execution is deleted along with its agent.
      *
-     * @return self
+     * @return $this
      */
     public function setPayload(?array $payload): static
     {
@@ -641,7 +641,7 @@ class ActivityLogResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

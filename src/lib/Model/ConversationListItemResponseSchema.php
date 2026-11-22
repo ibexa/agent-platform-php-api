@@ -386,7 +386,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -413,7 +413,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -440,7 +440,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -467,7 +467,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $subject subject
      *
-     * @return self
+     * @return $this
      */
     public function setSubject(?string $subject): static
     {
@@ -501,7 +501,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -535,7 +535,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -569,7 +569,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int|null $feedback_rate feedback_rate
      *
-     * @return self
+     * @return $this
      */
     public function setFeedbackRate(?int $feedback_rate): static
     {
@@ -603,7 +603,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param bool|null $is_bookmarked Whether the conversation is bookmarked. Bookmarked conversations are never purged by retention.
      *
-     * @return self
+     * @return $this
      */
     public function setIsBookmarked(?bool $is_bookmarked): static
     {
@@ -630,7 +630,7 @@ class ConversationListItemResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int|null $parent_conversation_id ID of the parent conversation when this is a sub-agent conversation, otherwise null.
      *
-     * @return self
+     * @return $this
      */
     public function setParentConversationId(?int $parent_conversation_id): static
     {

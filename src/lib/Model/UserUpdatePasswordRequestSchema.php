@@ -349,7 +349,7 @@ class UserUpdatePasswordRequestSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $current_password current_password
      *
-     * @return self
+     * @return $this
      */
     public function setCurrentPassword(?string $current_password): static
     {
@@ -383,7 +383,7 @@ class UserUpdatePasswordRequestSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $new_password new_password
      *
-     * @return self
+     * @return $this
      */
     public function setNewPassword(?string $new_password): static
     {

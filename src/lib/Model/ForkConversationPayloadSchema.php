@@ -327,7 +327,7 @@ class ForkConversationPayloadSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $message_id ID of the message the fork ends at (inclusive). Must be an assistant reply of this conversation.
      *
-     * @return self
+     * @return $this
      */
     public function setMessageId(?int $message_id): static
     {

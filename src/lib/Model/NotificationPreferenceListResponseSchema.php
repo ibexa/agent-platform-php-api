@@ -324,7 +324,7 @@ class NotificationPreferenceListResponseSchema implements ModelInterface, ArrayA
      *
      * @param NotificationPreferenceResponseSchema[] $preferences preferences
      *
-     * @return self
+     * @return $this
      */
     public function setPreferences(?array $preferences): static
     {

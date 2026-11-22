@@ -28,6 +28,8 @@ lib/Model/AddAgentsCatalogCategoryTranslationPayloadSchema.php
 lib/Model/AddAgentsCatalogEntryTranslationPayloadSchema.php
 lib/Model/AddMCPCatalogCategoryTranslationPayloadSchema.php
 lib/Model/AddMCPCatalogEntryTranslationPayloadSchema.php
+lib/Model/AdminModelPricingResponseSchema.php
+lib/Model/AdminModelProfileResponseSchema.php
 lib/Model/AgentCostForecastResponseSchema.php
 lib/Model/AgentDefinitionSchema.php
 lib/Model/AgentDetailResponseSchema.php
@@ -488,6 +490,8 @@ test/Model/AddAgentsCatalogCategoryTranslationPayloadSchemaTest.php
 test/Model/AddAgentsCatalogEntryTranslationPayloadSchemaTest.php
 test/Model/AddMCPCatalogCategoryTranslationPayloadSchemaTest.php
 test/Model/AddMCPCatalogEntryTranslationPayloadSchemaTest.php
+test/Model/AdminModelPricingResponseSchemaTest.php
+test/Model/AdminModelProfileResponseSchemaTest.php
 test/Model/AgentCostForecastResponseSchemaTest.php
 test/Model/AgentDefinitionSchemaTest.php
 test/Model/AgentDetailResponseSchemaTest.php

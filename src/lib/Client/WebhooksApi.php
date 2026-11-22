@@ -83,7 +83,7 @@ class WebhooksApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'receiveRemoteSourceWebhook' => [
             'application/json',

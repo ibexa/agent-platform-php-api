@@ -344,7 +344,7 @@ class NotificationSenderSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param SenderType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -371,7 +371,7 @@ class NotificationSenderSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -405,7 +405,7 @@ class NotificationSenderSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {

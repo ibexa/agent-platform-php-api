@@ -324,7 +324,7 @@ class CreateExecutionResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $id Execution ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {

@@ -461,7 +461,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -488,7 +488,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -515,7 +515,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param NodeType $node_type node_type
      *
-     * @return self
+     * @return $this
      */
     public function setNodeType($node_type): static
     {
@@ -542,7 +542,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -569,7 +569,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $slug slug
      *
-     * @return self
+     * @return $this
      */
     public function setSlug(?string $slug): static
     {
@@ -603,7 +603,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int|null $parent_id parent_id
      *
-     * @return self
+     * @return $this
      */
     public function setParentId(?int $parent_id): static
     {
@@ -637,7 +637,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $path path
      *
-     * @return self
+     * @return $this
      */
     public function setPath(?string $path): static
     {
@@ -671,7 +671,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -705,7 +705,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $citation_count citation_count
      *
-     * @return self
+     * @return $this
      */
     public function setCitationCount(?int $citation_count): static
     {
@@ -732,7 +732,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param array<string,mixed>|null $metadata metadata
      *
-     * @return self
+     * @return $this
      */
     public function setMetadata(?array $metadata): static
     {
@@ -766,7 +766,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param KnowledgeNodeUserSchema|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy($created_by): static
     {
@@ -800,7 +800,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param KnowledgeNodeUserSchema|null $updated_by updated_by
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedBy($updated_by): static
     {
@@ -834,7 +834,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -868,7 +868,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -902,7 +902,7 @@ class KnowledgeNodeResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param array<string,string>|null $name_translations Per-language display-name overrides (ISO 639-1 keys), for the two system-managed root folders only — null for every other node. `name` always stays the canonical English string; the caller decides which (if any) of these to show.
      *
-     * @return self
+     * @return $this
      */
     public function setNameTranslations(?array $name_translations): static
     {

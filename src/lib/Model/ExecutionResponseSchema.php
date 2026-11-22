@@ -78,7 +78,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
         'created_by' => '\Ibexa\AgentPlatform\Model\ExecutionUserSchema',
         'updated_by' => '\Ibexa\AgentPlatform\Model\ExecutionUserSchema',
         'conversation_id' => 'int',
-        'result' => 'AnyOf',
+        'result' => 'mixed',
         'response_format' => '\Ibexa\AgentPlatform\Model\ResponseFormat',
         'started_at' => '\DateTime',
         'finished_at' => '\DateTime',
@@ -527,7 +527,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $id Execution ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -554,7 +554,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $agent_id Agent ID
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -581,7 +581,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $agent_name Name of the agent that was run
      *
-     * @return self
+     * @return $this
      */
     public function setAgentName(?string $agent_name): static
     {
@@ -608,7 +608,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param array<string,mixed> $args Optional args to pass to the agent during execution
      *
-     * @return self
+     * @return $this
      */
     public function setArgs(?array $args): static
     {
@@ -635,7 +635,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionStatus $status Execution status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -662,7 +662,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $duration Execution duration in seconds
      *
-     * @return self
+     * @return $this
      */
     public function setDuration(?int $duration): static
     {
@@ -696,7 +696,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionTriggerSchema|null $trigger How the run was started
      *
-     * @return self
+     * @return $this
      */
     public function setTrigger($trigger): static
     {
@@ -730,7 +730,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionUserSchema|null $created_by User who created the execution — the user the run is triggered on behalf of, for scheduled and webhook runs as well as manual ones
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy($created_by): static
     {
@@ -764,7 +764,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionUserSchema|null $updated_by User who last updated the execution
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedBy($updated_by): static
     {
@@ -798,7 +798,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $conversation_id Associated conversation ID
      *
-     * @return self
+     * @return $this
      */
     public function setConversationId(?int $conversation_id): static
     {
@@ -820,7 +820,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets result.
      *
-     * @return AnyOf|null
+     * @return mixed
      */
     public function getResult()
     {
@@ -830,9 +830,9 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets result.
      *
-     * @param AnyOf|null $result What the run produced, in the shape `response_format` names: an object for a run that answered in JSON, the agent's reply as text for one that answered in prose. Null until the run has produced something
+     * @param mixed $result What the run produced, in the shape `response_format` names: an object for a run that answered in JSON, the agent's reply as text for one that answered in prose. Null until the run has produced something
      *
-     * @return self
+     * @return $this
      */
     public function setResult($result): static
     {
@@ -866,7 +866,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ResponseFormat $response_format Shape this run was asked to answer in, decided when it was created and fixed for its lifetime — read it to know how to parse `result`. Runs recorded before formats were selectable report the shape they were produced in
      *
-     * @return self
+     * @return $this
      */
     public function setResponseFormat($response_format): static
     {
@@ -893,7 +893,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime|null $started_at Execution started time
      *
-     * @return self
+     * @return $this
      */
     public function setStartedAt($started_at): static
     {
@@ -927,7 +927,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime|null $finished_at Execution finished time
      *
-     * @return self
+     * @return $this
      */
     public function setFinishedAt($finished_at): static
     {
@@ -961,7 +961,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime|null $created_at Execution created time
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -995,7 +995,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime|null $updated_at Execution updated time
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -1029,7 +1029,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionUsageSchema|null $usage Token usage and cost, available once execution succeeds
      *
-     * @return self
+     * @return $this
      */
     public function setUsage($usage): static
     {
@@ -1063,7 +1063,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $credits Total credits consumed by this execution, or null if none were recorded.
      *
-     * @return self
+     * @return $this
      */
     public function setCredits(?string $credits): static
     {
@@ -1097,7 +1097,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionLanguageModelSchema|null $language_model The model the agent runs on
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageModel($language_model): static
     {
@@ -1131,7 +1131,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ExecutionMCPServerSchema[]|null $mcp_servers Verified MCP servers attached to the agent. These are what the agent can reach, not necessarily what this run called. Served only by this endpoint, never by the executions list
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServers(?array $mcp_servers): static
     {
@@ -1158,7 +1158,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $mcp_servers_count Number of entries in `mcp_servers`
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServersCount(?int $mcp_servers_count): static
     {
@@ -1185,7 +1185,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $tool_calls How many tool calls the run made. Excludes the platform's own system tools (conversation context). 0 for a run that failed, whose conversation is discarded with it
      *
-     * @return self
+     * @return $this
      */
     public function setToolCalls(?int $tool_calls): static
     {
@@ -1212,7 +1212,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $llm_calls How many times the run reached a model. Counted the same way as `tool_calls` and with the same limits: a model call that requested nothing but system tools is not counted, and a failed run reports 0
      *
-     * @return self
+     * @return $this
      */
     public function setLlmCalls(?int $llm_calls): static
     {
@@ -1239,7 +1239,7 @@ class ExecutionResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $summary A short outcome-focused recap of what this run did, written by a model after the run ends. Null while it is still being written — it is generated in the background once the run finishes, so it is never present the moment the run completes and appears on a later read. Also null for a run that produced no conversation, and for cancelled and failed runs, which are not summarised. Describes the run as it ended and is not revised if the conversation is continued afterwards. Served only by this endpoint, never by the executions list
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {

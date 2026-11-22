@@ -324,7 +324,7 @@ class MarkAllNotificationsReadPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param int|null $before_id Id of the last notification the client rendered; it and everything older is marked read. Omit to clear all notifications.
      *
-     * @return self
+     * @return $this
      */
     public function setBeforeId(?int $before_id): static
     {

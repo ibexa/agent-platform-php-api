@@ -351,7 +351,7 @@ class KnowledgeNodeUserSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -378,7 +378,7 @@ class KnowledgeNodeUserSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $email email
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {
@@ -405,7 +405,7 @@ class KnowledgeNodeUserSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $full_name full_name
      *
-     * @return self
+     * @return $this
      */
     public function setFullName(?string $full_name): static
     {
@@ -439,7 +439,7 @@ class KnowledgeNodeUserSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $avatar_url avatar_url
      *
-     * @return self
+     * @return $this
      */
     public function setAvatarUrl(?string $avatar_url): static
     {

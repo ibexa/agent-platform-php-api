@@ -322,7 +322,7 @@ class BodyOrganisationUploadOrganisationLogo implements ModelInterface, ArrayAcc
      *
      * @param \SplFileObject $file file
      *
-     * @return self
+     * @return $this
      */
     public function setFile($file): static
     {

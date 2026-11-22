@@ -324,7 +324,7 @@ class ExecutionStatusDistributionResponseSchema implements ModelInterface, Array
      *
      * @param ExecutionStatusPeriodSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

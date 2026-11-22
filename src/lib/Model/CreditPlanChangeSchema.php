@@ -364,7 +364,7 @@ class CreditPlanChangeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $monthly_allowance The new monthly allowance cap.
      *
-     * @return self
+     * @return $this
      */
     public function setMonthlyAllowance(?string $monthly_allowance): static
     {
@@ -391,7 +391,7 @@ class CreditPlanChangeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $previous_monthly_allowance The cap of the plan this one superseded. Null for the organisation's first plan.
      *
-     * @return self
+     * @return $this
      */
     public function setPreviousMonthlyAllowance(?string $previous_monthly_allowance): static
     {
@@ -425,7 +425,7 @@ class CreditPlanChangeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $timezone The timezone the plan's calendar month is fixed in.
      *
-     * @return self
+     * @return $this
      */
     public function setTimezone(?string $timezone): static
     {
@@ -452,7 +452,7 @@ class CreditPlanChangeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \DateTime $effective_from effective_from
      *
-     * @return self
+     * @return $this
      */
     public function setEffectiveFrom($effective_from): static
     {
@@ -479,7 +479,7 @@ class CreditPlanChangeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \DateTime|null $effective_to When a later plan superseded this one. Null while it is current.
      *
-     * @return self
+     * @return $this
      */
     public function setEffectiveTo($effective_to): static
     {

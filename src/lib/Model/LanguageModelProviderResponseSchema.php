@@ -424,7 +424,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -451,7 +451,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -478,7 +478,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -505,7 +505,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param LanguageModelProviderType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -532,7 +532,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param int $owner_organisation_id owner_organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOwnerOrganisationId(?int $owner_organisation_id): static
     {
@@ -559,7 +559,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -593,7 +593,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param bool $has_credentials has_credentials
      *
-     * @return self
+     * @return $this
      */
     public function setHasCredentials(?bool $has_credentials): static
     {
@@ -620,7 +620,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param bool $platform_managed platform_managed
      *
-     * @return self
+     * @return $this
      */
     public function setPlatformManaged(?bool $platform_managed): static
     {
@@ -647,7 +647,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param ModelSetResponseSchema|null $model_set model_set
      *
-     * @return self
+     * @return $this
      */
     public function setModelSet($model_set): static
     {
@@ -681,7 +681,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param \DateTime|null $verified_at verified_at
      *
-     * @return self
+     * @return $this
      */
     public function setVerifiedAt($verified_at): static
     {
@@ -715,7 +715,7 @@ class LanguageModelProviderResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param bool $is_eu is_eu
      *
-     * @return self
+     * @return $this
      */
     public function setIsEu(?bool $is_eu): static
     {

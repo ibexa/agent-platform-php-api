@@ -338,7 +338,7 @@ class CreateExecutionPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $agent_id Agent ID to run
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -365,7 +365,7 @@ class CreateExecutionPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param array<string,mixed>|null $args Optional args to pass to the agent during execution
      *
-     * @return self
+     * @return $this
      */
     public function setArgs(?array $args): static
     {
@@ -392,7 +392,7 @@ class CreateExecutionPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param ResponseFormat|null $response_format Shape the run must answer in: JSON for a caller that parses the result, TEXT for prose meant to be read. Omit to use the format the agent's 'Run now' trigger is configured for, and failing that the default for a manual run, which is TEXT
      *
-     * @return self
+     * @return $this
      */
     public function setResponseFormat($response_format): static
     {

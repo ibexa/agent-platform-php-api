@@ -509,7 +509,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -543,7 +543,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -577,7 +577,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $instruction instruction
      *
-     * @return self
+     * @return $this
      */
     public function setInstruction(?string $instruction): static
     {
@@ -611,7 +611,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool|null $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -638,7 +638,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool|null $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -665,7 +665,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param BudgetSchema|null $budget Agent budget in credits. Defaults to an unlimited budget.
      *
-     * @return self
+     * @return $this
      */
     public function setBudget($budget): static
     {
@@ -692,7 +692,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param RetryPolicySchema|null $retry_policy How execution failures are handled. Defaults to 'fail'.
      *
-     * @return self
+     * @return $this
      */
     public function setRetryPolicy($retry_policy): static
     {
@@ -719,7 +719,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -757,7 +757,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $language_model_provider_id language_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageModelProviderId(?int $language_model_provider_id): static
     {
@@ -791,7 +791,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $model_id model_id
      *
-     * @return self
+     * @return $this
      */
     public function setModelId(?string $model_id): static
     {
@@ -825,7 +825,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param array<string,mixed>|null $input_schema JSON Schema describing the expected input structure for this agent.
      *
-     * @return self
+     * @return $this
      */
     public function setInputSchema(?array $input_schema): static
     {
@@ -859,7 +859,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param array<string,mixed>|null $output_schema JSON Schema describing the expected output structure for this agent.
      *
-     * @return self
+     * @return $this
      */
     public function setOutputSchema(?array $output_schema): static
     {
@@ -893,7 +893,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param KnowledgeBaseScope|null $knowledge_base_scope Knowledge-base access: 'none' (default, no access), 'all' (whole knowledge base), or 'branch' (a single folder subtree).
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseScope($knowledge_base_scope): static
     {
@@ -920,7 +920,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int[]|null $knowledge_base_node_ids Folder node ids to confine the agent to. Required (one or more) when scope is 'branch'; must be omitted for 'none' or 'all'.
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseNodeIds(?array $knowledge_base_node_ids): static
     {
@@ -947,7 +947,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param EvalConfigSchema|null $eval_config Metrics this agent is evaluated against, with per-metric thresholds and weights.
      *
-     * @return self
+     * @return $this
      */
     public function setEvalConfig($eval_config): static
     {
@@ -981,7 +981,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $graph_recursion_limit Per-agent override for the LangGraph recursion limit (max steps in the tool-calling loop). Must not exceed the platform cap (100). If null, LangGraph's own default (25) is used.
      *
-     * @return self
+     * @return $this
      */
     public function setGraphRecursionLimit(?int $graph_recursion_limit): static
     {
@@ -1022,7 +1022,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param ContextWindowStrategy|null $context_window_strategy Behavior when the conversation nears the model's context window: 'stop' (default, run fails once the request is over-length), 'context_editing' (clear old tool results), or 'summarization' (replace older messages with an LLM-generated summary).
      *
-     * @return self
+     * @return $this
      */
     public function setContextWindowStrategy($context_window_strategy): static
     {
@@ -1049,7 +1049,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $agents_catalog_entry_id Optional reference to the agents catalog entry this agent was created from. Used to track catalog template popularity.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsCatalogEntryId(?int $agents_catalog_entry_id): static
     {
@@ -1087,7 +1087,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param ImpactMetricSchema|null $impact_metric The impact (ROI) one run of this agent generates. Omit if this agent has no impact metric to track.
      *
-     * @return self
+     * @return $this
      */
     public function setImpactMetric($impact_metric): static
     {
@@ -1121,7 +1121,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param AgentMemoryScope|null $memory_scope Long-term memory access breadth: 'none' (default, no memory), 'user' (this agent's own per-user memory only), or 'organisation' (also the organisation's shared memory).
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryScope($memory_scope): static
     {
@@ -1148,7 +1148,7 @@ class CreateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param AgentMemoryAccess|null $memory_access 'read_only' (default, recall only) or 'read_write' (may also remember/forget). Must be 'read_only' when memory_scope is 'none'.
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryAccess($memory_access): static
     {

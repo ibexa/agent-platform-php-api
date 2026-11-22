@@ -349,7 +349,7 @@ class AgentsCatalogCategoryTranslationSchema implements ModelInterface, ArrayAcc
      *
      * @param string $name Name of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -376,7 +376,7 @@ class AgentsCatalogCategoryTranslationSchema implements ModelInterface, ArrayAcc
      *
      * @param string|null $description Description of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -410,7 +410,7 @@ class AgentsCatalogCategoryTranslationSchema implements ModelInterface, ArrayAcc
      *
      * @param string $language_code ISO 639-1 language code for the translation
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageCode(?string $language_code): static
     {
@@ -437,7 +437,7 @@ class AgentsCatalogCategoryTranslationSchema implements ModelInterface, ArrayAcc
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {

@@ -449,7 +449,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -476,7 +476,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -503,7 +503,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -530,7 +530,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -557,7 +557,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $verified_at verified_at
      *
-     * @return self
+     * @return $this
      */
     public function setVerifiedAt($verified_at): static
     {
@@ -591,7 +591,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $verification_error verification_error
      *
-     * @return self
+     * @return $this
      */
     public function setVerificationError(?string $verification_error): static
     {
@@ -625,7 +625,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $verification_status verification_status
      *
-     * @return self
+     * @return $this
      */
     public function setVerificationStatus(?string $verification_status): static
     {
@@ -652,7 +652,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -679,7 +679,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $mcp_catalog_entry_id mcp_catalog_entry_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryId(?int $mcp_catalog_entry_id): static
     {
@@ -713,7 +713,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param MCPServerCatalogEntrySchema|null $mcp_catalog_entry mcp_catalog_entry
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntry($mcp_catalog_entry): static
     {
@@ -747,7 +747,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param MCPServerIconSchema[]|null $icons icons
      *
-     * @return self
+     * @return $this
      */
     public function setIcons(?array $icons): static
     {
@@ -781,7 +781,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param AuthScheme|null $auth_scheme auth_scheme
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -815,7 +815,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed>|null $auth_config auth_config
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -849,7 +849,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param bool|null $requires_user_connection requires_user_connection
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {
@@ -876,7 +876,7 @@ class MCPServerListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param MCPServerVersionSchema $version version
      *
-     * @return self
+     * @return $this
      */
     public function setVersion($version): static
     {

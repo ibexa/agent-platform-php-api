@@ -338,7 +338,7 @@ class OrgCreateUserPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $email email
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {
@@ -365,7 +365,7 @@ class OrgCreateUserPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $full_name full_name
      *
-     * @return self
+     * @return $this
      */
     public function setFullName(?string $full_name): static
     {
@@ -399,7 +399,7 @@ class OrgCreateUserPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param OrganisationRole|null $organisation_role organisation_role
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationRole($organisation_role): static
     {

@@ -339,7 +339,7 @@ class AddMCPCatalogEntryTranslationPayloadSchema implements ModelInterface, Arra
      *
      * @param string $name Name of the MCP catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -366,7 +366,7 @@ class AddMCPCatalogEntryTranslationPayloadSchema implements ModelInterface, Arra
      *
      * @param string|null $description Description of the MCP catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -400,7 +400,7 @@ class AddMCPCatalogEntryTranslationPayloadSchema implements ModelInterface, Arra
      *
      * @param string $language_code ISO 639-1 language code for the translation
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageCode(?string $language_code): static
     {

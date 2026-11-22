@@ -322,7 +322,7 @@ class Message implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $message message
      *
-     * @return self
+     * @return $this
      */
     public function setMessage(?string $message): static
     {

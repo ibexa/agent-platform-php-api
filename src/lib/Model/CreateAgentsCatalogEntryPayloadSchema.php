@@ -415,7 +415,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string $name Name of the agents catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -442,7 +442,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $description Description of the agents catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -476,7 +476,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $summary Short summary of the agents catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -510,7 +510,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string[]|null $use_cases Example use cases for the entry
      *
-     * @return self
+     * @return $this
      */
     public function setUseCases(?array $use_cases): static
     {
@@ -537,7 +537,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string $language_code ISO 639-1 language code for the translation
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageCode(?string $language_code): static
     {
@@ -564,7 +564,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string $identifier Unique identifier of the entry
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -591,7 +591,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param int $category_id ID of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setCategoryId(?int $category_id): static
     {
@@ -618,7 +618,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $vendor_name Vendor name
      *
-     * @return self
+     * @return $this
      */
     public function setVendorName(?string $vendor_name): static
     {
@@ -652,7 +652,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {
@@ -686,7 +686,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $icon_url Icon URL
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -720,7 +720,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param string[]|null $recommended_models Recommended language model ids
      *
-     * @return self
+     * @return $this
      */
     public function setRecommendedModels(?array $recommended_models): static
     {
@@ -747,7 +747,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param array<string,mixed>|null $definition Agent template definition
      *
-     * @return self
+     * @return $this
      */
     public function setDefinition(?array $definition): static
     {
@@ -781,7 +781,7 @@ class CreateAgentsCatalogEntryPayloadSchema implements ModelInterface, ArrayAcce
      *
      * @param int[]|null $mcp_catalog_entry_ids IDs of required MCP catalog entries
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryIds(?array $mcp_catalog_entry_ids): static
     {

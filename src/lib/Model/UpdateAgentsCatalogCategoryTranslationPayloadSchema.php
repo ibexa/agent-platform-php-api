@@ -329,7 +329,7 @@ class UpdateAgentsCatalogCategoryTranslationPayloadSchema implements ModelInterf
      *
      * @param string $name Name of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -356,7 +356,7 @@ class UpdateAgentsCatalogCategoryTranslationPayloadSchema implements ModelInterf
      *
      * @param string|null $description Description of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

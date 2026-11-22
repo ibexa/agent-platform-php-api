@@ -334,7 +334,7 @@ class AgentExecutionDurationSummaryResponseSchema implements ModelInterface, Arr
      *
      * @param ExecutionDurationStatsSchema $overall overall
      *
-     * @return self
+     * @return $this
      */
     public function setOverall($overall): static
     {
@@ -361,7 +361,7 @@ class AgentExecutionDurationSummaryResponseSchema implements ModelInterface, Arr
      *
      * @param AgentExecutionUserDurationSchema[] $by_user by_user
      *
-     * @return self
+     * @return $this
      */
     public function setByUser(?array $by_user): static
     {

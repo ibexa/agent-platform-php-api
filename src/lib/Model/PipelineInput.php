@@ -371,7 +371,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $version Schema version (e.g. '0.1').
      *
-     * @return self
+     * @return $this
      */
     public function setVersion(?string $version): static
     {
@@ -398,7 +398,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $initial_message Seed message injected as the first conversation turn before the pipeline starts.
      *
-     * @return self
+     * @return $this
      */
     public function setInitialMessage(?string $initial_message): static
     {
@@ -432,7 +432,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param ModelReference[]|null $model_references Language model references available in this pipeline. Each entry's alias can be referenced from inline agents.
      *
-     * @return self
+     * @return $this
      */
     public function setModelReferences(?array $model_references): static
     {
@@ -470,7 +470,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param MCPServerReference[]|null $mcp_server_references MCP server references available in this pipeline. Each entry's alias can be referenced from inline agents.
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServerReferences(?array $mcp_server_references): static
     {
@@ -504,7 +504,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param AgentReference[]|null $agent_references Agent references available in this pipeline. Each entry can be used as a standalone AgentNode (via alias or identifier) or as a sub-agent inside inline agents (via alias in sub_agents).
      *
-     * @return self
+     * @return $this
      */
     public function setAgentReferences(?array $agent_references): static
     {
@@ -538,7 +538,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param InlineAgent[]|null $inline_agents Inline agent definitions. Each agent's alias can be referenced from AgentNodes in the pipeline.
      *
-     * @return self
+     * @return $this
      */
     public function setInlineAgents(?array $inline_agents): static
     {
@@ -572,7 +572,7 @@ class PipelineInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Pipeline $pipeline pipeline
      *
-     * @return self
+     * @return $this
      */
     public function setPipeline($pipeline): static
     {

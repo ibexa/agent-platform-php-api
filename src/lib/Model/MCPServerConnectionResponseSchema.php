@@ -364,7 +364,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param bool $connected connected
      *
-     * @return self
+     * @return $this
      */
     public function setConnected(?bool $connected): static
     {
@@ -391,7 +391,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param AuthScheme|null $scheme scheme
      *
-     * @return self
+     * @return $this
      */
     public function setScheme($scheme): static
     {
@@ -425,7 +425,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -459,7 +459,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param \DateTime|null $connected_at connected_at
      *
-     * @return self
+     * @return $this
      */
     public function setConnectedAt($connected_at): static
     {
@@ -493,7 +493,7 @@ class MCPServerConnectionResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param \DateTime|null $expires_at expires_at
      *
-     * @return self
+     * @return $this
      */
     public function setExpiresAt($expires_at): static
     {

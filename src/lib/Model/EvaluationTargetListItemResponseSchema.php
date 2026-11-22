@@ -394,7 +394,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -421,7 +421,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param EvaluationTargetType $target_type target_type
      *
-     * @return self
+     * @return $this
      */
     public function setTargetType($target_type): static
     {
@@ -448,7 +448,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int|null $execution_id execution_id
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionId(?int $execution_id): static
     {
@@ -482,7 +482,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int|null $message_id message_id
      *
-     * @return self
+     * @return $this
      */
     public function setMessageId(?int $message_id): static
     {
@@ -516,7 +516,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int|null $conversation_id conversation_id
      *
-     * @return self
+     * @return $this
      */
     public function setConversationId(?int $conversation_id): static
     {
@@ -550,7 +550,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param float|null $overall_score Weighted average across every computed metric, or null until evaluation finishes.
      *
-     * @return self
+     * @return $this
      */
     public function setOverallScore($overall_score): static
     {
@@ -584,7 +584,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param EvaluationOutcome $outcome outcome
      *
-     * @return self
+     * @return $this
      */
     public function setOutcome($outcome): static
     {
@@ -611,7 +611,7 @@ class EvaluationTargetListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

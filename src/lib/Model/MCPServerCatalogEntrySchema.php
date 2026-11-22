@@ -344,7 +344,7 @@ class MCPServerCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -371,7 +371,7 @@ class MCPServerCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -405,7 +405,7 @@ class MCPServerCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $icon_url icon_url
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {

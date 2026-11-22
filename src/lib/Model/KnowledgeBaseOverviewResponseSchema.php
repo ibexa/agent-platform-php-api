@@ -374,7 +374,7 @@ class KnowledgeBaseOverviewResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param KnowledgeBaseInsightMetricSchema $total_documents total_documents
      *
-     * @return self
+     * @return $this
      */
     public function setTotalDocuments($total_documents): static
     {
@@ -401,7 +401,7 @@ class KnowledgeBaseOverviewResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param KnowledgeBaseInsightMetricSchema $content_citations content_citations
      *
-     * @return self
+     * @return $this
      */
     public function setContentCitations($content_citations): static
     {
@@ -428,7 +428,7 @@ class KnowledgeBaseOverviewResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param KnowledgeBaseInsightMetricSchema $total_drafts total_drafts
      *
-     * @return self
+     * @return $this
      */
     public function setTotalDrafts($total_drafts): static
     {
@@ -455,7 +455,7 @@ class KnowledgeBaseOverviewResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param KnowledgeBaseInsightMetricSchema $stale_drafts Currently-open drafts older than 60 days. `series` is always null — this is a snapshot metric, not a flow.
      *
-     * @return self
+     * @return $this
      */
     public function setStaleDrafts($stale_drafts): static
     {
@@ -482,7 +482,7 @@ class KnowledgeBaseOverviewResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param KnowledgeBaseInsightMetricSchema $failed_documents failed_documents
      *
-     * @return self
+     * @return $this
      */
     public function setFailedDocuments($failed_documents): static
     {
@@ -509,7 +509,7 @@ class KnowledgeBaseOverviewResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param KnowledgeBaseInsightMetricSchema $doubled_documents doubled_documents
      *
-     * @return self
+     * @return $this
      */
     public function setDoubledDocuments($doubled_documents): static
     {

@@ -364,7 +364,7 @@ class RemoteEventSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $key The vendor's event key.
      *
-     * @return self
+     * @return $this
      */
     public function setKey(?string $key): static
     {
@@ -391,7 +391,7 @@ class RemoteEventSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $label label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -418,7 +418,7 @@ class RemoteEventSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $category Groups events for display only.
      *
-     * @return self
+     * @return $this
      */
     public function setCategory(?string $category): static
     {
@@ -445,7 +445,7 @@ class RemoteEventSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -479,7 +479,7 @@ class RemoteEventSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $definition_id This event's trigger definition in `/triggers/definitions`; a trigger of it reacts to this event only.
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {

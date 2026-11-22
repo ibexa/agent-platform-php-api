@@ -351,7 +351,7 @@ class ExecutionDurationStatsSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $count Number of executions with a recorded duration that this average/min/max is computed over — not the total number of executions in the requested scope. PENDING/STARTED runs have no duration yet and are excluded from both.
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {
@@ -378,7 +378,7 @@ class ExecutionDurationStatsSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $average_duration_seconds average_duration_seconds
      *
-     * @return self
+     * @return $this
      */
     public function setAverageDurationSeconds(?string $average_duration_seconds): static
     {
@@ -412,7 +412,7 @@ class ExecutionDurationStatsSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int|null $min_duration_seconds min_duration_seconds
      *
-     * @return self
+     * @return $this
      */
     public function setMinDurationSeconds(?int $min_duration_seconds): static
     {
@@ -446,7 +446,7 @@ class ExecutionDurationStatsSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int|null $max_duration_seconds max_duration_seconds
      *
-     * @return self
+     * @return $this
      */
     public function setMaxDurationSeconds(?int $max_duration_seconds): static
     {

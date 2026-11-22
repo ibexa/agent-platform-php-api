@@ -334,7 +334,7 @@ class ModelUpgradeRecommendationResponseSchema implements ModelInterface, ArrayA
      *
      * @param AdminModelProfileResponseSchema $current current
      *
-     * @return self
+     * @return $this
      */
     public function setCurrent($current): static
     {
@@ -361,7 +361,7 @@ class ModelUpgradeRecommendationResponseSchema implements ModelInterface, ArrayA
      *
      * @param AdminModelProfileResponseSchema $recommended recommended
      *
-     * @return self
+     * @return $this
      */
     public function setRecommended($recommended): static
     {

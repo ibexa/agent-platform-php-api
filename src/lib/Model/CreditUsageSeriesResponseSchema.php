@@ -374,7 +374,7 @@ class CreditUsageSeriesResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param UsageGranularity $granularity granularity
      *
-     * @return self
+     * @return $this
      */
     public function setGranularity($granularity): static
     {
@@ -401,7 +401,7 @@ class CreditUsageSeriesResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime $date_from date_from
      *
-     * @return self
+     * @return $this
      */
     public function setDateFrom($date_from): static
     {
@@ -428,7 +428,7 @@ class CreditUsageSeriesResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime $date_to date_to
      *
-     * @return self
+     * @return $this
      */
     public function setDateTo($date_to): static
     {
@@ -455,7 +455,7 @@ class CreditUsageSeriesResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param CreditUsagePeriodSchema[] $items One entry per bucket in the range, ascending. Buckets with no spend are present with zero amounts, so the series has no gaps.
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {
@@ -482,7 +482,7 @@ class CreditUsageSeriesResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param CreditSpendSchema $summary The same spend aggregated over the whole range.
      *
-     * @return self
+     * @return $this
      */
     public function setSummary($summary): static
     {
@@ -509,7 +509,7 @@ class CreditUsageSeriesResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param CreditCurrency $currency currency
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency($currency): static
     {

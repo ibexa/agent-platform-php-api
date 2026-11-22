@@ -327,7 +327,7 @@ class SuggestDocumentTitlePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $markdown The document's Markdown body the title is generated from. Capped at 20000 characters — content beyond that is never read for title generation anyway.
      *
-     * @return self
+     * @return $this
      */
     public function setMarkdown(?string $markdown): static
     {

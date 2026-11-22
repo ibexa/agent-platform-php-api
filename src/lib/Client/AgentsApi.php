@@ -106,7 +106,7 @@ class AgentsApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'createAgent' => [
             'application/json',
@@ -881,7 +881,7 @@ class AgentsApi
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id agent_id (required)
-     * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
+     * @param  string|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -905,7 +905,7 @@ class AgentsApi
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
+     * @param  string|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -973,7 +973,7 @@ class AgentsApi
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
+     * @param  string|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -997,7 +997,7 @@ class AgentsApi
      * Get Agent Cost Forecast
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
+     * @param  string|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1020,7 +1020,7 @@ class AgentsApi
      * Create request for operation 'getAgentCostForecast'.
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelForecastMethod|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
+     * @param  string|null $method Forecast algorithm. SEASONALITY (default) uses 6 months of historical patterns; LINEAR extrapolates the current daily average. (optional, default to 'SEASONALITY')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentCostForecast'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1133,9 +1133,9 @@ class AgentsApi
      *
      * @param  int $agent_id agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
@@ -1165,9 +1165,9 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
@@ -1241,9 +1241,9 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
@@ -1273,9 +1273,9 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
@@ -1304,9 +1304,9 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
      * @param  string|null $metric_id Restrict to one metric_id. Defaults to all configured metrics. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricBreakdown'] to see the possible values for this operation
      *
@@ -1460,7 +1460,7 @@ class AgentsApi
      *
      * @param  int $agent_id agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
@@ -1488,7 +1488,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
@@ -1560,7 +1560,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
@@ -1588,7 +1588,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
@@ -1615,7 +1615,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationMetricProviderCounts'] to see the possible values for this operation
      *
@@ -2019,8 +2019,8 @@ class AgentsApi
      *
      * @param  int $agent_id agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
@@ -2049,8 +2049,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
@@ -2123,8 +2123,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
@@ -2153,8 +2153,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
@@ -2182,8 +2182,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. (optional, default to 'DAY')
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). Defaults to all types combined. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentEvaluationSummary'] to see the possible values for this operation
      *
@@ -2854,7 +2854,7 @@ class AgentsApi
      *
      * @param  int $agent_id agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
-     * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
+     * @param  string|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2880,7 +2880,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
-     * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
+     * @param  string|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2950,7 +2950,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
-     * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
+     * @param  string|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2976,7 +2976,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
-     * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
+     * @param  string|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3001,7 +3001,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  string $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Both ends are required for this endpoint, e.g. &#39;2026-08-01,2026-08-31&#39;; an open-ended range is rejected with 400. (required)
-     * @param  \IbexaAgentPlatformModelSpendComparisonBasis|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
+     * @param  string|null $compare_to What to compare the range against. &#x60;PREVIOUS_MONTH&#x60; is the whole calendar month before the month the range starts in (month-over-month). &#x60;PRECEDING_PERIOD&#x60; is the equally long window ending the day before the range starts, for a rolling window. (optional, default to 'PREVIOUS_MONTH')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentExecutionsComparison'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3361,7 +3361,7 @@ class AgentsApi
      * Get Agent Impact Metrics
      *
      * @param  int $agent_id agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
@@ -3389,7 +3389,7 @@ class AgentsApi
      * Get Agent Impact Metrics
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
@@ -3461,7 +3461,7 @@ class AgentsApi
      * Get Agent Impact Metrics
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
@@ -3489,7 +3489,7 @@ class AgentsApi
      * Get Agent Impact Metrics
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
@@ -3516,7 +3516,7 @@ class AgentsApi
      * Create request for operation 'getAgentImpactMetrics'.
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $user_id Restrict to executions triggered by this user. Defaults to all users in the organisation. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentImpactMetrics'] to see the possible values for this operation
@@ -3651,7 +3651,7 @@ class AgentsApi
      *
      * @param  int $agent_id agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
@@ -3679,7 +3679,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
@@ -3751,7 +3751,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
@@ -3779,7 +3779,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
@@ -3806,7 +3806,7 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
+     * @param  string|null $group Time grouping granularity (DAY, MONTH, YEAR, or TOTAL). Defaults to DAY if omitted. TOTAL collapses all results into a single row with period&#x3D;&#39;total&#39;. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentStatusDistribution'] to see the possible values for this operation
      *
@@ -3939,7 +3939,7 @@ class AgentsApi
      * Get Agent Usage
      *
      * @param  int $agent_id agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
@@ -3965,7 +3965,7 @@ class AgentsApi
      * Get Agent Usage
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
@@ -4035,7 +4035,7 @@ class AgentsApi
      * Get Agent Usage
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
@@ -4061,7 +4061,7 @@ class AgentsApi
      * Get Agent Usage
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
@@ -4086,7 +4086,7 @@ class AgentsApi
      * Create request for operation 'getAgentUsage'.
      *
      * @param  int $agent_id (required)
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity. If omitted, all data is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAgentUsage'] to see the possible values for this operation
      *
@@ -5185,8 +5185,8 @@ class AgentsApi
      *
      * @param  int $agent_id agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationOutcome|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
+     * @param  string|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
@@ -5219,8 +5219,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationOutcome|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
+     * @param  string|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
@@ -5297,8 +5297,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationOutcome|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
+     * @param  string|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
@@ -5331,8 +5331,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationOutcome|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
+     * @param  string|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
@@ -5364,8 +5364,8 @@ class AgentsApi
      *
      * @param  int $agent_id (required)
      * @param  int|null $organisation_id Organisation ID. Defaults to the caller&#39;s own organisation. Superusers may specify any organisation. (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationTargetType|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
-     * @param  \IbexaAgentPlatformModelEvaluationOutcome|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
+     * @param  string|null $target_type Restrict to one target type (execution, message, or conversation). (optional)
+     * @param  string|null $outcome Restrict to one outcome (passed, failed, or not_evaluated). (optional)
      * @param  int|null $skip Number of items to skip (optional, default to 0)
      * @param  int|null $limit Maximum number of items to return (optional, default to 25)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)

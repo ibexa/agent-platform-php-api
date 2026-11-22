@@ -363,7 +363,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
      *
      * @param int $result_id result_id
      *
-     * @return self
+     * @return $this
      */
     public function setResultId(?int $result_id): static
     {
@@ -390,7 +390,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
      *
      * @param int $agents_catalog_entry_id agents_catalog_entry_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsCatalogEntryId(?int $agents_catalog_entry_id): static
     {
@@ -417,7 +417,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -444,7 +444,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
      *
      * @param float|null $score score
      *
-     * @return self
+     * @return $this
      */
     public function setScore($score): static
     {
@@ -478,7 +478,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
      *
      * @param string|null $reason reason
      *
-     * @return self
+     * @return $this
      */
     public function setReason(?string $reason): static
     {
@@ -512,7 +512,7 @@ class AgentRecommendationResultListItemResponseSchema implements ModelInterface,
      *
      * @param array<string,mixed>|null $metadata Engine-specific values behind this recommendation; the keys depend on the algorithm and may be absent entirely. The popularity algorithm reports installation and execution counts, where `execution_count_change_percentage` compares the last 30 days against the preceding 30 days and is null without a baseline.
      *
-     * @return self
+     * @return $this
      */
     public function setMetadata(?array $metadata): static
     {

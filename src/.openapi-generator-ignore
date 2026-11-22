@@ -34,3 +34,7 @@ test/Api/Admin*ApiTest.php
 test/Model/Admin*Test.php
 lib/Client/Admin*Api.php
 lib/Model/Admin*.php
+!lib/Model/AdminModelProfileResponseSchema.php
+!lib/Model/AdminModelPricingResponseSchema.php
+!test/Model/AdminModelProfileResponseSchemaTest.php
+!test/Model/AdminModelPricingResponseSchemaTest.php

@@ -341,7 +341,7 @@ class TriggerSuggestion implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $definition_id definition_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {
@@ -368,7 +368,7 @@ class TriggerSuggestion implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param Config $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig($config): static
     {
@@ -395,7 +395,7 @@ class TriggerSuggestion implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

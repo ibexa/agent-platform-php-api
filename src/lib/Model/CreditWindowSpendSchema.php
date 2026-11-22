@@ -374,7 +374,7 @@ class CreditWindowSpendSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime $date_from date_from
      *
-     * @return self
+     * @return $this
      */
     public function setDateFrom($date_from): static
     {
@@ -401,7 +401,7 @@ class CreditWindowSpendSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime $date_to date_to
      *
-     * @return self
+     * @return $this
      */
     public function setDateTo($date_to): static
     {
@@ -428,7 +428,7 @@ class CreditWindowSpendSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $days Days the window covers, both ends included. The two windows of a comparison are not necessarily the same length, so divide by this before reading either total as a rate.
      *
-     * @return self
+     * @return $this
      */
     public function setDays(?int $days): static
     {
@@ -455,7 +455,7 @@ class CreditWindowSpendSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $allowance_credits_spent allowance_credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setAllowanceCreditsSpent(?string $allowance_credits_spent): static
     {
@@ -482,7 +482,7 @@ class CreditWindowSpendSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $purchased_credits_spent purchased_credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setPurchasedCreditsSpent(?string $purchased_credits_spent): static
     {
@@ -509,7 +509,7 @@ class CreditWindowSpendSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $credits_spent credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {

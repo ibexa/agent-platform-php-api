@@ -339,7 +339,7 @@ class ToolRequestUserSummarySchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -366,7 +366,7 @@ class ToolRequestUserSummarySchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -400,7 +400,7 @@ class ToolRequestUserSummarySchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $avatar_url avatar_url
      *
-     * @return self
+     * @return $this
      */
     public function setAvatarUrl(?string $avatar_url): static
     {

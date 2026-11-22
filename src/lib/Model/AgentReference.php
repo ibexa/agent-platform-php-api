@@ -336,7 +336,7 @@ class AgentReference implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $identifier Identifier of the agent. The alias can be referenced from AgentNodes (as a standalone node) or from InlineAgent sub_agents (as a sub-agent).
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -370,7 +370,7 @@ class AgentReference implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $alias Within-pipeline alias used to reference this agent from AgentNodes or InlineAgent sub_agents.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {

@@ -334,7 +334,7 @@ class ConfiguredPolicySchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param array<string,PolicyDecision>|null $sensitivity Per class. Classes left out are not decided here.
      *
-     * @return self
+     * @return $this
      */
     public function setSensitivity(?array $sensitivity): static
     {
@@ -361,7 +361,7 @@ class ConfiguredPolicySchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string[]|null $blocked_pii_types Stored as text, and returned as stored. Input is validated against the enum; output is not re-validated, so a value written before a type was renamed is still visible rather than making the policy unreadable.
      *
-     * @return self
+     * @return $this
      */
     public function setBlockedPiiTypes(?array $blocked_pii_types): static
     {
@@ -388,7 +388,7 @@ class ConfiguredPolicySchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $llm_classification Whether a model is consulted for the personal vs sensitive-personal judgement. Null means no opinion; the platform default applies.
      *
-     * @return self
+     * @return $this
      */
     public function setLlmClassification(?bool $llm_classification): static
     {

@@ -374,7 +374,7 @@ class CreditSpendComparisonResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param CreditWindowSpendSchema $current current
      *
-     * @return self
+     * @return $this
      */
     public function setCurrent($current): static
     {
@@ -401,7 +401,7 @@ class CreditSpendComparisonResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param CreditWindowSpendSchema $previous The earlier window, derived by the server from `compare_to` — not a range the caller supplies. It may be longer than `current`.
      *
-     * @return self
+     * @return $this
      */
     public function setPrevious($previous): static
     {
@@ -428,7 +428,7 @@ class CreditSpendComparisonResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param SpendComparisonBasis $compare_to The rule that produced `previous`, echoed back.
      *
-     * @return self
+     * @return $this
      */
     public function setCompareTo($compare_to): static
     {
@@ -455,7 +455,7 @@ class CreditSpendComparisonResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param string $change `current.credits_spent` minus `previous.credits_spent`. A difference of totals, not of daily rates: with `compare_to=PREVIOUS_MONTH` an in-progress month is compared against a complete one, so this is negative for most of the month. Normalise by each window's `days` before showing a trend.
      *
-     * @return self
+     * @return $this
      */
     public function setChange(?string $change): static
     {
@@ -482,7 +482,7 @@ class CreditSpendComparisonResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param string|null $change_ratio `change` as a fraction of the previous window's total (0.2 is a 20% rise). Null when the previous window had no spend at all: growth from zero has no ratio — show `change` instead. Same totals-not-rates caveat as `change`.
      *
-     * @return self
+     * @return $this
      */
     public function setChangeRatio(?string $change_ratio): static
     {
@@ -516,7 +516,7 @@ class CreditSpendComparisonResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param CreditCurrency $currency currency
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency($currency): static
     {

@@ -391,7 +391,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -418,7 +418,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param int $conversation_id conversation_id
      *
-     * @return self
+     * @return $this
      */
     public function setConversationId(?int $conversation_id): static
     {
@@ -445,7 +445,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param string $role role
      *
-     * @return self
+     * @return $this
      */
     public function setRole(?string $role): static
     {
@@ -472,7 +472,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param string $content content
      *
-     * @return self
+     * @return $this
      */
     public function setContent(?string $content): static
     {
@@ -499,7 +499,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param string|null $action action
      *
-     * @return self
+     * @return $this
      */
     public function setAction(?string $action): static
     {
@@ -533,7 +533,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param string|null $tool_name tool_name
      *
-     * @return self
+     * @return $this
      */
     public function setToolName(?string $tool_name): static
     {
@@ -567,7 +567,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param ToolCallStatus|null $tool_status How a tool call ended. Null on every message that is not a tool result, and on tool results from runs that predate the outcome being recorded — null never means the call succeeded
      *
-     * @return self
+     * @return $this
      */
     public function setToolStatus($tool_status): static
     {
@@ -601,7 +601,7 @@ class AppApiRoutesMessageMessageMessageResponseSchema implements ModelInterface,
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

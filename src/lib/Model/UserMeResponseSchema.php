@@ -410,7 +410,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $id User ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -437,7 +437,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $email User email
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {
@@ -464,7 +464,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param UserStatus $status User account status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -491,7 +491,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool $is_superuser Whether the user is a superuser
      *
-     * @return self
+     * @return $this
      */
     public function setIsSuperuser(?bool $is_superuser): static
     {
@@ -518,7 +518,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $full_name User's full name
      *
-     * @return self
+     * @return $this
      */
     public function setFullName(?string $full_name): static
     {
@@ -552,7 +552,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $organisation_id Organisation ID
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -586,7 +586,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $job_position User's job position
      *
-     * @return self
+     * @return $this
      */
     public function setJobPosition(?string $job_position): static
     {
@@ -620,7 +620,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string[]|null $job_activities User's job activities
      *
-     * @return self
+     * @return $this
      */
     public function setJobActivities(?array $job_activities): static
     {
@@ -647,7 +647,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool|null $newsletter_consent Newsletter consent
      *
-     * @return self
+     * @return $this
      */
     public function setNewsletterConsent(?bool $newsletter_consent): static
     {
@@ -674,7 +674,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool|null $developer_mode Developer mode enabled
      *
-     * @return self
+     * @return $this
      */
     public function setDeveloperMode(?bool $developer_mode): static
     {
@@ -701,7 +701,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param PreferredLocale|null $preferred_locale User's preferred locale for the product UI
      *
-     * @return self
+     * @return $this
      */
     public function setPreferredLocale($preferred_locale): static
     {
@@ -735,7 +735,7 @@ class UserMeResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $avatar_url Cacheable URL to the user's avatar, or null if none is set
      *
-     * @return self
+     * @return $this
      */
     public function setAvatarUrl(?string $avatar_url): static
     {

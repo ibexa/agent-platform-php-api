@@ -324,7 +324,7 @@ class ForgottenKeysResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string[] $keys keys
      *
-     * @return self
+     * @return $this
      */
     public function setKeys(?array $keys): static
     {

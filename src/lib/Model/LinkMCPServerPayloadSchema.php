@@ -320,7 +320,7 @@ class LinkMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string[]|null $enabled_tools List of tool names to enable for this agent-server link
      *
-     * @return self
+     * @return $this
      */
     public function setEnabledTools(?array $enabled_tools): static
     {

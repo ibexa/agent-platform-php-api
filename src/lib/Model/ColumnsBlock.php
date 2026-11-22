@@ -387,7 +387,7 @@ class ColumnsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -414,7 +414,7 @@ class ColumnsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -451,7 +451,7 @@ class ColumnsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $columns Number of columns
      *
-     * @return self
+     * @return $this
      */
     public function setColumns(?int $columns): static
     {
@@ -485,7 +485,7 @@ class ColumnsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int[]|null $weights Optional proportional width per column as positive integers (e.g. [2, 1] for 2:1 ratio, [1, 1] for equal columns). Must have the same length as columns. Must be integers — do NOT use floats like [0.5, 0.5].
      *
-     * @return self
+     * @return $this
      */
     public function setWeights(?array $weights): static
     {
@@ -519,7 +519,7 @@ class ColumnsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param BlocksInner[] $blocks One item per column, in column order. Each item is either a single block or a list of blocks for that column.
      *
-     * @return self
+     * @return $this
      */
     public function setBlocks(?array $blocks): static
     {

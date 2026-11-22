@@ -324,7 +324,7 @@ class ProviderMetricCountListResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param ProviderMetricCountSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

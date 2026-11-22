@@ -368,7 +368,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $json_path JSONPath expression evaluated against the last message's JSON content (e.g. '$.score', '$.status').
      *
-     * @return self
+     * @return $this
      */
     public function setJsonPath(?string $json_path): static
     {
@@ -395,7 +395,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $operator Comparison operator applied between the extracted value and 'value'.
      *
-     * @return self
+     * @return $this
      */
     public function setOperator(?string $operator): static
     {
@@ -432,7 +432,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Value|null $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue($value): static
     {

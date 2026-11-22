@@ -353,7 +353,7 @@ class AgentsCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -380,7 +380,7 @@ class AgentsCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $name Name of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -407,7 +407,7 @@ class AgentsCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $description Description of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -441,7 +441,7 @@ class AgentsCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $icon Icon name
      *
-     * @return self
+     * @return $this
      */
     public function setIcon(?string $icon): static
     {
@@ -475,7 +475,7 @@ class AgentsCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {

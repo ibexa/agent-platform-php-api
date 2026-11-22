@@ -380,7 +380,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param NodeType $node_type node_type
      *
-     * @return self
+     * @return $this
      */
     public function setNodeType($node_type): static
     {
@@ -407,7 +407,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -441,7 +441,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $parent_id parent_id
      *
-     * @return self
+     * @return $this
      */
     public function setParentId(?int $parent_id): static
     {
@@ -475,7 +475,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $markdown markdown
      *
-     * @return self
+     * @return $this
      */
     public function setMarkdown(?string $markdown): static
     {
@@ -502,7 +502,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $source_file_id source_file_id
      *
-     * @return self
+     * @return $this
      */
     public function setSourceFileId(?string $source_file_id): static
     {
@@ -536,7 +536,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $summary Optional free-text summary of the node. Applies to folders and documents; a blank value is stored as no summary.
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -574,7 +574,7 @@ class CreateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param array<string,mixed>|null $metadata Free-form JSON object of the caller's own keys and values — anything the organisation wants to record against the node (owner, department, retention class, external ids). Must be an object, not an array or a scalar; at most 64 top-level keys and 16384 bytes once serialized. An empty object is stored as no metadata.
      *
-     * @return self
+     * @return $this
      */
     public function setMetadata(?array $metadata): static
     {

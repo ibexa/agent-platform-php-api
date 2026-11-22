@@ -374,7 +374,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $full_name full_name
      *
-     * @return self
+     * @return $this
      */
     public function setFullName(?string $full_name): static
     {
@@ -412,7 +412,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $email email
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {
@@ -450,7 +450,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $job_position job_position
      *
-     * @return self
+     * @return $this
      */
     public function setJobPosition(?string $job_position): static
     {
@@ -488,7 +488,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string[]|null $job_activities job_activities
      *
-     * @return self
+     * @return $this
      */
     public function setJobActivities(?array $job_activities): static
     {
@@ -522,7 +522,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool|null $newsletter_consent newsletter_consent
      *
-     * @return self
+     * @return $this
      */
     public function setNewsletterConsent(?bool $newsletter_consent): static
     {
@@ -556,7 +556,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool|null $developer_mode developer_mode
      *
-     * @return self
+     * @return $this
      */
     public function setDeveloperMode(?bool $developer_mode): static
     {
@@ -583,7 +583,7 @@ class UserUpdateMeRequestSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param PreferredLocale|null $preferred_locale Must be one of the product's supported UI locales
      *
-     * @return self
+     * @return $this
      */
     public function setPreferredLocale($preferred_locale): static
     {

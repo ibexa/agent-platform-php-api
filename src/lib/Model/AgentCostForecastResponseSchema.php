@@ -344,7 +344,7 @@ class AgentCostForecastResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -371,7 +371,7 @@ class AgentCostForecastResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param CostForecastDaySchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {
@@ -398,7 +398,7 @@ class AgentCostForecastResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param CreditForecastDaySchema[] $credits credits
      *
-     * @return self
+     * @return $this
      */
     public function setCredits(?array $credits): static
     {

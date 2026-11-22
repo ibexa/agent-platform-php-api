@@ -335,7 +335,7 @@ class EvalConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param EvalMetricConfigSuggestion[]|null $metrics metrics
      *
-     * @return self
+     * @return $this
      */
     public function setMetrics(?array $metrics): static
     {
@@ -362,7 +362,7 @@ class EvalConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param float|null $sample_size Percentage (0-100) of eligible runs that should actually be evaluated.
      *
-     * @return self
+     * @return $this
      */
     public function setSampleSize($sample_size): static
     {

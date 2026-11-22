@@ -344,7 +344,7 @@ class ContextWindowStrategySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -371,7 +371,7 @@ class ContextWindowStrategySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $label label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -398,7 +398,7 @@ class ContextWindowStrategySchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

@@ -88,7 +88,7 @@ class ConversationsApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'bookmarkConversation' => [
             'application/json',

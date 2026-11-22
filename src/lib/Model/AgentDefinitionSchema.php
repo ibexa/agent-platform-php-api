@@ -438,7 +438,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -472,7 +472,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -506,7 +506,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $instruction instruction
      *
-     * @return self
+     * @return $this
      */
     public function setInstruction(?string $instruction): static
     {
@@ -538,7 +538,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -572,7 +572,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool|null $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -599,7 +599,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool|null $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -626,7 +626,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $language_model_provider_id language_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageModelProviderId(?int $language_model_provider_id): static
     {
@@ -660,7 +660,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $model_id model_id
      *
-     * @return self
+     * @return $this
      */
     public function setModelId(?string $model_id): static
     {
@@ -694,7 +694,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param MCPServerSuggestion[]|null $mcp_servers mcp_servers
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServers(?array $mcp_servers): static
     {
@@ -721,7 +721,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param SubAgentSuggestion[]|null $sub_agents sub_agents
      *
-     * @return self
+     * @return $this
      */
     public function setSubAgents(?array $sub_agents): static
     {
@@ -748,7 +748,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param TriggerSuggestion[]|null $triggers triggers
      *
-     * @return self
+     * @return $this
      */
     public function setTriggers(?array $triggers): static
     {
@@ -775,7 +775,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param ImpactMetricSuggestion|null $impact_metric impact_metric
      *
-     * @return self
+     * @return $this
      */
     public function setImpactMetric($impact_metric): static
     {
@@ -809,7 +809,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param EvalConfigSuggestion|null $eval_config eval_config
      *
-     * @return self
+     * @return $this
      */
     public function setEvalConfig($eval_config): static
     {
@@ -843,7 +843,7 @@ class AgentDefinitionSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param RecursionLimitSuggestion|null $recursion_limit recursion_limit
      *
-     * @return self
+     * @return $this
      */
     public function setRecursionLimit($recursion_limit): static
     {

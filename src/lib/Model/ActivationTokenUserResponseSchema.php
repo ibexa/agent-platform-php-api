@@ -349,7 +349,7 @@ class ActivationTokenUserResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $id User ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -376,7 +376,7 @@ class ActivationTokenUserResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $email User email address
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {
@@ -403,7 +403,7 @@ class ActivationTokenUserResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string|null $full_name User full name
      *
-     * @return self
+     * @return $this
      */
     public function setFullName(?string $full_name): static
     {
@@ -437,7 +437,7 @@ class ActivationTokenUserResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param UserStatus $status Current account status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {

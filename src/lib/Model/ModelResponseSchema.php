@@ -473,7 +473,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -500,7 +500,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -527,7 +527,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $created created
      *
-     * @return self
+     * @return $this
      */
     public function setCreated(?int $created): static
     {
@@ -561,7 +561,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ModelType $model_type model_type
      *
-     * @return self
+     * @return $this
      */
     public function setModelType($model_type): static
     {
@@ -588,7 +588,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ModelStatus|null $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -615,7 +615,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $family family
      *
-     * @return self
+     * @return $this
      */
     public function setFamily(?string $family): static
     {
@@ -649,7 +649,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ModelWeights|null $weights weights
      *
-     * @return self
+     * @return $this
      */
     public function setWeights($weights): static
     {
@@ -683,7 +683,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $tool_call tool_call
      *
-     * @return self
+     * @return $this
      */
     public function setToolCall(?bool $tool_call): static
     {
@@ -717,7 +717,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $reasoning reasoning
      *
-     * @return self
+     * @return $this
      */
     public function setReasoning(?bool $reasoning): static
     {
@@ -751,7 +751,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $structured_output structured_output
      *
-     * @return self
+     * @return $this
      */
     public function setStructuredOutput(?bool $structured_output): static
     {
@@ -785,7 +785,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $temperature temperature
      *
-     * @return self
+     * @return $this
      */
     public function setTemperature(?bool $temperature): static
     {
@@ -819,7 +819,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ModelModality[]|null $input_type input_type
      *
-     * @return self
+     * @return $this
      */
     public function setInputType(?array $input_type): static
     {
@@ -853,7 +853,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ModelModality[]|null $output_type output_type
      *
-     * @return self
+     * @return $this
      */
     public function setOutputType(?array $output_type): static
     {
@@ -887,7 +887,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $context_limit context_limit
      *
-     * @return self
+     * @return $this
      */
     public function setContextLimit(?int $context_limit): static
     {
@@ -921,7 +921,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $input_limit input_limit
      *
-     * @return self
+     * @return $this
      */
     public function setInputLimit(?int $input_limit): static
     {
@@ -955,7 +955,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $output_limit output_limit
      *
-     * @return self
+     * @return $this
      */
     public function setOutputLimit(?int $output_limit): static
     {
@@ -989,7 +989,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \DateTime|null $knowledge knowledge
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledge($knowledge): static
     {
@@ -1023,7 +1023,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $comment comment
      *
-     * @return self
+     * @return $this
      */
     public function setComment(?string $comment): static
     {
@@ -1057,7 +1057,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param array<string,string>|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?array $summary): static
     {
@@ -1091,7 +1091,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $docs_url docs_url
      *
-     * @return self
+     * @return $this
      */
     public function setDocsUrl(?string $docs_url): static
     {
@@ -1125,7 +1125,7 @@ class ModelResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ModelProfilePricingSchema|null $pricing pricing
      *
-     * @return self
+     * @return $this
      */
     public function setPricing($pricing): static
     {

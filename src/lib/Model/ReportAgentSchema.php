@@ -354,7 +354,7 @@ class ReportAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -381,7 +381,7 @@ class ReportAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -408,7 +408,7 @@ class ReportAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -435,7 +435,7 @@ class ReportAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {

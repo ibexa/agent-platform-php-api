@@ -324,7 +324,7 @@ class CreditTriggerTypeUsageResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param CreditTriggerTypeUsageRowSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

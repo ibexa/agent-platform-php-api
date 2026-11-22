@@ -334,7 +334,7 @@ class AgentUsageAggregateResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param AgentUsagePeriodSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {
@@ -361,7 +361,7 @@ class AgentUsageAggregateResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param CreditExecutionUsagePeriodSchema[] $credits credits
      *
-     * @return self
+     * @return $this
      */
     public function setCredits(?array $credits): static
     {

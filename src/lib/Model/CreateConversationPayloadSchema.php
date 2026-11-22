@@ -338,7 +338,7 @@ class CreateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $agent_id ID of the agent for this conversation. Defaults to the organisation's default assistant agent when omitted.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -372,7 +372,7 @@ class CreateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $subject Optional subject
      *
-     * @return self
+     * @return $this
      */
     public function setSubject(?string $subject): static
     {
@@ -410,7 +410,7 @@ class CreateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed>|null $context Optional context the assistant works within, as a free-form mapping (e.g. {\"report_id\": 67}).
      *
-     * @return self
+     * @return $this
      */
     public function setContext(?array $context): static
     {

@@ -341,7 +341,7 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $user_id Null groups executions with no attributed creator (e.g. scheduler-triggered runs).
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -375,7 +375,7 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $execution_count execution_count
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionCount(?int $execution_count): static
     {
@@ -402,7 +402,7 @@ class AgentExecutionUserDurationSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $average_duration_seconds average_duration_seconds
      *
-     * @return self
+     * @return $this
      */
     public function setAverageDurationSeconds(?string $average_duration_seconds): static
     {

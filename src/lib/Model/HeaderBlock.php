@@ -377,7 +377,7 @@ class HeaderBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -404,7 +404,7 @@ class HeaderBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -441,7 +441,7 @@ class HeaderBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $level level
      *
-     * @return self
+     * @return $this
      */
     public function setLevel(?int $level): static
     {
@@ -475,7 +475,7 @@ class HeaderBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $text text
      *
-     * @return self
+     * @return $this
      */
     public function setText(?string $text): static
     {

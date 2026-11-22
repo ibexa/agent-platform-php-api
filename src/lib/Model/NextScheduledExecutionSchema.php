@@ -334,7 +334,7 @@ class NextScheduledExecutionSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param \DateTime $next_execution_at next_execution_at
      *
-     * @return self
+     * @return $this
      */
     public function setNextExecutionAt($next_execution_at): static
     {
@@ -361,7 +361,7 @@ class NextScheduledExecutionSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param TriggerInfoSchema $trigger trigger
      *
-     * @return self
+     * @return $this
      */
     public function setTrigger($trigger): static
     {

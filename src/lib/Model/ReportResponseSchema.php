@@ -444,7 +444,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -471,7 +471,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -498,7 +498,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $title title
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -525,7 +525,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -559,7 +559,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param BlocksInnerAnyOfInner[] $blocks blocks
      *
-     * @return self
+     * @return $this
      */
     public function setBlocks(?array $blocks): static
     {
@@ -586,7 +586,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param ReportStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -613,7 +613,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $owner_id owner_id
      *
-     * @return self
+     * @return $this
      */
     public function setOwnerId(?string $owner_id): static
     {
@@ -647,7 +647,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -681,7 +681,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $execution_id execution_id
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionId(?int $execution_id): static
     {
@@ -715,7 +715,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -749,7 +749,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $updated_by updated_by
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedBy(?string $updated_by): static
     {
@@ -783,7 +783,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -817,7 +817,7 @@ class ReportResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

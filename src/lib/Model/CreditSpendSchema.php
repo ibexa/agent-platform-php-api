@@ -344,7 +344,7 @@ class CreditSpendSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $allowance_credits_spent Credits drawn from the monthly allowance (the base entitlement) in this window.
      *
-     * @return self
+     * @return $this
      */
     public function setAllowanceCreditsSpent(?string $allowance_credits_spent): static
     {
@@ -371,7 +371,7 @@ class CreditSpendSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $purchased_credits_spent Credits drawn from the purchased pool (the extra credits spent once the allowance ran out) in this window.
      *
-     * @return self
+     * @return $this
      */
     public function setPurchasedCreditsSpent(?string $purchased_credits_spent): static
     {
@@ -398,7 +398,7 @@ class CreditSpendSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $credits_spent Total credits consumed in this window — the two pools summed.
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {

@@ -334,7 +334,7 @@ class OrgUserListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param OrgUserResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -361,7 +361,7 @@ class OrgUserListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $count count
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {

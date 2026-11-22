@@ -354,7 +354,7 @@ class ModelUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $model Display name of the model, e.g. 'GPT-4o'
      *
-     * @return self
+     * @return $this
      */
     public function setModel(?string $model): static
     {
@@ -381,7 +381,7 @@ class ModelUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $agents_using_model Number of atomic agents in the organisation configured with this model
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsUsingModel(?int $agents_using_model): static
     {
@@ -408,7 +408,7 @@ class ModelUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $agents_with_executions Of those agents, how many have run at least one execution
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsWithExecutions(?int $agents_with_executions): static
     {
@@ -435,7 +435,7 @@ class ModelUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string[] $agent_categories Deduped display names of catalog categories among agents using this model
      *
-     * @return self
+     * @return $this
      */
     public function setAgentCategories(?array $agent_categories): static
     {

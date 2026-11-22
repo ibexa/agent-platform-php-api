@@ -322,7 +322,7 @@ class BodyAgentsCatalogImportAgentCatalogEntries implements ModelInterface, Arra
      *
      * @param \SplFileObject $catalog_file catalog_file
      *
-     * @return self
+     * @return $this
      */
     public function setCatalogFile($catalog_file): static
     {

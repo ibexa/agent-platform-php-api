@@ -401,7 +401,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $period Period label (e.g. '2024-01-15', '2024-01', '2024')
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -428,7 +428,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $tokens_input tokens_input
      *
-     * @return self
+     * @return $this
      */
     public function setTokensInput(?int $tokens_input): static
     {
@@ -455,7 +455,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $tokens_output tokens_output
      *
-     * @return self
+     * @return $this
      */
     public function setTokensOutput(?int $tokens_output): static
     {
@@ -482,7 +482,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $tokens_cache_read tokens_cache_read
      *
-     * @return self
+     * @return $this
      */
     public function setTokensCacheRead(?int $tokens_cache_read): static
     {
@@ -509,7 +509,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $tokens_cache_write tokens_cache_write
      *
-     * @return self
+     * @return $this
      */
     public function setTokensCacheWrite(?int $tokens_cache_write): static
     {
@@ -536,7 +536,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $tokens_audio_input tokens_audio_input
      *
-     * @return self
+     * @return $this
      */
     public function setTokensAudioInput(?int $tokens_audio_input): static
     {
@@ -563,7 +563,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $tokens_audio_output tokens_audio_output
      *
-     * @return self
+     * @return $this
      */
     public function setTokensAudioOutput(?int $tokens_audio_output): static
     {
@@ -590,7 +590,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $cost_amount cost_amount
      *
-     * @return self
+     * @return $this
      */
     public function setCostAmount(?string $cost_amount): static
     {
@@ -624,7 +624,7 @@ class OrgUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $cost_currency cost_currency
      *
-     * @return self
+     * @return $this
      */
     public function setCostCurrency(?string $cost_currency): static
     {

@@ -86,7 +86,7 @@ class UsersApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'deleteAvatarMe' => [
             'application/json',

@@ -318,7 +318,7 @@ class CreateToolRequestPayloadSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param string|null $message Optional message explaining why the tool is requested.
      *
-     * @return self
+     * @return $this
      */
     public function setMessage(?string $message): static
     {

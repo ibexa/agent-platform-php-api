@@ -332,7 +332,7 @@ class ToolRequestSummaryItemSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param ToolRequestEntrySummarySchema $entry entry
      *
-     * @return self
+     * @return $this
      */
     public function setEntry($entry): static
     {
@@ -359,7 +359,7 @@ class ToolRequestSummaryItemSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $request_count request_count
      *
-     * @return self
+     * @return $this
      */
     public function setRequestCount(?int $request_count): static
     {

@@ -322,7 +322,7 @@ class BodyFilesUploadFile implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \SplFileObject $file file
      *
-     * @return self
+     * @return $this
      */
     public function setFile($file): static
     {

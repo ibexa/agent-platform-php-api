@@ -352,7 +352,7 @@ class MCPCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -379,7 +379,7 @@ class MCPCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param MCPCatalogCategoryTranslationSchema[] $translations translations
      *
-     * @return self
+     * @return $this
      */
     public function setTranslations(?array $translations): static
     {
@@ -406,7 +406,7 @@ class MCPCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -433,7 +433,7 @@ class MCPCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param \DateTime $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

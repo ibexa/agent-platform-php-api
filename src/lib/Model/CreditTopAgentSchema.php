@@ -344,7 +344,7 @@ class CreditTopAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -371,7 +371,7 @@ class CreditTopAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $agent_name Null when the agent has since been deleted; the spend is still reported.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentName(?string $agent_name): static
     {
@@ -405,7 +405,7 @@ class CreditTopAgentSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $credits_spent credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {

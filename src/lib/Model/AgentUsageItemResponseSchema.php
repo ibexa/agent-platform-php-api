@@ -354,7 +354,7 @@ class AgentUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -381,7 +381,7 @@ class AgentUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $agent_name agent_name
      *
-     * @return self
+     * @return $this
      */
     public function setAgentName(?string $agent_name): static
     {
@@ -408,7 +408,7 @@ class AgentUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $model Configured model's display name; comma-joined provider names for composite agents, or 'N/A' if none is configured
      *
-     * @return self
+     * @return $this
      */
     public function setModel(?string $model): static
     {
@@ -435,7 +435,7 @@ class AgentUsageItemResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $unique_users Number of distinct users who have triggered an execution of this agent
      *
-     * @return self
+     * @return $this
      */
     public function setUniqueUsers(?int $unique_users): static
     {

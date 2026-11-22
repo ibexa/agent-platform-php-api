@@ -373,7 +373,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param \DateTime $expires_at Token expiry timestamp (UTC)
      *
-     * @return self
+     * @return $this
      */
     public function setExpiresAt($expires_at): static
     {
@@ -400,7 +400,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param \DateTime|null $used_at Timestamp when the token was used, or null if unused
      *
-     * @return self
+     * @return $this
      */
     public function setUsedAt($used_at): static
     {
@@ -434,7 +434,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param \DateTime|null $created_at Timestamp when the token was created
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -468,7 +468,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param bool $is_valid True if the token has not been used and has not expired
      *
-     * @return self
+     * @return $this
      */
     public function setIsValid(?bool $is_valid): static
     {
@@ -495,7 +495,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param bool $is_expired True if the token is past its expiry time
      *
-     * @return self
+     * @return $this
      */
     public function setIsExpired(?bool $is_expired): static
     {
@@ -522,7 +522,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param bool $is_used True if the token has already been consumed
      *
-     * @return self
+     * @return $this
      */
     public function setIsUsed(?bool $is_used): static
     {
@@ -549,7 +549,7 @@ class AccountActivationTokenDetailsResponseSchema implements ModelInterface, Arr
      *
      * @param ActivationTokenUserResponseSchema|null $user Details of the user linked to this token. Only present when the token is valid.
      *
-     * @return self
+     * @return $this
      */
     public function setUser($user): static
     {

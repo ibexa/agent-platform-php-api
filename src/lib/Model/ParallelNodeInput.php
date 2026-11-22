@@ -358,7 +358,7 @@ class ParallelNodeInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -395,7 +395,7 @@ class ParallelNodeInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param NodesInner[] $nodes Child nodes executed concurrently. All branches receive the same input state; their outputs are merged afterwards.
      *
-     * @return self
+     * @return $this
      */
     public function setNodes(?array $nodes): static
     {

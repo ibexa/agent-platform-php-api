@@ -353,7 +353,7 @@ class AddAgentsCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string $name Name of the agents catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -380,7 +380,7 @@ class AddAgentsCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string|null $description Description of the agents catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -414,7 +414,7 @@ class AddAgentsCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string|null $summary Short summary of the agents catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -448,7 +448,7 @@ class AddAgentsCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string[]|null $use_cases Example use cases for the entry
      *
-     * @return self
+     * @return $this
      */
     public function setUseCases(?array $use_cases): static
     {
@@ -475,7 +475,7 @@ class AddAgentsCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string $language_code ISO 639-1 language code for the translation
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageCode(?string $language_code): static
     {

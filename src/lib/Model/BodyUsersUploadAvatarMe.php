@@ -322,7 +322,7 @@ class BodyUsersUploadAvatarMe implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \SplFileObject $file file
      *
-     * @return self
+     * @return $this
      */
     public function setFile($file): static
     {

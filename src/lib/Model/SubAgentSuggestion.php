@@ -331,7 +331,7 @@ class SubAgentSuggestion implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $sub_agent_id sub_agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setSubAgentId(?int $sub_agent_id): static
     {
@@ -358,7 +358,7 @@ class SubAgentSuggestion implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {

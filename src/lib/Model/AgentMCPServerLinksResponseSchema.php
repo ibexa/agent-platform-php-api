@@ -324,7 +324,7 @@ class AgentMCPServerLinksResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param AgentMCPServerLinkResponseSchema[] $mcp_server_links mcp_server_links
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServerLinks(?array $mcp_server_links): static
     {

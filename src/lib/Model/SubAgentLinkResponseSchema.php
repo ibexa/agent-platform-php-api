@@ -344,7 +344,7 @@ class SubAgentLinkResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $sub_agent_id sub_agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setSubAgentId(?int $sub_agent_id): static
     {
@@ -371,7 +371,7 @@ class SubAgentLinkResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -398,7 +398,7 @@ class SubAgentLinkResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {

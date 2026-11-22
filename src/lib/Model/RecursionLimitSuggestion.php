@@ -356,7 +356,7 @@ class RecursionLimitSuggestion implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $graph_recursion_limit Suggested value for the agent's graph_recursion_limit.
      *
-     * @return self
+     * @return $this
      */
     public function setGraphRecursionLimit(?int $graph_recursion_limit): static
     {
@@ -390,7 +390,7 @@ class RecursionLimitSuggestion implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param float $confidence How confident this estimate is (0.0-1.0), given how explicit the instruction is about tool-call counts/repetition.
      *
-     * @return self
+     * @return $this
      */
     public function setConfidence($confidence): static
     {
@@ -424,7 +424,7 @@ class RecursionLimitSuggestion implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $reasoning Brief, concrete explanation of the tool/sub-agent calls counted.
      *
-     * @return self
+     * @return $this
      */
     public function setReasoning(?string $reasoning): static
     {

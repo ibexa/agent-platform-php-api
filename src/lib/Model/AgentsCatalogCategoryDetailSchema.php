@@ -366,7 +366,7 @@ class AgentsCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -393,7 +393,7 @@ class AgentsCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string|null $icon Icon name
      *
-     * @return self
+     * @return $this
      */
     public function setIcon(?string $icon): static
     {
@@ -427,7 +427,7 @@ class AgentsCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {
@@ -461,7 +461,7 @@ class AgentsCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, 
      *
      * @param AgentsCatalogCategoryTranslationSchema[] $translations translations
      *
-     * @return self
+     * @return $this
      */
     public function setTranslations(?array $translations): static
     {
@@ -488,7 +488,7 @@ class AgentsCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, 
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -515,7 +515,7 @@ class AgentsCatalogCategoryDetailSchema implements ModelInterface, ArrayAccess, 
      *
      * @param \DateTime $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

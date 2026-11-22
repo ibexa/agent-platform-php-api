@@ -372,7 +372,7 @@ class DataTableBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -399,7 +399,7 @@ class DataTableBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -436,7 +436,7 @@ class DataTableBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[] $columns columns
      *
-     * @return self
+     * @return $this
      */
     public function setColumns(?array $columns): static
     {
@@ -463,7 +463,7 @@ class DataTableBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param mixed[][] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

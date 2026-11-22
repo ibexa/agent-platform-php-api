@@ -398,7 +398,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $uuid uuid
      *
-     * @return self
+     * @return $this
      */
     public function setUuid(?string $uuid): static
     {
@@ -425,7 +425,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -452,7 +452,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $conversation_id conversation_id
      *
-     * @return self
+     * @return $this
      */
     public function setConversationId(?int $conversation_id): static
     {
@@ -479,7 +479,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $original_filename original_filename
      *
-     * @return self
+     * @return $this
      */
     public function setOriginalFilename(?string $original_filename): static
     {
@@ -506,7 +506,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $content_type content_type
      *
-     * @return self
+     * @return $this
      */
     public function setContentType(?string $content_type): static
     {
@@ -533,7 +533,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $file_size file_size
      *
-     * @return self
+     * @return $this
      */
     public function setFileSize(?int $file_size): static
     {
@@ -560,7 +560,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -587,7 +587,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $message_id message_id
      *
-     * @return self
+     * @return $this
      */
     public function setMessageId(?int $message_id): static
     {
@@ -621,7 +621,7 @@ class FileResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

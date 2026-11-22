@@ -346,7 +346,7 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -387,7 +387,7 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $summary Free-text summary of the node. Omit to leave it unchanged, or pass null (or a blank string) to clear it.
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -425,7 +425,7 @@ class UpdateNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param array<string,mixed>|null $metadata Free-form JSON object of the caller's own keys and values — anything the organisation wants to record against the node (owner, department, retention class, external ids). Must be an object, not an array or a scalar; at most 64 top-level keys and 16384 bytes once serialized. An empty object is stored as no metadata. Replaces the stored object wholesale rather than merging into it: keys absent from the value you send are removed. Omit to leave it unchanged, or pass null to clear it.
      *
-     * @return self
+     * @return $this
      */
     public function setMetadata(?array $metadata): static
     {

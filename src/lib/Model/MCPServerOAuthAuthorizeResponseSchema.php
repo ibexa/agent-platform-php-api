@@ -334,7 +334,7 @@ class MCPServerOAuthAuthorizeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $authorization_url The provider's authorization URL to open (e.g. in a popup or a full-page redirect) so the user can consent.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthorizationUrl(?string $authorization_url): static
     {
@@ -361,7 +361,7 @@ class MCPServerOAuthAuthorizeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $state Opaque value correlating this request with the callback. Already embedded in authorization_url as a query parameter; returned separately for convenience.
      *
-     * @return self
+     * @return $this
      */
     public function setState(?string $state): static
     {

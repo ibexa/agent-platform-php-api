@@ -548,7 +548,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -575,7 +575,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -602,7 +602,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -629,7 +629,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -656,7 +656,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $instruction instruction
      *
-     * @return self
+     * @return $this
      */
     public function setInstruction(?string $instruction): static
     {
@@ -683,7 +683,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -710,7 +710,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -737,7 +737,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param BudgetSchema $budget Agent budget in credits. Always present; an uncapped budget is the scope 'unlimited'.
      *
-     * @return self
+     * @return $this
      */
     public function setBudget($budget): static
     {
@@ -764,7 +764,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param RetryPolicySchema $retry_policy How execution failures are handled. Always present; the default is 'fail'.
      *
-     * @return self
+     * @return $this
      */
     public function setRetryPolicy($retry_policy): static
     {
@@ -791,7 +791,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -825,7 +825,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -863,7 +863,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int|null $language_model_provider_id language_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageModelProviderId(?int $language_model_provider_id): static
     {
@@ -897,7 +897,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $model_id model_id
      *
-     * @return self
+     * @return $this
      */
     public function setModelId(?string $model_id): static
     {
@@ -931,7 +931,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool|null $is_model_valid is_model_valid
      *
-     * @return self
+     * @return $this
      */
     public function setIsModelValid(?bool $is_model_valid): static
     {
@@ -965,7 +965,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param array<string,mixed>|null $input_schema JSON Schema describing the expected input structure for this agent.
      *
-     * @return self
+     * @return $this
      */
     public function setInputSchema(?array $input_schema): static
     {
@@ -999,7 +999,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param array<string,mixed>|null $output_schema JSON Schema describing the expected output structure for this agent.
      *
-     * @return self
+     * @return $this
      */
     public function setOutputSchema(?array $output_schema): static
     {
@@ -1033,7 +1033,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param KnowledgeBaseScope $knowledge_base_scope Knowledge-base access: 'none' (no access), 'all' (whole knowledge base), or 'branch' (one or more folder subtrees).
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseScope($knowledge_base_scope): static
     {
@@ -1060,7 +1060,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int[]|null $knowledge_base_node_ids Folder nodes the agent's knowledge-base access is confined to. Non-empty only when scope is 'branch'.
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseNodeIds(?array $knowledge_base_node_ids): static
     {
@@ -1087,7 +1087,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param EvalConfigSchema|null $eval_config Metrics this agent is evaluated against, with per-metric thresholds and weights.
      *
-     * @return self
+     * @return $this
      */
     public function setEvalConfig($eval_config): static
     {
@@ -1121,7 +1121,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int|null $graph_recursion_limit Per-agent override for the LangGraph recursion limit (max steps in the tool-calling loop). Must not exceed the platform cap (100). If null, LangGraph's own default (25) is used.
      *
-     * @return self
+     * @return $this
      */
     public function setGraphRecursionLimit(?int $graph_recursion_limit): static
     {
@@ -1162,7 +1162,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param ContextWindowStrategy|null $context_window_strategy Behavior when the conversation nears the model's context window: 'stop' (default, run fails once the request is over-length), 'context_editing' (clear old tool results), or 'summarization' (replace older messages with an LLM-generated summary).
      *
-     * @return self
+     * @return $this
      */
     public function setContextWindowStrategy($context_window_strategy): static
     {
@@ -1189,7 +1189,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int|null $agents_catalog_entry_id Optional reference to the agents catalog entry this agent was created from. Used to track catalog template popularity.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsCatalogEntryId(?int $agents_catalog_entry_id): static
     {
@@ -1227,7 +1227,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param ImpactMetricSchema|null $impact_metric The impact (ROI) one run of this agent generates. Null when no impact metric is configured.
      *
-     * @return self
+     * @return $this
      */
     public function setImpactMetric($impact_metric): static
     {
@@ -1261,7 +1261,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param AgentMemoryScope|null $memory_scope Long-term memory access breadth: 'none' (default, no memory), 'user' (this agent's own per-user memory only), or 'organisation' (also the organisation's shared memory).
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryScope($memory_scope): static
     {
@@ -1288,7 +1288,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param AgentMemoryAccess|null $memory_access 'read_only' (default, recall only) or 'read_write' (may also remember/forget). Must be 'read_only' when memory_scope is 'none'.
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryAccess($memory_access): static
     {
@@ -1315,7 +1315,7 @@ class AgentDetailResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param AgentMetricsSchema $metrics metrics
      *
-     * @return self
+     * @return $this
      */
     public function setMetrics($metrics): static
     {

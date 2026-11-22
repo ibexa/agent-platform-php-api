@@ -424,7 +424,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id Step ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -451,7 +451,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $order Position within the run; also the pagination cursor
      *
-     * @return self
+     * @return $this
      */
     public function setOrder(?int $order): static
     {
@@ -478,7 +478,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $title What ran, derived from the tool that was called. Available as soon as the run ends
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -505,7 +505,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $description A short account of what happened, written by a background job after the run. Null until that job completes, and permanently null if it could not run — render the step from `title` and treat this as an extra
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -539,7 +539,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param ExecutionStepStatus $status How the step ended. 'unknown' for steps recorded before outcomes were tracked — it does not mean the step succeeded
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -566,7 +566,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $tool_name Tool that was called. Null for the agent's closing reply
      *
-     * @return self
+     * @return $this
      */
     public function setToolName(?string $tool_name): static
     {
@@ -600,7 +600,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param array<string,mixed>|null $tool_args Arguments the agent passed to the tool
      *
-     * @return self
+     * @return $this
      */
     public function setToolArgs(?array $tool_args): static
     {
@@ -634,7 +634,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $tool_result What the tool returned. Failures are kept in full; successful results are truncated
      *
-     * @return self
+     * @return $this
      */
     public function setToolResult(?string $tool_result): static
     {
@@ -668,7 +668,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int|null $mcp_server_id MCP server that served the call, as it was identified at the time. Null for an agent's own response and for tools not backed by an MCP server. Not guaranteed to still resolve: this is a record of what ran, so it keeps naming a server that has since been deleted — read `mcp_server_name` for display and treat a lookup failure as expected
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServerId(?int $mcp_server_id): static
     {
@@ -702,7 +702,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $mcp_server_name Name of the MCP server as it was at the time of the call, stored alongside the id so the record survives that server being renamed or deleted
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServerName(?string $mcp_server_name): static
     {
@@ -736,7 +736,7 @@ class ExecutionStepResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime $created_at When the step was recorded
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

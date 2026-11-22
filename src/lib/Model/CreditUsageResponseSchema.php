@@ -344,7 +344,7 @@ class CreditUsageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param UsageDimension $dimension dimension
      *
-     * @return self
+     * @return $this
      */
     public function setDimension($dimension): static
     {
@@ -371,7 +371,7 @@ class CreditUsageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param CreditUsageRowSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {
@@ -398,7 +398,7 @@ class CreditUsageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

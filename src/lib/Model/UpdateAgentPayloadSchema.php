@@ -497,7 +497,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -524,7 +524,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -551,7 +551,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $instruction instruction
      *
-     * @return self
+     * @return $this
      */
     public function setInstruction(?string $instruction): static
     {
@@ -578,7 +578,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -605,7 +605,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -632,7 +632,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param BudgetSchema $budget Agent budget in credits. Required on update: this is a full replacement, so the budget must be restated every time — an existing cap must never be lifted by omitting the field.
      *
-     * @return self
+     * @return $this
      */
     public function setBudget($budget): static
     {
@@ -659,7 +659,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param RetryPolicySchema|null $retry_policy How execution failures are handled. Defaults to 'fail' when omitted — unlike `budget`/`knowledge_base_scope` below, this field does not require restating an existing policy on every update.
      *
-     * @return self
+     * @return $this
      */
     public function setRetryPolicy($retry_policy): static
     {
@@ -686,7 +686,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -724,7 +724,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $language_model_provider_id language_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageModelProviderId(?int $language_model_provider_id): static
     {
@@ -758,7 +758,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $model_id model_id
      *
-     * @return self
+     * @return $this
      */
     public function setModelId(?string $model_id): static
     {
@@ -792,7 +792,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param array<string,mixed>|null $input_schema JSON Schema describing the expected input structure for this agent.
      *
-     * @return self
+     * @return $this
      */
     public function setInputSchema(?array $input_schema): static
     {
@@ -826,7 +826,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param array<string,mixed>|null $output_schema JSON Schema describing the expected output structure for this agent.
      *
-     * @return self
+     * @return $this
      */
     public function setOutputSchema(?array $output_schema): static
     {
@@ -860,7 +860,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param KnowledgeBaseScope|null $knowledge_base_scope Knowledge-base access: 'none', 'all', or 'branch'. Required on update: this is a full replacement, so the scope must be restated every time — an agent's access must never change by omitting the field.
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseScope($knowledge_base_scope): static
     {
@@ -887,7 +887,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int[]|null $knowledge_base_node_ids Folder node ids to confine the agent to. Required (one or more) when scope is 'branch'; must be omitted for 'none' or 'all'.
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseNodeIds(?array $knowledge_base_node_ids): static
     {
@@ -914,7 +914,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param EvalConfigSchema|null $eval_config Metrics this agent is evaluated against, with per-metric thresholds and weights.
      *
-     * @return self
+     * @return $this
      */
     public function setEvalConfig($eval_config): static
     {
@@ -948,7 +948,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $graph_recursion_limit Per-agent override for the LangGraph recursion limit (max steps in the tool-calling loop). Must not exceed the platform cap (100). If null, LangGraph's own default (25) is used.
      *
-     * @return self
+     * @return $this
      */
     public function setGraphRecursionLimit(?int $graph_recursion_limit): static
     {
@@ -989,7 +989,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param ContextWindowStrategy $context_window_strategy Behavior when the conversation nears the model's context window: 'stop' (run fails once the request is over-length), 'context_editing' (clear old tool results), or 'summarization' (replace older messages with an LLM-generated summary). Required on update: this is a full replacement, so the strategy must be restated every time — an existing non-default strategy must never be reset by omitting the field.
      *
-     * @return self
+     * @return $this
      */
     public function setContextWindowStrategy($context_window_strategy): static
     {
@@ -1016,7 +1016,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $agents_catalog_entry_id Optional reference to the agents catalog entry this agent was created from. Used to track catalog template popularity.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsCatalogEntryId(?int $agents_catalog_entry_id): static
     {
@@ -1054,7 +1054,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param ImpactMetricSchema|null $impact_metric The impact (ROI) one run of this agent generates. This is a full replacement: omitting the field clears any existing impact metric, it does not leave it unchanged.
      *
-     * @return self
+     * @return $this
      */
     public function setImpactMetric($impact_metric): static
     {
@@ -1088,7 +1088,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param AgentMemoryScope|null $memory_scope Long-term memory access breadth: 'none', 'user', or 'organisation'. This is a full replacement: omitting the field resets memory access to 'none', it does not leave it unchanged.
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryScope($memory_scope): static
     {
@@ -1115,7 +1115,7 @@ class UpdateAgentPayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param AgentMemoryAccess|null $memory_access 'read_only' or 'read_write'. This is a full replacement: omitting the field resets access to 'read_only', it does not leave it unchanged. Must be 'read_only' when memory_scope is 'none'.
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryAccess($memory_access): static
     {

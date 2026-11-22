@@ -364,7 +364,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param CreditEntryOrderedByType $type AGENT for a consumption charged to an agent execution; USER for everything else (chat usage, purchases, adjustments, plan changes).
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -391,7 +391,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $name The agent's name, or the user's full name falling back to their email.
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -425,7 +425,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int|null $agent_id Set when `type` is AGENT, unless the agent has since been deleted — then `name` is null too.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -459,7 +459,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $user_id Set when `type` is USER.
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -493,7 +493,7 @@ class CreditEntryOrderedBySchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $avatar_url The user's avatar. Always null for an agent, or for a user without one.
      *
-     * @return self
+     * @return $this
      */
     public function setAvatarUrl(?string $avatar_url): static
     {

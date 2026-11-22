@@ -335,7 +335,7 @@ class RetryPolicySchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param RetryPolicyType|null $type Retry policy type: 'fail' (mark the execution as failed, the default) or 'retry' (retry up to 'max_attempts' times).
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -362,7 +362,7 @@ class RetryPolicySchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int|null $max_attempts Maximum number of automatic retry attempts. Required when type is 'retry'; must be omitted when type is 'fail'.
      *
-     * @return self
+     * @return $this
      */
     public function setMaxAttempts(?int $max_attempts): static
     {

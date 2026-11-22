@@ -384,7 +384,7 @@ class EvalMetricConfigSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $metric_id metric_id
      *
-     * @return self
+     * @return $this
      */
     public function setMetricId(?string $metric_id): static
     {
@@ -418,7 +418,7 @@ class EvalMetricConfigSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param float $threshold The value this metric must reach to pass, in the metric's own unit/scale (e.g. 80.0 for an 80% success_rate, 5.0 for a 5-second latency cap, 0.7 for a 0.0-1.0 correctness score). Check GET /metric-providers/types for this metric_id's `unit` and `is_maximized` before choosing a threshold.
      *
-     * @return self
+     * @return $this
      */
     public function setThreshold($threshold): static
     {
@@ -449,7 +449,7 @@ class EvalMetricConfigSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param float $weight This metric's contribution to the overall quality score.
      *
-     * @return self
+     * @return $this
      */
     public function setWeight($weight): static
     {
@@ -483,7 +483,7 @@ class EvalMetricConfigSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param array<string,mixed>|null $config Metric-specific settings, e.g. a custom rubric or expected-tools list.
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -517,7 +517,7 @@ class EvalMetricConfigSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_gate If true, the other configured metrics are skipped whenever this one fails.
      *
-     * @return self
+     * @return $this
      */
     public function setIsGate(?bool $is_gate): static
     {
@@ -544,7 +544,7 @@ class EvalMetricConfigSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_maximized Only consulted for ad-hoc/custom-rubric metrics with no registered definition (e.g. config.rubric metrics like 'verbosity' where a LOW score should pass). Ignored for any metric_id with a registered EvaluationMetric — its intrinsic direction always wins (check GET /metric-providers/types).
      *
-     * @return self
+     * @return $this
      */
     public function setIsMaximized(?bool $is_maximized): static
     {

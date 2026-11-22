@@ -354,7 +354,7 @@ class AgentUsingMCPServerResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -381,7 +381,7 @@ class AgentUsingMCPServerResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -408,7 +408,7 @@ class AgentUsingMCPServerResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -435,7 +435,7 @@ class AgentUsingMCPServerResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int $tool_count tool_count
      *
-     * @return self
+     * @return $this
      */
     public function setToolCount(?int $tool_count): static
     {

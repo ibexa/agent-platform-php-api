@@ -320,7 +320,7 @@ class AgentMetricsSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param float|null $success_ratio success_ratio
      *
-     * @return self
+     * @return $this
      */
     public function setSuccessRatio($success_ratio): static
     {

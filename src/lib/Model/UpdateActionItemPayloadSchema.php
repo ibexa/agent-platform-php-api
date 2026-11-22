@@ -334,7 +334,7 @@ class UpdateActionItemPayloadSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param ActionItemStatus|null $status New status for the action item.
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -368,7 +368,7 @@ class UpdateActionItemPayloadSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string|null $assignee User ID of the new assignee, or null to unassign.
      *
-     * @return self
+     * @return $this
      */
     public function setAssignee(?string $assignee): static
     {
@@ -402,7 +402,7 @@ class UpdateActionItemPayloadSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param \DateTime|null $due_date New due date, or null to clear it.
      *
-     * @return self
+     * @return $this
      */
     public function setDueDate($due_date): static
     {

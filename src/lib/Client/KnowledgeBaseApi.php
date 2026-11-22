@@ -98,7 +98,7 @@ class KnowledgeBaseApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'baseCreateDocumentFromFile' => [
             'multipart/form-data',
@@ -2366,7 +2366,7 @@ class KnowledgeBaseApi
      *
      * Get Overview
      *
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
@@ -2390,7 +2390,7 @@ class KnowledgeBaseApi
      *
      * Get Overview
      *
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
@@ -2458,7 +2458,7 @@ class KnowledgeBaseApi
      *
      * Get Overview
      *
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
@@ -2482,7 +2482,7 @@ class KnowledgeBaseApi
      *
      * Get Overview
      *
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
@@ -2505,7 +2505,7 @@ class KnowledgeBaseApi
     /**
      * Create request for operation 'baseGetOverview'.
      *
-     * @param  \IbexaAgentPlatformModelUsageGrouping|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
+     * @param  string|null $group Time grouping granularity for each metric&#39;s series. If omitted, all activity in the range is aggregated into a single total. (optional)
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseGetOverview'] to see the possible values for this operation
      *
@@ -3585,8 +3585,8 @@ class KnowledgeBaseApi
      *
      * List Node Tree
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
@@ -3613,8 +3613,8 @@ class KnowledgeBaseApi
      *
      * List Node Tree
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
@@ -3685,8 +3685,8 @@ class KnowledgeBaseApi
      *
      * List Node Tree
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
@@ -3713,8 +3713,8 @@ class KnowledgeBaseApi
      *
      * List Node Tree
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
@@ -3740,8 +3740,8 @@ class KnowledgeBaseApi
     /**
      * Create request for operation 'baseListNodeTree'.
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $root_id Return only this node&#39;s subtree instead of the whole tree (optional)
      * @param  string|null $search Keep nodes whose name contains this value (case-insensitive substring), plus their ancestors; if a folder matches, its whole subtree is included (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodeTree'] to see the possible values for this operation
@@ -3878,8 +3878,8 @@ class KnowledgeBaseApi
      *
      * List Nodes
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
@@ -3904,8 +3904,8 @@ class KnowledgeBaseApi
      *
      * List Nodes
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
@@ -3974,8 +3974,8 @@ class KnowledgeBaseApi
      *
      * List Nodes
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
@@ -4000,8 +4000,8 @@ class KnowledgeBaseApi
      *
      * List Nodes
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *
@@ -4025,8 +4025,8 @@ class KnowledgeBaseApi
     /**
      * Create request for operation 'baseListNodes'.
      *
-     * @param  \IbexaAgentPlatformModelKnowledgeNodeSortField|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
-     * @param  \IbexaAgentPlatformModelSortDirection|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
+     * @param  string|null $sort_by Order by name (folders first, then A-Z) or by citation count. Sorting by citations interleaves folders and documents, since a ranking split into two blocks would not be a ranking (optional, default to 'name')
+     * @param  string|null $sort_order Ascending or descending. Most-cited first is sort_by&#x3D;citations&amp;sort_order&#x3D;desc (optional, default to 'asc')
      * @param  int|null $parent_id List this node&#39;s direct children; omit for the organisation&#39;s roots (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['baseListNodes'] to see the possible values for this operation
      *

@@ -322,7 +322,7 @@ class AgentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $instructions instructions
      *
-     * @return self
+     * @return $this
      */
     public function setInstructions(?string $instructions): static
     {

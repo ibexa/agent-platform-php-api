@@ -354,7 +354,7 @@ class CreditExecutionUsagePeriodSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string $period Period label (e.g. '2024-01-15', '2024-01', '2024')
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -381,7 +381,7 @@ class CreditExecutionUsagePeriodSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string $credits_spent credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {
@@ -408,7 +408,7 @@ class CreditExecutionUsagePeriodSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string $execution_credits_spent execution_credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionCreditsSpent(?string $execution_credits_spent): static
     {
@@ -435,7 +435,7 @@ class CreditExecutionUsagePeriodSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string $conversation_credits_spent conversation_credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setConversationCreditsSpent(?string $conversation_credits_spent): static
     {

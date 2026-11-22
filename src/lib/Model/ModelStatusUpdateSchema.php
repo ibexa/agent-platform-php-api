@@ -334,7 +334,7 @@ class ModelStatusUpdateSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $model_id model_id
      *
-     * @return self
+     * @return $this
      */
     public function setModelId(?string $model_id): static
     {
@@ -361,7 +361,7 @@ class ModelStatusUpdateSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ModelStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {

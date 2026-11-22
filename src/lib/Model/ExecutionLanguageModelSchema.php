@@ -344,7 +344,7 @@ class ExecutionLanguageModelSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $model_id Model identifier as the provider names it, e.g. 'gpt-4o'
      *
-     * @return self
+     * @return $this
      */
     public function setModelId(?string $model_id): static
     {
@@ -378,7 +378,7 @@ class ExecutionLanguageModelSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $provider_name Name of the configured provider
      *
-     * @return self
+     * @return $this
      */
     public function setProviderName(?string $provider_name): static
     {
@@ -412,7 +412,7 @@ class ExecutionLanguageModelSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $provider_type Provider family, e.g. 'openai' or 'anthropic'
      *
-     * @return self
+     * @return $this
      */
     public function setProviderType(?string $provider_type): static
     {

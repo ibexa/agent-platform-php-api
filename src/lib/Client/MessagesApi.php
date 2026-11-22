@@ -86,7 +86,7 @@ class MessagesApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'attachMessageStream' => [
             'application/json',

@@ -88,7 +88,7 @@ class TriggersApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'createTrigger' => [
             'application/json',

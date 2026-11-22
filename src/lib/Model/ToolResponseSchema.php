@@ -404,7 +404,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -431,7 +431,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $title title
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -465,7 +465,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -492,7 +492,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $display_description display_description
      *
-     * @return self
+     * @return $this
      */
     public function setDisplayDescription(?string $display_description): static
     {
@@ -526,7 +526,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param array<string,mixed> $input_schema input_schema
      *
-     * @return self
+     * @return $this
      */
     public function setInputSchema(?array $input_schema): static
     {
@@ -553,7 +553,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param array<string,mixed>|null $output_schema output_schema
      *
-     * @return self
+     * @return $this
      */
     public function setOutputSchema(?array $output_schema): static
     {
@@ -587,7 +587,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param array<string,mixed>|null $annotations annotations
      *
-     * @return self
+     * @return $this
      */
     public function setAnnotations(?array $annotations): static
     {
@@ -621,7 +621,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param ToolStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -648,7 +648,7 @@ class ToolResponseSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string[]|null $categories categories
      *
-     * @return self
+     * @return $this
      */
     public function setCategories(?array $categories): static
     {

@@ -364,7 +364,7 @@ class BalanceResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $monthly_allowance This month's allowance cap from the organisation's effective plan — the figure `allowance_remaining` counts down from and resets to next month. Zero when no allowance plan applies.
      *
-     * @return self
+     * @return $this
      */
     public function setMonthlyAllowance(?string $monthly_allowance): static
     {
@@ -391,7 +391,7 @@ class BalanceResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $allowance_remaining allowance_remaining
      *
-     * @return self
+     * @return $this
      */
     public function setAllowanceRemaining(?string $allowance_remaining): static
     {
@@ -418,7 +418,7 @@ class BalanceResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $purchased purchased
      *
-     * @return self
+     * @return $this
      */
     public function setPurchased(?string $purchased): static
     {
@@ -445,7 +445,7 @@ class BalanceResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $total total
      *
-     * @return self
+     * @return $this
      */
     public function setTotal(?string $total): static
     {
@@ -472,7 +472,7 @@ class BalanceResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param CreditCurrency $currency currency
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency($currency): static
     {

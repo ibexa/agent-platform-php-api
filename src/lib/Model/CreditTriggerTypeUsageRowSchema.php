@@ -334,7 +334,7 @@ class CreditTriggerTypeUsageRowSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param TriggerType $trigger_type trigger_type
      *
-     * @return self
+     * @return $this
      */
     public function setTriggerType($trigger_type): static
     {
@@ -361,7 +361,7 @@ class CreditTriggerTypeUsageRowSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $credits_spent credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {

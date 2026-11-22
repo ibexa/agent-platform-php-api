@@ -376,7 +376,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -403,7 +403,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -430,7 +430,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -464,7 +464,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param bool|null $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -498,7 +498,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int|null $mcp_catalog_entry_id mcp_catalog_entry_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryId(?int $mcp_catalog_entry_id): static
     {
@@ -532,7 +532,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param AuthScheme|null $auth_scheme auth_scheme
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -566,7 +566,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param array<string,mixed>|null $auth_config auth_config
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -600,7 +600,7 @@ class UpdateMCPServerPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param bool|null $requires_user_connection requires_user_connection
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {

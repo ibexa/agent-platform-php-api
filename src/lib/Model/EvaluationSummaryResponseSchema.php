@@ -324,7 +324,7 @@ class EvaluationSummaryResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param EvaluationSummaryPeriodSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

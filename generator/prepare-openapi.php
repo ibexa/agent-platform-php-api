@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 $spec = json_decode(file_get_contents(__DIR__ . '/openapi.json'), false, 512, JSON_THROW_ON_ERROR);
+$resultSchema = $spec->components->schemas->ExecutionResponseSchema->properties->result;
+if (($resultSchema->anyOf ?? null) != [(object) [], (object) ['type' => 'null']]) {
+    throw new RuntimeException('Unexpected execution result schema.');
+}
+$resultSchema->{'x-unconstrained-value'} = true;
 $eventSchema = null;
 $count = 0;
 

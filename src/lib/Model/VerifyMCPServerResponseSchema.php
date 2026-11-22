@@ -374,7 +374,7 @@ class VerifyMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus(?string $status): static
     {
@@ -401,7 +401,7 @@ class VerifyMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param ToolResponseSchema[] $tools tools
      *
-     * @return self
+     * @return $this
      */
     public function setTools(?array $tools): static
     {
@@ -428,7 +428,7 @@ class VerifyMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $tool_count tool_count
      *
-     * @return self
+     * @return $this
      */
     public function setToolCount(?int $tool_count): static
     {
@@ -455,7 +455,7 @@ class VerifyMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param \DateTime $verified_at verified_at
      *
-     * @return self
+     * @return $this
      */
     public function setVerifiedAt($verified_at): static
     {
@@ -482,7 +482,7 @@ class VerifyMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param MCPServerInfoSchema|null $server_info server_info
      *
-     * @return self
+     * @return $this
      */
     public function setServerInfo($server_info): static
     {
@@ -516,7 +516,7 @@ class VerifyMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param MCPServerVersionSchema $version version
      *
-     * @return self
+     * @return $this
      */
     public function setVersion($version): static
     {

@@ -412,7 +412,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $key key
      *
-     * @return self
+     * @return $this
      */
     public function setKey(?string $key): static
     {
@@ -439,7 +439,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param array<string,mixed>|null $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue(?array $value): static
     {
@@ -473,7 +473,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param MemoryScopeType $scope_type scope_type
      *
-     * @return self
+     * @return $this
      */
     public function setScopeType($scope_type): static
     {
@@ -500,7 +500,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool $all_agents all_agents
      *
-     * @return self
+     * @return $this
      */
     public function setAllAgents(?bool $all_agents): static
     {
@@ -527,7 +527,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param MemoryLifecycle $lifecycle lifecycle
      *
-     * @return self
+     * @return $this
      */
     public function setLifecycle($lifecycle): static
     {
@@ -554,7 +554,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param MemoryType $memory_type What kind of fact this is, which decides how long it is kept.
      *
-     * @return self
+     * @return $this
      */
     public function setMemoryType($memory_type): static
     {
@@ -581,7 +581,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param MemoryConfidence $confidence Whether this was stated by the user or inferred by the agent.
      *
-     * @return self
+     * @return $this
      */
     public function setConfidence($confidence): static
     {
@@ -608,7 +608,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $expires_at When this leaves ACTIVE and drops out of the prompt. Null means never.
      *
-     * @return self
+     * @return $this
      */
     public function setExpiresAt($expires_at): static
     {
@@ -642,7 +642,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -676,7 +676,7 @@ class MemoryEntryResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

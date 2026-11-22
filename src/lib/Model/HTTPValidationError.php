@@ -318,7 +318,7 @@ class HTTPValidationError implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param ValidationError[]|null $detail detail
      *
-     * @return self
+     * @return $this
      */
     public function setDetail(?array $detail): static
     {

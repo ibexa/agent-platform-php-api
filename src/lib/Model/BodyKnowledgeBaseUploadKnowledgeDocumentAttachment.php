@@ -322,7 +322,7 @@ class BodyKnowledgeBaseUploadKnowledgeDocumentAttachment implements ModelInterfa
      *
      * @param \SplFileObject $file file
      *
-     * @return self
+     * @return $this
      */
     public function setFile($file): static
     {

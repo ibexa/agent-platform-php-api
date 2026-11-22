@@ -334,7 +334,7 @@ class NotificationTypeActionSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $id Value to send back as the resolving action
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -361,7 +361,7 @@ class NotificationTypeActionSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $label label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {

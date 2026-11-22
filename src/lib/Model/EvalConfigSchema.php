@@ -335,7 +335,7 @@ class EvalConfigSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param EvalMetricConfigSchema[]|null $metrics metrics
      *
-     * @return self
+     * @return $this
      */
     public function setMetrics(?array $metrics): static
     {
@@ -362,7 +362,7 @@ class EvalConfigSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param float|null $sample_size Percentage of eligible runs that actually get evaluated.
      *
-     * @return self
+     * @return $this
      */
     public function setSampleSize($sample_size): static
     {

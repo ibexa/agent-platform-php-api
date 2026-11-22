@@ -364,7 +364,7 @@ class OrgImpactMetricPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $period Period label (e.g. '2024-01-15', '2024-01', '2024')
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -391,7 +391,7 @@ class OrgImpactMetricPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $metric_type metric_type
      *
-     * @return self
+     * @return $this
      */
     public function setMetricType(?string $metric_type): static
     {
@@ -418,7 +418,7 @@ class OrgImpactMetricPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $unit unit
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {
@@ -445,7 +445,7 @@ class OrgImpactMetricPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue(?int $value): static
     {
@@ -472,7 +472,7 @@ class OrgImpactMetricPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $execution_count Number of successful runs contributing to value.
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionCount(?int $execution_count): static
     {

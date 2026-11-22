@@ -334,7 +334,7 @@ class TriggerListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param TriggerResponseSchema[] $triggers triggers
      *
-     * @return self
+     * @return $this
      */
     public function setTriggers(?array $triggers): static
     {
@@ -361,7 +361,7 @@ class TriggerListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

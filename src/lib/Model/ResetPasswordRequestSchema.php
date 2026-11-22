@@ -332,7 +332,7 @@ class ResetPasswordRequestSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $token token
      *
-     * @return self
+     * @return $this
      */
     public function setToken(?string $token): static
     {
@@ -359,7 +359,7 @@ class ResetPasswordRequestSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $new_password new_password
      *
-     * @return self
+     * @return $this
      */
     public function setNewPassword(?string $new_password): static
     {

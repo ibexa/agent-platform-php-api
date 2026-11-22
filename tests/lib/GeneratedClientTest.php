@@ -11,12 +11,15 @@ namespace Ibexa\Tests\AgentPlatform;
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\Client\AgentsApi;
 use Ibexa\AgentPlatform\Configuration;
+use Ibexa\AgentPlatform\Model\AdminModelPricingResponseSchema;
+use Ibexa\AgentPlatform\Model\AdminModelProfileResponseSchema;
 use Ibexa\AgentPlatform\Model\AgentListItemResponseSchema;
 use Ibexa\AgentPlatform\Model\AgentListResponseSchema;
 use Ibexa\AgentPlatform\Model\ExecutionResponseSchema;
 use Ibexa\AgentPlatform\Model\ExecutionStatus;
 use Ibexa\AgentPlatform\Model\ModelInterface;
 use Ibexa\AgentPlatform\Model\ModelReference;
+use Ibexa\AgentPlatform\Model\ModelShortlistResponseSchema;
 use Ibexa\AgentPlatform\Model\UpdateAgentPayloadSchema;
 use Ibexa\AgentPlatform\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
@@ -112,6 +115,35 @@ final class GeneratedClientTest extends TestCase
         self::assertInstanceOf(AgentListItemResponseSchema::class, $list->getAgents()[0]);
         self::assertSame(42, $list->getAgents()[0]->getId());
         self::assertSame(1, $list->getTotalCount());
+    }
+
+    public function testExecutionResultAcceptsStringsObjectsAndNull(): void
+    {
+        foreach (['answer', (object) ['answer' => 42], null] as $result) {
+            $execution = ObjectSerializer::deserialize(
+                (object) ['result' => $result],
+                ExecutionResponseSchema::class,
+            );
+            self::assertInstanceOf(ExecutionResponseSchema::class, $execution);
+            self::assertEquals($result, $execution->getResult());
+        }
+    }
+
+    public function testPublicModelProfileIncludesPricing(): void
+    {
+        $result = ObjectSerializer::deserialize(
+            (object) ['data' => [(object) [
+                'id' => 1,
+                'current_pricing' => (object) ['currency' => 'USD'],
+            ]], 'count' => 1],
+            ModelShortlistResponseSchema::class,
+        );
+        self::assertInstanceOf(ModelShortlistResponseSchema::class, $result);
+        $profile = $result->getData()[0];
+        self::assertInstanceOf(AdminModelProfileResponseSchema::class, $profile);
+        self::assertSame(1, $profile->getId());
+        self::assertInstanceOf(AdminModelPricingResponseSchema::class, $profile->getCurrentPricing());
+        self::assertSame('USD', $profile->getCurrentPricing()->getCurrency());
     }
 
     public function testRequestAuthenticationAndResponse(): void

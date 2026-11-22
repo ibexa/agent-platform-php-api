@@ -322,7 +322,7 @@ class BodyOrganisationAdminProvisionOrganisation implements ModelInterface, Arra
      *
      * @param \SplFileObject $manifest_file manifest_file
      *
-     * @return self
+     * @return $this
      */
     public function setManifestFile($manifest_file): static
     {

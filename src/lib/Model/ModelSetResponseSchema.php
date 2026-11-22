@@ -324,7 +324,7 @@ class ModelSetResponseSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param ModelResponseSchema[] $models models
      *
-     * @return self
+     * @return $this
      */
     public function setModels(?array $models): static
     {

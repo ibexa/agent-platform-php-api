@@ -324,7 +324,7 @@ class RemoteWebhookVerificationResponseSchema implements ModelInterface, ArrayAc
      *
      * @param RemoteWebhookCheckStatus $status `active` or `inactive` as the 3rd party reports it; `missing` when it no longer exists there (recreate the trigger to restore it); `error` when it could not be checked, e.g. the remote trigger source is disabled or unreachable; `not_applicable` when the type's vendor delivers all events to the source's inbound URL, so the trigger has no webhook of its own.
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {

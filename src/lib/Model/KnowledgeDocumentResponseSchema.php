@@ -544,7 +544,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -571,7 +571,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -598,7 +598,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -625,7 +625,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $slug slug
      *
-     * @return self
+     * @return $this
      */
     public function setSlug(?string $slug): static
     {
@@ -659,7 +659,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $parent_id parent_id
      *
-     * @return self
+     * @return $this
      */
     public function setParentId(?int $parent_id): static
     {
@@ -693,7 +693,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $path path
      *
-     * @return self
+     * @return $this
      */
     public function setPath(?string $path): static
     {
@@ -727,7 +727,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -761,7 +761,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $citation_count citation_count
      *
-     * @return self
+     * @return $this
      */
     public function setCitationCount(?int $citation_count): static
     {
@@ -788,7 +788,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed>|null $metadata metadata
      *
-     * @return self
+     * @return $this
      */
     public function setMetadata(?array $metadata): static
     {
@@ -822,7 +822,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $markdown markdown
      *
-     * @return self
+     * @return $this
      */
     public function setMarkdown(?string $markdown): static
     {
@@ -849,7 +849,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $source_file_id source_file_id
      *
-     * @return self
+     * @return $this
      */
     public function setSourceFileId(?string $source_file_id): static
     {
@@ -883,7 +883,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param DocumentParseStatus $parse_status parse_status
      *
-     * @return self
+     * @return $this
      */
     public function setParseStatus($parse_status): static
     {
@@ -910,7 +910,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $parse_error parse_error
      *
-     * @return self
+     * @return $this
      */
     public function setParseError(?string $parse_error): static
     {
@@ -944,7 +944,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $publish_error publish_error
      *
-     * @return self
+     * @return $this
      */
     public function setPublishError(?string $publish_error): static
     {
@@ -978,7 +978,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $published_version_id published_version_id
      *
-     * @return self
+     * @return $this
      */
     public function setPublishedVersionId(?int $published_version_id): static
     {
@@ -1012,7 +1012,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $version_number version_number
      *
-     * @return self
+     * @return $this
      */
     public function setVersionNumber(?int $version_number): static
     {
@@ -1046,7 +1046,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param VersionStatus|null $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -1080,7 +1080,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param EmbeddingStatus|null $embedding_status embedding_status
      *
-     * @return self
+     * @return $this
      */
     public function setEmbeddingStatus($embedding_status): static
     {
@@ -1114,7 +1114,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param KnowledgeNodeUserSchema|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy($created_by): static
     {
@@ -1148,7 +1148,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param KnowledgeNodeUserSchema|null $updated_by updated_by
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedBy($updated_by): static
     {
@@ -1182,7 +1182,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -1216,7 +1216,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -1250,7 +1250,7 @@ class KnowledgeDocumentResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param KnowledgeDocumentAttachmentResponseSchema[] $attachments Every image and file attached to the document, with signed URLs. Use them to render the `attachment:<id>` references in `markdown`. Attachments belong to the document, not to a version, so the same list comes back whichever version is shown.
      *
-     * @return self
+     * @return $this
      */
     public function setAttachments(?array $attachments): static
     {

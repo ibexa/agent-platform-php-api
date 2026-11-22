@@ -334,7 +334,7 @@ class ExecutionListResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param ExecutionListItemResponseSchema[] $executions executions
      *
-     * @return self
+     * @return $this
      */
     public function setExecutions(?array $executions): static
     {
@@ -361,7 +361,7 @@ class ExecutionListResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

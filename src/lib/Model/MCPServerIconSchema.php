@@ -334,7 +334,7 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $src src
      *
-     * @return self
+     * @return $this
      */
     public function setSrc(?string $src): static
     {
@@ -368,7 +368,7 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $mime_type mime_type
      *
-     * @return self
+     * @return $this
      */
     public function setMimeType(?string $mime_type): static
     {
@@ -402,7 +402,7 @@ class MCPServerIconSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string[]|null $sizes sizes
      *
-     * @return self
+     * @return $this
      */
     public function setSizes(?array $sizes): static
     {

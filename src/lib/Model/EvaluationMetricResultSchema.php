@@ -364,7 +364,7 @@ class EvaluationMetricResultSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $metric_id metric_id
      *
-     * @return self
+     * @return $this
      */
     public function setMetricId(?string $metric_id): static
     {
@@ -391,7 +391,7 @@ class EvaluationMetricResultSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param float $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue($value): static
     {
@@ -418,7 +418,7 @@ class EvaluationMetricResultSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $unit unit
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {
@@ -445,7 +445,7 @@ class EvaluationMetricResultSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param bool|null $passed Whether this metric individually passed its configured threshold, or null if not yet evaluated.
      *
-     * @return self
+     * @return $this
      */
     public function setPassed(?bool $passed): static
     {
@@ -479,7 +479,7 @@ class EvaluationMetricResultSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param \DateTime $computed_at computed_at
      *
-     * @return self
+     * @return $this
      */
     public function setComputedAt($computed_at): static
     {

@@ -374,7 +374,7 @@ class ExecutionStatusPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $period Period label (e.g. '2024-01-15', '2024-01', '2024')
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -401,7 +401,7 @@ class ExecutionStatusPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $pending pending
      *
-     * @return self
+     * @return $this
      */
     public function setPending(?int $pending): static
     {
@@ -428,7 +428,7 @@ class ExecutionStatusPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $started started
      *
-     * @return self
+     * @return $this
      */
     public function setStarted(?int $started): static
     {
@@ -455,7 +455,7 @@ class ExecutionStatusPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $success success
      *
-     * @return self
+     * @return $this
      */
     public function setSuccess(?int $success): static
     {
@@ -482,7 +482,7 @@ class ExecutionStatusPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $failure failure
      *
-     * @return self
+     * @return $this
      */
     public function setFailure(?int $failure): static
     {
@@ -509,7 +509,7 @@ class ExecutionStatusPeriodSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $canceled canceled
      *
-     * @return self
+     * @return $this
      */
     public function setCanceled(?int $canceled): static
     {

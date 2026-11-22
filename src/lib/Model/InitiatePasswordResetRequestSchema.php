@@ -322,7 +322,7 @@ class InitiatePasswordResetRequestSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $email email
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {

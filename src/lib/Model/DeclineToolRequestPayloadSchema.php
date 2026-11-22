@@ -318,7 +318,7 @@ class DeclineToolRequestPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $reason Optional reason explaining the decline.
      *
-     * @return self
+     * @return $this
      */
     public function setReason(?string $reason): static
     {

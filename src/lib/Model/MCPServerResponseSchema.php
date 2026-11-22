@@ -472,7 +472,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -499,7 +499,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -526,7 +526,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -553,7 +553,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -580,7 +580,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -614,7 +614,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param ToolResponseSchema[]|null $tools tools
      *
-     * @return self
+     * @return $this
      */
     public function setTools(?array $tools): static
     {
@@ -648,7 +648,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime|null $verified_at verified_at
      *
-     * @return self
+     * @return $this
      */
     public function setVerifiedAt($verified_at): static
     {
@@ -682,7 +682,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $verification_error verification_error
      *
-     * @return self
+     * @return $this
      */
     public function setVerificationError(?string $verification_error): static
     {
@@ -716,7 +716,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $verification_status verification_status
      *
-     * @return self
+     * @return $this
      */
     public function setVerificationStatus(?string $verification_status): static
     {
@@ -743,7 +743,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param MCPServerInfoSchema|null $server_info server_info
      *
-     * @return self
+     * @return $this
      */
     public function setServerInfo($server_info): static
     {
@@ -777,7 +777,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -804,7 +804,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $mcp_catalog_entry_id mcp_catalog_entry_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryId(?int $mcp_catalog_entry_id): static
     {
@@ -838,7 +838,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param MCPServerCatalogEntrySchema|null $mcp_catalog_entry mcp_catalog_entry
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntry($mcp_catalog_entry): static
     {
@@ -872,7 +872,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param AuthScheme|null $auth_scheme auth_scheme
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -906,7 +906,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param array<string,mixed>|null $auth_config auth_config
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -940,7 +940,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param bool|null $requires_user_connection requires_user_connection
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {
@@ -967,7 +967,7 @@ class MCPServerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param MCPServerVersionSchema $version version
      *
-     * @return self
+     * @return $this
      */
     public function setVersion($version): static
     {

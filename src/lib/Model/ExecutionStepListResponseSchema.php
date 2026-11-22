@@ -344,7 +344,7 @@ class ExecutionStepListResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param ExecutionStepResponseSchema[] $data The steps
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -371,7 +371,7 @@ class ExecutionStepListResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $next_cursor Pass as `cursor` to read the next page. Null on the last page
      *
-     * @return self
+     * @return $this
      */
     public function setNextCursor(?int $next_cursor): static
     {
@@ -405,7 +405,7 @@ class ExecutionStepListResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param bool $has_more Whether another page follows
      *
-     * @return self
+     * @return $this
      */
     public function setHasMore(?bool $has_more): static
     {

@@ -322,7 +322,7 @@ class EffectiveMemoryPolicyResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param EffectivePolicySchema $effective effective
      *
-     * @return self
+     * @return $this
      */
     public function setEffective($effective): static
     {

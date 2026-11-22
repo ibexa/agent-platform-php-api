@@ -346,7 +346,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
      *
      * @param \SplFileObject $file file
      *
-     * @return self
+     * @return $this
      */
     public function setFile($file): static
     {
@@ -373,7 +373,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
      *
      * @param int|null $parent_id parent_id
      *
-     * @return self
+     * @return $this
      */
     public function setParentId(?int $parent_id): static
     {
@@ -407,7 +407,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -441,7 +441,7 @@ class BodyKnowledgeBaseCreateDocumentFromFile implements ModelInterface, ArrayAc
      *
      * @param string|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {

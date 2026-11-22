@@ -422,7 +422,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -449,7 +449,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -476,7 +476,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -503,7 +503,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -530,7 +530,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -564,7 +564,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -591,7 +591,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int|null $mcp_catalog_entry_id mcp_catalog_entry_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryId(?int $mcp_catalog_entry_id): static
     {
@@ -625,7 +625,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param MCPServerCatalogEntrySchema|null $mcp_catalog_entry mcp_catalog_entry
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntry($mcp_catalog_entry): static
     {
@@ -659,7 +659,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param MCPServerInfoSchema|null $server_info server_info
      *
-     * @return self
+     * @return $this
      */
     public function setServerInfo($server_info): static
     {
@@ -693,7 +693,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param AuthScheme|null $auth_scheme auth_scheme
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -727,7 +727,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param bool|null $requires_user_connection requires_user_connection
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {
@@ -754,7 +754,7 @@ class CreateMCPServerResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param MCPServerVersionSchema $version version
      *
-     * @return self
+     * @return $this
      */
     public function setVersion($version): static
     {

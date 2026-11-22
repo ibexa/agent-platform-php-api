@@ -342,7 +342,7 @@ class UserAgentRecommendationListItemResponseSchema implements ModelInterface, A
      *
      * @param string $user_id user_id
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -369,7 +369,7 @@ class UserAgentRecommendationListItemResponseSchema implements ModelInterface, A
      *
      * @param int $recommendation_id recommendation_id
      *
-     * @return self
+     * @return $this
      */
     public function setRecommendationId(?int $recommendation_id): static
     {
@@ -396,7 +396,7 @@ class UserAgentRecommendationListItemResponseSchema implements ModelInterface, A
      *
      * @param AgentRecommendationResultListItemResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

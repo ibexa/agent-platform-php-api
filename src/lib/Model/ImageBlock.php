@@ -396,7 +396,7 @@ class ImageBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -423,7 +423,7 @@ class ImageBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -460,7 +460,7 @@ class ImageBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $url url
      *
-     * @return self
+     * @return $this
      */
     public function setUrl(?string $url): static
     {
@@ -487,7 +487,7 @@ class ImageBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $size Display size of the image: sm, md, lg, or full (full container width).
      *
-     * @return self
+     * @return $this
      */
     public function setSize(?string $size): static
     {

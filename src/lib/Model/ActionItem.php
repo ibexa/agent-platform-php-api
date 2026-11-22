@@ -353,7 +353,7 @@ class ActionItem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $label label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -380,7 +380,7 @@ class ActionItem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus(?string $status): static
     {
@@ -407,7 +407,7 @@ class ActionItem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $assignee User ID of the assignee
      *
-     * @return self
+     * @return $this
      */
     public function setAssignee(?string $assignee): static
     {
@@ -441,7 +441,7 @@ class ActionItem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $due_date due_date
      *
-     * @return self
+     * @return $this
      */
     public function setDueDate($due_date): static
     {
@@ -475,7 +475,7 @@ class ActionItem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

@@ -384,7 +384,7 @@ class LineChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -411,7 +411,7 @@ class LineChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -448,7 +448,7 @@ class LineChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $title Chart title, e.g. 'Monthly Active Users'
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -475,7 +475,7 @@ class LineChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[] $labels Series names displayed in the legend — one entry per line on the chart. Example: ['Revenue'] for a single-line chart, ['Revenue', 'Costs'] for two lines. Do NOT put x-axis tick labels (dates, periods) here; those belong in data[i].x.
      *
-     * @return self
+     * @return $this
      */
     public function setLabels(?array $labels): static
     {
@@ -502,7 +502,7 @@ class LineChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param LineChartDataPoint[][] $data One inner list per series; must have the same length as `labels`. Each element is an (x, y) point where x is the x-axis tick label (e.g. 'Jan 2024', 'Q1') and y is the numeric value.
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

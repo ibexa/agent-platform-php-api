@@ -324,7 +324,7 @@ class EvaluationMetricBreakdownResponseSchema implements ModelInterface, ArrayAc
      *
      * @param EvaluationMetricPeriodSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

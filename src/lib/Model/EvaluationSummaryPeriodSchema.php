@@ -364,7 +364,7 @@ class EvaluationSummaryPeriodSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $period Period label (e.g. '2024-01-15', '2024-01', '2024')
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -391,7 +391,7 @@ class EvaluationSummaryPeriodSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $passed_count Targets with eval_passed = true.
      *
-     * @return self
+     * @return $this
      */
     public function setPassedCount(?int $passed_count): static
     {
@@ -418,7 +418,7 @@ class EvaluationSummaryPeriodSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $failed_count Targets with eval_passed = false.
      *
-     * @return self
+     * @return $this
      */
     public function setFailedCount(?int $failed_count): static
     {
@@ -445,7 +445,7 @@ class EvaluationSummaryPeriodSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $not_evaluated_count Targets with no eval_passed recorded yet (evaluation not finished).
      *
-     * @return self
+     * @return $this
      */
     public function setNotEvaluatedCount(?int $not_evaluated_count): static
     {
@@ -472,7 +472,7 @@ class EvaluationSummaryPeriodSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param float|null $average_score Average overall_score across targets with a recorded score, or null if none.
      *
-     * @return self
+     * @return $this
      */
     public function setAverageScore($average_score): static
     {

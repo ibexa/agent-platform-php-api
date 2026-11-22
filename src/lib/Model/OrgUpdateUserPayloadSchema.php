@@ -324,7 +324,7 @@ class OrgUpdateUserPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param OrganisationRole $organisation_role organisation_role
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationRole($organisation_role): static
     {

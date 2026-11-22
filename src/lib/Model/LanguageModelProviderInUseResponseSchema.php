@@ -354,7 +354,7 @@ class LanguageModelProviderInUseResponseSchema implements ModelInterface, ArrayA
      *
      * @param string $detail detail
      *
-     * @return self
+     * @return $this
      */
     public function setDetail(?string $detail): static
     {
@@ -381,7 +381,7 @@ class LanguageModelProviderInUseResponseSchema implements ModelInterface, ArrayA
      *
      * @param int $language_model_provider_id language_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageModelProviderId(?int $language_model_provider_id): static
     {
@@ -408,7 +408,7 @@ class LanguageModelProviderInUseResponseSchema implements ModelInterface, ArrayA
      *
      * @param int $agent_count Number of agents that still use the provider.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentCount(?int $agent_count): static
     {
@@ -435,7 +435,7 @@ class LanguageModelProviderInUseResponseSchema implements ModelInterface, ArrayA
      *
      * @param int $organisation_count Number of organisations that still have the provider as their default chat or embedding provider.
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationCount(?int $organisation_count): static
     {

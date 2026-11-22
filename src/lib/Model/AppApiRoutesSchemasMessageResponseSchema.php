@@ -324,7 +324,7 @@ class AppApiRoutesSchemasMessageResponseSchema implements ModelInterface, ArrayA
      *
      * @param string $message message
      *
-     * @return self
+     * @return $this
      */
     public function setMessage(?string $message): static
     {

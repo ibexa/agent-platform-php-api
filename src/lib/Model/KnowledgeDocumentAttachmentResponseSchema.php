@@ -374,7 +374,7 @@ class KnowledgeDocumentAttachmentResponseSchema implements ModelInterface, Array
      *
      * @param string $id Attachment id. The document's Markdown references the attachment as `attachment:<id>`, e.g. `![Diagram](attachment:<id>)` for an inline image or `[Spec](attachment:<id>)` for a download link.
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -401,7 +401,7 @@ class KnowledgeDocumentAttachmentResponseSchema implements ModelInterface, Array
      *
      * @param string $original_filename original_filename
      *
-     * @return self
+     * @return $this
      */
     public function setOriginalFilename(?string $original_filename): static
     {
@@ -428,7 +428,7 @@ class KnowledgeDocumentAttachmentResponseSchema implements ModelInterface, Array
      *
      * @param string $content_type MIME type. For images it is the type read from the uploaded bytes, not the one the client declared.
      *
-     * @return self
+     * @return $this
      */
     public function setContentType(?string $content_type): static
     {
@@ -455,7 +455,7 @@ class KnowledgeDocumentAttachmentResponseSchema implements ModelInterface, Array
      *
      * @param int $file_size Size in bytes.
      *
-     * @return self
+     * @return $this
      */
     public function setFileSize(?int $file_size): static
     {
@@ -482,7 +482,7 @@ class KnowledgeDocumentAttachmentResponseSchema implements ModelInterface, Array
      *
      * @param string $url Short-lived signed link that serves the attachment's bytes without a bearer token, so it can be used directly as an image source or download link. It expires, so don't store it: resolve `attachment:<id>` references to the URL returned with each read.
      *
-     * @return self
+     * @return $this
      */
     public function setUrl(?string $url): static
     {
@@ -509,7 +509,7 @@ class KnowledgeDocumentAttachmentResponseSchema implements ModelInterface, Array
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

@@ -355,7 +355,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -389,7 +389,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $title title
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -423,7 +423,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $version version
      *
-     * @return self
+     * @return $this
      */
     public function setVersion(?string $version): static
     {
@@ -457,7 +457,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -491,7 +491,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $website_url website_url
      *
-     * @return self
+     * @return $this
      */
     public function setWebsiteUrl(?string $website_url): static
     {
@@ -525,7 +525,7 @@ class MCPServerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param MCPServerIconSchema[]|null $icons icons
      *
-     * @return self
+     * @return $this
      */
     public function setIcons(?array $icons): static
     {

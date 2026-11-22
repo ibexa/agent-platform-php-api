@@ -494,7 +494,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -521,7 +521,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $version_number version_number
      *
-     * @return self
+     * @return $this
      */
     public function setVersionNumber(?int $version_number): static
     {
@@ -548,7 +548,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param VersionStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -575,7 +575,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -602,7 +602,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string|null $source_file_id source_file_id
      *
-     * @return self
+     * @return $this
      */
     public function setSourceFileId(?string $source_file_id): static
     {
@@ -636,7 +636,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param DocumentParseStatus $parse_status parse_status
      *
-     * @return self
+     * @return $this
      */
     public function setParseStatus($parse_status): static
     {
@@ -663,7 +663,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param EmbeddingStatus $embedding_status embedding_status
      *
-     * @return self
+     * @return $this
      */
     public function setEmbeddingStatus($embedding_status): static
     {
@@ -690,7 +690,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param \DateTime|null $published_at published_at
      *
-     * @return self
+     * @return $this
      */
     public function setPublishedAt($published_at): static
     {
@@ -724,7 +724,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string|null $publish_error publish_error
      *
-     * @return self
+     * @return $this
      */
     public function setPublishError(?string $publish_error): static
     {
@@ -758,7 +758,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param KnowledgeNodeUserSchema|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy($created_by): static
     {
@@ -792,7 +792,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -826,7 +826,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -860,7 +860,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $document_id document_id
      *
-     * @return self
+     * @return $this
      */
     public function setDocumentId(?int $document_id): static
     {
@@ -887,7 +887,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $node_id node_id
      *
-     * @return self
+     * @return $this
      */
     public function setNodeId(?int $node_id): static
     {
@@ -914,7 +914,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string $markdown markdown
      *
-     * @return self
+     * @return $this
      */
     public function setMarkdown(?string $markdown): static
     {
@@ -941,7 +941,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string|null $parse_error parse_error
      *
-     * @return self
+     * @return $this
      */
     public function setParseError(?string $parse_error): static
     {
@@ -975,7 +975,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param KnowledgeNodeUserSchema|null $updated_by updated_by
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedBy($updated_by): static
     {
@@ -1009,7 +1009,7 @@ class KnowledgeDocumentVersionResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param KnowledgeDocumentAttachmentResponseSchema[] $attachments Every image and file attached to the document, with signed URLs. Use them to render the `attachment:<id>` references in `markdown`. Attachments belong to the document, not to a version, so the same list comes back whichever version is shown.
      *
-     * @return self
+     * @return $this
      */
     public function setAttachments(?array $attachments): static
     {

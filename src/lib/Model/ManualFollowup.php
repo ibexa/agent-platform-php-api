@@ -348,7 +348,7 @@ class ManualFollowup implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param MCPServerNeedingCredentials[]|null $mcp_servers_needing_credentials mcp_servers_needing_credentials
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServersNeedingCredentials(?array $mcp_servers_needing_credentials): static
     {
@@ -375,7 +375,7 @@ class ManualFollowup implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param DroppedTrigger[]|null $dropped_triggers dropped_triggers
      *
-     * @return self
+     * @return $this
      */
     public function setDroppedTriggers(?array $dropped_triggers): static
     {
@@ -402,7 +402,7 @@ class ManualFollowup implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $default_model_not_carried True when the source organisation had a default model that could not be carried. A default pointing at a provider created without credentials would be unverified, a state the application itself rejects — leaving the organisation unable to save its own settings. Set the default by hand once the provider is verified.
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultModelNotCarried(?bool $default_model_not_carried): static
     {
@@ -429,7 +429,7 @@ class ManualFollowup implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $default_embedding_model_not_carried True when the source organisation had a default embedding model that could not be carried, for the same reason. This one must be set before the knowledge base is applied, or documents publish with no chunks and are skipped by later re-embedding.
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultEmbeddingModelNotCarried(?bool $default_embedding_model_not_carried): static
     {
@@ -456,7 +456,7 @@ class ManualFollowup implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param NotYetSupported[]|null $not_yet_supported not_yet_supported
      *
-     * @return self
+     * @return $this
      */
     public function setNotYetSupported(?array $not_yet_supported): static
     {

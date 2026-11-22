@@ -352,7 +352,7 @@ class MemoryPolicyResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool $is_configured False when nothing has been set and the floor alone applies.
      *
-     * @return self
+     * @return $this
      */
     public function setIsConfigured(?bool $is_configured): static
     {
@@ -379,7 +379,7 @@ class MemoryPolicyResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param ConfiguredPolicySchema $configured configured
      *
-     * @return self
+     * @return $this
      */
     public function setConfigured($configured): static
     {
@@ -406,7 +406,7 @@ class MemoryPolicyResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param EffectivePolicySchema $effective effective
      *
-     * @return self
+     * @return $this
      */
     public function setEffective($effective): static
     {
@@ -433,7 +433,7 @@ class MemoryPolicyResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param MemorySensitivity[] $unconfigurable_sensitivities Classes no policy can permit, whatever it says. Returned so a client can show them as fixed rather than offering a control that silently does nothing.
      *
-     * @return self
+     * @return $this
      */
     public function setUnconfigurableSensitivities(?array $unconfigurable_sensitivities): static
     {

@@ -334,7 +334,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param TriggerInfoSchema $trigger trigger
      *
-     * @return self
+     * @return $this
      */
     public function setTrigger($trigger): static
     {
@@ -361,7 +361,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $execution_count execution_count
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionCount(?int $execution_count): static
     {

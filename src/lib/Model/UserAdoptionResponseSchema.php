@@ -334,7 +334,7 @@ class UserAdoptionResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $invited_count Number of users invited to the organisation (all non-deleted users)
      *
-     * @return self
+     * @return $this
      */
     public function setInvitedCount(?int $invited_count): static
     {
@@ -361,7 +361,7 @@ class UserAdoptionResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $activated_count Number of users who have activated their account (ACTIVE status)
      *
-     * @return self
+     * @return $this
      */
     public function setActivatedCount(?int $activated_count): static
     {

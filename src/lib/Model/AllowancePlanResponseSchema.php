@@ -364,7 +364,7 @@ class AllowancePlanResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -391,7 +391,7 @@ class AllowancePlanResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $monthly_allowance monthly_allowance
      *
-     * @return self
+     * @return $this
      */
     public function setMonthlyAllowance(?string $monthly_allowance): static
     {
@@ -418,7 +418,7 @@ class AllowancePlanResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $timezone timezone
      *
-     * @return self
+     * @return $this
      */
     public function setTimezone(?string $timezone): static
     {
@@ -445,7 +445,7 @@ class AllowancePlanResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime|null $effective_from effective_from
      *
-     * @return self
+     * @return $this
      */
     public function setEffectiveFrom($effective_from): static
     {
@@ -479,7 +479,7 @@ class AllowancePlanResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime|null $effective_to effective_to
      *
-     * @return self
+     * @return $this
      */
     public function setEffectiveTo($effective_to): static
     {

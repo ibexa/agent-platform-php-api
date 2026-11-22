@@ -334,7 +334,7 @@ class SendMessagePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $content Message content to add to conversation
      *
-     * @return self
+     * @return $this
      */
     public function setContent(?string $content): static
     {
@@ -361,7 +361,7 @@ class SendMessagePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string[]|null $file_ids IDs of files previously uploaded to this conversation to attach to the message
      *
-     * @return self
+     * @return $this
      */
     public function setFileIds(?array $file_ids): static
     {
@@ -388,7 +388,7 @@ class SendMessagePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param ResponseFormat|null $response_format Shape the agent must answer this turn in. Defaults to TEXT: a chat turn is read by the person who sent it, so the reply is prose even for an agent that declares an output schema. Ask for JSON to have that schema enforced instead — or, for an agent that declares none, an object carrying the answer under `result`
      *
-     * @return self
+     * @return $this
      */
     public function setResponseFormat($response_format): static
     {

@@ -372,7 +372,7 @@ class LanguageModelProviderTypeSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -399,7 +399,7 @@ class LanguageModelProviderTypeSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -426,7 +426,7 @@ class LanguageModelProviderTypeSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -453,7 +453,7 @@ class LanguageModelProviderTypeSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed> $config_schema config_schema
      *
-     * @return self
+     * @return $this
      */
     public function setConfigSchema(?array $config_schema): static
     {
@@ -480,7 +480,7 @@ class LanguageModelProviderTypeSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param bool $is_eu is_eu
      *
-     * @return self
+     * @return $this
      */
     public function setIsEu(?bool $is_eu): static
     {
@@ -507,7 +507,7 @@ class LanguageModelProviderTypeSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param bool $platform_managed platform_managed
      *
-     * @return self
+     * @return $this
      */
     public function setPlatformManaged(?bool $platform_managed): static
     {

@@ -366,7 +366,7 @@ class AgentNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -403,7 +403,7 @@ class AgentNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $alias Alias of an inline agent from 'inline_agents' or an agent from 'agent_references'.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {
@@ -437,7 +437,7 @@ class AgentNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $identifier DB identifier of an agent. Use 'alias' instead to reference a declared agent reference.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {

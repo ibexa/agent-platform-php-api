@@ -334,7 +334,7 @@ class WebhookResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $execution_id execution_id
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionId(?int $execution_id): static
     {
@@ -368,7 +368,7 @@ class WebhookResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus(?string $status): static
     {

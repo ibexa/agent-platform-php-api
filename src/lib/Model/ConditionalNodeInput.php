@@ -375,7 +375,7 @@ class ConditionalNodeInput implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -412,7 +412,7 @@ class ConditionalNodeInput implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param Condition $condition Condition evaluated against the last message's JSON content to decide which branch to take.
      *
-     * @return self
+     * @return $this
      */
     public function setCondition($condition): static
     {
@@ -439,7 +439,7 @@ class ConditionalNodeInput implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param TrueNode $true_node true_node
      *
-     * @return self
+     * @return $this
      */
     public function setTrueNode($true_node): static
     {
@@ -466,7 +466,7 @@ class ConditionalNodeInput implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param FalseNode $false_node false_node
      *
-     * @return self
+     * @return $this
      */
     public function setFalseNode($false_node): static
     {

@@ -334,7 +334,7 @@ class KnowledgeBaseInsightPeriodSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string $period The bucket's calendar label, formatted per the requested `group`.
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -361,7 +361,7 @@ class KnowledgeBaseInsightPeriodSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $value Count of new occurrences in this period.
      *
-     * @return self
+     * @return $this
      */
     public function setValue(?int $value): static
     {

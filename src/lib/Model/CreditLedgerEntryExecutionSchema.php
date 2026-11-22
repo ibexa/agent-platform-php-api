@@ -364,7 +364,7 @@ class CreditLedgerEntryExecutionSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -391,7 +391,7 @@ class CreditLedgerEntryExecutionSchema implements ModelInterface, ArrayAccess, \
      *
      * @param ExecutionStatus $status The execution's current status — read live, so a run still in progress when it was charged shows its latest state.
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -418,7 +418,7 @@ class CreditLedgerEntryExecutionSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int|null $duration Execution duration in seconds. Null until the run finishes.
      *
-     * @return self
+     * @return $this
      */
     public function setDuration(?int $duration): static
     {
@@ -452,7 +452,7 @@ class CreditLedgerEntryExecutionSchema implements ModelInterface, ArrayAccess, \
      *
      * @param \DateTime|null $started_at started_at
      *
-     * @return self
+     * @return $this
      */
     public function setStartedAt($started_at): static
     {
@@ -486,7 +486,7 @@ class CreditLedgerEntryExecutionSchema implements ModelInterface, ArrayAccess, \
      *
      * @param \DateTime|null $finished_at finished_at
      *
-     * @return self
+     * @return $this
      */
     public function setFinishedAt($finished_at): static
     {

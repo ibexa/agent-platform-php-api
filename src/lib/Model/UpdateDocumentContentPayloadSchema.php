@@ -327,7 +327,7 @@ class UpdateDocumentContentPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $markdown markdown
      *
-     * @return self
+     * @return $this
      */
     public function setMarkdown(?string $markdown): static
     {
@@ -354,7 +354,7 @@ class UpdateDocumentContentPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $source_file_id source_file_id
      *
-     * @return self
+     * @return $this
      */
     public function setSourceFileId(?string $source_file_id): static
     {

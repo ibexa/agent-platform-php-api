@@ -324,7 +324,7 @@ class ConversationBookmarkPayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param bool $is_bookmarked True to bookmark the conversation, false to remove the bookmark
      *
-     * @return self
+     * @return $this
      */
     public function setIsBookmarked(?bool $is_bookmarked): static
     {

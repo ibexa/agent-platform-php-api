@@ -395,7 +395,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $hour hour
      *
-     * @return self
+     * @return $this
      */
     public function setHour(?int $hour): static
     {
@@ -429,7 +429,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $minute minute
      *
-     * @return self
+     * @return $this
      */
     public function setMinute(?int $minute): static
     {
@@ -463,7 +463,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $day_of_week day_of_week
      *
-     * @return self
+     * @return $this
      */
     public function setDayOfWeek(?int $day_of_week): static
     {
@@ -497,7 +497,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $day_of_month day_of_month
      *
-     * @return self
+     * @return $this
      */
     public function setDayOfMonth(?int $day_of_month): static
     {
@@ -531,7 +531,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $month month
      *
-     * @return self
+     * @return $this
      */
     public function setMonth(?int $month): static
     {
@@ -565,7 +565,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $signature_required signature_required
      *
-     * @return self
+     * @return $this
      */
     public function setSignatureRequired(?bool $signature_required): static
     {
@@ -599,7 +599,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $rate_limit_per_minute rate_limit_per_minute
      *
-     * @return self
+     * @return $this
      */
     public function setRateLimitPerMinute(?int $rate_limit_per_minute): static
     {
@@ -633,7 +633,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[]|null $ip_allowlist ip_allowlist
      *
-     * @return self
+     * @return $this
      */
     public function setIpAllowlist(?array $ip_allowlist): static
     {
@@ -667,7 +667,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $signature_header_name signature_header_name
      *
-     * @return self
+     * @return $this
      */
     public function setSignatureHeaderName(?string $signature_header_name): static
     {
@@ -701,7 +701,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $timestamp_header_name timestamp_header_name
      *
-     * @return self
+     * @return $this
      */
     public function setTimestampHeaderName(?string $timestamp_header_name): static
     {
@@ -735,7 +735,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $idempotency_header_name idempotency_header_name
      *
-     * @return self
+     * @return $this
      */
     public function setIdempotencyHeaderName(?string $idempotency_header_name): static
     {
@@ -769,7 +769,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param MessageFilter|null $message_filter message_filter
      *
-     * @return self
+     * @return $this
      */
     public function setMessageFilter($message_filter): static
     {

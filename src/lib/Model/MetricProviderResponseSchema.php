@@ -374,7 +374,7 @@ class MetricProviderResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -401,7 +401,7 @@ class MetricProviderResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -428,7 +428,7 @@ class MetricProviderResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -455,7 +455,7 @@ class MetricProviderResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param MetricProviderType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -482,7 +482,7 @@ class MetricProviderResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $owner_organisation_id owner_organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOwnerOrganisationId(?int $owner_organisation_id): static
     {
@@ -509,7 +509,7 @@ class MetricProviderResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {

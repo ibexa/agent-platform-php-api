@@ -324,7 +324,7 @@ class OrgImpactMetricAggregateResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param OrgImpactMetricPeriodSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

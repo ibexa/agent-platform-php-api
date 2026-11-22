@@ -334,7 +334,7 @@ class ConversationListResponseSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param ConversationListItemResponseSchema[] $conversations conversations
      *
-     * @return self
+     * @return $this
      */
     public function setConversations(?array $conversations): static
     {
@@ -361,7 +361,7 @@ class ConversationListResponseSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

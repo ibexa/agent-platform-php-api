@@ -324,7 +324,7 @@ class AgentImpactMetricAggregateResponseSchema implements ModelInterface, ArrayA
      *
      * @param AgentImpactMetricPeriodSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

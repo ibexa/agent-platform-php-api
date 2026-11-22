@@ -84,7 +84,7 @@ class LoginApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'login' => [
             'application/x-www-form-urlencoded',

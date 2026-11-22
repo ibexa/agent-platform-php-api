@@ -382,7 +382,7 @@ class PieChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -409,7 +409,7 @@ class PieChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -446,7 +446,7 @@ class PieChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $title title
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -473,7 +473,7 @@ class PieChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[] $labels labels
      *
-     * @return self
+     * @return $this
      */
     public function setLabels(?array $labels): static
     {
@@ -500,7 +500,7 @@ class PieChartBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param float[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

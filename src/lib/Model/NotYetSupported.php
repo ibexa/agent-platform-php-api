@@ -348,7 +348,7 @@ class NotYetSupported implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $agent_identifier agent_identifier
      *
-     * @return self
+     * @return $this
      */
     public function setAgentIdentifier(?string $agent_identifier): static
     {
@@ -380,7 +380,7 @@ class NotYetSupported implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $feature Name of the unsupported feature, e.g. 'composite_agent'.
      *
-     * @return self
+     * @return $this
      */
     public function setFeature(?string $feature): static
     {
@@ -412,7 +412,7 @@ class NotYetSupported implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param array<string,mixed>|null $detail Best-effort copy of the source configuration, for reference.
      *
-     * @return self
+     * @return $this
      */
     public function setDetail(?array $detail): static
     {

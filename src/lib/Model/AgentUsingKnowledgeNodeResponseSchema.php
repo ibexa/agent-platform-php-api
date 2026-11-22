@@ -364,7 +364,7 @@ class AgentUsingKnowledgeNodeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -391,7 +391,7 @@ class AgentUsingKnowledgeNodeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -418,7 +418,7 @@ class AgentUsingKnowledgeNodeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -445,7 +445,7 @@ class AgentUsingKnowledgeNodeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -479,7 +479,7 @@ class AgentUsingKnowledgeNodeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {

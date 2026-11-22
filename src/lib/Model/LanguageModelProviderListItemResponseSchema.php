@@ -404,7 +404,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -431,7 +431,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -458,7 +458,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -485,7 +485,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param LanguageModelProviderType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -512,7 +512,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param int $owner_organisation_id owner_organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOwnerOrganisationId(?int $owner_organisation_id): static
     {
@@ -539,7 +539,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param bool $has_credentials has_credentials
      *
-     * @return self
+     * @return $this
      */
     public function setHasCredentials(?bool $has_credentials): static
     {
@@ -566,7 +566,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param bool $platform_managed platform_managed
      *
-     * @return self
+     * @return $this
      */
     public function setPlatformManaged(?bool $platform_managed): static
     {
@@ -593,7 +593,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param \DateTime|null $verified_at verified_at
      *
-     * @return self
+     * @return $this
      */
     public function setVerifiedAt($verified_at): static
     {
@@ -627,7 +627,7 @@ class LanguageModelProviderListItemResponseSchema implements ModelInterface, Arr
      *
      * @param bool $is_eu is_eu
      *
-     * @return self
+     * @return $this
      */
     public function setIsEu(?bool $is_eu): static
     {

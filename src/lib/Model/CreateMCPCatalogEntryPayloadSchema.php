@@ -443,7 +443,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $name Name of the MCP catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -470,7 +470,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $description Description of the MCP catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -504,7 +504,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $language_code ISO 639-1 language code for the translation
      *
-     * @return self
+     * @return $this
      */
     public function setLanguageCode(?string $language_code): static
     {
@@ -531,7 +531,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param int $category_id ID of the MCP catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setCategoryId(?int $category_id): static
     {
@@ -558,7 +558,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $vendor_name Vendor name
      *
-     * @return self
+     * @return $this
      */
     public function setVendorName(?string $vendor_name): static
     {
@@ -592,7 +592,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $vendor_url Vendor URL
      *
-     * @return self
+     * @return $this
      */
     public function setVendorUrl(?string $vendor_url): static
     {
@@ -626,7 +626,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $server_url MCP server URL
      *
-     * @return self
+     * @return $this
      */
     public function setServerUrl(?string $server_url): static
     {
@@ -653,7 +653,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $website_url Website URL
      *
-     * @return self
+     * @return $this
      */
     public function setWebsiteUrl(?string $website_url): static
     {
@@ -687,7 +687,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $documentation_url Documentation URL
      *
-     * @return self
+     * @return $this
      */
     public function setDocumentationUrl(?string $documentation_url): static
     {
@@ -721,7 +721,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $icon_url Icon URL
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -755,7 +755,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {
@@ -789,7 +789,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $data_residency_country ISO 3166-1 alpha-2 country code of the MCP server's data residency
      *
-     * @return self
+     * @return $this
      */
     public function setDataResidencyCountry(?string $data_residency_country): static
     {
@@ -823,7 +823,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $vendor_country ISO 3166-1 alpha-2 country code of the vendor company's location
      *
-     * @return self
+     * @return $this
      */
     public function setVendorCountry(?string $vendor_country): static
     {
@@ -857,7 +857,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param bool|null $is_recommended Whether this entry is recommended
      *
-     * @return self
+     * @return $this
      */
     public function setIsRecommended(?bool $is_recommended): static
     {
@@ -884,7 +884,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param AuthScheme|null $auth_scheme Authentication scheme the MCP server expects, if any
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -918,7 +918,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param array<string,mixed>|null $auth_config Credential-free authentication template describing where the credential goes (e.g. API-key header name and location). Credential values are rejected - they belong to the MCP server created from this entry.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -952,7 +952,7 @@ class CreateMCPCatalogEntryPayloadSchema implements ModelInterface, ArrayAccess,
      *
      * @param bool|null $requires_user_connection Whether each user must connect their own account before the server's tools can be used
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {

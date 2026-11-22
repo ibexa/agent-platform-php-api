@@ -341,7 +341,7 @@ class MCPServerVersionSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $installed installed
      *
-     * @return self
+     * @return $this
      */
     public function setInstalled(?string $installed): static
     {
@@ -375,7 +375,7 @@ class MCPServerVersionSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $available available
      *
-     * @return self
+     * @return $this
      */
     public function setAvailable(?string $available): static
     {
@@ -409,7 +409,7 @@ class MCPServerVersionSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $new_version_available new_version_available
      *
-     * @return self
+     * @return $this
      */
     public function setNewVersionAvailable(?bool $new_version_available): static
     {
@@ -436,7 +436,7 @@ class MCPServerVersionSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \DateTime|null $checked_at checked_at
      *
-     * @return self
+     * @return $this
      */
     public function setCheckedAt($checked_at): static
     {

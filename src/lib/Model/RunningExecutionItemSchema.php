@@ -364,7 +364,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -391,7 +391,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param ExecutionStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -418,7 +418,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \DateTime|null $started_at started_at
      *
-     * @return self
+     * @return $this
      */
     public function setStartedAt($started_at): static
     {
@@ -452,7 +452,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -486,7 +486,7 @@ class RunningExecutionItemSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param TriggerInfoSchema|null $trigger The trigger that started this execution, or null if unattributed.
      *
-     * @return self
+     * @return $this
      */
     public function setTrigger($trigger): static
     {

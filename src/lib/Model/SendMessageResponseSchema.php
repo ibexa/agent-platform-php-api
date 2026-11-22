@@ -365,7 +365,7 @@ class SendMessageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -392,7 +392,7 @@ class SendMessageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -419,7 +419,7 @@ class SendMessageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -446,7 +446,7 @@ class SendMessageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $subject subject
      *
-     * @return self
+     * @return $this
      */
     public function setSubject(?string $subject): static
     {
@@ -480,7 +480,7 @@ class SendMessageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -514,7 +514,7 @@ class SendMessageResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

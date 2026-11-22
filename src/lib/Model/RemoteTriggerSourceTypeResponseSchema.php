@@ -404,7 +404,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $type Type key, versioned; a breaking change ships as a new key.
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -431,7 +431,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -458,7 +458,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -492,7 +492,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string|null $icon_url icon_url
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -526,7 +526,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param bool $is_ibexa Whether Ibexa provides the 3rd-party system.
      *
-     * @return self
+     * @return $this
      */
     public function setIsIbexa(?bool $is_ibexa): static
     {
@@ -553,7 +553,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param string $trigger_source_id The type's trigger source: the `source_id` of its events' definitions in `/triggers/definitions`.
      *
-     * @return self
+     * @return $this
      */
     public function setTriggerSourceId(?string $trigger_source_id): static
     {
@@ -580,7 +580,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param array<string,mixed> $configuration_schema JSON Schema of a source's `config`, e.g. its instance URL.
      *
-     * @return self
+     * @return $this
      */
     public function setConfigurationSchema(?array $configuration_schema): static
     {
@@ -607,7 +607,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param RemoteAuthSchemeSchema[] $auth_schemes Auth schemes a source of this type may use, in display order.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthSchemes(?array $auth_schemes): static
     {
@@ -634,7 +634,7 @@ class RemoteTriggerSourceTypeResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param RemoteEventSchema[] $events events
      *
-     * @return self
+     * @return $this
      */
     public function setEvents(?array $events): static
     {

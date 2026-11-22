@@ -565,7 +565,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -592,7 +592,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -629,7 +629,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $level level
      *
-     * @return self
+     * @return $this
      */
     public function setLevel(?int $level): static
     {
@@ -663,7 +663,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $text text
      *
-     * @return self
+     * @return $this
      */
     public function setText(?string $text): static
     {
@@ -690,7 +690,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $content content
      *
-     * @return self
+     * @return $this
      */
     public function setContent(?string $content): static
     {
@@ -722,7 +722,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int $columns Number of columns
      *
-     * @return self
+     * @return $this
      */
     public function setColumns(?int $columns): static
     {
@@ -756,7 +756,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param LineChartDataPoint[][] $data One inner list per series; must have the same length as `labels`. Each element is an (x, y) point where x is the x-axis tick label (e.g. 'Jan 2024', 'Q1') and y is the numeric value.
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -783,7 +783,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -810,7 +810,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param float $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue($value): static
     {
@@ -837,7 +837,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $unit unit
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {
@@ -864,7 +864,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -891,7 +891,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $title Chart title, e.g. 'Monthly Active Users'
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -918,7 +918,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string[] $labels Series names displayed in the legend — one entry per line on the chart. Example: ['Revenue'] for a single-line chart, ['Revenue', 'Costs'] for two lines. Do NOT put x-axis tick labels (dates, periods) here; those belong in data[i].x.
      *
-     * @return self
+     * @return $this
      */
     public function setLabels(?array $labels): static
     {
@@ -945,7 +945,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param ActionItem[] $actions actions
      *
-     * @return self
+     * @return $this
      */
     public function setActions(?array $actions): static
     {
@@ -972,7 +972,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int[]|null $weights Optional proportional width per column as positive integers (e.g. [2, 1] for 2:1 ratio, [1, 1] for equal columns). Must have the same length as columns. Must be integers — do NOT use floats like [0.5, 0.5].
      *
-     * @return self
+     * @return $this
      */
     public function setWeights(?array $weights): static
     {
@@ -1006,7 +1006,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param BlocksInner[] $blocks One item per column, in column order. Each item is either a single block or a list of blocks for that column.
      *
-     * @return self
+     * @return $this
      */
     public function setBlocks(?array $blocks): static
     {
@@ -1033,7 +1033,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $url url
      *
-     * @return self
+     * @return $this
      */
     public function setUrl(?string $url): static
     {
@@ -1060,7 +1060,7 @@ class BlocksInnerAnyOfInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $size Display size of the image: sm, md, lg, or full (full container width).
      *
-     * @return self
+     * @return $this
      */
     public function setSize(?string $size): static
     {

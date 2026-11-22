@@ -320,7 +320,7 @@ class MoveNodePayloadSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $new_parent_id new_parent_id
      *
-     * @return self
+     * @return $this
      */
     public function setNewParentId(?int $new_parent_id): static
     {

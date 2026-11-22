@@ -336,7 +336,7 @@ class InlineAgentMCPServer implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $alias Alias of an MCP server from the top-level 'mcp_server_references' list.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {
@@ -368,7 +368,7 @@ class InlineAgentMCPServer implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string[]|null $enabled_tools Allowlist of tool names to expose from this server for this agent. Omit to allow all tools declared on the server reference.
      *
-     * @return self
+     * @return $this
      */
     public function setEnabledTools(?array $enabled_tools): static
     {

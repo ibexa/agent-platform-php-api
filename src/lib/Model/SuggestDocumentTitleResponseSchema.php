@@ -324,7 +324,7 @@ class SuggestDocumentTitleResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $title The suggested title. Disambiguated with a trailing ' (n)' when it would otherwise exactly match (case-insensitively) an existing node's name in the organisation.
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {

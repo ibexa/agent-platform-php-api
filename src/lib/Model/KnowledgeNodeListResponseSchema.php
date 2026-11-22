@@ -334,7 +334,7 @@ class KnowledgeNodeListResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param KnowledgeNodeResponseSchema[] $nodes nodes
      *
-     * @return self
+     * @return $this
      */
     public function setNodes(?array $nodes): static
     {
@@ -361,7 +361,7 @@ class KnowledgeNodeListResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

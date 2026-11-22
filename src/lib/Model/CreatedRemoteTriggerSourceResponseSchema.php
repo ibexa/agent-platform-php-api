@@ -454,7 +454,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -481,7 +481,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -508,7 +508,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -535,7 +535,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param string $identifier Unique within the organisation.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -562,7 +562,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param string $type The source's type key.
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -589,7 +589,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param array<string,mixed> $config Matches the type's `configuration_schema`; keys it marks `writeOnly` are masked as `********`.
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -616,7 +616,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param AuthScheme $auth_scheme auth_scheme
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -643,7 +643,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param array<string,mixed> $auth_config The scheme's fields, with every secret masked as `********`.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -670,7 +670,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param bool $has_credentials Whether credentials are stored (they are never returned).
      *
-     * @return self
+     * @return $this
      */
     public function setHasCredentials(?bool $has_credentials): static
     {
@@ -697,7 +697,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -724,7 +724,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param \DateTime|null $verified_at When the connection was last verified with the 3rd-party system.
      *
-     * @return self
+     * @return $this
      */
     public function setVerifiedAt($verified_at): static
     {
@@ -758,7 +758,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param string $trigger_source_id The type's trigger source: the `source_id` of the definitions in `/triggers/definitions` a trigger of this source can use, one per event. A trigger uses this source by setting `config.remote_trigger_source_id`.
      *
-     * @return self
+     * @return $this
      */
     public function setTriggerSourceId(?string $trigger_source_id): static
     {
@@ -785,7 +785,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param bool $has_inbound_url Whether the source has an inbound URL, the one the 3rd-party system sends all its events to (a type whose vendor delivers to one URL per connection). The URL works like a password: it is returned only when created, and `POST /{source_id}/rotate-inbound-url` replaces it.
      *
-     * @return self
+     * @return $this
      */
     public function setHasInboundUrl(?bool $has_inbound_url): static
     {
@@ -812,7 +812,7 @@ class CreatedRemoteTriggerSourceResponseSchema implements ModelInterface, ArrayA
      *
      * @param string|null $inbound_url ISO 639-1 language code
      *
-     * @return self
+     * @return $this
      */
     public function setInboundUrl(?string $inbound_url): static
     {

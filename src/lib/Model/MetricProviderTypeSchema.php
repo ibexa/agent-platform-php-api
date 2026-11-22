@@ -362,7 +362,7 @@ class MetricProviderTypeSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -389,7 +389,7 @@ class MetricProviderTypeSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -416,7 +416,7 @@ class MetricProviderTypeSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -443,7 +443,7 @@ class MetricProviderTypeSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param array<string,mixed> $config_schema config_schema
      *
-     * @return self
+     * @return $this
      */
     public function setConfigSchema(?array $config_schema): static
     {
@@ -470,7 +470,7 @@ class MetricProviderTypeSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param EvaluationMetricSchema[] $available_metrics available_metrics
      *
-     * @return self
+     * @return $this
      */
     public function setAvailableMetrics(?array $available_metrics): static
     {

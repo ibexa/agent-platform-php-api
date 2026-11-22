@@ -354,7 +354,7 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param float|null $configured_sample_size The agent's configured eval_config.sample_size (0-100), or null if it has no evaluation config.
      *
-     * @return self
+     * @return $this
      */
     public function setConfiguredSampleSize($configured_sample_size): static
     {
@@ -388,7 +388,7 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param float|null $actual_rate evaluated_count / eligible_count * 100 for the period, or null if eligible_count is 0.
      *
-     * @return self
+     * @return $this
      */
     public function setActualRate($actual_rate): static
     {
@@ -422,7 +422,7 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param int $evaluated_count EXECUTION-type evaluation targets created in the period (i.e. not skipped by sampling).
      *
-     * @return self
+     * @return $this
      */
     public function setEvaluatedCount(?int $evaluated_count): static
     {
@@ -449,7 +449,7 @@ class EvaluationSamplingRateResponseSchema implements ModelInterface, ArrayAcces
      *
      * @param int $eligible_count Every execution for the agent in the period, regardless of status.
      *
-     * @return self
+     * @return $this
      */
     public function setEligibleCount(?int $eligible_count): static
     {

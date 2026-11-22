@@ -374,7 +374,7 @@ class ExecutionsWindowStatsSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $date_from Start of the window, YYYY-MM-DD, inclusive
      *
-     * @return self
+     * @return $this
      */
     public function setDateFrom(?string $date_from): static
     {
@@ -401,7 +401,7 @@ class ExecutionsWindowStatsSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $date_to End of the window, YYYY-MM-DD, inclusive
      *
-     * @return self
+     * @return $this
      */
     public function setDateTo(?string $date_to): static
     {
@@ -428,7 +428,7 @@ class ExecutionsWindowStatsSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $total_count Total executions started in this window
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {
@@ -455,7 +455,7 @@ class ExecutionsWindowStatsSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $success_count Executions that succeeded in this window
      *
-     * @return self
+     * @return $this
      */
     public function setSuccessCount(?int $success_count): static
     {
@@ -482,7 +482,7 @@ class ExecutionsWindowStatsSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $success_rate success_count / total_count, or null when total_count is 0
      *
-     * @return self
+     * @return $this
      */
     public function setSuccessRate(?string $success_rate): static
     {
@@ -516,7 +516,7 @@ class ExecutionsWindowStatsSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param ExecutionDurationStatsSchema $duration_stats duration_stats
      *
-     * @return self
+     * @return $this
      */
     public function setDurationStats($duration_stats): static
     {

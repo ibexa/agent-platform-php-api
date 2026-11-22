@@ -362,7 +362,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool|null $signature_required signature_required
      *
-     * @return self
+     * @return $this
      */
     public function setSignatureRequired(?bool $signature_required): static
     {
@@ -396,7 +396,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $rate_limit_per_minute rate_limit_per_minute
      *
-     * @return self
+     * @return $this
      */
     public function setRateLimitPerMinute(?int $rate_limit_per_minute): static
     {
@@ -430,7 +430,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string[]|null $ip_allowlist ip_allowlist
      *
-     * @return self
+     * @return $this
      */
     public function setIpAllowlist(?array $ip_allowlist): static
     {
@@ -464,7 +464,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $signature_header_name signature_header_name
      *
-     * @return self
+     * @return $this
      */
     public function setSignatureHeaderName(?string $signature_header_name): static
     {
@@ -498,7 +498,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $timestamp_header_name timestamp_header_name
      *
-     * @return self
+     * @return $this
      */
     public function setTimestampHeaderName(?string $timestamp_header_name): static
     {
@@ -532,7 +532,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $idempotency_header_name idempotency_header_name
      *
-     * @return self
+     * @return $this
      */
     public function setIdempotencyHeaderName(?string $idempotency_header_name): static
     {
@@ -566,7 +566,7 @@ class WebhookTriggerConfig implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param MessageFilter|null $message_filter message_filter
      *
-     * @return self
+     * @return $this
      */
     public function setMessageFilter($message_filter): static
     {

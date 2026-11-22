@@ -379,7 +379,7 @@ class LoopNodeInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -416,7 +416,7 @@ class LoopNodeInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $max_iterations Hard cap on iterations. The loop always stops here even if finish_condition is never met.
      *
-     * @return self
+     * @return $this
      */
     public function setMaxIterations(?int $max_iterations): static
     {
@@ -447,7 +447,7 @@ class LoopNodeInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Condition $finish_condition Checked after each iteration. Loop exits early when this evaluates to true.
      *
-     * @return self
+     * @return $this
      */
     public function setFinishCondition($finish_condition): static
     {
@@ -474,7 +474,7 @@ class LoopNodeInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Node $node node
      *
-     * @return self
+     * @return $this
      */
     public function setNode($node): static
     {

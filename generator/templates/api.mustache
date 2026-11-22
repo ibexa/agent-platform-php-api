@@ -67,7 +67,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var array<string, string[]> $contentTypes **/
     public const contentTypes = [{{#operation}}
         '{{{operationId}}}' => [{{#consumes}}
             '{{{mediaType}}}',{{/consumes}}
@@ -160,7 +160,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{#isEnumRef}}string{{/isEnumRef}}{{^isEnumRef}}{{{dataType}}}{{/isEnumRef}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -219,7 +219,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{#isEnumRef}}string{{/isEnumRef}}{{^isEnumRef}}{{{dataType}}}{{/isEnumRef}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -358,7 +358,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{#isEnumRef}}string{{/isEnumRef}}{{^isEnumRef}}{{{dataType}}}{{/isEnumRef}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -418,7 +418,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{#isEnumRef}}string{{/isEnumRef}}{{^isEnumRef}}{{{dataType}}}{{/isEnumRef}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -447,7 +447,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
      * Consume server-sent events for operation {{{operationId}}}.
      *
 {{#allParams}}
-     * @param {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}
+     * @param {{#isEnumRef}}string{{/isEnumRef}}{{^isEnumRef}}{{{dataType}}}{{/isEnumRef}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}
 {{/allParams}}
      * @return \Generator<int, \{{invokerPackage}}\Model\ServerSentEventSchema>
      */
@@ -486,7 +486,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{#isEnumRef}}string{{/isEnumRef}}{{^isEnumRef}}{{{dataType}}}{{/isEnumRef}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}

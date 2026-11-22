@@ -334,7 +334,7 @@ class PutMemoryPolicyPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param array<string,PolicyDecision>|null $sensitivity Per class. A class set to DENY is refused; one left out takes the platform default. Unconfigurable classes are ignored.
      *
-     * @return self
+     * @return $this
      */
     public function setSensitivity(?array $sensitivity): static
     {
@@ -361,7 +361,7 @@ class PutMemoryPolicyPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param PIIType[]|null $blocked_pii_types blocked_pii_types
      *
-     * @return self
+     * @return $this
      */
     public function setBlockedPiiTypes(?array $blocked_pii_types): static
     {
@@ -388,7 +388,7 @@ class PutMemoryPolicyPayloadSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param bool|null $llm_classification llm_classification
      *
-     * @return self
+     * @return $this
      */
     public function setLlmClassification(?bool $llm_classification): static
     {

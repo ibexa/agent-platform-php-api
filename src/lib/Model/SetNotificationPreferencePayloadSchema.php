@@ -341,7 +341,7 @@ class SetNotificationPreferencePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param NotificationChannel $channel channel
      *
-     * @return self
+     * @return $this
      */
     public function setChannel($channel): static
     {
@@ -368,7 +368,7 @@ class SetNotificationPreferencePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param bool $enabled enabled
      *
-     * @return self
+     * @return $this
      */
     public function setEnabled(?bool $enabled): static
     {
@@ -395,7 +395,7 @@ class SetNotificationPreferencePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param NotificationType|null $notification_type Type the preference applies to; omit to set the caller's channel-wide default, which every type falls back to
      *
-     * @return self
+     * @return $this
      */
     public function setNotificationType($notification_type): static
     {

@@ -322,7 +322,7 @@ class BodyOrganisationAdminImportOrganisation implements ModelInterface, ArrayAc
      *
      * @param \SplFileObject $export_file export_file
      *
-     * @return self
+     * @return $this
      */
     public function setExportFile($export_file): static
     {

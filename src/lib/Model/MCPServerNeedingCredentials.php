@@ -348,7 +348,7 @@ class MCPServerNeedingCredentials implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -380,7 +380,7 @@ class MCPServerNeedingCredentials implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param AuthScheme|null $auth_scheme Authentication scheme the source server was configured with.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -414,7 +414,7 @@ class MCPServerNeedingCredentials implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool|null $requires_user_connection Whether each user must connect their own account to this server.
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {
@@ -441,7 +441,7 @@ class MCPServerNeedingCredentials implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string[]|null $removed_config_fields Transport configuration removed from this server's spec because it can carry credentials — 'headers' and 'env' above all, whose values are where a bearer token or an API key actually lives. The server is created with the rest of its configuration and will not work until these are restored by hand.
      *
-     * @return self
+     * @return $this
      */
     public function setRemovedConfigFields(?array $removed_config_fields): static
     {

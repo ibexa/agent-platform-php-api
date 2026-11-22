@@ -377,7 +377,7 @@ class EvalMetricConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $metric_id Must be one of the ids from the provided available metrics catalog — never invent a metric_id.
      *
-     * @return self
+     * @return $this
      */
     public function setMetricId(?string $metric_id): static
     {
@@ -411,7 +411,7 @@ class EvalMetricConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param float $threshold The value this metric must reach to be considered passed, in the metric's own unit and direction (see is_maximized on the catalog entry) — not a universal 0.0-1.0 scale.
      *
-     * @return self
+     * @return $this
      */
     public function setThreshold($threshold): static
     {
@@ -442,7 +442,7 @@ class EvalMetricConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param float $weight This metric's contribution (0.0-1.0) to the agent's overall quality score.
      *
-     * @return self
+     * @return $this
      */
     public function setWeight($weight): static
     {
@@ -476,7 +476,7 @@ class EvalMetricConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool|null $is_gate Whether this metric gates the others: if it fails, every non-gate metric is skipped for that run. Use sparingly, e.g. for a safety/compliance metric that makes the rest moot if it fails.
      *
-     * @return self
+     * @return $this
      */
     public function setIsGate(?bool $is_gate): static
     {
@@ -503,7 +503,7 @@ class EvalMetricConfigSuggestion implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $reason Brief reason this metric was chosen.
      *
-     * @return self
+     * @return $this
      */
     public function setReason(?string $reason): static
     {

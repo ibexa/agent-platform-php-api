@@ -344,7 +344,7 @@ class ProviderMetricCountSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $identifier The provider type's identifier, e.g. 'geval'.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -371,7 +371,7 @@ class ProviderMetricCountSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -398,7 +398,7 @@ class ProviderMetricCountSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int $count count
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {

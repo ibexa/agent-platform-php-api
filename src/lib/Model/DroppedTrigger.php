@@ -338,7 +338,7 @@ class DroppedTrigger implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $agent_identifier agent_identifier
      *
-     * @return self
+     * @return $this
      */
     public function setAgentIdentifier(?string $agent_identifier): static
     {
@@ -370,7 +370,7 @@ class DroppedTrigger implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $definition_id definition_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {

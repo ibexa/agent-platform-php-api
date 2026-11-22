@@ -325,7 +325,7 @@ class UpdateAgentsCatalogCategoryPayloadSchema implements ModelInterface, ArrayA
      *
      * @param string|null $icon Icon name
      *
-     * @return self
+     * @return $this
      */
     public function setIcon(?string $icon): static
     {
@@ -359,7 +359,7 @@ class UpdateAgentsCatalogCategoryPayloadSchema implements ModelInterface, ArrayA
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {

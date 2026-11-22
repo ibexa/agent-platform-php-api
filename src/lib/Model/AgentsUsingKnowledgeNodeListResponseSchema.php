@@ -344,7 +344,7 @@ class AgentsUsingKnowledgeNodeListResponseSchema implements ModelInterface, Arra
      *
      * @param AgentUsingKnowledgeNodeResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -371,7 +371,7 @@ class AgentsUsingKnowledgeNodeListResponseSchema implements ModelInterface, Arra
      *
      * @param int $count count
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {
@@ -398,7 +398,7 @@ class AgentsUsingKnowledgeNodeListResponseSchema implements ModelInterface, Arra
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

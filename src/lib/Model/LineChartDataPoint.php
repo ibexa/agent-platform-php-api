@@ -332,7 +332,7 @@ class LineChartDataPoint implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param X $x x
      *
-     * @return self
+     * @return $this
      */
     public function setX($x): static
     {
@@ -359,7 +359,7 @@ class LineChartDataPoint implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param float $y Y-axis value
      *
-     * @return self
+     * @return $this
      */
     public function setY($y): static
     {

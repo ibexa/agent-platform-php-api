@@ -334,7 +334,7 @@ class TriggerTypeExecutionCountSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param TriggerType $trigger_type trigger_type
      *
-     * @return self
+     * @return $this
      */
     public function setTriggerType($trigger_type): static
     {
@@ -361,7 +361,7 @@ class TriggerTypeExecutionCountSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $execution_count execution_count
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionCount(?int $execution_count): static
     {

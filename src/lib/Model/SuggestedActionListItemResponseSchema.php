@@ -332,7 +332,7 @@ class SuggestedActionListItemResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param SuggestedActionType $action_type action_type
      *
-     * @return self
+     * @return $this
      */
     public function setActionType($action_type): static
     {
@@ -359,7 +359,7 @@ class SuggestedActionListItemResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param array<string,mixed>|null $reference reference
      *
-     * @return self
+     * @return $this
      */
     public function setReference(?array $reference): static
     {

@@ -363,7 +363,7 @@ class ImpactMetricSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $metric_type Kind of impact this agent generates per run, e.g. 'Saved time', 'Saved money', 'Resolved issues', 'New leads'.
      *
-     * @return self
+     * @return $this
      */
     public function setMetricType(?string $metric_type): static
     {
@@ -397,7 +397,7 @@ class ImpactMetricSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $value Impact generated per run, denominated in 'unit'.
      *
-     * @return self
+     * @return $this
      */
     public function setValue(?int $value): static
     {
@@ -428,7 +428,7 @@ class ImpactMetricSchema implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $unit Unit 'value' is denominated in, e.g. 'min', 'hours', 'EUR', 'leads'.
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {

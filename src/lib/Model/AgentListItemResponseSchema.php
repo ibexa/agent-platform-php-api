@@ -415,7 +415,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -442,7 +442,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -469,7 +469,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -496,7 +496,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -523,7 +523,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $agent_type agent_type
      *
-     * @return self
+     * @return $this
      */
     public function setAgentType(?string $agent_type): static
     {
@@ -550,7 +550,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -577,7 +577,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -604,7 +604,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -638,7 +638,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -676,7 +676,7 @@ class AgentListItemResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param AgentMetricsSchema $metrics metrics
      *
-     * @return self
+     * @return $this
      */
     public function setMetrics($metrics): static
     {

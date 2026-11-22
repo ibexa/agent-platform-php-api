@@ -344,7 +344,7 @@ class MessageListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param AppApiRoutesMessageMessageMessageResponseSchema[] $messages messages
      *
-     * @return self
+     * @return $this
      */
     public function setMessages(?array $messages): static
     {
@@ -371,7 +371,7 @@ class MessageListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $next_cursor next_cursor
      *
-     * @return self
+     * @return $this
      */
     public function setNextCursor(?string $next_cursor): static
     {
@@ -405,7 +405,7 @@ class MessageListResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool $has_more has_more
      *
-     * @return self
+     * @return $this
      */
     public function setHasMore(?bool $has_more): static
     {

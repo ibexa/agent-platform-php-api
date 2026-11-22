@@ -354,7 +354,7 @@ class ExecutionMCPServerSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int|null $id MCP server ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -388,7 +388,7 @@ class ExecutionMCPServerSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name MCP server name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -415,7 +415,7 @@ class ExecutionMCPServerSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $identifier MCP server identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -442,7 +442,7 @@ class ExecutionMCPServerSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $description What the server provides, from its catalog entry. Null for a server added by hand rather than installed from the catalog
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

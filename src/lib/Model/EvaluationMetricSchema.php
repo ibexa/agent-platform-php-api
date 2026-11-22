@@ -362,7 +362,7 @@ class EvaluationMetricSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -389,7 +389,7 @@ class EvaluationMetricSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -416,7 +416,7 @@ class EvaluationMetricSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -443,7 +443,7 @@ class EvaluationMetricSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $unit unit
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {
@@ -470,7 +470,7 @@ class EvaluationMetricSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool $is_maximized Whether a higher value passes this metric's threshold (true), or a lower one does (false, e.g. latency). Check this and `unit` before choosing an eval_config threshold for this metric_id.
      *
-     * @return self
+     * @return $this
      */
     public function setIsMaximized(?bool $is_maximized): static
     {

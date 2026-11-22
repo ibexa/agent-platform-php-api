@@ -350,7 +350,7 @@ class MCPServerReference implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $identifier Identifier of the MCP server.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -384,7 +384,7 @@ class MCPServerReference implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $alias Within-pipeline alias used to reference this server from inline agents.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {
@@ -418,7 +418,7 @@ class MCPServerReference implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string[] $enabled_tools Allowlist of tool names to expose from this server.
      *
-     * @return self
+     * @return $this
      */
     public function setEnabledTools(?array $enabled_tools): static
     {

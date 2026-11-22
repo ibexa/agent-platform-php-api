@@ -336,7 +336,7 @@ class PutMemoryEntryPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param array<string,mixed> $value The value to store. Must be a JSON object.
      *
-     * @return self
+     * @return $this
      */
     public function setValue(?array $value): static
     {
@@ -363,7 +363,7 @@ class PutMemoryEntryPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param MemoryScopeType|null $scope_type Which tier to write. 'user' (default) is the caller's own; 'organisation' is shared with every colleague and requires an owner or admin; 'global' is cross-tenant and requires a superuser. The owner is always taken from the authenticated caller, never from the request.
      *
-     * @return self
+     * @return $this
      */
     public function setScopeType($scope_type): static
     {
@@ -390,7 +390,7 @@ class PutMemoryEntryPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int|null $agent_id Confine the entry to this agent. Omit to write the rung shared by every agent, which is where a fact about the person belongs - a name learned once should be known by all of them.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {

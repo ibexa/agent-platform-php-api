@@ -92,7 +92,7 @@ class ExecutionsApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'attachExecutionStream' => [
             'application/json',

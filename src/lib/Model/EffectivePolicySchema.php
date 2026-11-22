@@ -344,7 +344,7 @@ class EffectivePolicySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param array<string,PolicyDecision> $sensitivity sensitivity
      *
-     * @return self
+     * @return $this
      */
     public function setSensitivity(?array $sensitivity): static
     {
@@ -371,7 +371,7 @@ class EffectivePolicySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string[] $blocked_pii_types blocked_pii_types
      *
-     * @return self
+     * @return $this
      */
     public function setBlockedPiiTypes(?array $blocked_pii_types): static
     {
@@ -398,7 +398,7 @@ class EffectivePolicySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $llm_classification llm_classification
      *
-     * @return self
+     * @return $this
      */
     public function setLlmClassification(?bool $llm_classification): static
     {

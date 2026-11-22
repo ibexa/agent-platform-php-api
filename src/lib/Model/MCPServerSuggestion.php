@@ -341,7 +341,7 @@ class MCPServerSuggestion implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int $mcp_server_id mcp_server_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServerId(?int $mcp_server_id): static
     {
@@ -368,7 +368,7 @@ class MCPServerSuggestion implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -395,7 +395,7 @@ class MCPServerSuggestion implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string[] $enabled_tools enabled_tools
      *
-     * @return self
+     * @return $this
      */
     public function setEnabledTools(?array $enabled_tools): static
     {

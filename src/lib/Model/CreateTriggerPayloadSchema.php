@@ -358,7 +358,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -385,7 +385,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $definition_id definition_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {
@@ -412,7 +412,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param array<string,mixed> $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -439,7 +439,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param array<string,mixed>|null $agent_args agent_args
      *
-     * @return self
+     * @return $this
      */
     public function setAgentArgs(?array $agent_args): static
     {
@@ -473,7 +473,7 @@ class CreateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param ResponseFormat|null $response_format Shape the runs this trigger starts must answer in. Omit (or send null) to use the default for this kind of trigger: TEXT for a manual 'Run now', JSON for a schedule, a webhook or a remote source
      *
-     * @return self
+     * @return $this
      */
     public function setResponseFormat($response_format): static
     {

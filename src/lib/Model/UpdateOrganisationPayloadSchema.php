@@ -406,7 +406,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -433,7 +433,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -471,7 +471,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $default_language_model_provider_id default_language_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultLanguageModelProviderId(?int $default_language_model_provider_id): static
     {
@@ -505,7 +505,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $default_model_id default_model_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultModelId(?string $default_model_id): static
     {
@@ -543,7 +543,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $default_embedding_model_provider_id default_embedding_model_provider_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultEmbeddingModelProviderId(?int $default_embedding_model_provider_id): static
     {
@@ -577,7 +577,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $default_embedding_model_id default_embedding_model_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultEmbeddingModelId(?string $default_embedding_model_id): static
     {
@@ -615,7 +615,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $default_assistant_agent_id default_assistant_agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultAssistantAgentId(?int $default_assistant_agent_id): static
     {
@@ -649,7 +649,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $budget_critical_threshold Percent of the monthly budget spent at which a critical notification fires. Must be provided together with budget_warning_threshold and budget_information_threshold.
      *
-     * @return self
+     * @return $this
      */
     public function setBudgetCriticalThreshold(?int $budget_critical_threshold): static
     {
@@ -687,7 +687,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $budget_warning_threshold Percent of the monthly budget spent at which a warning notification fires. Must be provided together with budget_critical_threshold and budget_information_threshold.
      *
-     * @return self
+     * @return $this
      */
     public function setBudgetWarningThreshold(?int $budget_warning_threshold): static
     {
@@ -721,7 +721,7 @@ class UpdateOrganisationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $budget_information_threshold Percent of the monthly budget spent at which an informational notification fires. Must be provided together with budget_critical_threshold and budget_warning_threshold.
      *
-     * @return self
+     * @return $this
      */
     public function setBudgetInformationThreshold(?int $budget_information_threshold): static
     {

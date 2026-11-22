@@ -324,7 +324,7 @@ class MCPCatalogEntryImportResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param string $task_id task_id
      *
-     * @return self
+     * @return $this
      */
     public function setTaskId(?string $task_id): static
     {

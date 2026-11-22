@@ -356,7 +356,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param LocationInner[] $loc loc
      *
-     * @return self
+     * @return $this
      */
     public function setLoc(?array $loc): static
     {
@@ -383,7 +383,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $msg msg
      *
-     * @return self
+     * @return $this
      */
     public function setMsg(?string $msg): static
     {
@@ -410,7 +410,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -437,7 +437,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param mixed|null $input input
      *
-     * @return self
+     * @return $this
      */
     public function setInput($input): static
     {
@@ -471,7 +471,7 @@ class ValidationError implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param object|null $ctx ctx
      *
-     * @return self
+     * @return $this
      */
     public function setCtx($ctx): static
     {

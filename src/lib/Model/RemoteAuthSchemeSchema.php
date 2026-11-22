@@ -334,7 +334,7 @@ class RemoteAuthSchemeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param AuthScheme $scheme scheme
      *
-     * @return self
+     * @return $this
      */
     public function setScheme($scheme): static
     {
@@ -361,7 +361,7 @@ class RemoteAuthSchemeSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param array<string,mixed> $config_schema JSON Schema of the `auth_config` to send with this scheme. Secrets are marked `writeOnly`.
      *
-     * @return self
+     * @return $this
      */
     public function setConfigSchema(?array $config_schema): static
     {

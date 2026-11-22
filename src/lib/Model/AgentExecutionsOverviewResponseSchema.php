@@ -384,7 +384,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param RunningExecutionsSchema $running running
      *
-     * @return self
+     * @return $this
      */
     public function setRunning($running): static
     {
@@ -411,7 +411,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param NextScheduledExecutionSchema|null $next_scheduled The agent's next scheduled execution, or null if it has no active schedule trigger.
      *
-     * @return self
+     * @return $this
      */
     public function setNextScheduled($next_scheduled): static
     {
@@ -445,7 +445,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param LastExecutionSchema|null $last_finished The agent's most recent successful execution, or null if it has none.
      *
-     * @return self
+     * @return $this
      */
     public function setLastFinished($last_finished): static
     {
@@ -479,7 +479,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param LastExecutionSchema|null $last_failed The agent's most recent failed execution, or null if it has none.
      *
-     * @return self
+     * @return $this
      */
     public function setLastFailed($last_failed): static
     {
@@ -513,7 +513,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param TopTriggerSchema[] $top_triggers The agent's top triggers by all-time execution count, descending.
      *
-     * @return self
+     * @return $this
      */
     public function setTopTriggers(?array $top_triggers): static
     {
@@ -540,7 +540,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param TriggerTypeExecutionCountSchema[] $by_trigger_type All-time execution counts bucketed by coarse trigger type. Always carries every TriggerType member, zero-filled where there was no matching execution.
      *
-     * @return self
+     * @return $this
      */
     public function setByTriggerType(?array $by_trigger_type): static
     {
@@ -567,7 +567,7 @@ class AgentExecutionsOverviewResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param int $scheduled_this_month Executions started by a scheduler trigger since the start of the current calendar month, up to now. A historical count, not a forward projection of remaining cron fires this month.
      *
-     * @return self
+     * @return $this
      */
     public function setScheduledThisMonth(?int $scheduled_this_month): static
     {

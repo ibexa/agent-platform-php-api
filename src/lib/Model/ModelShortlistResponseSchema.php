@@ -334,7 +334,7 @@ class ModelShortlistResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param AdminModelProfileResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -361,7 +361,7 @@ class ModelShortlistResponseSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $count count
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {

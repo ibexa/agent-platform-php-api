@@ -344,7 +344,7 @@ class OrgUserStatsResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $total_users Number of users in the organisation, excluding deleted ones
      *
-     * @return self
+     * @return $this
      */
     public function setTotalUsers(?int $total_users): static
     {
@@ -371,7 +371,7 @@ class OrgUserStatsResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $total_admin_users Number of users with the admin role in the organisation
      *
-     * @return self
+     * @return $this
      */
     public function setTotalAdminUsers(?int $total_admin_users): static
     {
@@ -398,7 +398,7 @@ class OrgUserStatsResponseSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $total_blocked_users Number of users with the BLOCKED status in the organisation
      *
-     * @return self
+     * @return $this
      */
     public function setTotalBlockedUsers(?int $total_blocked_users): static
     {

@@ -394,7 +394,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $identifier Unique identifier of the entry
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -421,7 +421,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $category_id ID of the agents catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setCategoryId(?int $category_id): static
     {
@@ -448,7 +448,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $vendor_name Vendor name
      *
-     * @return self
+     * @return $this
      */
     public function setVendorName(?string $vendor_name): static
     {
@@ -482,7 +482,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {
@@ -516,7 +516,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $icon_url Icon URL
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -550,7 +550,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string[]|null $recommended_models Recommended language model ids
      *
-     * @return self
+     * @return $this
      */
     public function setRecommendedModels(?array $recommended_models): static
     {
@@ -577,7 +577,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param array<string,mixed>|null $definition Agent template definition
      *
-     * @return self
+     * @return $this
      */
     public function setDefinition(?array $definition): static
     {
@@ -611,7 +611,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int[]|null $mcp_catalog_entry_ids IDs of required MCP catalog entries
      *
-     * @return self
+     * @return $this
      */
     public function setMcpCatalogEntryIds(?array $mcp_catalog_entry_ids): static
     {
@@ -638,7 +638,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -665,7 +665,7 @@ class AgentsCatalogEntrySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param AgentsCatalogEntryTranslationSchema[] $translations translations
      *
-     * @return self
+     * @return $this
      */
     public function setTranslations(?array $translations): static
     {

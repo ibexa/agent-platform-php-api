@@ -348,7 +348,7 @@ class ConversationFeedbackPayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int $feedback_rate Feedback rating: -1 (negative) or 1 (positive)
      *
-     * @return self
+     * @return $this
      */
     public function setFeedbackRate(?int $feedback_rate): static
     {

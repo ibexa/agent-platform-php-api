@@ -324,7 +324,7 @@ class MarkAllNotificationsReadResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $updated_count updated_count
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedCount(?int $updated_count): static
     {

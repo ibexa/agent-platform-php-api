@@ -83,7 +83,7 @@ class FilesApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'deleteFile' => [
             'application/json',

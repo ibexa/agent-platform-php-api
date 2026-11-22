@@ -334,7 +334,7 @@ class OrgCostForecastResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param CostForecastDaySchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {
@@ -361,7 +361,7 @@ class OrgCostForecastResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param CreditForecastDaySchema[] $credits credits
      *
-     * @return self
+     * @return $this
      */
     public function setCredits(?array $credits): static
     {

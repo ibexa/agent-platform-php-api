@@ -84,7 +84,7 @@ class ReportsApi
      */
     protected $hostIndex;
 
-    /** @var string[] * */
+    /** @var array<string, string[]> * */
     public const contentTypes = [
         'deleteReport' => [
             'application/json',
@@ -606,7 +606,7 @@ class ReportsApi
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
-     * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
+     * @param  string|null $status Filter by status. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -638,7 +638,7 @@ class ReportsApi
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
-     * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
+     * @param  string|null $status Filter by status. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -714,7 +714,7 @@ class ReportsApi
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
-     * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
+     * @param  string|null $status Filter by status. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -746,7 +746,7 @@ class ReportsApi
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
-     * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
+     * @param  string|null $status Filter by status. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -777,7 +777,7 @@ class ReportsApi
      * @param  string|null $daterange Date range as &#39;start,end&#39; (ISO 8601 dates). Either part can be omitted, e.g. &#39;2024-01-01,2024-12-31&#39;, &#39;2024-01-01,&#39; or &#39;,2024-12-31&#39;. A single date without a comma (e.g. &#39;2024-01-01&#39;) is also accepted and sets date_from with an open-ended date_to. (optional)
      * @param  string|null $search Case-insensitive substring match on title. (optional)
      * @param  int|null $agent_id Filter by agent ID. (optional)
-     * @param  \IbexaAgentPlatformModelReportStatus|null $status Filter by status. (optional)
+     * @param  string|null $status Filter by status. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listReports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

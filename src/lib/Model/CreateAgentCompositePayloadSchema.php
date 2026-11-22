@@ -430,7 +430,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -464,7 +464,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -498,7 +498,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param bool|null $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -525,7 +525,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param bool|null $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -552,7 +552,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param BudgetSchema|null $budget Agent budget in credits. Defaults to an unlimited budget.
      *
-     * @return self
+     * @return $this
      */
     public function setBudget($budget): static
     {
@@ -579,7 +579,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param RetryPolicySchema|null $retry_policy How execution failures are handled. Defaults to 'fail'.
      *
-     * @return self
+     * @return $this
      */
     public function setRetryPolicy($retry_policy): static
     {
@@ -606,7 +606,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -644,7 +644,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param PipelineInput $workflow Pipeline definition for this workflow agent.
      *
-     * @return self
+     * @return $this
      */
     public function setWorkflow($workflow): static
     {
@@ -671,7 +671,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param KnowledgeBaseScope|null $knowledge_base_scope Knowledge-base access: 'none' (default, no access), 'all' (whole knowledge base), or 'branch' (one or more folder subtrees).
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseScope($knowledge_base_scope): static
     {
@@ -698,7 +698,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int[]|null $knowledge_base_node_ids Folder node ids to confine the agent to. Required (one or more) when scope is 'branch'; must be omitted for 'none' or 'all'.
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseNodeIds(?array $knowledge_base_node_ids): static
     {
@@ -725,7 +725,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int|null $agents_catalog_entry_id Optional reference to the agents catalog entry this agent was created from. Used to track catalog template popularity.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsCatalogEntryId(?int $agents_catalog_entry_id): static
     {
@@ -763,7 +763,7 @@ class CreateAgentCompositePayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param ImpactMetricSchema|null $impact_metric The impact (ROI) one run of this agent generates. Omit if this agent has no impact metric to track.
      *
-     * @return self
+     * @return $this
      */
     public function setImpactMetric($impact_metric): static
     {

@@ -334,7 +334,7 @@ class ActivityLogListResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param ActivityLogResponseSchema[] $activity_logs activity_logs
      *
-     * @return self
+     * @return $this
      */
     public function setActivityLogs(?array $activity_logs): static
     {
@@ -361,7 +361,7 @@ class ActivityLogListResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

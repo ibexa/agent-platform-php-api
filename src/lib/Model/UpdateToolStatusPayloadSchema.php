@@ -324,7 +324,7 @@ class UpdateToolStatusPayloadSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param ToolStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {

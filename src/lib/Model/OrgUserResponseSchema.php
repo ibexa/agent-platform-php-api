@@ -391,7 +391,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -418,7 +418,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $email email
      *
-     * @return self
+     * @return $this
      */
     public function setEmail(?string $email): static
     {
@@ -445,7 +445,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $full_name full_name
      *
-     * @return self
+     * @return $this
      */
     public function setFullName(?string $full_name): static
     {
@@ -479,7 +479,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param OrganisationRole $organisation_role organisation_role
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationRole($organisation_role): static
     {
@@ -506,7 +506,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param UserStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -533,7 +533,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -560,7 +560,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \DateTime $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -587,7 +587,7 @@ class OrgUserResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $avatar_url avatar_url
      *
-     * @return self
+     * @return $this
      */
     public function setAvatarUrl(?string $avatar_url): static
     {

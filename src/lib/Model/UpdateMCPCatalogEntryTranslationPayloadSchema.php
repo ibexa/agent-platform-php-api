@@ -329,7 +329,7 @@ class UpdateMCPCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string $name Name of the MCP catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -356,7 +356,7 @@ class UpdateMCPCatalogEntryTranslationPayloadSchema implements ModelInterface, A
      *
      * @param string|null $description Description of the MCP catalog entry
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

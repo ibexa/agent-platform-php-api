@@ -338,7 +338,7 @@ class UpdateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param array<string,mixed> $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -365,7 +365,7 @@ class UpdateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param array<string,mixed>|null $agent_args agent_args
      *
-     * @return self
+     * @return $this
      */
     public function setAgentArgs(?array $agent_args): static
     {
@@ -399,7 +399,7 @@ class UpdateTriggerPayloadSchema implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param ResponseFormat|null $response_format Shape the runs this trigger starts must answer in. Omit to keep the stored value; send null to fall back to the default for this kind of trigger
      *
-     * @return self
+     * @return $this
      */
     public function setResponseFormat($response_format): static
     {

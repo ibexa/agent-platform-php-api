@@ -351,7 +351,7 @@ class UpdateBudgetThresholdsPayloadSchema implements ModelInterface, ArrayAccess
      *
      * @param int $budget_critical_threshold Percent of the monthly budget spent at which a critical notification fires.
      *
-     * @return self
+     * @return $this
      */
     public function setBudgetCriticalThreshold(?int $budget_critical_threshold): static
     {
@@ -382,7 +382,7 @@ class UpdateBudgetThresholdsPayloadSchema implements ModelInterface, ArrayAccess
      *
      * @param int $budget_warning_threshold Percent of the monthly budget spent at which a warning notification fires.
      *
-     * @return self
+     * @return $this
      */
     public function setBudgetWarningThreshold(?int $budget_warning_threshold): static
     {
@@ -409,7 +409,7 @@ class UpdateBudgetThresholdsPayloadSchema implements ModelInterface, ArrayAccess
      *
      * @param int $budget_information_threshold Percent of the monthly budget spent at which an informational notification fires.
      *
-     * @return self
+     * @return $this
      */
     public function setBudgetInformationThreshold(?int $budget_information_threshold): static
     {

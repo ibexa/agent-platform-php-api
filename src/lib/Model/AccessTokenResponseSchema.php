@@ -341,7 +341,7 @@ class AccessTokenResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $access_token JWT access token
      *
-     * @return self
+     * @return $this
      */
     public function setAccessToken(?string $access_token): static
     {
@@ -368,7 +368,7 @@ class AccessTokenResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $refresh_token Opaque refresh token
      *
-     * @return self
+     * @return $this
      */
     public function setRefreshToken(?string $refresh_token): static
     {
@@ -395,7 +395,7 @@ class AccessTokenResponseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $token_type Token type
      *
-     * @return self
+     * @return $this
      */
     public function setTokenType(?string $token_type): static
     {

@@ -373,7 +373,7 @@ class MessageFilterRule implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $field field
      *
-     * @return self
+     * @return $this
      */
     public function setField(?string $field): static
     {
@@ -400,7 +400,7 @@ class MessageFilterRule implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $operator operator
      *
-     * @return self
+     * @return $this
      */
     public function setOperator(?string $operator): static
     {
@@ -437,7 +437,7 @@ class MessageFilterRule implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param Value1|null $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue($value): static
     {

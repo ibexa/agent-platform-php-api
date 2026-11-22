@@ -381,7 +381,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -408,7 +408,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -442,7 +442,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -476,7 +476,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -510,7 +510,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $definition_id definition_id
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {
@@ -537,7 +537,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param array<string,mixed> $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -564,7 +564,7 @@ class TriggerResponseSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param ResponseFormat|null $response_format Shape the runs this trigger starts answer in, or null when it uses the default for its kind — TEXT for a manual 'Run now', JSON for a schedule, a webhook or a remote source
      *
-     * @return self
+     * @return $this
      */
     public function setResponseFormat($response_format): static
     {

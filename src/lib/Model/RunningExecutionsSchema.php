@@ -334,7 +334,7 @@ class RunningExecutionsSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {
@@ -361,7 +361,7 @@ class RunningExecutionsSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param RunningExecutionItemSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

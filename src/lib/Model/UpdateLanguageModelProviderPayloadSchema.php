@@ -344,7 +344,7 @@ class UpdateLanguageModelProviderPayloadSchema implements ModelInterface, ArrayA
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -371,7 +371,7 @@ class UpdateLanguageModelProviderPayloadSchema implements ModelInterface, ArrayA
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -398,7 +398,7 @@ class UpdateLanguageModelProviderPayloadSchema implements ModelInterface, ArrayA
      *
      * @param LanguageModelProviderType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {

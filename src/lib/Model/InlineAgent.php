@@ -374,7 +374,7 @@ class InlineAgent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $alias Within-pipeline alias used to reference this agent from pipeline nodes.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {
@@ -406,7 +406,7 @@ class InlineAgent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Human-readable display name shown in logs and UI.
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -438,7 +438,7 @@ class InlineAgent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $instruction System prompt that defines the agent's role and behaviour.
      *
-     * @return self
+     * @return $this
      */
     public function setInstruction(?string $instruction): static
     {
@@ -470,7 +470,7 @@ class InlineAgent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $model Alias of a model from the top-level 'model_references' list. Uses the provider default if omitted.
      *
-     * @return self
+     * @return $this
      */
     public function setModel(?string $model): static
     {
@@ -504,7 +504,7 @@ class InlineAgent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param InlineAgentMCPServer[]|null $mcp_servers MCP servers to enable for this agent, resolved against 'mcp_server_references'.
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServers(?array $mcp_servers): static
     {
@@ -538,7 +538,7 @@ class InlineAgent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[]|null $sub_agents Aliases of agents to enable as sub-agents, resolved against 'inline_agents' and 'agent_references'.
      *
-     * @return self
+     * @return $this
      */
     public function setSubAgents(?array $sub_agents): static
     {

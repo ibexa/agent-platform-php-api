@@ -329,7 +329,7 @@ class RecordAgentRecommendationEventPayloadSchema implements ModelInterface, Arr
      *
      * @param RecommendationEventType $event_type Which engagement event occurred against this result
      *
-     * @return self
+     * @return $this
      */
     public function setEventType($event_type): static
     {
@@ -356,7 +356,7 @@ class RecordAgentRecommendationEventPayloadSchema implements ModelInterface, Arr
      *
      * @param array<string,mixed>|null $metadata Engine/UI-specific context for this event
      *
-     * @return self
+     * @return $this
      */
     public function setMetadata(?array $metadata): static
     {

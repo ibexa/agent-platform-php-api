@@ -351,7 +351,7 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $date Calendar date in YYYY-MM-DD format
      *
-     * @return self
+     * @return $this
      */
     public function setDate(?string $date): static
     {
@@ -378,7 +378,7 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $cost_amount cost_amount
      *
-     * @return self
+     * @return $this
      */
     public function setCostAmount(?string $cost_amount): static
     {
@@ -412,7 +412,7 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $cost_currency cost_currency
      *
-     * @return self
+     * @return $this
      */
     public function setCostCurrency(?string $cost_currency): static
     {
@@ -446,7 +446,7 @@ class CostForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $is_projection True when this value is a projected estimate; False when it is a recorded actual
      *
-     * @return self
+     * @return $this
      */
     public function setIsProjection(?bool $is_projection): static
     {

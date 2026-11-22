@@ -456,7 +456,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -493,7 +493,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $alias Alias of an inline agent from 'inline_agents' or an agent from 'agent_references'.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {
@@ -527,7 +527,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $identifier DB identifier of an agent. Use 'alias' instead to reference a declared agent reference.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -568,7 +568,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param NodesInner1[] $nodes Child nodes executed concurrently. All branches receive the same input state; their outputs are merged afterwards.
      *
-     * @return self
+     * @return $this
      */
     public function setNodes(?array $nodes): static
     {
@@ -599,7 +599,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Condition $condition Condition evaluated against the last message's JSON content to decide which branch to take.
      *
-     * @return self
+     * @return $this
      */
     public function setCondition($condition): static
     {
@@ -626,7 +626,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param TrueNode1 $true_node true_node
      *
-     * @return self
+     * @return $this
      */
     public function setTrueNode($true_node): static
     {
@@ -653,7 +653,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param FalseNode1 $false_node false_node
      *
-     * @return self
+     * @return $this
      */
     public function setFalseNode($false_node): static
     {
@@ -680,7 +680,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $max_iterations Hard cap on iterations. The loop always stops here even if finish_condition is never met.
      *
-     * @return self
+     * @return $this
      */
     public function setMaxIterations(?int $max_iterations): static
     {
@@ -711,7 +711,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Condition $finish_condition Checked after each iteration. Loop exits early when this evaluates to true.
      *
-     * @return self
+     * @return $this
      */
     public function setFinishCondition($finish_condition): static
     {
@@ -738,7 +738,7 @@ class NodesInner1 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param Node1 $node node
      *
-     * @return self
+     * @return $this
      */
     public function setNode($node): static
     {

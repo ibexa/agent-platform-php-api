@@ -368,7 +368,7 @@ class ExecutionTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $id ID of the individual trigger that fired this run, or null once that trigger has been deleted
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -402,7 +402,7 @@ class ExecutionTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $definition_id ID of the trigger definition — the kind of trigger — as listed by GET /triggers/definitions
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {
@@ -436,7 +436,7 @@ class ExecutionTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param TriggerType $type Coarse bucket of the trigger that started this execution (MANUAL, SCHEDULER, WEBHOOK, or UNKNOWN if unattributed), derived from `definition_id`. UNKNOWN covers runs created before the platform began recording their origin, and runs it starts directly rather than through a trigger
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -463,7 +463,7 @@ class ExecutionTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $label Human-readable name of the trigger definition, or null when the catalog does not know it
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -497,7 +497,7 @@ class ExecutionTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $description What this kind of trigger does
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -531,7 +531,7 @@ class ExecutionTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param array<string,mixed>|null $config The trigger's own settings — a schedule's cadence, a webhook's delivery options. Webhook secrets are never included. Null once the trigger has been deleted: only the kind of trigger is recorded on the execution, the settings live on the trigger itself
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {

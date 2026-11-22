@@ -342,7 +342,7 @@ class RemoteTriggerSourceTypeListResponseSchema implements ModelInterface, Array
      *
      * @param RemoteTriggerSourceTypeResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -369,7 +369,7 @@ class RemoteTriggerSourceTypeListResponseSchema implements ModelInterface, Array
      *
      * @param int $count count
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {
@@ -396,7 +396,7 @@ class RemoteTriggerSourceTypeListResponseSchema implements ModelInterface, Array
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

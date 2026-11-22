@@ -448,7 +448,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $id Execution ID
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -475,7 +475,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int $agent_id Agent ID
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -502,7 +502,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $agent_name Name of the agent that was run
      *
-     * @return self
+     * @return $this
      */
     public function setAgentName(?string $agent_name): static
     {
@@ -529,7 +529,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed> $args Optional args to pass to the agent during execution
      *
-     * @return self
+     * @return $this
      */
     public function setArgs(?array $args): static
     {
@@ -556,7 +556,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param ExecutionStatus $status Execution status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -583,7 +583,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $duration Execution duration in seconds
      *
-     * @return self
+     * @return $this
      */
     public function setDuration(?int $duration): static
     {
@@ -617,7 +617,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param ExecutionTriggerSummarySchema|null $trigger How the run was started. Without the trigger's own settings, which a single execution carries and a list does not
      *
-     * @return self
+     * @return $this
      */
     public function setTrigger($trigger): static
     {
@@ -651,7 +651,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param ExecutionUserSchema|null $created_by User who created the execution — the user the run is triggered on behalf of, for scheduled and webhook runs as well as manual ones
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy($created_by): static
     {
@@ -685,7 +685,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param ExecutionUserSchema|null $updated_by User who last updated the execution
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedBy($updated_by): static
     {
@@ -719,7 +719,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $started_at Execution started time
      *
-     * @return self
+     * @return $this
      */
     public function setStartedAt($started_at): static
     {
@@ -753,7 +753,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $finished_at Execution finished time
      *
-     * @return self
+     * @return $this
      */
     public function setFinishedAt($finished_at): static
     {
@@ -787,7 +787,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $created_at Execution created time
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -821,7 +821,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param \DateTime|null $updated_at Execution updated time
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {
@@ -855,7 +855,7 @@ class ExecutionListItemResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $credits Total credits consumed by this execution, or null if none were recorded.
      *
-     * @return self
+     * @return $this
      */
     public function setCredits(?string $credits): static
     {

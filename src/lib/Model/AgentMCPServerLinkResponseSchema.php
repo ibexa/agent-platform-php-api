@@ -334,7 +334,7 @@ class AgentMCPServerLinkResponseSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $mcp_server_id mcp_server_id
      *
-     * @return self
+     * @return $this
      */
     public function setMcpServerId(?int $mcp_server_id): static
     {
@@ -361,7 +361,7 @@ class AgentMCPServerLinkResponseSchema implements ModelInterface, ArrayAccess, \
      *
      * @param string[] $enabled_tools enabled_tools
      *
-     * @return self
+     * @return $this
      */
     public function setEnabledTools(?array $enabled_tools): static
     {

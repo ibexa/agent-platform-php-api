@@ -343,7 +343,7 @@ class RemoteSourceWebhookResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string|null $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus(?string $status): static
     {

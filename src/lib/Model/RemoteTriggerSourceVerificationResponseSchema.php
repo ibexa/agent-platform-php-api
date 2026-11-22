@@ -334,7 +334,7 @@ class RemoteTriggerSourceVerificationResponseSchema implements ModelInterface, A
      *
      * @param RemoteConnectionStatus $connection connection
      *
-     * @return self
+     * @return $this
      */
     public function setConnection($connection): static
     {
@@ -361,7 +361,7 @@ class RemoteTriggerSourceVerificationResponseSchema implements ModelInterface, A
      *
      * @param string|null $connection_error Why the connection check failed; null when it succeeded.
      *
-     * @return self
+     * @return $this
      */
     public function setConnectionError(?string $connection_error): static
     {

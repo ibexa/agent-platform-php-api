@@ -365,7 +365,7 @@ class MarkdownBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -392,7 +392,7 @@ class MarkdownBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -429,7 +429,7 @@ class MarkdownBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $content content
      *
-     * @return self
+     * @return $this
      */
     public function setContent(?string $content): static
     {

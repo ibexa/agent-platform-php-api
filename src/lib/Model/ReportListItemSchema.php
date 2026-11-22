@@ -434,7 +434,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -461,7 +461,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -488,7 +488,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $title title
      *
-     * @return self
+     * @return $this
      */
     public function setTitle(?string $title): static
     {
@@ -515,7 +515,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $summary summary
      *
-     * @return self
+     * @return $this
      */
     public function setSummary(?string $summary): static
     {
@@ -549,7 +549,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param ReportStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -576,7 +576,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $owner_id owner_id
      *
-     * @return self
+     * @return $this
      */
     public function setOwnerId(?string $owner_id): static
     {
@@ -610,7 +610,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -644,7 +644,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param ReportUserSchema|null $owner owner
      *
-     * @return self
+     * @return $this
      */
     public function setOwner($owner): static
     {
@@ -678,7 +678,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param ReportAgentSchema|null $agent agent
      *
-     * @return self
+     * @return $this
      */
     public function setAgent($agent): static
     {
@@ -712,7 +712,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $execution_id execution_id
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionId(?int $execution_id): static
     {
@@ -746,7 +746,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -780,7 +780,7 @@ class ReportListItemSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

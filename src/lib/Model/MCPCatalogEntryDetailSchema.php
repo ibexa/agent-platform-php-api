@@ -466,7 +466,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $category_id ID of the MCP catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setCategoryId(?int $category_id): static
     {
@@ -493,7 +493,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $vendor_name Vendor name
      *
-     * @return self
+     * @return $this
      */
     public function setVendorName(?string $vendor_name): static
     {
@@ -527,7 +527,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $vendor_url Vendor URL
      *
-     * @return self
+     * @return $this
      */
     public function setVendorUrl(?string $vendor_url): static
     {
@@ -561,7 +561,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $server_url MCP server URL
      *
-     * @return self
+     * @return $this
      */
     public function setServerUrl(?string $server_url): static
     {
@@ -588,7 +588,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $website_url Website URL
      *
-     * @return self
+     * @return $this
      */
     public function setWebsiteUrl(?string $website_url): static
     {
@@ -622,7 +622,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $documentation_url Documentation URL
      *
-     * @return self
+     * @return $this
      */
     public function setDocumentationUrl(?string $documentation_url): static
     {
@@ -656,7 +656,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $icon_url Icon URL
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -690,7 +690,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $color Hex color code (e.g. #FF0000)
      *
-     * @return self
+     * @return $this
      */
     public function setColor(?string $color): static
     {
@@ -724,7 +724,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $data_residency_country ISO 3166-1 alpha-2 country code of the MCP server's data residency
      *
-     * @return self
+     * @return $this
      */
     public function setDataResidencyCountry(?string $data_residency_country): static
     {
@@ -758,7 +758,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $vendor_country ISO 3166-1 alpha-2 country code of the vendor company's location
      *
-     * @return self
+     * @return $this
      */
     public function setVendorCountry(?string $vendor_country): static
     {
@@ -792,7 +792,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool|null $is_recommended Whether this entry is recommended
      *
-     * @return self
+     * @return $this
      */
     public function setIsRecommended(?bool $is_recommended): static
     {
@@ -819,7 +819,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param AuthScheme|null $auth_scheme Authentication scheme the MCP server expects, if any
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -853,7 +853,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param array<string,mixed>|null $auth_config Credential-free authentication template describing where the credential goes (e.g. API-key header name and location). Credential values are rejected - they belong to the MCP server created from this entry.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -887,7 +887,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool|null $requires_user_connection Whether each user must connect their own account before the server's tools can be used
      *
-     * @return self
+     * @return $this
      */
     public function setRequiresUserConnection(?bool $requires_user_connection): static
     {
@@ -914,7 +914,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -941,7 +941,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool $is_data_residency_in_eu Whether the data residency country is within the European Union
      *
-     * @return self
+     * @return $this
      */
     public function setIsDataResidencyInEu(?bool $is_data_residency_in_eu): static
     {
@@ -968,7 +968,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param MCPCatalogEntryTranslationSchema[] $translations translations
      *
-     * @return self
+     * @return $this
      */
     public function setTranslations(?array $translations): static
     {
@@ -995,7 +995,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -1022,7 +1022,7 @@ class MCPCatalogEntryDetailSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

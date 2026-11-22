@@ -331,7 +331,7 @@ class UpdateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $subject Optional subject
      *
-     * @return self
+     * @return $this
      */
     public function setSubject(?string $subject): static
     {
@@ -369,7 +369,7 @@ class UpdateConversationPayloadSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed>|null $context Context the assistant works within, as a free-form mapping (e.g. {\"report_id\": 67}). Replaces the stored context.
      *
-     * @return self
+     * @return $this
      */
     public function setContext(?array $context): static
     {

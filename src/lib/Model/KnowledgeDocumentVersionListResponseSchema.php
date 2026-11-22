@@ -334,7 +334,7 @@ class KnowledgeDocumentVersionListResponseSchema implements ModelInterface, Arra
      *
      * @param KnowledgeDocumentVersionSummaryResponseSchema[] $versions versions
      *
-     * @return self
+     * @return $this
      */
     public function setVersions(?array $versions): static
     {
@@ -361,7 +361,7 @@ class KnowledgeDocumentVersionListResponseSchema implements ModelInterface, Arra
      *
      * @param int|null $published_version_id published_version_id
      *
-     * @return self
+     * @return $this
      */
     public function setPublishedVersionId(?int $published_version_id): static
     {

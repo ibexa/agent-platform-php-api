@@ -324,7 +324,7 @@ class AgentUsageResponseSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param AgentUsageItemResponseSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

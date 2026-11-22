@@ -404,7 +404,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $period Period label (e.g. '2024-01-15', '2024-01', '2024')
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod(?string $period): static
     {
@@ -431,7 +431,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param EvaluationTargetType $target_type target_type
      *
-     * @return self
+     * @return $this
      */
     public function setTargetType($target_type): static
     {
@@ -458,7 +458,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $metric_id metric_id
      *
-     * @return self
+     * @return $this
      */
     public function setMetricId(?string $metric_id): static
     {
@@ -485,7 +485,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param float $average_value Average across computed values. 0.0 (not a real average) if this metric was eligible but never actually computed in this period — check count == 0 to distinguish that case.
      *
-     * @return self
+     * @return $this
      */
     public function setAverageValue($average_value): static
     {
@@ -512,7 +512,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $unit unit
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {
@@ -539,7 +539,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $count Number of computed values contributing to the average.
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {
@@ -566,7 +566,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $passed_count Targets of this target_type where this metric passed.
      *
-     * @return self
+     * @return $this
      */
     public function setPassedCount(?int $passed_count): static
     {
@@ -593,7 +593,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $failed_count Targets of this target_type where this metric failed.
      *
-     * @return self
+     * @return $this
      */
     public function setFailedCount(?int $failed_count): static
     {
@@ -620,7 +620,7 @@ class EvaluationMetricPeriodSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $not_evaluated_count Targets of this target_type eligible for this metric with no passed/failed result yet.
      *
-     * @return self
+     * @return $this
      */
     public function setNotEvaluatedCount(?int $not_evaluated_count): static
     {

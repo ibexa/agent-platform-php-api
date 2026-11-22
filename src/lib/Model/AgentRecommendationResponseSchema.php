@@ -329,7 +329,7 @@ class AgentRecommendationResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int|null $recommendation_id Null when nothing has been persisted yet for this user/algorithm.
      *
-     * @return self
+     * @return $this
      */
     public function setRecommendationId(?int $recommendation_id): static
     {
@@ -363,7 +363,7 @@ class AgentRecommendationResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param AgentRecommendationResultListItemResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

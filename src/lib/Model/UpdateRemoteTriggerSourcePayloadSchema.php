@@ -371,7 +371,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -398,7 +398,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param string $identifier Unique within the organisation.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -425,7 +425,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param array<string,mixed> $config Must match the type's `configuration_schema`. An identity field (e.g. the instance URL) cannot change while triggers use the source. A `writeOnly` key omitted, empty or sent masked as `********` keeps its stored value, and `null` clears it. When an identity field changes, stored `writeOnly` values are dropped and must be sent again.
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -452,7 +452,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param AuthScheme $auth_scheme One of the type's `auth_schemes`.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -479,7 +479,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param array<string,mixed>|null $auth_config The scheme's fields, as described by its `config_schema` in `/types`. A secret omitted, empty or sent masked as `********` keeps its stored value.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -513,7 +513,7 @@ class UpdateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {

@@ -354,7 +354,7 @@ class ModelReference implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $provider_identifier Identifier of the language model provider as stored in the DB.
      *
-     * @return self
+     * @return $this
      */
     public function setProviderIdentifier(?string $provider_identifier): static
     {
@@ -388,7 +388,7 @@ class ModelReference implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $model_name Model name as used by the provider (e.g. 'gpt-4o', 'claude-sonnet-4-5').
      *
-     * @return self
+     * @return $this
      */
     public function setModelName(?string $model_name): static
     {
@@ -422,7 +422,7 @@ class ModelReference implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $alias Within-pipeline alias used to reference this model from inline agents. Defaults to 'provider_identifier/model_name' if omitted.
      *
-     * @return self
+     * @return $this
      */
     public function setAlias(?string $alias): static
     {

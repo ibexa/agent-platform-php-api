@@ -459,7 +459,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -486,7 +486,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int $organisation_id organisation_id
      *
-     * @return self
+     * @return $this
      */
     public function setOrganisationId(?int $organisation_id): static
     {
@@ -513,7 +513,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -540,7 +540,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -567,7 +567,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param bool $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {
@@ -594,7 +594,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param bool $can_be_subagent can_be_subagent
      *
-     * @return self
+     * @return $this
      */
     public function setCanBeSubagent(?bool $can_be_subagent): static
     {
@@ -621,7 +621,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param BudgetSchema $budget Agent budget in credits. Always present; an uncapped budget is the scope 'unlimited'.
      *
-     * @return self
+     * @return $this
      */
     public function setBudget($budget): static
     {
@@ -648,7 +648,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param RetryPolicySchema $retry_policy How execution failures are handled. Always present; the default is 'fail'.
      *
-     * @return self
+     * @return $this
      */
     public function setRetryPolicy($retry_policy): static
     {
@@ -675,7 +675,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy(?string $created_by): static
     {
@@ -709,7 +709,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -747,7 +747,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param PipelineOutput $workflow Pipeline definition for this workflow agent.
      *
-     * @return self
+     * @return $this
      */
     public function setWorkflow($workflow): static
     {
@@ -774,7 +774,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param KnowledgeBaseScope $knowledge_base_scope Knowledge-base access: 'none' (no access), 'all' (whole knowledge base), or 'branch' (one or more folder subtrees).
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseScope($knowledge_base_scope): static
     {
@@ -801,7 +801,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int[]|null $knowledge_base_node_ids Folder nodes the agent's knowledge-base access is confined to. Non-empty only when scope is 'branch'.
      *
-     * @return self
+     * @return $this
      */
     public function setKnowledgeBaseNodeIds(?array $knowledge_base_node_ids): static
     {
@@ -828,7 +828,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param int|null $agents_catalog_entry_id Optional reference to the agents catalog entry this agent was created from. Used to track catalog template popularity.
      *
-     * @return self
+     * @return $this
      */
     public function setAgentsCatalogEntryId(?int $agents_catalog_entry_id): static
     {
@@ -866,7 +866,7 @@ class CreateAgentCompositeResponseSchema implements ModelInterface, ArrayAccess,
      *
      * @param ImpactMetricSchema|null $impact_metric The impact (ROI) one run of this agent generates. Null when no impact metric is configured.
      *
-     * @return self
+     * @return $this
      */
     public function setImpactMetric($impact_metric): static
     {

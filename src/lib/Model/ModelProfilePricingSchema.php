@@ -414,7 +414,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $currency currency
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency(?string $currency): static
     {
@@ -441,7 +441,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -475,7 +475,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $text_input text_input
      *
-     * @return self
+     * @return $this
      */
     public function setTextInput(?string $text_input): static
     {
@@ -509,7 +509,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $text_output text_output
      *
-     * @return self
+     * @return $this
      */
     public function setTextOutput(?string $text_output): static
     {
@@ -543,7 +543,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $cache_read cache_read
      *
-     * @return self
+     * @return $this
      */
     public function setCacheRead(?string $cache_read): static
     {
@@ -577,7 +577,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $cache_write cache_write
      *
-     * @return self
+     * @return $this
      */
     public function setCacheWrite(?string $cache_write): static
     {
@@ -611,7 +611,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $audio_input audio_input
      *
-     * @return self
+     * @return $this
      */
     public function setAudioInput(?string $audio_input): static
     {
@@ -645,7 +645,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $audio_output audio_output
      *
-     * @return self
+     * @return $this
      */
     public function setAudioOutput(?string $audio_output): static
     {
@@ -679,7 +679,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $image_input image_input
      *
-     * @return self
+     * @return $this
      */
     public function setImageInput(?string $image_input): static
     {
@@ -713,7 +713,7 @@ class ModelProfilePricingSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $image_output image_output
      *
-     * @return self
+     * @return $this
      */
     public function setImageOutput(?string $image_output): static
     {

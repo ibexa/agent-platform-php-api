@@ -454,7 +454,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditEntryType $entry_type LEDGER for a credit movement, PLAN_CHANGE for a change to the monthly allowance cap.
      *
-     * @return self
+     * @return $this
      */
     public function setEntryType($entry_type): static
     {
@@ -481,7 +481,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param int|null $id The ledger entry's id. Null on a PLAN_CHANGE row.
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -515,7 +515,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param EntryDirection|null $direction The sign of this row: CREDIT adds credits, DEBIT spends them. Each row stands alone — a DEBIT is not balanced by a second row. Null on a PLAN_CHANGE row, which moves no credits.
      *
-     * @return self
+     * @return $this
      */
     public function setDirection($direction): static
     {
@@ -549,7 +549,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditCategory|null $category Why the row exists. SETTLEMENT marks the start-of-period payoff of negative extra credits from the new monthly allowance: an ALLOWANCE-funded DEBIT that brings the purchased credits back up by the same amount, leaving the total balance unchanged. Null on a PLAN_CHANGE row.
      *
-     * @return self
+     * @return $this
      */
     public function setCategory($category): static
     {
@@ -583,7 +583,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param FundingSource|null $funding_source Which pool a DEBIT drew from — ALLOWANCE (the monthly entitlement) or PURCHASE (stored credits). Always ALLOWANCE on a SETTLEMENT row. Always null on a CREDIT row, where it does not apply, and on a PLAN_CHANGE row.
      *
-     * @return self
+     * @return $this
      */
     public function setFundingSource($funding_source): static
     {
@@ -617,7 +617,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param string|null $amount Always positive: `direction` carries the sign, not the amount. Null on a PLAN_CHANGE row — its figures are in `plan_change`.
      *
-     * @return self
+     * @return $this
      */
     public function setAmount(?string $amount): static
     {
@@ -651,7 +651,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditCurrency $currency currency
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency($currency): static
     {
@@ -678,7 +678,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param \DateTime $occurred_at When the credits moved — the business time the row is dated by. For a PLAN_CHANGE row, when the new cap takes effect.
      *
-     * @return self
+     * @return $this
      */
     public function setOccurredAt($occurred_at): static
     {
@@ -705,7 +705,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param \DateTime $created_at When the row was written. Later than `occurred_at` for a backdated entry.
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -732,7 +732,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param string|null $balance_after The organisation's total balance (allowance remaining plus purchased) immediately after this row was recorded. For a PLAN_CHANGE row, the balance as the new cap took effect.
      *
-     * @return self
+     * @return $this
      */
     public function setBalanceAfter(?string $balance_after): static
     {
@@ -766,7 +766,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditEntryOrderedBySchema|null $ordered_by Who to show the row as ordered by: the agent for an agent execution, otherwise the user. Null when there is no one to name — including platform staff outside the organisation who recorded a purchase or set a plan.
      *
-     * @return self
+     * @return $this
      */
     public function setOrderedBy($ordered_by): static
     {
@@ -800,7 +800,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditLedgerEntryAttributionSchema|null $attribution What the consumption was recorded against. Null for purchases, manual adjustments, settlements, and plan changes, which are organisation-level movements with no agent, user, execution, or conversation behind them.
      *
-     * @return self
+     * @return $this
      */
     public function setAttribution($attribution): static
     {
@@ -834,7 +834,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditLedgerEntryExecutionSchema|null $execution The execution the consumption was charged for, with its status and duration. Null when the row names no execution or it was deleted.
      *
-     * @return self
+     * @return $this
      */
     public function setExecution($execution): static
     {
@@ -868,7 +868,7 @@ class CreditLedgerEntryListItemResponseSchema implements ModelInterface, ArrayAc
      *
      * @param CreditPlanChangeSchema|null $plan_change The plan change itself. Set on PLAN_CHANGE rows only.
      *
-     * @return self
+     * @return $this
      */
     public function setPlanChange($plan_change): static
     {

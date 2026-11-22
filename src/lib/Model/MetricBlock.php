@@ -386,7 +386,7 @@ class MetricBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -413,7 +413,7 @@ class MetricBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -450,7 +450,7 @@ class MetricBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -477,7 +477,7 @@ class MetricBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param float $value value
      *
-     * @return self
+     * @return $this
      */
     public function setValue($value): static
     {
@@ -504,7 +504,7 @@ class MetricBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $unit unit
      *
-     * @return self
+     * @return $this
      */
     public function setUnit(?string $unit): static
     {
@@ -531,7 +531,7 @@ class MetricBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

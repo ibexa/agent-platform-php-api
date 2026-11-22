@@ -356,7 +356,7 @@ class MessageFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $match match
      *
-     * @return self
+     * @return $this
      */
     public function setMatch(?string $match): static
     {
@@ -393,7 +393,7 @@ class MessageFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param MessageFilterRule[] $rules rules
      *
-     * @return self
+     * @return $this
      */
     public function setRules(?array $rules): static
     {

@@ -346,7 +346,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $new_password New password to set for the account
      *
-     * @return self
+     * @return $this
      */
     public function setNewPassword(?string $new_password): static
     {
@@ -373,7 +373,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string|null $job_position User's job position
      *
-     * @return self
+     * @return $this
      */
     public function setJobPosition(?string $job_position): static
     {
@@ -411,7 +411,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param string[]|null $job_activities List of job activities the user is involved in
      *
-     * @return self
+     * @return $this
      */
     public function setJobActivities(?array $job_activities): static
     {
@@ -445,7 +445,7 @@ class ActivateAccountRequestSchema implements ModelInterface, ArrayAccess, \Json
      *
      * @param bool|null $newsletter_consent Whether the user consents to receiving the newsletter
      *
-     * @return self
+     * @return $this
      */
     public function setNewsletterConsent(?bool $newsletter_consent): static
     {

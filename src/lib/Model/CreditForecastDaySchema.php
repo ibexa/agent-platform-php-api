@@ -344,7 +344,7 @@ class CreditForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $date Calendar date in YYYY-MM-DD format
      *
-     * @return self
+     * @return $this
      */
     public function setDate(?string $date): static
     {
@@ -371,7 +371,7 @@ class CreditForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $credits_amount credits_amount
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsAmount(?string $credits_amount): static
     {
@@ -398,7 +398,7 @@ class CreditForecastDaySchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param bool $is_projection True when this value is a projected estimate; False when it is a recorded actual
      *
-     * @return self
+     * @return $this
      */
     public function setIsProjection(?bool $is_projection): static
     {

@@ -344,7 +344,7 @@ class AgentsUsingMCPServerListResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param AgentUsingMCPServerResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -371,7 +371,7 @@ class AgentsUsingMCPServerListResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $count count
      *
-     * @return self
+     * @return $this
      */
     public function setCount(?int $count): static
     {
@@ -398,7 +398,7 @@ class AgentsUsingMCPServerListResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

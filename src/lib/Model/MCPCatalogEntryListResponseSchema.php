@@ -332,7 +332,7 @@ class MCPCatalogEntryListResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param MCPCatalogEntryListItemSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -359,7 +359,7 @@ class MCPCatalogEntryListResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param int $total_count total_count
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

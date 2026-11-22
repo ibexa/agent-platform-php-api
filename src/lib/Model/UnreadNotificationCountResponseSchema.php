@@ -334,7 +334,7 @@ class UnreadNotificationCountResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param int $unread_count unread_count
      *
-     * @return self
+     * @return $this
      */
     public function setUnreadCount(?int $unread_count): static
     {
@@ -361,7 +361,7 @@ class UnreadNotificationCountResponseSchema implements ModelInterface, ArrayAcce
      *
      * @param int $cap cap
      *
-     * @return self
+     * @return $this
      */
     public function setCap(?int $cap): static
     {

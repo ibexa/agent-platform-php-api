@@ -374,7 +374,7 @@ class TriggerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -401,7 +401,7 @@ class TriggerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $definition_id ID of the trigger's definition (its type)
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {
@@ -428,7 +428,7 @@ class TriggerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $label Human-readable trigger definition label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -455,7 +455,7 @@ class TriggerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -489,7 +489,7 @@ class TriggerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $icon_url icon_url
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -523,7 +523,7 @@ class TriggerInfoSchema implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param array<string,mixed> $config Trigger config (e.g. schedule fields). Sensitive webhook fields are redacted.
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {

@@ -343,7 +343,7 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param array<string,mixed>|null $data The JSON event payload decoded as an associative array.
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -370,7 +370,7 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $event ISO 639-1 language code
      *
-     * @return self
+     * @return $this
      */
     public function setEvent(?string $event): static
     {
@@ -404,7 +404,7 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $id ISO 639-1 language code
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -438,7 +438,7 @@ class ServerSentEventSchema implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $retry Filter executions whose duration (seconds) is at most this value. Executions with no recorded duration never match.
      *
-     * @return self
+     * @return $this
      */
     public function setRetry(?int $retry): static
     {

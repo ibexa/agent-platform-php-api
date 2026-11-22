@@ -334,7 +334,7 @@ class CreditLedgerEntryListResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param CreditLedgerEntryListItemResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -361,7 +361,7 @@ class CreditLedgerEntryListResponseSchema implements ModelInterface, ArrayAccess
      *
      * @param int $total_count Rows matching the filters, not just those on this page.
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

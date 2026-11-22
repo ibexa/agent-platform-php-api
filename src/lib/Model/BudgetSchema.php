@@ -361,7 +361,7 @@ class BudgetSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param BudgetScope|null $scope Budget scope: 'limited' (capped at 'amount' credits) or 'unlimited' (uncapped, the default).
      *
-     * @return self
+     * @return $this
      */
     public function setScope($scope): static
     {
@@ -388,7 +388,7 @@ class BudgetSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $amount Budget amount in whole credits. Required when scope is 'limited'; must be 0 (or omitted) when scope is 'unlimited'.
      *
-     * @return self
+     * @return $this
      */
     public function setAmount(?int $amount): static
     {
@@ -419,7 +419,7 @@ class BudgetSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $currency Always 'credits' — agent budgets are denominated in the platform's virtual currency only.
      *
-     * @return self
+     * @return $this
      */
     public function setCurrency(?string $currency): static
     {

@@ -332,7 +332,7 @@ class ToolRequestSummaryResponseSchema implements ModelInterface, ArrayAccess, \
      *
      * @param ToolRequestSummaryItemSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {
@@ -359,7 +359,7 @@ class ToolRequestSummaryResponseSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $total_count Number of distinct MCP servers with at least one request.
      *
-     * @return self
+     * @return $this
      */
     public function setTotalCount(?int $total_count): static
     {

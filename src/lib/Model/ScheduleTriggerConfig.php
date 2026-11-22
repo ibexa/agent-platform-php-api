@@ -348,7 +348,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $hour hour
      *
-     * @return self
+     * @return $this
      */
     public function setHour(?int $hour): static
     {
@@ -382,7 +382,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $minute minute
      *
-     * @return self
+     * @return $this
      */
     public function setMinute(?int $minute): static
     {
@@ -416,7 +416,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $day_of_week day_of_week
      *
-     * @return self
+     * @return $this
      */
     public function setDayOfWeek(?int $day_of_week): static
     {
@@ -450,7 +450,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $day_of_month day_of_month
      *
-     * @return self
+     * @return $this
      */
     public function setDayOfMonth(?int $day_of_month): static
     {
@@ -484,7 +484,7 @@ class ScheduleTriggerConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $month month
      *
-     * @return self
+     * @return $this
      */
     public function setMonth(?int $month): static
     {

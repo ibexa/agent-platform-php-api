@@ -384,7 +384,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -411,7 +411,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $source_id source_id
      *
-     * @return self
+     * @return $this
      */
     public function setSourceId(?string $source_id): static
     {
@@ -438,7 +438,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string $label label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -465,7 +465,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $description description
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {
@@ -499,7 +499,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $icon_url icon_url
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {
@@ -533,7 +533,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param string[] $categories categories
      *
-     * @return self
+     * @return $this
      */
     public function setCategories(?array $categories): static
     {
@@ -560,7 +560,7 @@ class TriggerDefinitionResponseSchema implements ModelInterface, ArrayAccess, \J
      *
      * @param array<string,mixed> $config_schema config_schema
      *
-     * @return self
+     * @return $this
      */
     public function setConfigSchema(?array $config_schema): static
     {

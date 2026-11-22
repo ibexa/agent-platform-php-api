@@ -375,7 +375,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -402,7 +402,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param string $identifier Unique within the organisation.
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -429,7 +429,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param string $type A type key from `/types`; it cannot change later.
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -456,7 +456,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param array<string,mixed>|null $config Must match the type's `configuration_schema`.
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {
@@ -483,7 +483,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param AuthScheme $auth_scheme One of the type's `auth_schemes`.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthScheme($auth_scheme): static
     {
@@ -510,7 +510,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param array<string,mixed>|null $auth_config The scheme's fields, as described by its `config_schema` in `/types`.
      *
-     * @return self
+     * @return $this
      */
     public function setAuthConfig(?array $auth_config): static
     {
@@ -544,7 +544,7 @@ class CreateRemoteTriggerSourcePayloadSchema implements ModelInterface, ArrayAcc
      *
      * @param bool|null $is_enabled is_enabled
      *
-     * @return self
+     * @return $this
      */
     public function setIsEnabled(?bool $is_enabled): static
     {

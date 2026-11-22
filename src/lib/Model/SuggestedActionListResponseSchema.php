@@ -322,7 +322,7 @@ class SuggestedActionListResponseSchema implements ModelInterface, ArrayAccess, 
      *
      * @param SuggestedActionListItemResponseSchema[] $data data
      *
-     * @return self
+     * @return $this
      */
     public function setData(?array $data): static
     {

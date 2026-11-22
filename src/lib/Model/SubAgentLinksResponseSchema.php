@@ -324,7 +324,7 @@ class SubAgentLinksResponseSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param SubAgentLinkResponseSchema[] $sub_agent_links sub_agent_links
      *
-     * @return self
+     * @return $this
      */
     public function setSubAgentLinks(?array $sub_agent_links): static
     {

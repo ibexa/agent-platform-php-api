@@ -331,7 +331,7 @@ class MCPServerConnectionPayloadSchema implements ModelInterface, ArrayAccess, \
      *
      * @param AuthScheme $scheme scheme
      *
-     * @return self
+     * @return $this
      */
     public function setScheme($scheme): static
     {
@@ -358,7 +358,7 @@ class MCPServerConnectionPayloadSchema implements ModelInterface, ArrayAccess, \
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {

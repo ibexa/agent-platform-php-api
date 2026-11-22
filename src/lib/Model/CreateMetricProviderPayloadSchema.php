@@ -351,7 +351,7 @@ class CreateMetricProviderPayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -378,7 +378,7 @@ class CreateMetricProviderPayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param string $identifier identifier
      *
-     * @return self
+     * @return $this
      */
     public function setIdentifier(?string $identifier): static
     {
@@ -405,7 +405,7 @@ class CreateMetricProviderPayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param MetricProviderType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -432,7 +432,7 @@ class CreateMetricProviderPayloadSchema implements ModelInterface, ArrayAccess, 
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {

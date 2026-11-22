@@ -344,7 +344,7 @@ class TriggerCategoryResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -371,7 +371,7 @@ class TriggerCategoryResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $label label
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -398,7 +398,7 @@ class TriggerCategoryResponseSchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string|null $icon_url icon_url
      *
-     * @return self
+     * @return $this
      */
     public function setIconUrl(?string $icon_url): static
     {

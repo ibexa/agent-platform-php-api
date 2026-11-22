@@ -361,7 +361,7 @@ class KnowledgeBaseInsightMetricSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $value Current live count.
      *
-     * @return self
+     * @return $this
      */
     public function setValue(?int $value): static
     {
@@ -388,7 +388,7 @@ class KnowledgeBaseInsightMetricSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $previous_value Count before the current calendar month started, the baseline `change`/`change_ratio` compare against.
      *
-     * @return self
+     * @return $this
      */
     public function setPreviousValue(?int $previous_value): static
     {
@@ -415,7 +415,7 @@ class KnowledgeBaseInsightMetricSchema implements ModelInterface, ArrayAccess, \
      *
      * @param int $change `value` minus `previous_value`.
      *
-     * @return self
+     * @return $this
      */
     public function setChange(?int $change): static
     {
@@ -442,7 +442,7 @@ class KnowledgeBaseInsightMetricSchema implements ModelInterface, ArrayAccess, \
      *
      * @param float|null $change_ratio `change` as a fraction of `previous_value` (0.126 is a 12.6% rise). Null when `previous_value` is zero: growth from zero has no ratio — show `change` instead.
      *
-     * @return self
+     * @return $this
      */
     public function setChangeRatio($change_ratio): static
     {
@@ -476,7 +476,7 @@ class KnowledgeBaseInsightMetricSchema implements ModelInterface, ArrayAccess, \
      *
      * @param KnowledgeBaseInsightPeriodSchema[]|null $series New occurrences per period across the requested date range, zero-filled. Null for metrics that are inherently a snapshot rather than a flow (currently only `stale_drafts`).
      *
-     * @return self
+     * @return $this
      */
     public function setSeries(?array $series): static
     {

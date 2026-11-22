@@ -324,7 +324,7 @@ class ModelUsageResponseSchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param ModelUsageItemResponseSchema[] $items items
      *
-     * @return self
+     * @return $this
      */
     public function setItems(?array $items): static
     {

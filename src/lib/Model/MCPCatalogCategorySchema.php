@@ -339,7 +339,7 @@ class MCPCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -366,7 +366,7 @@ class MCPCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name Name of the MCP catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -393,7 +393,7 @@ class MCPCatalogCategorySchema implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $description Description of the MCP catalog category
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

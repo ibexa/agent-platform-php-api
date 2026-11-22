@@ -324,7 +324,7 @@ class RemoteTriggerSourceInboundUrlResponseSchema implements ModelInterface, Arr
      *
      * @param string $inbound_url Set it in the 3rd-party system's settings; it is not shown again.
      *
-     * @return self
+     * @return $this
      */
     public function setInboundUrl(?string $inbound_url): static
     {

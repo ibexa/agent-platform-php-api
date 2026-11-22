@@ -358,7 +358,7 @@ class SequentialNodeInput implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -395,7 +395,7 @@ class SequentialNodeInput implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param NodesInner[] $nodes Child nodes executed one after another. Each node receives the full accumulated message history from all prior nodes.
      *
-     * @return self
+     * @return $this
      */
     public function setNodes(?array $nodes): static
     {

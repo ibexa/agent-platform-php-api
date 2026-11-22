@@ -361,7 +361,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string|null $id ID of the individual trigger that fired this run, or null once that trigger has been deleted
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -395,7 +395,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string|null $definition_id ID of the trigger definition — the kind of trigger — as listed by GET /triggers/definitions
      *
-     * @return self
+     * @return $this
      */
     public function setDefinitionId(?string $definition_id): static
     {
@@ -429,7 +429,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param TriggerType $type Coarse bucket of the trigger that started this execution (MANUAL, SCHEDULER, WEBHOOK, or UNKNOWN if unattributed), derived from `definition_id`. UNKNOWN covers runs created before the platform began recording their origin, and runs it starts directly rather than through a trigger
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -456,7 +456,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string|null $label Human-readable name of the trigger definition, or null when the catalog does not know it
      *
-     * @return self
+     * @return $this
      */
     public function setLabel(?string $label): static
     {
@@ -490,7 +490,7 @@ class ExecutionTriggerSummarySchema implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string|null $description What this kind of trigger does
      *
-     * @return self
+     * @return $this
      */
     public function setDescription(?string $description): static
     {

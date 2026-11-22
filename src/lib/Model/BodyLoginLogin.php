@@ -364,7 +364,7 @@ class BodyLoginLogin implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $grant_type grant_type
      *
-     * @return self
+     * @return $this
      */
     public function setGrantType(?string $grant_type): static
     {
@@ -403,7 +403,7 @@ class BodyLoginLogin implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $username username
      *
-     * @return self
+     * @return $this
      */
     public function setUsername(?string $username): static
     {
@@ -430,7 +430,7 @@ class BodyLoginLogin implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $password password
      *
-     * @return self
+     * @return $this
      */
     public function setPassword(?string $password): static
     {
@@ -457,7 +457,7 @@ class BodyLoginLogin implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $scope scope
      *
-     * @return self
+     * @return $this
      */
     public function setScope(?string $scope): static
     {
@@ -484,7 +484,7 @@ class BodyLoginLogin implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $client_id client_id
      *
-     * @return self
+     * @return $this
      */
     public function setClientId(?string $client_id): static
     {
@@ -518,7 +518,7 @@ class BodyLoginLogin implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $client_secret client_secret
      *
-     * @return self
+     * @return $this
      */
     public function setClientSecret(?string $client_secret): static
     {

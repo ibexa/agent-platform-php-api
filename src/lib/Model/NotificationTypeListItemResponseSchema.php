@@ -364,7 +364,7 @@ class NotificationTypeListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param NotificationType $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType($type): static
     {
@@ -391,7 +391,7 @@ class NotificationTypeListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param NotificationPriority $default_priority Priority a notification of this type is created with
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultPriority($default_priority): static
     {
@@ -418,7 +418,7 @@ class NotificationTypeListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param NotificationChannel[] $default_channels Channels the type reaches a recipient on before their preferences are applied; what it currently resolves to for the caller is `GET /notifications/preferences/`
      *
-     * @return self
+     * @return $this
      */
     public function setDefaultChannels(?array $default_channels): static
     {
@@ -445,7 +445,7 @@ class NotificationTypeListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param NotificationTypeActionSchema[] $actions Actions a recipient can resolve this type's notifications with
      *
-     * @return self
+     * @return $this
      */
     public function setActions(?array $actions): static
     {
@@ -472,7 +472,7 @@ class NotificationTypeListItemResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param bool $user_configurable Whether preferences apply at all; a type that is not configurable always delivers on its default channels and rejects a preference
      *
-     * @return self
+     * @return $this
      */
     public function setUserConfigurable(?bool $user_configurable): static
     {

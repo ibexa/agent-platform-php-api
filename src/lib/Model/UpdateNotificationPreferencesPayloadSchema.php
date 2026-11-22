@@ -327,7 +327,7 @@ class UpdateNotificationPreferencesPayloadSchema implements ModelInterface, Arra
      *
      * @param SetNotificationPreferencePayloadSchema[] $preferences preferences
      *
-     * @return self
+     * @return $this
      */
     public function setPreferences(?array $preferences): static
     {

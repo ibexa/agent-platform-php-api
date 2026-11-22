@@ -188,7 +188,8 @@ class FormDataProcessor
         $result = [];
 
         foreach ($model::openAPITypes() as $name => $type) {
-            $value = $model->offsetGet($name);
+            $getter = $model::getters()[$name];
+            $value = $model->$getter();
 
             if ($value === null) {
                 continue;

@@ -352,7 +352,7 @@ class AgentRecommendationEventResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string $event_id event_id
      *
-     * @return self
+     * @return $this
      */
     public function setEventId(?string $event_id): static
     {
@@ -379,7 +379,7 @@ class AgentRecommendationEventResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $recommendation_result_id recommendation_result_id
      *
-     * @return self
+     * @return $this
      */
     public function setRecommendationResultId(?int $recommendation_result_id): static
     {
@@ -406,7 +406,7 @@ class AgentRecommendationEventResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param RecommendationEventType $event_type event_type
      *
-     * @return self
+     * @return $this
      */
     public function setEventType($event_type): static
     {
@@ -433,7 +433,7 @@ class AgentRecommendationEventResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param \DateTime $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {

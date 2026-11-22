@@ -327,7 +327,7 @@ class SetCredentialsPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $credentials credentials
      *
-     * @return self
+     * @return $this
      */
     public function setCredentials(?string $credentials): static
     {
@@ -361,7 +361,7 @@ class SetCredentialsPayloadSchema implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param array<string,mixed>|null $config config
      *
-     * @return self
+     * @return $this
      */
     public function setConfig(?array $config): static
     {

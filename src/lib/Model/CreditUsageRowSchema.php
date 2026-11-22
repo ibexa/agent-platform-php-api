@@ -334,7 +334,7 @@ class CreditUsageRowSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $dimension_id dimension_id
      *
-     * @return self
+     * @return $this
      */
     public function setDimensionId(?string $dimension_id): static
     {
@@ -368,7 +368,7 @@ class CreditUsageRowSchema implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $credits_spent credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {

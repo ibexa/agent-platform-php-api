@@ -354,7 +354,7 @@ class CreditUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime $period First day of the bucket: the day itself for DAY, the Monday for WEEK, the 1st for MONTH.
      *
-     * @return self
+     * @return $this
      */
     public function setPeriod($period): static
     {
@@ -381,7 +381,7 @@ class CreditUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $allowance_credits_spent allowance_credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setAllowanceCreditsSpent(?string $allowance_credits_spent): static
     {
@@ -408,7 +408,7 @@ class CreditUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $purchased_credits_spent purchased_credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setPurchasedCreditsSpent(?string $purchased_credits_spent): static
     {
@@ -435,7 +435,7 @@ class CreditUsagePeriodSchema implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $credits_spent credits_spent
      *
-     * @return self
+     * @return $this
      */
     public function setCreditsSpent(?string $credits_spent): static
     {

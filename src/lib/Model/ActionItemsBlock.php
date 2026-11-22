@@ -362,7 +362,7 @@ class ActionItemsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?string $id): static
     {
@@ -389,7 +389,7 @@ class ActionItemsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type type
      *
-     * @return self
+     * @return $this
      */
     public function setType(?string $type): static
     {
@@ -426,7 +426,7 @@ class ActionItemsBlock implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param ActionItem[] $actions actions
      *
-     * @return self
+     * @return $this
      */
     public function setActions(?array $actions): static
     {

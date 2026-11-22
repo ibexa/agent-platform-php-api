@@ -344,7 +344,7 @@ class RemoteTriggerSourceInUseResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string $detail detail
      *
-     * @return self
+     * @return $this
      */
     public function setDetail(?string $detail): static
     {
@@ -371,7 +371,7 @@ class RemoteTriggerSourceInUseResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $remote_trigger_source_id remote_trigger_source_id
      *
-     * @return self
+     * @return $this
      */
     public function setRemoteTriggerSourceId(?int $remote_trigger_source_id): static
     {
@@ -398,7 +398,7 @@ class RemoteTriggerSourceInUseResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param int $trigger_count Number of triggers that still use the source.
      *
-     * @return self
+     * @return $this
      */
     public function setTriggerCount(?int $trigger_count): static
     {

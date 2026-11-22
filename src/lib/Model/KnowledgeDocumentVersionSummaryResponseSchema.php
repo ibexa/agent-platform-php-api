@@ -434,7 +434,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param int $id id
      *
-     * @return self
+     * @return $this
      */
     public function setId(?int $id): static
     {
@@ -461,7 +461,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param int $version_number version_number
      *
-     * @return self
+     * @return $this
      */
     public function setVersionNumber(?int $version_number): static
     {
@@ -488,7 +488,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param VersionStatus $status status
      *
-     * @return self
+     * @return $this
      */
     public function setStatus($status): static
     {
@@ -515,7 +515,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param string $name name
      *
-     * @return self
+     * @return $this
      */
     public function setName(?string $name): static
     {
@@ -542,7 +542,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param string|null $source_file_id source_file_id
      *
-     * @return self
+     * @return $this
      */
     public function setSourceFileId(?string $source_file_id): static
     {
@@ -576,7 +576,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param DocumentParseStatus $parse_status parse_status
      *
-     * @return self
+     * @return $this
      */
     public function setParseStatus($parse_status): static
     {
@@ -603,7 +603,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param EmbeddingStatus $embedding_status embedding_status
      *
-     * @return self
+     * @return $this
      */
     public function setEmbeddingStatus($embedding_status): static
     {
@@ -630,7 +630,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param \DateTime|null $published_at published_at
      *
-     * @return self
+     * @return $this
      */
     public function setPublishedAt($published_at): static
     {
@@ -664,7 +664,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param string|null $publish_error publish_error
      *
-     * @return self
+     * @return $this
      */
     public function setPublishError(?string $publish_error): static
     {
@@ -698,7 +698,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param KnowledgeNodeUserSchema|null $created_by created_by
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedBy($created_by): static
     {
@@ -732,7 +732,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param \DateTime|null $created_at created_at
      *
-     * @return self
+     * @return $this
      */
     public function setCreatedAt($created_at): static
     {
@@ -766,7 +766,7 @@ class KnowledgeDocumentVersionSummaryResponseSchema implements ModelInterface, A
      *
      * @param \DateTime|null $updated_at updated_at
      *
-     * @return self
+     * @return $this
      */
     public function setUpdatedAt($updated_at): static
     {

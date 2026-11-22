@@ -334,7 +334,7 @@ class NotificationListResponseSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param NotificationResponseSchema[] $notifications notifications
      *
-     * @return self
+     * @return $this
      */
     public function setNotifications(?array $notifications): static
     {
@@ -361,7 +361,7 @@ class NotificationListResponseSchema implements ModelInterface, ArrayAccess, \Js
      *
      * @param int|null $next_before_id Pass as `before_id` to fetch the next page; null on the last page
      *
-     * @return self
+     * @return $this
      */
     public function setNextBeforeId(?int $next_before_id): static
     {

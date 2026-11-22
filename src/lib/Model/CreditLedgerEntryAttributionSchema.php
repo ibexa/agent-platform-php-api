@@ -361,7 +361,7 @@ class CreditLedgerEntryAttributionSchema implements ModelInterface, ArrayAccess,
      *
      * @param int|null $agent_id agent_id
      *
-     * @return self
+     * @return $this
      */
     public function setAgentId(?int $agent_id): static
     {
@@ -395,7 +395,7 @@ class CreditLedgerEntryAttributionSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $user_id user_id
      *
-     * @return self
+     * @return $this
      */
     public function setUserId(?string $user_id): static
     {
@@ -429,7 +429,7 @@ class CreditLedgerEntryAttributionSchema implements ModelInterface, ArrayAccess,
      *
      * @param int|null $execution_id execution_id
      *
-     * @return self
+     * @return $this
      */
     public function setExecutionId(?int $execution_id): static
     {
@@ -463,7 +463,7 @@ class CreditLedgerEntryAttributionSchema implements ModelInterface, ArrayAccess,
      *
      * @param int|null $conversation_id conversation_id
      *
-     * @return self
+     * @return $this
      */
     public function setConversationId(?int $conversation_id): static
     {
@@ -497,7 +497,7 @@ class CreditLedgerEntryAttributionSchema implements ModelInterface, ArrayAccess,
      *
      * @param string|null $model_identifier The model this consumption was recorded against, e.g. 'openai/gpt-4o'. Null for rows recorded before this dimension existed, or for non-model spend (e.g. execution wall-clock).
      *
-     * @return self
+     * @return $this
      */
     public function setModelIdentifier(?string $model_identifier): static
     {

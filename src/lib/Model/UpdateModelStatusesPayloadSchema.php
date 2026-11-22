@@ -327,7 +327,7 @@ class UpdateModelStatusesPayloadSchema implements ModelInterface, ArrayAccess, \
      *
      * @param ModelStatusUpdateSchema[] $updates updates
      *
-     * @return self
+     * @return $this
      */
     public function setUpdates(?array $updates): static
     {

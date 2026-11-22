@@ -331,7 +331,7 @@ class AgentsCatalogEntryImportResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param string $task_id task_id
      *
-     * @return self
+     * @return $this
      */
     public function setTaskId(?string $task_id): static
     {
@@ -358,7 +358,7 @@ class AgentsCatalogEntryImportResponseSchema implements ModelInterface, ArrayAcc
      *
      * @param array<string,string[]>|null $entries_with_unresolved_mcp_links Agents Catalog entry identifier -> MCP server identifiers that couldn't be linked because no matching MCP Catalog entry exists yet (e.g. its own import is still in flight). The import above still proceeds with those links omitted; re-submitting this same request once the MCP Catalog import has finished backfills them, since the upsert always overwrites the links.
      *
-     * @return self
+     * @return $this
      */
     public function setEntriesWithUnresolvedMcpLinks(?array $entries_with_unresolved_mcp_links): static
     {

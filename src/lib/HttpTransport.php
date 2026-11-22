@@ -36,7 +36,7 @@ final class HttpTransport
     ): AsyncResult {
         $response = $this->start($request);
 
-        return new AsyncResult(function () use ($request, $response, $process) {
+        return new AsyncResult(function () use ($response, $process) {
             try {
                 $psrResponse = new Response(
                     $response->getStatusCode(),

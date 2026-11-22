@@ -1,7 +1,14 @@
 parameters:
-    level: 0
+    level: 1
     phpVersion: 80300
     paths:
         - src/lib
         - tests
         - generator/prepare-openapi.php
+    # Empty generated models retain the shared constructor for API compatibility.
+    ignoreErrors:
+        -
+            identifier: constructor.unusedParameter
+            message: '~^Constructor of class Ibexa\\AgentPlatform\\Model\\(Amount|BlocksInner|CreditsMax|CreditsMin|LocationInner|MaxTextInputPrice|MonthlyAllowance|Value|Value1|X) has an unused parameter \$data\.$~'
+            path: src/lib/Model/*
+            count: 10

@@ -26,4 +26,4 @@ for directory in Api Model; do
     rmdir "src/test/$directory"
 done
 rmdir src/test
-vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=none --quiet src tests/generated
+vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=none src tests/generated

@@ -156,6 +156,7 @@ final class ServerSentEventTest extends TestCase
         self::assertSame(['delta' => 'one'], $events->current()->getData());
         unset($events);
 
+        self::assertInstanceOf(ResponseInterface::class, $http->response);
         self::assertTrue($http->response->getInfo('canceled'));
     }
 

@@ -57,7 +57,10 @@ final class SymfonyHttpClientTest extends TestCase
             } catch (ApiException $exception) {
                 self::assertSame(422, $exception->getCode());
                 self::assertSame('{"error":"bad"}', $exception->getResponseBody());
-                self::assertSame(['application/json'], $exception->getResponseHeaders()['content-type']);
+                $headers = $exception->getResponseHeaders();
+                self::assertIsArray($headers);
+                self::assertArrayHasKey('content-type', $headers);
+                self::assertSame(['application/json'], $headers['content-type']);
             }
         }
     }

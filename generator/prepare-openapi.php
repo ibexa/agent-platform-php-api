@@ -13,7 +13,6 @@ if (($resultSchema->anyOf ?? null) != [(object) [], (object) ['type' => 'null']]
 }
 $resultSchema->{'x-unconstrained-value'} = true;
 $eventSchema = null;
-$count = 0;
 
 foreach ($spec->paths as $methods) {
     foreach ($methods as &$operation) {
@@ -40,14 +39,13 @@ foreach ($spec->paths as $methods) {
             }
             $eventSchema = $itemSchema;
             $operation->{'x-sse-events'} = true;
-            ++$count;
         }
     }
     unset($operation);
 }
 unset($methods);
 
-if ($count === 0 || isset($spec->components->schemas->ServerSentEventSchema)) {
+if ($eventSchema === null || isset($spec->components->schemas->ServerSentEventSchema)) {
     throw new RuntimeException('Cannot generate the server-sent event model.');
 }
 

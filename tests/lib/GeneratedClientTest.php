@@ -225,8 +225,12 @@ final class GeneratedClientTest extends TestCase
             AgentListResponseSchema::class
         );
         self::assertInstanceOf(AgentListResponseSchema::class, $list);
-        self::assertInstanceOf(AgentListItemResponseSchema::class, $list->getAgents()[0]);
-        self::assertSame(42, $list->getAgents()[0]->getId());
+        $agents = $list->getAgents();
+        self::assertIsArray($agents);
+        self::assertCount(1, $agents);
+        self::assertArrayHasKey(0, $agents);
+        self::assertInstanceOf(AgentListItemResponseSchema::class, $agents[0]);
+        self::assertSame(42, $agents[0]->getId());
         self::assertSame(1, $list->getTotalCount());
     }
 
@@ -252,7 +256,11 @@ final class GeneratedClientTest extends TestCase
             ModelShortlistResponseSchema::class,
         );
         self::assertInstanceOf(ModelShortlistResponseSchema::class, $result);
-        $profile = $result->getData()[0];
+        $profiles = $result->getData();
+        self::assertIsArray($profiles);
+        self::assertCount(1, $profiles);
+        self::assertArrayHasKey(0, $profiles);
+        $profile = $profiles[0];
         self::assertInstanceOf(AdminModelProfileResponseSchema::class, $profile);
         self::assertSame(1, $profile->getId());
         self::assertInstanceOf(AdminModelPricingResponseSchema::class, $profile->getCurrentPricing());

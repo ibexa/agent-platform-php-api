@@ -49,6 +49,21 @@ jobs:
             -   name: Run code style check
                 run: composer run-script check-cs -- --format=checkstyle | cs2pr
 
+    phpstan:
+        name: Static analysis
+        runs-on: "ubuntu-26.04"
+        steps:
+            -   uses: actions/checkout@v7
+
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
+                with:
+                    php-version: '8.3'
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+
+            -   name: Run PHPStan
+                run: composer run-script phpstan
+
     tests:
         name: Tests
         runs-on: "ubuntu-26.04"

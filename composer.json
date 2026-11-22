@@ -31,6 +31,7 @@
     },
     "require-dev": {
         "ibexa/code-style": "~2.3.0",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
@@ -47,12 +48,14 @@
     "scripts": {
         "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots",
         "check-cs": "@fix-cs --dry-run",
+        "phpstan": "phpstan analyse --no-progress",
         "test": "phpunit -c phpunit.xml.dist",
         "test-coverage": "@test --coverage-clover build/coverage.xml --coverage-html build/coverage"
     },
     "scripts-descriptions": {
         "fix-cs": "Automatically fixes code style in all files",
         "check-cs": "Run code style checker for all files",
+        "phpstan": "Run static analysis",
         "test": "Run automatic tests",
         "test-coverage": "Run tests and generate coverage reports (requires PCOV or Xdebug)"
     },

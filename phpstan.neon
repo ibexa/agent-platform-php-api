@@ -1,0 +1,7 @@
+parameters:
+    level: 0
+    phpVersion: 80300
+    paths:
+        - src/lib
+        - tests
+        - generator/prepare-openapi.php

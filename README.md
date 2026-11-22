@@ -148,6 +148,9 @@ The generated suite checks request methods, paths and authentication, HTTP error
 handling, response types and SSE payload decoding. Its minimal fixtures do not
 replace API-specific validation and integration tests.
 
+Run `composer phpstan` for PHPStan level 0 analysis of the client, tests and
+OpenAPI preprocessing script. CI runs the same check on PHP 8.3.
+
 Run all suites with `composer test`, or only generated tests with
 `composer test -- --testsuite generated`. To generate HTML and Clover coverage
 reports, enable Xdebug coverage or PCOV:

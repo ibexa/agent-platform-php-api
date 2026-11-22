@@ -43,6 +43,7 @@ final class StreamClient
         $client = new EventSourceHttpClient(new SingleRequestHttpClient($this->client));
         $transport = new HttpTransport($client, $this->config);
         $response = $transport->start($request, false, false);
+        $chunk = null;
 
         try {
             $status = $response->getStatusCode();
@@ -79,7 +80,7 @@ final class StreamClient
                 sprintf('Error JSON decoding event data (%s): %s', (string) $request->getUri(), $exception->getMessage()),
                 $response->getStatusCode(),
                 $response->getHeaders(false),
-                isset($chunk) && $chunk instanceof ServerSentEvent ? $chunk->getData() : null,
+                $chunk instanceof ServerSentEvent ? $chunk->getData() : null,
             );
         } catch (TransportExceptionInterface $exception) {
             throw $transport->transportException($exception);

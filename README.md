@@ -1,7 +1,6 @@
 # Ibexa Agentic Marketing Platform API
 
-For installation, authentication, usage examples, API overview, and architecture,
-see the [PHP developer guide](docs/README.md).
+PHP client for the Ibexa Agentic Marketing Platform REST API.
 
 ## Installation & Usage
 
@@ -13,31 +12,18 @@ uses `guzzlehttp/psr7`; the Guzzle HTTP client is not required.
 
 ### Composer
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+Install the package from [Packagist](https://packagist.org/packages/ibexa/agent-platform-api)
+using [Composer](https://getcomposer.org/):
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/ibexa/agent-platform-php-api.git"
-    }
-  ],
-  "require": {
-    "ibexa/agent-platform-api": "*@dev"
-  }
-}
+```bash
+composer require ibexa/agent-platform-api
 ```
-
-Then run `composer install`. If the package is already available through a
-configured Composer repository, omit the VCS repository entry. Pin an
-appropriate release or branch for deployments.
 
 ## Getting Started
 
 Configure the API origin and authenticate before using protected endpoints.
-Set the environment variables `AGENT_PLATFORM_USERNAME` and
-`AGENT_PLATFORM_PASSWORD` using your application's secret management.
+Set the environment variables `IAMP_USERNAME` and `IAMP_PASSWORD` using your
+application's secret management.
 
 ```php
 <?php
@@ -49,8 +35,8 @@ use Ibexa\AgentPlatform\Client\LoginApi;
 use Ibexa\AgentPlatform\Configuration;
 use Symfony\Component\HttpClient\HttpClient;
 
-$username = getenv('AGENT_PLATFORM_USERNAME');
-$password = getenv('AGENT_PLATFORM_PASSWORD');
+$username = getenv('IAMP_USERNAME');
+$password = getenv('IAMP_PASSWORD');
 if (!$username || !$password) {
     throw new RuntimeException('Agent Platform credentials are required');
 }
@@ -66,16 +52,12 @@ foreach ($agents->getAgents() as $agent) {
 }
 ```
 
-Replace the host with your deployment's origin, without `/api/v1`. See the
-[developer guide](docs/README.md) for token refresh, error handling, and more
-examples.
+Replace the host with your deployment's origin, without `/api/v1`.
 
 ## Asynchronous requests and streaming
 
 Async methods start a request and return an `AsyncResult`. Call `wait()` to
-obtain the same model as the synchronous method; `*AsyncWithHttpInfo()->wait()`
-returns `[$model, $statusCode, $headers]`. Multiple requests can be started
-before waiting. Results and exceptions are cached on repeated calls to `wait()`.
+obtain the result; multiple requests can be started before waiting.
 
 ```php
 use Ibexa\AgentPlatform\Client\AgentsApi;
@@ -98,80 +80,40 @@ foreach ($executions->attachExecutionStreamEvents(42) as $event) {
 ```
 
 `MessagesApi` also provides `attachMessageStreamEvents()` and
-`sendMessageStreamEvents()`. The event model exposes `getData()`, `getEvent()`,
-`getId()` and `getRetry()`; retry is in milliseconds. Symfony defaults missing
-event types to `message`, missing IDs to an empty string, and missing retry to
-zero. `getData()` returns the JSON payload decoded as an associative array,
-including nested objects. Invalid JSON and non-array payloads raise `ApiException`.
-
-Automatic reconnection and redirects are disabled, including for POST streams.
-For attachment streams, callers can explicitly reconnect with the last event ID.
-Release the iterator when stopping early to cancel the response. HTTP and network
-errors raise `ApiException`. The older generated stream convenience methods do
-not return stream data. `StreamClient::stream()` remains available for raw bytes.
-
-This migration changes constructor injection from Guzzle to Symfony's
-`HttpClientInterface` and replaces Guzzle promises with `AsyncResult`; `then()`
-and other Guzzle promise APIs are no longer available.
+`sendMessageStreamEvents()`. Event data is decoded into an array. Streams do
+not reconnect automatically; attachment streams can be reconnected using the
+last event ID. HTTP, network, and invalid event payload errors raise `ApiException`.
 
 ## Regenerating the client
 
-The client is generated from the checked-in `generator/openapi.json` snapshot
-using OpenAPI Generator 7.27.0 and the overrides in `generator/templates`.
-Install Composer dependencies and Docker, then run `./update.sh` from any
-directory. The preprocessing step derives a shared event schema and marks SSE
-operations before generation; it fails if their item schemas differ. Update the
-snapshot deliberately when adopting API changes; the script does not fetch the live API.
-Preprocessing steps implement `SpecProcessor` and are registered in order in
-`generator/processors.php`; add a processor there to extend the pipeline.
-The snapshot contains streaming response `itemSchema` fields which the
-generator's validator does not recognize, so generation skips validation.
+Contributors can regenerate the client from the checked-in
+`generator/openapi.json` snapshot. Install Composer dependencies and Docker,
+then run:
 
-Generated models expose native types for scalar and collection accessors and
-return `static` from setters. Scalar and collection getters remain nullable
-because a model can be constructed before required values are populated.
-The model metadata method is `getOpenAPIModelName()`; `getModelName()` is
-reserved for a schema field of that name.
-Model string and header serialization throw `JsonException` when encoding fails.
-The `HeaderSelector` template override keeps Accept-header quality weights
-integer-valued for strict PHP type checking.
-The supporting `ApiException`, `Configuration`, and `ObjectSerializer`
-templates also provide native type hints. Configuration setters enforce their
-documented argument types; serializer values that can hold different kinds of
-data remain `mixed`.
+```bash
+./update.sh
+```
+
+The script does not fetch a newer API specification.
 
 ## Tests and coverage
 
-`./update.sh` also generates endpoint contract tests and model serialization
-checks under `tests/generated`. These files are replaced on regeneration; keep
-handwritten tests and realistic response fixtures under `tests/lib`.
-The PHP generator hardcodes its test directory; `update.sh` relocates the
-generated files into `tests/generated` before formatting them.
-The generated suite checks request methods, paths and authentication, HTTP error
-handling, response types and SSE payload decoding. Its minimal fixtures do not
-replace API-specific validation and integration tests.
+Run the test suite, static analysis, and style checks with:
 
-Run `composer phpstan` for PHPStan level 8 analysis of the client, tests and
-OpenAPI preprocessing script. CI runs the same check on PHP 8.3. The unused
-constructor parameter warning is excluded for generated models, which share a
-constructor signature even when they have no properties. PHPDoc types are not
-treated as certain, so generated runtime checks remain meaningful for callers
-that pass invalid values.
+```bash
+composer test
+composer phpstan
+composer check-cs
+```
 
-Run `composer fix-cs` to format the client, tests and OpenAPI preprocessing
-script, or `composer check-cs` to check formatting without modifying files.
-
-Run all suites with `composer test`, or only generated tests with
-`composer test -- --testsuite generated`. To generate HTML and Clover coverage
-reports, enable Xdebug coverage or PCOV:
+Use `composer fix-cs` to apply style fixes. To generate coverage reports,
+enable Xdebug coverage or PCOV:
 
 ```bash
 XDEBUG_MODE=coverage composer test-coverage
 ```
 
-Reports are written to `build/coverage/` and `build/coverage.xml`. Coverage
-includes `src/lib`, not generated test files. CI publishes the reports for PHP
-8.3 and checks that regenerated clients and tests match the committed files.
+Reports are written to `build/coverage/` and `build/coverage.xml`.
 
 ## COPYRIGHT
 

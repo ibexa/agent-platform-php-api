@@ -179,7 +179,7 @@ class ExecutionsApi
         $execution_id,
         $last_event_id = null,
         string $contentType = self::contentTypes['attachExecutionStream'][0]
-    ) {
+    ): void {
         $this->attachExecutionStreamWithHttpInfo($execution_id, $last_event_id, $contentType);
     }
 
@@ -195,7 +195,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function attachExecutionStreamWithHttpInfo(
         $execution_id,
@@ -205,6 +205,7 @@ class ExecutionsApi
         return $this->attachExecutionStreamAsyncWithHttpInfo($execution_id, $last_event_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processattachExecutionStreamResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -241,7 +242,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function attachExecutionStreamAsync(
         $execution_id,
@@ -265,7 +266,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function attachExecutionStreamAsyncWithHttpInfo(
         $execution_id,
@@ -407,7 +408,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function cancelExecutionWithHttpInfo(
         $execution_id,
@@ -416,6 +417,7 @@ class ExecutionsApi
         return $this->cancelExecutionAsyncWithHttpInfo($execution_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processcancelExecutionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -472,7 +474,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function cancelExecutionAsync(
         $execution_id,
@@ -494,7 +496,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function cancelExecutionAsyncWithHttpInfo(
         $execution_id,
@@ -610,7 +612,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function createExecutionWithHttpInfo(
         $create_execution_payload_schema,
@@ -619,6 +621,7 @@ class ExecutionsApi
         return $this->createExecutionAsyncWithHttpInfo($create_execution_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processcreateExecutionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -675,7 +678,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function createExecutionAsync(
         $create_execution_payload_schema,
@@ -697,7 +700,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function createExecutionAsyncWithHttpInfo(
         $create_execution_payload_schema,
@@ -816,7 +819,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getExecutionWithHttpInfo(
         $execution_id,
@@ -825,6 +828,7 @@ class ExecutionsApi
         return $this->getExecutionAsyncWithHttpInfo($execution_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetExecutionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -881,7 +885,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getExecutionAsync(
         $execution_id,
@@ -903,7 +907,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getExecutionAsyncWithHttpInfo(
         $execution_id,
@@ -1025,7 +1029,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ExecutionStepListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listExecutionStepsWithHttpInfo(
         $execution_id,
@@ -1036,6 +1040,7 @@ class ExecutionsApi
         return $this->listExecutionStepsAsyncWithHttpInfo($execution_id, $cursor, $limit, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistExecutionStepsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1094,7 +1099,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listExecutionStepsAsync(
         $execution_id,
@@ -1120,7 +1125,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listExecutionStepsAsyncWithHttpInfo(
         $execution_id,
@@ -1307,7 +1312,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ExecutionListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listExecutionsWithHttpInfo(
         $skip = 0,
@@ -1329,6 +1334,7 @@ class ExecutionsApi
         return $this->listExecutionsAsyncWithHttpInfo($skip, $limit, $agent_id, $status, $id, $created_by, $trigger_definition_id, $trigger_type, $duration_min, $duration_max, $credits_min, $credits_max, $search, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistExecutionsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1398,7 +1404,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listExecutionsAsync(
         $skip = 0,
@@ -1446,7 +1452,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listExecutionsAsyncWithHttpInfo(
         $skip = 0,
@@ -1741,7 +1747,7 @@ class ExecutionsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\CreateExecutionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function retryExecutionWithHttpInfo(
         $execution_id,
@@ -1750,6 +1756,7 @@ class ExecutionsApi
         return $this->retryExecutionAsyncWithHttpInfo($execution_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processretryExecutionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1806,7 +1813,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function retryExecutionAsync(
         $execution_id,
@@ -1828,7 +1835,7 @@ class ExecutionsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function retryExecutionAsyncWithHttpInfo(
         $execution_id,
@@ -1911,6 +1918,7 @@ class ExecutionsApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

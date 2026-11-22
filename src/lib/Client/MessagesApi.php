@@ -164,7 +164,7 @@ class MessagesApi
         $conversation_id,
         $last_event_id = null,
         string $contentType = self::contentTypes['attachMessageStream'][0]
-    ) {
+    ): void {
         $this->attachMessageStreamWithHttpInfo($conversation_id, $last_event_id, $contentType);
     }
 
@@ -180,7 +180,7 @@ class MessagesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function attachMessageStreamWithHttpInfo(
         $conversation_id,
@@ -190,6 +190,7 @@ class MessagesApi
         return $this->attachMessageStreamAsyncWithHttpInfo($conversation_id, $last_event_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processattachMessageStreamResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -226,7 +227,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function attachMessageStreamAsync(
         $conversation_id,
@@ -250,7 +251,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function attachMessageStreamAsyncWithHttpInfo(
         $conversation_id,
@@ -398,7 +399,7 @@ class MessagesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\MessageListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listMessagesWithHttpInfo(
         $conversation_id,
@@ -409,6 +410,7 @@ class MessagesApi
         return $this->listMessagesAsyncWithHttpInfo($conversation_id, $cursor, $limit, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistMessagesResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -467,7 +469,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listMessagesAsync(
         $conversation_id,
@@ -493,7 +495,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listMessagesAsyncWithHttpInfo(
         $conversation_id,
@@ -647,7 +649,7 @@ class MessagesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\SendMessageResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function sendMessageWithHttpInfo(
         $conversation_id,
@@ -658,6 +660,7 @@ class MessagesApi
         return $this->sendMessageAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processsendMessageResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -716,7 +719,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function sendMessageAsync(
         $conversation_id,
@@ -742,7 +745,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function sendMessageAsyncWithHttpInfo(
         $conversation_id,
@@ -871,7 +874,7 @@ class MessagesApi
         $send_message_payload_schema,
         $x_tenant_key = null,
         string $contentType = self::contentTypes['sendMessageStream'][0]
-    ) {
+    ): void {
         $this->sendMessageStreamWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType);
     }
 
@@ -888,7 +891,7 @@ class MessagesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function sendMessageStreamWithHttpInfo(
         $conversation_id,
@@ -899,6 +902,7 @@ class MessagesApi
         return $this->sendMessageStreamAsyncWithHttpInfo($conversation_id, $send_message_payload_schema, $x_tenant_key, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processsendMessageStreamResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -936,7 +940,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function sendMessageStreamAsync(
         $conversation_id,
@@ -962,7 +966,7 @@ class MessagesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function sendMessageStreamAsyncWithHttpInfo(
         $conversation_id,
@@ -1093,6 +1097,7 @@ class MessagesApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

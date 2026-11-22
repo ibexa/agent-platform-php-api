@@ -545,7 +545,7 @@ class Configuration
     /**
      * Returns an array of host settings.
      *
-     * @return array an array of host settings
+     * @return list<array{url: string, description: string, variables?: array<string, array{description: string, default_value: string, enum_values?: list<string>}>}> an array of host settings
      */
     public function getHostSettings(): array
     {
@@ -560,9 +560,9 @@ class Configuration
     /**
      * Returns URL based on host settings, index and variables.
      *
-     * @param array      $hostSettings array of host settings, generated from getHostSettings() or equivalent from the API clients
+     * @param list<array{url: string, variables?: array<string, array{default_value: string, enum_values?: list<string>}>}> $hostSettings array of host settings
      * @param int        $hostIndex    index of the host settings
-     * @param array|null $variables    hash of variable and the corresponding value (optional)
+     * @param array<string, string>|null $variables hash of variable and the corresponding value (optional)
      *
      * @return string URL based on host settings
      */
@@ -604,7 +604,7 @@ class Configuration
      * Returns URL based on the index and variables.
      *
      * @param int        $index     index of the host settings
-     * @param array|null $variables hash of variable and the corresponding value (optional)
+     * @param array<string, string>|null $variables hash of variable and the corresponding value (optional)
      *
      * @return string URL based on host settings
      */

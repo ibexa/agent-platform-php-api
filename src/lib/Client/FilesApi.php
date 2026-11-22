@@ -165,7 +165,7 @@ class FilesApi
         $conversation_id,
         $file_id,
         string $contentType = self::contentTypes['deleteFile'][0]
-    ) {
+    ): void {
         $this->deleteFileWithHttpInfo($conversation_id, $file_id, $contentType);
     }
 
@@ -181,7 +181,7 @@ class FilesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function deleteFileWithHttpInfo(
         $conversation_id,
@@ -191,6 +191,7 @@ class FilesApi
         return $this->deleteFileAsyncWithHttpInfo($conversation_id, $file_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdeleteFileResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -227,7 +228,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function deleteFileAsync(
         $conversation_id,
@@ -251,7 +252,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function deleteFileAsyncWithHttpInfo(
         $conversation_id,
@@ -386,7 +387,7 @@ class FilesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function downloadFileWithHttpInfo(
         $conversation_id,
@@ -396,6 +397,7 @@ class FilesApi
         return $this->downloadFileAsyncWithHttpInfo($conversation_id, $file_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdownloadFileResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -453,7 +455,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function downloadFileAsync(
         $conversation_id,
@@ -477,7 +479,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function downloadFileAsyncWithHttpInfo(
         $conversation_id,
@@ -615,7 +617,7 @@ class FilesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function downloadFileByTokenWithHttpInfo(
         $conversation_id,
@@ -626,6 +628,7 @@ class FilesApi
         return $this->downloadFileByTokenAsyncWithHttpInfo($conversation_id, $file_id, $token, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdownloadFileByTokenResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -684,7 +687,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function downloadFileByTokenAsync(
         $conversation_id,
@@ -710,7 +713,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function downloadFileByTokenAsyncWithHttpInfo(
         $conversation_id,
@@ -857,7 +860,7 @@ class FilesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\FileResponseSchema[], HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listFilesWithHttpInfo(
         $conversation_id,
@@ -866,6 +869,7 @@ class FilesApi
         return $this->listFilesAsyncWithHttpInfo($conversation_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistFilesResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -922,7 +926,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listFilesAsync(
         $conversation_id,
@@ -944,7 +948,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listFilesAsyncWithHttpInfo(
         $conversation_id,
@@ -1063,7 +1067,7 @@ class FilesApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\FileResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function uploadFileWithHttpInfo(
         $conversation_id,
@@ -1073,6 +1077,7 @@ class FilesApi
         return $this->uploadFileAsyncWithHttpInfo($conversation_id, $file, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processuploadFileResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1130,7 +1135,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function uploadFileAsync(
         $conversation_id,
@@ -1154,7 +1159,7 @@ class FilesApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function uploadFileAsyncWithHttpInfo(
         $conversation_id,
@@ -1272,6 +1277,7 @@ class FilesApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

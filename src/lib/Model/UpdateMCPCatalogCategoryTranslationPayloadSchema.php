@@ -104,7 +104,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
     /**
      * Array of property to type mappings. Used for (de)serialization.
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function openAPITypes(): array
     {
@@ -114,7 +114,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
     /**
      * Array of property to format mappings. Used for (de)serialization.
      *
-     * @return array
+     * @return array<string, string|null>
      */
     public static function openAPIFormats(): array
     {
@@ -124,7 +124,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
     /**
      * Array of nullable properties.
      *
-     * @return array
+     * @return array<string, bool>
      */
     protected static function openAPINullables(): array
     {
@@ -200,7 +200,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
      * Array of attributes where the key is the local name,
      * and the value is the original name.
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function attributeMap(): array
     {
@@ -210,7 +210,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
     /**
      * Array of attributes to setter functions (for deserialization of responses).
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function setters(): array
     {
@@ -220,7 +220,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
     /**
      * Array of attributes to getter functions (for serialization of requests).
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function getters(): array
     {
@@ -262,7 +262,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
      * $this->openAPINullablesSetToNull array.
      *
      * @param string $variableName
-     * @param array  $fields
+     * @param array<string, mixed>  $fields
      * @param mixed  $defaultValue
      */
     private function setIfExists(
@@ -279,7 +279,7 @@ class UpdateMCPCatalogCategoryTranslationPayloadSchema implements ModelInterface
     /**
      * Show all the invalid properties with reasons.
      *
-     * @return array invalid properties with reasons
+     * @return list<string>
      */
     public function listInvalidProperties(): array
     {

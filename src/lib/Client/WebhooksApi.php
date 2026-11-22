@@ -172,7 +172,7 @@ class WebhooksApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\RemoteSourceWebhookResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function receiveRemoteSourceWebhookWithHttpInfo(
         $token,
@@ -181,6 +181,7 @@ class WebhooksApi
         return $this->receiveRemoteSourceWebhookAsyncWithHttpInfo($token, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processreceiveRemoteSourceWebhookResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -237,7 +238,7 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function receiveRemoteSourceWebhookAsync(
         $token,
@@ -259,7 +260,7 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function receiveRemoteSourceWebhookAsyncWithHttpInfo(
         $token,
@@ -373,7 +374,7 @@ class WebhooksApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\WebhookResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function receiveWebhookWithHttpInfo(
         $token,
@@ -383,6 +384,7 @@ class WebhooksApi
         return $this->receiveWebhookAsyncWithHttpInfo($token, $request_body, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processreceiveWebhookResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -440,7 +442,7 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function receiveWebhookAsync(
         $token,
@@ -464,7 +466,7 @@ class WebhooksApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function receiveWebhookAsyncWithHttpInfo(
         $token,
@@ -557,6 +559,7 @@ class WebhooksApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

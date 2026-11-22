@@ -162,7 +162,7 @@ class UsersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      */
-    public function deleteAvatarMe(string $contentType = self::contentTypes['deleteAvatarMe'][0])
+    public function deleteAvatarMe(string $contentType = self::contentTypes['deleteAvatarMe'][0]): void
     {
         $this->deleteAvatarMeWithHttpInfo($contentType);
     }
@@ -177,13 +177,14 @@ class UsersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function deleteAvatarMeWithHttpInfo(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
         return $this->deleteAvatarMeAsyncWithHttpInfo($contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdeleteAvatarMeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -218,7 +219,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function deleteAvatarMeAsync(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
@@ -237,7 +238,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function deleteAvatarMeAsyncWithHttpInfo(string $contentType = self::contentTypes['deleteAvatarMe'][0])
     {
@@ -330,13 +331,14 @@ class UsersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\UserMeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function readUserMeWithHttpInfo(string $contentType = self::contentTypes['readUserMe'][0])
     {
         return $this->readUserMeAsyncWithHttpInfo($contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processreadUserMeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -392,7 +394,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function readUserMeAsync(string $contentType = self::contentTypes['readUserMe'][0])
     {
@@ -411,7 +413,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function readUserMeAsyncWithHttpInfo(string $contentType = self::contentTypes['readUserMe'][0])
     {
@@ -508,7 +510,7 @@ class UsersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AppApiRoutesSchemasMessageResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function updatePasswordMeWithHttpInfo(
         $user_update_password_request_schema,
@@ -517,6 +519,7 @@ class UsersApi
         return $this->updatePasswordMeAsyncWithHttpInfo($user_update_password_request_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processupdatePasswordMeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -573,7 +576,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function updatePasswordMeAsync(
         $user_update_password_request_schema,
@@ -595,7 +598,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function updatePasswordMeAsyncWithHttpInfo(
         $user_update_password_request_schema,
@@ -714,7 +717,7 @@ class UsersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\UserMeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function updateUserMeWithHttpInfo(
         $user_update_me_request_schema,
@@ -723,6 +726,7 @@ class UsersApi
         return $this->updateUserMeAsyncWithHttpInfo($user_update_me_request_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processupdateUserMeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -779,7 +783,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function updateUserMeAsync(
         $user_update_me_request_schema,
@@ -801,7 +805,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function updateUserMeAsyncWithHttpInfo(
         $user_update_me_request_schema,
@@ -920,7 +924,7 @@ class UsersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\UserMeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function uploadAvatarMeWithHttpInfo(
         $file,
@@ -929,6 +933,7 @@ class UsersApi
         return $this->uploadAvatarMeAsyncWithHttpInfo($file, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processuploadAvatarMeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -985,7 +990,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function uploadAvatarMeAsync(
         $file,
@@ -1007,7 +1012,7 @@ class UsersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function uploadAvatarMeAsyncWithHttpInfo(
         $file,
@@ -1108,6 +1113,7 @@ class UsersApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

@@ -70,7 +70,7 @@ class ObjectSerializer
      * @param string|null $type   the OpenAPIToolsType of the data
      * @param string|null $format the format of the OpenAPITools type of the data
      *
-     * @return scalar|object|array|null serialized form of $data
+     * @return scalar|object|array<mixed>|null serialized form of $data
      */
     public static function sanitizeForSerialization(
         mixed $data,
@@ -233,7 +233,7 @@ class ObjectSerializer
      * @param bool   $explode     Parameter explode option
      * @param bool   $required    Whether query param is required or not
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public static function toQueryValue(
         mixed $value,
@@ -371,7 +371,7 @@ class ObjectSerializer
     /**
      * Serialize an array to a string.
      *
-     * @param array  $collection                 collection to serialize to a string
+     * @param array<mixed> $collection           collection to serialize to a string
      * @param string $style                      the format use for serialization (csv,
      * ssv, tsv, pipes, multi)
      * @param bool   $allowCollectionFormatMulti allow collection format to be a multidimensional array
@@ -584,7 +584,7 @@ class ObjectSerializer
      * The function is copied from https://github.com/guzzle/psr7/blob/a243f80a1ca7fe8ceed4deee17f12c1930efe662/src/Query.php#L59-L112
      * with a modification which is described in https://github.com/guzzle/psr7/pull/603
      *
-     * @param array     $params              Query string parameters.
+     * @param array<array-key, mixed> $params Query string parameters.
      * @param int|false $encoding            Set to false to not encode, PHP_QUERY_RFC3986
      *                                       to encode using RFC3986, or PHP_QUERY_RFC1738
      *                                       to encode using RFC1738.

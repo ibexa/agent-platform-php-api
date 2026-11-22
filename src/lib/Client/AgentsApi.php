@@ -264,7 +264,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\CreateAgentResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function createAgentWithHttpInfo(
         $create_agent_payload_schema,
@@ -273,6 +273,7 @@ class AgentsApi
         return $this->createAgentAsyncWithHttpInfo($create_agent_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processcreateAgentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -329,7 +330,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function createAgentAsync(
         $create_agent_payload_schema,
@@ -351,7 +352,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function createAgentAsyncWithHttpInfo(
         $create_agent_payload_schema,
@@ -451,7 +452,7 @@ class AgentsApi
     public function deleteAgent(
         $agent_id,
         string $contentType = self::contentTypes['deleteAgent'][0]
-    ) {
+    ): void {
         $this->deleteAgentWithHttpInfo($agent_id, $contentType);
     }
 
@@ -466,7 +467,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function deleteAgentWithHttpInfo(
         $agent_id,
@@ -475,6 +476,7 @@ class AgentsApi
         return $this->deleteAgentAsyncWithHttpInfo($agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdeleteAgentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -510,7 +512,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function deleteAgentAsync(
         $agent_id,
@@ -532,7 +534,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function deleteAgentAsyncWithHttpInfo(
         $agent_id,
@@ -648,7 +650,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentDetailResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentWithHttpInfo(
         $agent_id,
@@ -657,6 +659,7 @@ class AgentsApi
         return $this->getAgentAsyncWithHttpInfo($agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -713,7 +716,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentAsync(
         $agent_id,
@@ -735,7 +738,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentAsyncWithHttpInfo(
         $agent_id,
@@ -854,7 +857,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentCostForecastResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentCostForecastWithHttpInfo(
         $agent_id,
@@ -864,6 +867,7 @@ class AgentsApi
         return $this->getAgentCostForecastAsyncWithHttpInfo($agent_id, $method, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentCostForecastResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -921,7 +925,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentCostForecastAsync(
         $agent_id,
@@ -945,7 +949,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentCostForecastAsyncWithHttpInfo(
         $agent_id,
@@ -1089,7 +1093,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\EvaluationMetricBreakdownResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentEvaluationMetricBreakdownWithHttpInfo(
         $agent_id,
@@ -1103,6 +1107,7 @@ class AgentsApi
         return $this->getAgentEvaluationMetricBreakdownAsyncWithHttpInfo($agent_id, $organisation_id, $group, $metric_id, $target_type, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentEvaluationMetricBreakdownResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1164,7 +1169,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentEvaluationMetricBreakdownAsync(
         $agent_id,
@@ -1196,7 +1201,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentEvaluationMetricBreakdownAsyncWithHttpInfo(
         $agent_id,
@@ -1382,7 +1387,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ProviderMetricCountListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentEvaluationMetricProviderCountsWithHttpInfo(
         $agent_id,
@@ -1394,6 +1399,7 @@ class AgentsApi
         return $this->getAgentEvaluationMetricProviderCountsAsyncWithHttpInfo($agent_id, $organisation_id, $target_type, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentEvaluationMetricProviderCountsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1453,7 +1459,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentEvaluationMetricProviderCountsAsync(
         $agent_id,
@@ -1481,7 +1487,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentEvaluationMetricProviderCountsAsyncWithHttpInfo(
         $agent_id,
@@ -1640,7 +1646,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\EvaluationSamplingRateResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentEvaluationSamplingRateWithHttpInfo(
         $agent_id,
@@ -1651,6 +1657,7 @@ class AgentsApi
         return $this->getAgentEvaluationSamplingRateAsyncWithHttpInfo($agent_id, $organisation_id, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentEvaluationSamplingRateResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1709,7 +1716,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentEvaluationSamplingRateAsync(
         $agent_id,
@@ -1735,7 +1742,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentEvaluationSamplingRateAsyncWithHttpInfo(
         $agent_id,
@@ -1888,7 +1895,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\EvaluationSummaryResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentEvaluationSummaryWithHttpInfo(
         $agent_id,
@@ -1901,6 +1908,7 @@ class AgentsApi
         return $this->getAgentEvaluationSummaryAsyncWithHttpInfo($agent_id, $organisation_id, $group, $target_type, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentEvaluationSummaryResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1961,7 +1969,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentEvaluationSummaryAsync(
         $agent_id,
@@ -1991,7 +1999,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentEvaluationSummaryAsyncWithHttpInfo(
         $agent_id,
@@ -2162,7 +2170,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\EvaluationTargetDetailResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentEvaluationTargetWithHttpInfo(
         $agent_id,
@@ -2173,6 +2181,7 @@ class AgentsApi
         return $this->getAgentEvaluationTargetAsyncWithHttpInfo($agent_id, $target_id, $organisation_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentEvaluationTargetResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2231,7 +2240,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentEvaluationTargetAsync(
         $agent_id,
@@ -2257,7 +2266,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentEvaluationTargetAsyncWithHttpInfo(
         $agent_id,
@@ -2405,7 +2414,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentExecutionDurationSummaryResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentExecutionDurationSummaryWithHttpInfo(
         $agent_id,
@@ -2415,6 +2424,7 @@ class AgentsApi
         return $this->getAgentExecutionDurationSummaryAsyncWithHttpInfo($agent_id, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentExecutionDurationSummaryResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2472,7 +2482,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentExecutionDurationSummaryAsync(
         $agent_id,
@@ -2496,7 +2506,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentExecutionDurationSummaryAsyncWithHttpInfo(
         $agent_id,
@@ -2631,7 +2641,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ExecutionsComparisonResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentExecutionsComparisonWithHttpInfo(
         $agent_id,
@@ -2642,6 +2652,7 @@ class AgentsApi
         return $this->getAgentExecutionsComparisonAsyncWithHttpInfo($agent_id, $daterange, $compare_to, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentExecutionsComparisonResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2700,7 +2711,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentExecutionsComparisonAsync(
         $agent_id,
@@ -2726,7 +2737,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentExecutionsComparisonAsyncWithHttpInfo(
         $agent_id,
@@ -2874,7 +2885,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentExecutionsOverviewResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentExecutionsOverviewWithHttpInfo(
         $agent_id,
@@ -2883,6 +2894,7 @@ class AgentsApi
         return $this->getAgentExecutionsOverviewAsyncWithHttpInfo($agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentExecutionsOverviewResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2939,7 +2951,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentExecutionsOverviewAsync(
         $agent_id,
@@ -2961,7 +2973,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentExecutionsOverviewAsyncWithHttpInfo(
         $agent_id,
@@ -3086,7 +3098,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentImpactMetricAggregateResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentImpactMetricsWithHttpInfo(
         $agent_id,
@@ -3098,6 +3110,7 @@ class AgentsApi
         return $this->getAgentImpactMetricsAsyncWithHttpInfo($agent_id, $group, $user_id, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentImpactMetricsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3157,7 +3170,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentImpactMetricsAsync(
         $agent_id,
@@ -3185,7 +3198,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentImpactMetricsAsyncWithHttpInfo(
         $agent_id,
@@ -3347,7 +3360,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ExecutionStatusDistributionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentStatusDistributionWithHttpInfo(
         $agent_id,
@@ -3359,6 +3372,7 @@ class AgentsApi
         return $this->getAgentStatusDistributionAsyncWithHttpInfo($agent_id, $organisation_id, $group, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentStatusDistributionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3418,7 +3432,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentStatusDistributionAsync(
         $agent_id,
@@ -3446,7 +3460,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentStatusDistributionAsyncWithHttpInfo(
         $agent_id,
@@ -3605,7 +3619,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentUsageAggregateResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getAgentUsageWithHttpInfo(
         $agent_id,
@@ -3616,6 +3630,7 @@ class AgentsApi
         return $this->getAgentUsageAsyncWithHttpInfo($agent_id, $group, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetAgentUsageResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3674,7 +3689,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getAgentUsageAsync(
         $agent_id,
@@ -3700,7 +3715,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getAgentUsageAsyncWithHttpInfo(
         $agent_id,
@@ -3841,7 +3856,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentMCPServerLinksResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getMcpServerLinksWithHttpInfo(
         $agent_id,
@@ -3850,6 +3865,7 @@ class AgentsApi
         return $this->getMcpServerLinksAsyncWithHttpInfo($agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetMcpServerLinksResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3906,7 +3922,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getMcpServerLinksAsync(
         $agent_id,
@@ -3928,7 +3944,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getMcpServerLinksAsyncWithHttpInfo(
         $agent_id,
@@ -4044,7 +4060,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\SubAgentLinksResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getSubAgentLinksWithHttpInfo(
         $agent_id,
@@ -4053,6 +4069,7 @@ class AgentsApi
         return $this->getSubAgentLinksAsyncWithHttpInfo($agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetSubAgentLinksResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4109,7 +4126,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getSubAgentLinksAsync(
         $agent_id,
@@ -4131,7 +4148,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getSubAgentLinksAsyncWithHttpInfo(
         $agent_id,
@@ -4253,7 +4270,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentMCPServerLinkResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function linkMcpServerWithHttpInfo(
         $agent_id,
@@ -4264,6 +4281,7 @@ class AgentsApi
         return $this->linkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $link_mcp_server_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlinkMcpServerResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4322,7 +4340,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function linkMcpServerAsync(
         $agent_id,
@@ -4348,7 +4366,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function linkMcpServerAsyncWithHttpInfo(
         $agent_id,
@@ -4503,7 +4521,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\SubAgentLinkResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function linkSubAgentWithHttpInfo(
         $agent_id,
@@ -4513,6 +4531,7 @@ class AgentsApi
         return $this->linkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlinkSubAgentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4570,7 +4589,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function linkSubAgentAsync(
         $agent_id,
@@ -4594,7 +4613,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function linkSubAgentAsyncWithHttpInfo(
         $agent_id,
@@ -4744,7 +4763,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\EvaluationTargetListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listAgentEvaluationTargetsWithHttpInfo(
         $agent_id,
@@ -4759,6 +4778,7 @@ class AgentsApi
         return $this->listAgentEvaluationTargetsAsyncWithHttpInfo($agent_id, $organisation_id, $target_type, $outcome, $skip, $limit, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistAgentEvaluationTargetsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4821,7 +4841,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listAgentEvaluationTargetsAsync(
         $agent_id,
@@ -4855,7 +4875,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listAgentEvaluationTargetsAsyncWithHttpInfo(
         $agent_id,
@@ -5064,7 +5084,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listAgentsWithHttpInfo(
         $skip = 0,
@@ -5076,6 +5096,7 @@ class AgentsApi
         return $this->listAgentsAsyncWithHttpInfo($skip, $limit, $search, $status, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistAgentsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5135,7 +5156,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listAgentsAsync(
         $skip = 0,
@@ -5163,7 +5184,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listAgentsAsyncWithHttpInfo(
         $skip = 0,
@@ -5325,13 +5346,14 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ContextWindowStrategyListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listContextWindowStrategiesWithHttpInfo(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
         return $this->listContextWindowStrategiesAsyncWithHttpInfo($contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistContextWindowStrategiesResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5387,7 +5409,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listContextWindowStrategiesAsync(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
@@ -5406,7 +5428,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listContextWindowStrategiesAsyncWithHttpInfo(string $contentType = self::contentTypes['listContextWindowStrategies'][0])
     {
@@ -5486,7 +5508,7 @@ class AgentsApi
         $agent_id,
         $server_id,
         string $contentType = self::contentTypes['unlinkMcpServer'][0]
-    ) {
+    ): void {
         $this->unlinkMcpServerWithHttpInfo($agent_id, $server_id, $contentType);
     }
 
@@ -5502,7 +5524,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function unlinkMcpServerWithHttpInfo(
         $agent_id,
@@ -5512,6 +5534,7 @@ class AgentsApi
         return $this->unlinkMcpServerAsyncWithHttpInfo($agent_id, $server_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processunlinkMcpServerResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5548,7 +5571,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function unlinkMcpServerAsync(
         $agent_id,
@@ -5572,7 +5595,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function unlinkMcpServerAsyncWithHttpInfo(
         $agent_id,
@@ -5687,7 +5710,7 @@ class AgentsApi
         $agent_id,
         $sub_agent_id,
         string $contentType = self::contentTypes['unlinkSubAgent'][0]
-    ) {
+    ): void {
         $this->unlinkSubAgentWithHttpInfo($agent_id, $sub_agent_id, $contentType);
     }
 
@@ -5703,7 +5726,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function unlinkSubAgentWithHttpInfo(
         $agent_id,
@@ -5713,6 +5736,7 @@ class AgentsApi
         return $this->unlinkSubAgentAsyncWithHttpInfo($agent_id, $sub_agent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processunlinkSubAgentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5749,7 +5773,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function unlinkSubAgentAsync(
         $agent_id,
@@ -5773,7 +5797,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function unlinkSubAgentAsyncWithHttpInfo(
         $agent_id,
@@ -5908,7 +5932,7 @@ class AgentsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\UpdateAgentResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function updateAgentWithHttpInfo(
         $agent_id,
@@ -5918,6 +5942,7 @@ class AgentsApi
         return $this->updateAgentAsyncWithHttpInfo($agent_id, $update_agent_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processupdateAgentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5975,7 +6000,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function updateAgentAsync(
         $agent_id,
@@ -5999,7 +6024,7 @@ class AgentsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function updateAgentAsyncWithHttpInfo(
         $agent_id,
@@ -6102,6 +6127,7 @@ class AgentsApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

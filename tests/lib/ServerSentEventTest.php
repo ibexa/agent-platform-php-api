@@ -142,6 +142,7 @@ final class ServerSentEventTest extends TestCase
         ])) extends MockHttpClient {
             public ?ResponseInterface $response = null;
 
+            /** @param array<string, mixed> $options */
             public function request(
                 string $method,
                 string $url,
@@ -208,6 +209,8 @@ final class ServerSentEventTest extends TestCase
 
     /**
      * @dataProvider payloadProvider
+     *
+     * @param array<mixed> $expected
      */
     public function testEventDataIsDecodedToArray(
         string $json,
@@ -222,6 +225,7 @@ final class ServerSentEventTest extends TestCase
         self::assertSame($expected, $events[0]->getData());
     }
 
+    /** @return iterable<string, array{string, array<mixed>}> */
     public function payloadProvider(): iterable
     {
         yield 'nested objects' => ['{"message":{"content":"Hello","tool_calls":null},"agent_id":1}', [
@@ -252,6 +256,7 @@ final class ServerSentEventTest extends TestCase
         self::assertSame(1, $http->getRequestsCount());
     }
 
+    /** @return iterable<string, array{string}> */
     public function invalidPayloadProvider(): iterable
     {
         yield 'malformed JSON' => ['{invalid'];

@@ -25,6 +25,7 @@ final class SingleRequestHttpClient implements HttpClientInterface
 
     public function __construct(private readonly HttpClientInterface $client) {}
 
+    /** @param array<string, mixed> $options */
     public function request(
         string $method,
         string $url,
@@ -52,6 +53,7 @@ final class SingleRequestHttpClient implements HttpClientInterface
         })());
     }
 
+    /** @param array<string, mixed> $options */
     public function withOptions(array $options): static
     {
         if ($this->started) {

@@ -195,7 +195,7 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\TriggerResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function createTriggerWithHttpInfo(
         $create_trigger_payload_schema,
@@ -204,6 +204,7 @@ class TriggersApi
         return $this->createTriggerAsyncWithHttpInfo($create_trigger_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processcreateTriggerResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -260,7 +261,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function createTriggerAsync(
         $create_trigger_payload_schema,
@@ -282,7 +283,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function createTriggerAsyncWithHttpInfo(
         $create_trigger_payload_schema,
@@ -382,7 +383,7 @@ class TriggersApi
     public function deleteTrigger(
         $trigger_id,
         string $contentType = self::contentTypes['deleteTrigger'][0]
-    ) {
+    ): void {
         $this->deleteTriggerWithHttpInfo($trigger_id, $contentType);
     }
 
@@ -397,7 +398,7 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function deleteTriggerWithHttpInfo(
         $trigger_id,
@@ -406,6 +407,7 @@ class TriggersApi
         return $this->deleteTriggerAsyncWithHttpInfo($trigger_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdeleteTriggerResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -441,7 +443,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function deleteTriggerAsync(
         $trigger_id,
@@ -463,7 +465,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function deleteTriggerAsyncWithHttpInfo(
         $trigger_id,
@@ -579,7 +581,7 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\TriggerResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getTriggerWithHttpInfo(
         $trigger_id,
@@ -588,6 +590,7 @@ class TriggersApi
         return $this->getTriggerAsyncWithHttpInfo($trigger_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetTriggerResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -644,7 +647,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getTriggerAsync(
         $trigger_id,
@@ -666,7 +669,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getTriggerAsyncWithHttpInfo(
         $trigger_id,
@@ -778,13 +781,14 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\TriggerCategoryListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listTriggerCategoriesWithHttpInfo(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
         return $this->listTriggerCategoriesAsyncWithHttpInfo($contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistTriggerCategoriesResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -840,7 +844,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listTriggerCategoriesAsync(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
@@ -859,7 +863,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listTriggerCategoriesAsyncWithHttpInfo(string $contentType = self::contentTypes['listTriggerCategories'][0])
     {
@@ -952,13 +956,14 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\TriggerDefinitionListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listTriggerDefinitionsWithHttpInfo(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
         return $this->listTriggerDefinitionsAsyncWithHttpInfo($contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistTriggerDefinitionsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1014,7 +1019,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listTriggerDefinitionsAsync(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
@@ -1033,7 +1038,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listTriggerDefinitionsAsyncWithHttpInfo(string $contentType = self::contentTypes['listTriggerDefinitions'][0])
     {
@@ -1142,7 +1147,7 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\TriggerListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listTriggersWithHttpInfo(
         $skip = 0,
@@ -1155,6 +1160,7 @@ class TriggersApi
         return $this->listTriggersAsyncWithHttpInfo($skip, $limit, $definition_id, $agent_id, $is_active, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistTriggersResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1215,7 +1221,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listTriggersAsync(
         $skip = 0,
@@ -1245,7 +1251,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listTriggersAsyncWithHttpInfo(
         $skip = 0,
@@ -1423,7 +1429,7 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\TriggerResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function updateTriggerWithHttpInfo(
         $trigger_id,
@@ -1433,6 +1439,7 @@ class TriggersApi
         return $this->updateTriggerAsyncWithHttpInfo($trigger_id, $update_trigger_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processupdateTriggerResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1490,7 +1497,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function updateTriggerAsync(
         $trigger_id,
@@ -1514,7 +1521,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function updateTriggerAsyncWithHttpInfo(
         $trigger_id,
@@ -1650,7 +1657,7 @@ class TriggersApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\RemoteWebhookVerificationResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function verifyRemoteTriggerWebhookWithHttpInfo(
         $trigger_id,
@@ -1659,6 +1666,7 @@ class TriggersApi
         return $this->verifyRemoteTriggerWebhookAsyncWithHttpInfo($trigger_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processverifyRemoteTriggerWebhookResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1715,7 +1723,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function verifyRemoteTriggerWebhookAsync(
         $trigger_id,
@@ -1737,7 +1745,7 @@ class TriggersApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function verifyRemoteTriggerWebhookAsyncWithHttpInfo(
         $trigger_id,
@@ -1820,6 +1828,7 @@ class TriggersApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

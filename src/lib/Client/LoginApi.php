@@ -195,7 +195,7 @@ class LoginApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AccessTokenResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function loginWithHttpInfo(
         $username,
@@ -209,6 +209,7 @@ class LoginApi
         return $this->loginAsyncWithHttpInfo($username, $password, $grant_type, $scope, $client_id, $client_secret, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processloginResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -270,7 +271,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function loginAsync(
         $username,
@@ -302,7 +303,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function loginAsyncWithHttpInfo(
         $username,
@@ -454,7 +455,7 @@ class LoginApi
     public function logout(
         $refresh_token_request_schema,
         string $contentType = self::contentTypes['logout'][0]
-    ) {
+    ): void {
         $this->logoutWithHttpInfo($refresh_token_request_schema, $contentType);
     }
 
@@ -469,7 +470,7 @@ class LoginApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function logoutWithHttpInfo(
         $refresh_token_request_schema,
@@ -478,6 +479,7 @@ class LoginApi
         return $this->logoutAsyncWithHttpInfo($refresh_token_request_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlogoutResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -513,7 +515,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function logoutAsync(
         $refresh_token_request_schema,
@@ -535,7 +537,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function logoutAsyncWithHttpInfo(
         $refresh_token_request_schema,
@@ -631,7 +633,7 @@ class LoginApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      */
-    public function logoutAll(string $contentType = self::contentTypes['logoutAll'][0])
+    public function logoutAll(string $contentType = self::contentTypes['logoutAll'][0]): void
     {
         $this->logoutAllWithHttpInfo($contentType);
     }
@@ -646,13 +648,14 @@ class LoginApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function logoutAllWithHttpInfo(string $contentType = self::contentTypes['logoutAll'][0])
     {
         return $this->logoutAllAsyncWithHttpInfo($contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlogoutAllResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -687,7 +690,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function logoutAllAsync(string $contentType = self::contentTypes['logoutAll'][0])
     {
@@ -706,7 +709,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function logoutAllAsyncWithHttpInfo(string $contentType = self::contentTypes['logoutAll'][0])
     {
@@ -803,7 +806,7 @@ class LoginApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AccessTokenResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function refreshTokenWithHttpInfo(
         $refresh_token_request_schema,
@@ -812,6 +815,7 @@ class LoginApi
         return $this->refreshTokenAsyncWithHttpInfo($refresh_token_request_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processrefreshTokenResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -868,7 +872,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function refreshTokenAsync(
         $refresh_token_request_schema,
@@ -890,7 +894,7 @@ class LoginApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function refreshTokenAsyncWithHttpInfo(
         $refresh_token_request_schema,
@@ -971,6 +975,7 @@ class LoginApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

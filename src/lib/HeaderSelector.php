@@ -122,9 +122,9 @@ class HeaderSelector
     /**
      * Select all items from a list containing a JSON mime type.
      *
-     * @param array $mimeList
+     * @param string[] $mimeList
      *
-     * @return array
+     * @return string[]
      */
     private function selectJsonMimeList(array $mimeList): array
     {
@@ -189,7 +189,7 @@ class HeaderSelector
      *
      * @param string $header "Accept" Header
      *
-     * @return array with the header and its weight
+     * @return array{header: string, weight: int} with the header and its weight
      */
     private function getHeaderAndWeight(string $header): array
     {
@@ -210,7 +210,7 @@ class HeaderSelector
     }
 
     /**
-     * @param array[] $headers
+     * @param array<array{header: string, weight: int}> $headers
      * @param int     $currentWeight
      * @param bool    $hasMoreThan28Headers
      *

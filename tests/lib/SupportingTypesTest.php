@@ -35,6 +35,7 @@ final class SupportingTypesTest extends TestCase
         }
     }
 
+    /** @return iterable<array{class-string}> */
     public static function supportingClassProvider(): iterable
     {
         yield [ApiException::class];

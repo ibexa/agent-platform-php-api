@@ -178,7 +178,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
+    public function {{operationId}}({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}){{^returnType}}: void{{/returnType}}
     {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
@@ -232,7 +232,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
      *
      * @throws \{{invokerPackage}}\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of {{#returnType}}{{#responses}}{{#dataType}}{{^-first}}|{{/-first}}{{/dataType}}{{{dataType}}}{{/responses}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
@@ -242,6 +242,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
         return $this->{{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function process{{operationId}}Response(RequestInterface $request, ResponseInterface $response): array
     {
         try {
@@ -370,7 +371,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
@@ -430,7 +431,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
@@ -781,6 +782,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
     {{/servers.0}}
     {{/operation}}
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

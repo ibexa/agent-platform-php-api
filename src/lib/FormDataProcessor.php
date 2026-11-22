@@ -34,7 +34,6 @@ declare(strict_types=1);
 
 namespace Ibexa\AgentPlatform;
 
-use ArrayAccess;
 use DateTime;
 use GuzzleHttp\Psr7\Utils;
 use Ibexa\AgentPlatform\Model\ModelInterface;
@@ -63,9 +62,9 @@ class FormDataProcessor
      * the http body (form parameter). If it's a string, pass through unchanged
      * If it's a datetime object, format it in ISO8601.
      *
-     * @param array<string|int|float|bool|array|DateTime|ArrayAccess|SplFileObject|null> $values the value of the form parameter
+     * @param array<array-key, mixed> $values the value of the form parameter
      *
-     * @return array [key => value] of formdata
+     * @return array<array-key, mixed> [key => value] of formdata
      */
     public function prepare(array $values): array
     {
@@ -89,6 +88,10 @@ class FormDataProcessor
      * notation to signify nested data.
      *
      * credit: https://github.com/FranBar1966/FlatPHP
+     *
+     * @param array<mixed> $source
+     *
+     * @return array<array-key, mixed>
      */
     public static function flatten(
         array $source,
@@ -148,6 +151,10 @@ class FormDataProcessor
      * formdata must be limited to scalars or arrays of scalar values,
      * or a resource for a file upload. Here we iterate through all available
      * data and identify how to handle each scenario.
+     *
+     * @param mixed $value
+     *
+     * @return mixed
      */
     protected function makeFormSafe($value)
     {
@@ -182,6 +189,8 @@ class FormDataProcessor
      * We are able to handle nested ModelInterface. We do not simply call
      * json_decode(json_encode()) because any given model may have binary data
      * or other data that cannot be serialized to a JSON string.
+     *
+     * @return array<string, mixed>
      */
     protected function processModel(ModelInterface $model): array
     {
@@ -222,6 +231,10 @@ class FormDataProcessor
 
     /**
      * Handle file data.
+     *
+     * @param array<mixed> $files
+     *
+     * @return array<mixed>
      */
     protected function processFiles(array $files): array
     {
@@ -250,6 +263,7 @@ class FormDataProcessor
         return $result;
     }
 
+    /** @return resource */
     private function tryFopen(SplFileObject $file)
     {
         return Utils::tryFopen($file->getRealPath(), 'rb');

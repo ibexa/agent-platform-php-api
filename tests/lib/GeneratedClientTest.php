@@ -82,6 +82,8 @@ final class GeneratedClientTest extends TestCase
 
     /**
      * @dataProvider contentDispositionProvider
+     *
+     * @param array<string, string[]> $headers
      */
     public function testFileDeserializationReadsResponseHeaders(array $headers): void
     {
@@ -106,6 +108,7 @@ final class GeneratedClientTest extends TestCase
         }
     }
 
+    /** @return iterable<string, array{array<string, string[]>}> */
     public static function contentDispositionProvider(): iterable
     {
         yield 'canonical' => [['Content-Disposition' => ['inline; filename="report.txt"']]];

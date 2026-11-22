@@ -263,7 +263,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseCreateDocumentFromFileWithHttpInfo(
         $file,
@@ -275,6 +275,7 @@ class KnowledgeBaseApi
         return $this->baseCreateDocumentFromFileAsyncWithHttpInfo($file, $parent_id, $name, $summary, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseCreateDocumentFromFileResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -334,7 +335,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseCreateDocumentFromFileAsync(
         $file,
@@ -362,7 +363,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseCreateDocumentFromFileAsyncWithHttpInfo(
         $file,
@@ -512,7 +513,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseCreateNodeWithHttpInfo(
         $create_node_payload_schema,
@@ -521,6 +522,7 @@ class KnowledgeBaseApi
         return $this->baseCreateNodeAsyncWithHttpInfo($create_node_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseCreateNodeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -577,7 +579,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseCreateNodeAsync(
         $create_node_payload_schema,
@@ -599,7 +601,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseCreateNodeAsyncWithHttpInfo(
         $create_node_payload_schema,
@@ -701,7 +703,7 @@ class KnowledgeBaseApi
         $node_id,
         $attachment_id,
         string $contentType = self::contentTypes['baseDeleteKnowledgeDocumentAttachment'][0]
-    ) {
+    ): void {
         $this->baseDeleteKnowledgeDocumentAttachmentWithHttpInfo($node_id, $attachment_id, $contentType);
     }
 
@@ -717,7 +719,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseDeleteKnowledgeDocumentAttachmentWithHttpInfo(
         $node_id,
@@ -727,6 +729,7 @@ class KnowledgeBaseApi
         return $this->baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $attachment_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseDeleteKnowledgeDocumentAttachmentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -763,7 +766,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseDeleteKnowledgeDocumentAttachmentAsync(
         $node_id,
@@ -787,7 +790,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseDeleteKnowledgeDocumentAttachmentAsyncWithHttpInfo(
         $node_id,
@@ -900,7 +903,7 @@ class KnowledgeBaseApi
     public function baseDeleteNode(
         $node_id,
         string $contentType = self::contentTypes['baseDeleteNode'][0]
-    ) {
+    ): void {
         $this->baseDeleteNodeWithHttpInfo($node_id, $contentType);
     }
 
@@ -915,7 +918,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseDeleteNodeWithHttpInfo(
         $node_id,
@@ -924,6 +927,7 @@ class KnowledgeBaseApi
         return $this->baseDeleteNodeAsyncWithHttpInfo($node_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseDeleteNodeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -959,7 +963,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseDeleteNodeAsync(
         $node_id,
@@ -981,7 +985,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseDeleteNodeAsyncWithHttpInfo(
         $node_id,
@@ -1080,7 +1084,7 @@ class KnowledgeBaseApi
         $node_id,
         $version_id,
         string $contentType = self::contentTypes['baseDiscardDocumentDraft'][0]
-    ) {
+    ): void {
         $this->baseDiscardDocumentDraftWithHttpInfo($node_id, $version_id, $contentType);
     }
 
@@ -1096,7 +1100,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseDiscardDocumentDraftWithHttpInfo(
         $node_id,
@@ -1106,6 +1110,7 @@ class KnowledgeBaseApi
         return $this->baseDiscardDocumentDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseDiscardDocumentDraftResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1142,7 +1147,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseDiscardDocumentDraftAsync(
         $node_id,
@@ -1166,7 +1171,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseDiscardDocumentDraftAsyncWithHttpInfo(
         $node_id,
@@ -1298,7 +1303,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseGetDocumentWithHttpInfo(
         $node_id,
@@ -1307,6 +1312,7 @@ class KnowledgeBaseApi
         return $this->baseGetDocumentAsyncWithHttpInfo($node_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseGetDocumentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1363,7 +1369,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseGetDocumentAsync(
         $node_id,
@@ -1385,7 +1391,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseGetDocumentAsyncWithHttpInfo(
         $node_id,
@@ -1504,7 +1510,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseGetDocumentVersionWithHttpInfo(
         $node_id,
@@ -1514,6 +1520,7 @@ class KnowledgeBaseApi
         return $this->baseGetDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseGetDocumentVersionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1571,7 +1578,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseGetDocumentVersionAsync(
         $node_id,
@@ -1595,7 +1602,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseGetDocumentVersionAsyncWithHttpInfo(
         $node_id,
@@ -1733,7 +1740,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseGetKnowledgeDocumentAttachmentContentWithHttpInfo(
         $node_id,
@@ -1744,6 +1751,7 @@ class KnowledgeBaseApi
         return $this->baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo($node_id, $attachment_id, $token, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseGetKnowledgeDocumentAttachmentContentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1802,7 +1810,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseGetKnowledgeDocumentAttachmentContentAsync(
         $node_id,
@@ -1828,7 +1836,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseGetKnowledgeDocumentAttachmentContentAsyncWithHttpInfo(
         $node_id,
@@ -1975,7 +1983,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseGetNodeWithHttpInfo(
         $node_id,
@@ -1984,6 +1992,7 @@ class KnowledgeBaseApi
         return $this->baseGetNodeAsyncWithHttpInfo($node_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseGetNodeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2040,7 +2049,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseGetNodeAsync(
         $node_id,
@@ -2062,7 +2071,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseGetNodeAsyncWithHttpInfo(
         $node_id,
@@ -2181,7 +2190,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeBaseOverviewResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseGetOverviewWithHttpInfo(
         $group = null,
@@ -2191,6 +2200,7 @@ class KnowledgeBaseApi
         return $this->baseGetOverviewAsyncWithHttpInfo($group, $daterange, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseGetOverviewResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2248,7 +2258,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseGetOverviewAsync(
         $group = null,
@@ -2272,7 +2282,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseGetOverviewAsyncWithHttpInfo(
         $group = null,
@@ -2402,7 +2412,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\AgentsUsingKnowledgeNodeListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseListAgentsUsingKnowledgeNodeWithHttpInfo(
         $node_id,
@@ -2413,6 +2423,7 @@ class KnowledgeBaseApi
         return $this->baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo($node_id, $skip, $limit, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseListAgentsUsingKnowledgeNodeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2471,7 +2482,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseListAgentsUsingKnowledgeNodeAsync(
         $node_id,
@@ -2497,7 +2508,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseListAgentsUsingKnowledgeNodeAsyncWithHttpInfo(
         $node_id,
@@ -2649,7 +2660,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseListDocumentVersionsWithHttpInfo(
         $node_id,
@@ -2658,6 +2669,7 @@ class KnowledgeBaseApi
         return $this->baseListDocumentVersionsAsyncWithHttpInfo($node_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseListDocumentVersionsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2714,7 +2726,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseListDocumentVersionsAsync(
         $node_id,
@@ -2736,7 +2748,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseListDocumentVersionsAsyncWithHttpInfo(
         $node_id,
@@ -2852,7 +2864,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseListKnowledgeDocumentAttachmentsWithHttpInfo(
         $node_id,
@@ -2861,6 +2873,7 @@ class KnowledgeBaseApi
         return $this->baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo($node_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseListKnowledgeDocumentAttachmentsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -2917,7 +2930,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseListKnowledgeDocumentAttachmentsAsync(
         $node_id,
@@ -2939,7 +2952,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseListKnowledgeDocumentAttachmentsAsyncWithHttpInfo(
         $node_id,
@@ -3055,7 +3068,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseListMostCitedDocumentsWithHttpInfo(
         $limit = 10,
@@ -3064,6 +3077,7 @@ class KnowledgeBaseApi
         return $this->baseListMostCitedDocumentsAsyncWithHttpInfo($limit, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseListMostCitedDocumentsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3120,7 +3134,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseListMostCitedDocumentsAsync(
         $limit = 10,
@@ -3142,7 +3156,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseListMostCitedDocumentsAsyncWithHttpInfo(
         $limit = 10,
@@ -3270,7 +3284,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeTreeResponseSchema[], HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseListNodeTreeWithHttpInfo(
         $sort_by = 'name',
@@ -3282,6 +3296,7 @@ class KnowledgeBaseApi
         return $this->baseListNodeTreeAsyncWithHttpInfo($sort_by, $sort_order, $root_id, $search, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseListNodeTreeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3341,7 +3356,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseListNodeTreeAsync(
         $sort_by = 'name',
@@ -3369,7 +3384,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseListNodeTreeAsyncWithHttpInfo(
         $sort_by = 'name',
@@ -3534,7 +3549,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseListNodesWithHttpInfo(
         $sort_by = 'name',
@@ -3545,6 +3560,7 @@ class KnowledgeBaseApi
         return $this->baseListNodesAsyncWithHttpInfo($sort_by, $sort_order, $parent_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseListNodesResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3603,7 +3619,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseListNodesAsync(
         $sort_by = 'name',
@@ -3629,7 +3645,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseListNodesAsyncWithHttpInfo(
         $sort_by = 'name',
@@ -3772,7 +3788,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseMoveNodeWithHttpInfo(
         $node_id,
@@ -3782,6 +3798,7 @@ class KnowledgeBaseApi
         return $this->baseMoveNodeAsyncWithHttpInfo($node_id, $move_node_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseMoveNodeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -3839,7 +3856,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseMoveNodeAsync(
         $node_id,
@@ -3863,7 +3880,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseMoveNodeAsyncWithHttpInfo(
         $node_id,
@@ -4002,7 +4019,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function basePublishDocumentVersionWithHttpInfo(
         $node_id,
@@ -4012,6 +4029,7 @@ class KnowledgeBaseApi
         return $this->basePublishDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbasePublishDocumentVersionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4069,7 +4087,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function basePublishDocumentVersionAsync(
         $node_id,
@@ -4093,7 +4111,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function basePublishDocumentVersionAsyncWithHttpInfo(
         $node_id,
@@ -4228,7 +4246,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseRestoreDocumentVersionAsDraftWithHttpInfo(
         $node_id,
@@ -4238,6 +4256,7 @@ class KnowledgeBaseApi
         return $this->baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseRestoreDocumentVersionAsDraftResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4295,7 +4314,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseRestoreDocumentVersionAsDraftAsync(
         $node_id,
@@ -4319,7 +4338,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseRestoreDocumentVersionAsDraftAsyncWithHttpInfo(
         $node_id,
@@ -4454,7 +4473,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentVersionResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseRollbackDocumentVersionWithHttpInfo(
         $node_id,
@@ -4464,6 +4483,7 @@ class KnowledgeBaseApi
         return $this->baseRollbackDocumentVersionAsyncWithHttpInfo($node_id, $version_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseRollbackDocumentVersionResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4521,7 +4541,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseRollbackDocumentVersionAsync(
         $node_id,
@@ -4545,7 +4565,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseRollbackDocumentVersionAsyncWithHttpInfo(
         $node_id,
@@ -4677,7 +4697,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\SuggestDocumentTitleResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseSuggestDocumentTitleWithHttpInfo(
         $suggest_document_title_payload_schema,
@@ -4686,6 +4706,7 @@ class KnowledgeBaseApi
         return $this->baseSuggestDocumentTitleAsyncWithHttpInfo($suggest_document_title_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseSuggestDocumentTitleResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4742,7 +4763,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseSuggestDocumentTitleAsync(
         $suggest_document_title_payload_schema,
@@ -4764,7 +4785,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseSuggestDocumentTitleAsyncWithHttpInfo(
         $suggest_document_title_payload_schema,
@@ -4886,7 +4907,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseUpdateDocumentContentWithHttpInfo(
         $node_id,
@@ -4896,6 +4917,7 @@ class KnowledgeBaseApi
         return $this->baseUpdateDocumentContentAsyncWithHttpInfo($node_id, $update_document_content_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseUpdateDocumentContentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -4953,7 +4975,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseUpdateDocumentContentAsync(
         $node_id,
@@ -4977,7 +4999,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseUpdateDocumentContentAsyncWithHttpInfo(
         $node_id,
@@ -5116,7 +5138,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseUpdateNodeWithHttpInfo(
         $node_id,
@@ -5126,6 +5148,7 @@ class KnowledgeBaseApi
         return $this->baseUpdateNodeAsyncWithHttpInfo($node_id, $update_node_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseUpdateNodeResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5183,7 +5206,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseUpdateNodeAsync(
         $node_id,
@@ -5207,7 +5230,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseUpdateNodeAsyncWithHttpInfo(
         $node_id,
@@ -5346,7 +5369,7 @@ class KnowledgeBaseApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function baseUploadKnowledgeDocumentAttachmentWithHttpInfo(
         $node_id,
@@ -5356,6 +5379,7 @@ class KnowledgeBaseApi
         return $this->baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo($node_id, $file, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbaseUploadKnowledgeDocumentAttachmentResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -5413,7 +5437,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function baseUploadKnowledgeDocumentAttachmentAsync(
         $node_id,
@@ -5437,7 +5461,7 @@ class KnowledgeBaseApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function baseUploadKnowledgeDocumentAttachmentAsyncWithHttpInfo(
         $node_id,
@@ -5555,6 +5579,7 @@ class KnowledgeBaseApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

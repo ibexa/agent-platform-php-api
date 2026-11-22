@@ -24,6 +24,8 @@ final class HeaderSelectorTest extends TestCase
 
     /**
      * @dataProvider headersProvider
+     *
+     * @param string[] $accept
      */
     public function testSelectHeaders(
         array $accept,
@@ -35,6 +37,7 @@ final class HeaderSelectorTest extends TestCase
         self::assertSame('application/json', $headers['Content-Type']);
     }
 
+    /** @return iterable<string, array{string[], string}> */
     public static function headersProvider(): iterable
     {
         yield 'single' => [['text/event-stream'], 'text/event-stream'];

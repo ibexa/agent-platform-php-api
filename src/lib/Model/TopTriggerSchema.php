@@ -106,7 +106,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to type mappings. Used for (de)serialization.
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function openAPITypes(): array
     {
@@ -116,7 +116,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to format mappings. Used for (de)serialization.
      *
-     * @return array
+     * @return array<string, string|null>
      */
     public static function openAPIFormats(): array
     {
@@ -126,7 +126,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable properties.
      *
-     * @return array
+     * @return array<string, bool>
      */
     protected static function openAPINullables(): array
     {
@@ -202,7 +202,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      * Array of attributes where the key is the local name,
      * and the value is the original name.
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function attributeMap(): array
     {
@@ -212,7 +212,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to setter functions (for deserialization of responses).
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function setters(): array
     {
@@ -222,7 +222,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to getter functions (for serialization of requests).
      *
-     * @return array
+     * @return array<string, string>
      */
     public static function getters(): array
     {
@@ -264,7 +264,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
      * $this->openAPINullablesSetToNull array.
      *
      * @param string $variableName
-     * @param array  $fields
+     * @param array<string, mixed>  $fields
      * @param mixed  $defaultValue
      */
     private function setIfExists(
@@ -281,7 +281,7 @@ class TopTriggerSchema implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Show all the invalid properties with reasons.
      *
-     * @return array invalid properties with reasons
+     * @return list<string>
      */
     public function listInvalidProperties(): array
     {

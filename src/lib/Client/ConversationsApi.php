@@ -178,7 +178,7 @@ class ConversationsApi
         $conversation_id,
         $conversation_bookmark_payload_schema,
         string $contentType = self::contentTypes['bookmarkConversation'][0]
-    ) {
+    ): void {
         $this->bookmarkConversationWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType);
     }
 
@@ -194,7 +194,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function bookmarkConversationWithHttpInfo(
         $conversation_id,
@@ -204,6 +204,7 @@ class ConversationsApi
         return $this->bookmarkConversationAsyncWithHttpInfo($conversation_id, $conversation_bookmark_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processbookmarkConversationResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -240,7 +241,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function bookmarkConversationAsync(
         $conversation_id,
@@ -264,7 +265,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function bookmarkConversationAsyncWithHttpInfo(
         $conversation_id,
@@ -400,7 +401,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function createConversationWithHttpInfo(
         $create_conversation_payload_schema,
@@ -409,6 +410,7 @@ class ConversationsApi
         return $this->createConversationAsyncWithHttpInfo($create_conversation_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processcreateConversationResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -465,7 +467,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function createConversationAsync(
         $create_conversation_payload_schema,
@@ -487,7 +489,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function createConversationAsyncWithHttpInfo(
         $create_conversation_payload_schema,
@@ -587,7 +589,7 @@ class ConversationsApi
     public function deleteConversation(
         $conversation_id,
         string $contentType = self::contentTypes['deleteConversation'][0]
-    ) {
+    ): void {
         $this->deleteConversationWithHttpInfo($conversation_id, $contentType);
     }
 
@@ -602,7 +604,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function deleteConversationWithHttpInfo(
         $conversation_id,
@@ -611,6 +613,7 @@ class ConversationsApi
         return $this->deleteConversationAsyncWithHttpInfo($conversation_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processdeleteConversationResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -646,7 +649,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function deleteConversationAsync(
         $conversation_id,
@@ -668,7 +671,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function deleteConversationAsyncWithHttpInfo(
         $conversation_id,
@@ -787,7 +790,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function forkConversationWithHttpInfo(
         $conversation_id,
@@ -797,6 +800,7 @@ class ConversationsApi
         return $this->forkConversationAsyncWithHttpInfo($conversation_id, $fork_conversation_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processforkConversationResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -854,7 +858,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function forkConversationAsync(
         $conversation_id,
@@ -878,7 +882,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function forkConversationAsyncWithHttpInfo(
         $conversation_id,
@@ -1014,7 +1018,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function getConversationWithHttpInfo(
         $conversation_id,
@@ -1023,6 +1027,7 @@ class ConversationsApi
         return $this->getConversationAsyncWithHttpInfo($conversation_id, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processgetConversationResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1079,7 +1084,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function getConversationAsync(
         $conversation_id,
@@ -1101,7 +1106,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function getConversationAsyncWithHttpInfo(
         $conversation_id,
@@ -1229,7 +1234,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ConversationListResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function listConversationsWithHttpInfo(
         $skip = 0,
@@ -1242,6 +1247,7 @@ class ConversationsApi
         return $this->listConversationsAsyncWithHttpInfo($skip, $limit, $agent, $search, $is_bookmarked, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processlistConversationsResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1302,7 +1308,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function listConversationsAsync(
         $skip = 0,
@@ -1332,7 +1338,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function listConversationsAsyncWithHttpInfo(
         $skip = 0,
@@ -1497,7 +1503,7 @@ class ConversationsApi
         $conversation_id,
         $conversation_feedback_payload_schema,
         string $contentType = self::contentTypes['submitConversationFeedback'][0]
-    ) {
+    ): void {
         $this->submitConversationFeedbackWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType);
     }
 
@@ -1513,7 +1519,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function submitConversationFeedbackWithHttpInfo(
         $conversation_id,
@@ -1523,6 +1529,7 @@ class ConversationsApi
         return $this->submitConversationFeedbackAsyncWithHttpInfo($conversation_id, $conversation_feedback_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processsubmitConversationFeedbackResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1559,7 +1566,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function submitConversationFeedbackAsync(
         $conversation_id,
@@ -1583,7 +1590,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function submitConversationFeedbackAsyncWithHttpInfo(
         $conversation_id,
@@ -1722,7 +1729,7 @@ class ConversationsApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      *
-     * @return array of \Ibexa\AgentPlatform\Model\ConversationResponseSchema, HTTP status code, HTTP response headers (array of strings)
+     * @return array{mixed, int, array<string, string[]>} Response, status code, and headers
      */
     public function updateConversationWithHttpInfo(
         $conversation_id,
@@ -1732,6 +1739,7 @@ class ConversationsApi
         return $this->updateConversationAsyncWithHttpInfo($conversation_id, $update_conversation_payload_schema, $contentType)->wait();
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function processupdateConversationResponse(
         RequestInterface $request,
         ResponseInterface $response
@@ -1789,7 +1797,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<mixed>
      */
     public function updateConversationAsync(
         $conversation_id,
@@ -1813,7 +1821,7 @@ class ConversationsApi
      *
      * @throws \InvalidArgumentException
      *
-     * @return AsyncResult
+     * @return AsyncResult<array{mixed, int, array<string, string[]>}>
      */
     public function updateConversationAsyncWithHttpInfo(
         $conversation_id,
@@ -1916,6 +1924,7 @@ class ConversationsApi
         );
     }
 
+    /** @return array{mixed, int, array<string, string[]>} */
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,

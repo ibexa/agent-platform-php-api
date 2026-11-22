@@ -15,6 +15,7 @@ use Ibexa\AgentPlatform\Model\AdminModelPricingResponseSchema;
 use Ibexa\AgentPlatform\Model\AdminModelProfileResponseSchema;
 use Ibexa\AgentPlatform\Model\AgentListItemResponseSchema;
 use Ibexa\AgentPlatform\Model\AgentListResponseSchema;
+use Ibexa\AgentPlatform\Model\ConversationFeedbackPayloadSchema;
 use Ibexa\AgentPlatform\Model\ExecutionResponseSchema;
 use Ibexa\AgentPlatform\Model\ExecutionStatus;
 use Ibexa\AgentPlatform\Model\ModelInterface;
@@ -49,6 +50,15 @@ final class GeneratedClientTest extends TestCase
         $reference = new ModelReference(['model_name' => 'example']);
         self::assertSame('example', $reference->getModelName());
         self::assertSame('ModelReference', $reference->getOpenAPIModelName());
+    }
+
+    public function testNumericEnumValues(): void
+    {
+        $feedback = new ConversationFeedbackPayloadSchema();
+
+        self::assertSame([-1, 1], $feedback->getFeedbackRateAllowableValues());
+        self::assertSame($feedback, $feedback->setFeedbackRate(-1));
+        self::assertSame(-1, $feedback->getFeedbackRate());
     }
 
     public function testGeneratedAccessorTypesMatchSerializerTypes(): void

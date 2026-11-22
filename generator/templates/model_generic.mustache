@@ -207,7 +207,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     /**
      * Gets allowable values of the enum
      *
-     * @return string[]
+     * @return {{#isInteger}}int{{/isInteger}}{{#isLong}}int{{/isLong}}{{#isFloat}}float{{/isFloat}}{{#isDouble}}float{{/isDouble}}{{#isBoolean}}bool{{/isBoolean}}{{#isString}}string{{/isString}}[]
      */
     public function {{getter}}AllowableValues(): array
     {

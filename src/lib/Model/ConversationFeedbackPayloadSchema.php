@@ -249,7 +249,7 @@ class ConversationFeedbackPayloadSchema implements ModelInterface, ArrayAccess, 
     /**
      * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return int[]
      */
     public function getFeedbackRateAllowableValues(): array
     {

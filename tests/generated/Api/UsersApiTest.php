@@ -183,7 +183,7 @@ final class UsersApiTest extends GeneratedContractTestCase
 
     public function testUploadAvatarMeContract(): void
     {
-        $arguments = ['/path/to/file.txt'];
+        $arguments = [new \SplFileObject(__FILE__, 'r')];
         $http = new MockHttpClient(new MockResponse('{"detail":"Forbidden"}', ['http_code' => 403]));
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('test-token');
         $api = new UsersApi($http, $config);
@@ -211,7 +211,7 @@ final class UsersApiTest extends GeneratedContractTestCase
 
     public function testUploadAvatarMeResponse(): void
     {
-        $arguments = ['/path/to/file.txt'];
+        $arguments = [new \SplFileObject(__FILE__, 'r')];
         $http = new MockHttpClient(new MockResponse($this->responseBody('\Ibexa\AgentPlatform\Model\UserMeResponseSchema')));
         $api = new UsersApi($http);
         [$value, $status, $headers] = $api->uploadAvatarMeWithHttpInfo(...$arguments);

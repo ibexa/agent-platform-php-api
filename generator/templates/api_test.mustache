@@ -19,7 +19,7 @@ final class {{classname}}Test extends GeneratedContractTestCase
 {{#operation}}
     public function test{{exts.x-test-operation-id}}Contract(): void
     {
-        $arguments = [{{#allParams}}{{#required}}{{#vendorExtensions.x-contract-example}}{{{vendorExtensions.x-contract-example}}}{{/vendorExtensions.x-contract-example}}{{^vendorExtensions.x-contract-example}}{{{example}}}{{/vendorExtensions.x-contract-example}}{{/required}}{{^required}}null{{/required}}, {{/allParams}}];
+        $arguments = [{{#allParams}}{{#required}}{{#vendorExtensions.x-contract-example}}{{{vendorExtensions.x-contract-example}}}{{/vendorExtensions.x-contract-example}}{{^vendorExtensions.x-contract-example}}{{#isFile}}new \SplFileObject(__FILE__, 'r'){{/isFile}}{{^isFile}}{{{example}}}{{/isFile}}{{/vendorExtensions.x-contract-example}}{{/required}}{{^required}}null{{/required}}, {{/allParams}}];
         $http = new MockHttpClient(new MockResponse('{"detail":"Forbidden"}', ['http_code' => 403]));
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('test-token');
         $api = new {{classname}}($http, $config);
@@ -51,7 +51,7 @@ final class {{classname}}Test extends GeneratedContractTestCase
 
     public function test{{exts.x-test-operation-id}}Response(): void
     {
-        $arguments = [{{#allParams}}{{#required}}{{#vendorExtensions.x-contract-example}}{{{vendorExtensions.x-contract-example}}}{{/vendorExtensions.x-contract-example}}{{^vendorExtensions.x-contract-example}}{{{example}}}{{/vendorExtensions.x-contract-example}}{{/required}}{{^required}}null{{/required}}, {{/allParams}}];
+        $arguments = [{{#allParams}}{{#required}}{{#vendorExtensions.x-contract-example}}{{{vendorExtensions.x-contract-example}}}{{/vendorExtensions.x-contract-example}}{{^vendorExtensions.x-contract-example}}{{#isFile}}new \SplFileObject(__FILE__, 'r'){{/isFile}}{{^isFile}}{{{example}}}{{/isFile}}{{/vendorExtensions.x-contract-example}}{{/required}}{{^required}}null{{/required}}, {{/allParams}}];
         $http = new MockHttpClient(new MockResponse($this->responseBody('{{{returnType}}}')));
         $api = new {{classname}}($http);
         [$value, $status, $headers] = $api->{{operationId}}WithHttpInfo(...$arguments);
@@ -64,7 +64,7 @@ final class {{classname}}Test extends GeneratedContractTestCase
 {{#vendorExtensions.x-sse-events}}
     public function test{{exts.x-test-operation-id}}Events(): void
     {
-        $arguments = [{{#allParams}}{{#required}}{{#vendorExtensions.x-contract-example}}{{{vendorExtensions.x-contract-example}}}{{/vendorExtensions.x-contract-example}}{{^vendorExtensions.x-contract-example}}{{{example}}}{{/vendorExtensions.x-contract-example}}{{/required}}{{^required}}null{{/required}}, {{/allParams}}];
+        $arguments = [{{#allParams}}{{#required}}{{#vendorExtensions.x-contract-example}}{{{vendorExtensions.x-contract-example}}}{{/vendorExtensions.x-contract-example}}{{^vendorExtensions.x-contract-example}}{{#isFile}}new \SplFileObject(__FILE__, 'r'){{/isFile}}{{^isFile}}{{{example}}}{{/isFile}}{{/vendorExtensions.x-contract-example}}{{/required}}{{^required}}null{{/required}}, {{/allParams}}];
         $http = new MockHttpClient(new MockResponse("event: update\ndata: {\"value\":1}\n\n", [
             'response_headers' => ['Content-Type' => 'text/event-stream'],
         ]));

@@ -180,7 +180,7 @@ final class FilesApiTest extends GeneratedContractTestCase
 
     public function testUploadFileContract(): void
     {
-        $arguments = [56, '/path/to/file.txt'];
+        $arguments = [56, new \SplFileObject(__FILE__, 'r')];
         $http = new MockHttpClient(new MockResponse('{"detail":"Forbidden"}', ['http_code' => 403]));
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('test-token');
         $api = new FilesApi($http, $config);
@@ -208,7 +208,7 @@ final class FilesApiTest extends GeneratedContractTestCase
 
     public function testUploadFileResponse(): void
     {
-        $arguments = [56, '/path/to/file.txt'];
+        $arguments = [56, new \SplFileObject(__FILE__, 'r')];
         $http = new MockHttpClient(new MockResponse($this->responseBody('\Ibexa\AgentPlatform\Model\FileResponseSchema')));
         $api = new FilesApi($http);
         [$value, $status, $headers] = $api->uploadFileWithHttpInfo(...$arguments);

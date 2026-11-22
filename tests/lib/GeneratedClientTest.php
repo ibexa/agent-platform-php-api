@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\AgentPlatform;
 
+use GuzzleHttp\Psr7\Utils;
 use Ibexa\AgentPlatform\ApiException;
 use Ibexa\AgentPlatform\Client\AgentsApi;
 use Ibexa\AgentPlatform\Configuration;
@@ -75,7 +76,40 @@ final class GeneratedClientTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Missing the required parameter $agent_id');
 
-        (new AgentsApi())->deleteAgentRequest(null);
+        $method = new \ReflectionMethod(AgentsApi::class, 'deleteAgentRequest');
+        $method->invoke(new AgentsApi(), null);
+    }
+
+    /**
+     * @dataProvider contentDispositionProvider
+     */
+    public function testFileDeserializationReadsResponseHeaders(array $headers): void
+    {
+        $directory = sys_get_temp_dir() . '/agent-platform-' . bin2hex(random_bytes(8));
+        self::assertTrue(mkdir($directory));
+        $previousConfig = Configuration::getDefaultConfiguration();
+        Configuration::setDefaultConfiguration((new Configuration())->setTempFolderPath($directory));
+        $path = $directory . '/report.txt';
+
+        try {
+            $file = ObjectSerializer::deserialize(Utils::streamFor('file contents'), '\SplFileObject', $headers);
+            self::assertInstanceOf(\SplFileObject::class, $file);
+            self::assertSame($path, $file->getPathname());
+            self::assertSame('file contents', $file->fread(13));
+            unset($file);
+        } finally {
+            Configuration::setDefaultConfiguration($previousConfig);
+            if (is_file($path)) {
+                unlink($path);
+            }
+            rmdir($directory);
+        }
+    }
+
+    public static function contentDispositionProvider(): iterable
+    {
+        yield 'canonical' => [['Content-Disposition' => ['inline; filename="report.txt"']]];
+        yield 'lowercase' => [['content-disposition' => ['inline; filename="../../report.txt"']]];
     }
 
     public function testGeneratedAccessorTypesMatchSerializerTypes(): void

@@ -26,7 +26,7 @@ final class KnowledgeBaseApiTest extends GeneratedContractTestCase
 {
     public function testBaseCreateDocumentFromFileContract(): void
     {
-        $arguments = ['/path/to/file.txt', null, null, null];
+        $arguments = [new \SplFileObject(__FILE__, 'r'), null, null, null];
         $http = new MockHttpClient(new MockResponse('{"detail":"Forbidden"}', ['http_code' => 403]));
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('test-token');
         $api = new KnowledgeBaseApi($http, $config);
@@ -54,7 +54,7 @@ final class KnowledgeBaseApiTest extends GeneratedContractTestCase
 
     public function testBaseCreateDocumentFromFileResponse(): void
     {
-        $arguments = ['/path/to/file.txt', null, null, null];
+        $arguments = [new \SplFileObject(__FILE__, 'r'), null, null, null];
         $http = new MockHttpClient(new MockResponse($this->responseBody('\Ibexa\AgentPlatform\Model\KnowledgeNodeResponseSchema')));
         $api = new KnowledgeBaseApi($http);
         [$value, $status, $headers] = $api->baseCreateDocumentFromFileWithHttpInfo(...$arguments);
@@ -945,7 +945,7 @@ final class KnowledgeBaseApiTest extends GeneratedContractTestCase
 
     public function testBaseUploadKnowledgeDocumentAttachmentContract(): void
     {
-        $arguments = [56, '/path/to/file.txt'];
+        $arguments = [56, new \SplFileObject(__FILE__, 'r')];
         $http = new MockHttpClient(new MockResponse('{"detail":"Forbidden"}', ['http_code' => 403]));
         $config = (new Configuration())->setHost('https://example.test')->setAccessToken('test-token');
         $api = new KnowledgeBaseApi($http, $config);
@@ -973,7 +973,7 @@ final class KnowledgeBaseApiTest extends GeneratedContractTestCase
 
     public function testBaseUploadKnowledgeDocumentAttachmentResponse(): void
     {
-        $arguments = [56, '/path/to/file.txt'];
+        $arguments = [56, new \SplFileObject(__FILE__, 'r')];
         $http = new MockHttpClient(new MockResponse($this->responseBody('\Ibexa\AgentPlatform\Model\KnowledgeDocumentAttachmentResponseSchema')));
         $api = new KnowledgeBaseApi($http);
         [$value, $status, $headers] = $api->baseUploadKnowledgeDocumentAttachmentWithHttpInfo(...$arguments);

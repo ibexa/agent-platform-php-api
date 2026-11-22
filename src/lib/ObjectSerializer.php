@@ -413,7 +413,7 @@ class ObjectSerializer
      *
      * @param mixed    $data          object or primitive to be deserialized
      * @param string   $class         class name is passed as a string
-     * @param string[]|null $httpHeaders   HTTP headers
+     * @param array<string, string[]>|null $httpHeaders HTTP headers
      *
      * @return mixed a deserialized model, collection, or primitive value
      */
@@ -495,11 +495,14 @@ class ObjectSerializer
             /** @var StreamInterface $data */
 
             // determine file name
-            if (
-                is_array($httpHeaders)
-                && array_key_exists('Content-Disposition', $httpHeaders)
-                && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
-            ) {
+            $contentDisposition = null;
+            foreach ($httpHeaders ?? [] as $name => $values) {
+                if (strcasecmp($name, 'Content-Disposition') === 0) {
+                    $contentDisposition = $values[0] ?? null;
+                    break;
+                }
+            }
+            if ($contentDisposition !== null && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $contentDisposition, $match)) {
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . \DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
             } else {
                 $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');

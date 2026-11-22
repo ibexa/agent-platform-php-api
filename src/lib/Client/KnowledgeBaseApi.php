@@ -5582,7 +5582,7 @@ class KnowledgeBaseApi
         }
 
         return [
-            ObjectSerializer::deserialize($content, $dataType, []),
+            ObjectSerializer::deserialize($content, $dataType, $response->getHeaders()),
             $response->getStatusCode(),
             $response->getHeaders(),
         ];

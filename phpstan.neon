@@ -5,7 +5,7 @@ parameters:
     paths:
         - src/lib
         - tests
-        - generator/prepare-openapi.php
+        - generator
     # Empty generated models retain the shared constructor for API compatibility.
     ignoreErrors:
         -

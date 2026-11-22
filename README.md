@@ -122,6 +122,8 @@ Install Composer dependencies and Docker, then run `./update.sh` from any
 directory. The preprocessing step derives a shared event schema and marks SSE
 operations before generation; it fails if their item schemas differ. Update the
 snapshot deliberately when adopting API changes; the script does not fetch the live API.
+Preprocessing steps implement `SpecProcessor` and are registered in order in
+`generator/processors.php`; add a processor there to extend the pipeline.
 The snapshot contains streaming response `itemSchema` fields which the
 generator's validator does not recognize, so generation skips validation.
 
@@ -155,6 +157,9 @@ constructor parameter warning is excluded for generated models, which share a
 constructor signature even when they have no properties. PHPDoc types are not
 treated as certain, so generated runtime checks remain meaningful for callers
 that pass invalid values.
+
+Run `composer fix-cs` to format the client, tests and OpenAPI preprocessing
+script, or `composer check-cs` to check formatting without modifying files.
 
 Run all suites with `composer test`, or only generated tests with
 `composer test -- --testsuite generated`. To generate HTML and Clover coverage

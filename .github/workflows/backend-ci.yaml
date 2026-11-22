@@ -7,6 +7,28 @@ on:
     pull_request: ~
 
 jobs:
+    generated-client:
+        name: Check generated client
+        runs-on: "ubuntu-26.04"
+        steps:
+            -   uses: actions/checkout@v7
+
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
+                with:
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+
+            -   name: Regenerate client
+                run: ./update.sh
+
+            -   name: Verify generated files are up to date
+                run: |
+                    if [ -n "$(git status --porcelain --untracked-files=all -- src tests/generated)" ]; then
+                        git status --short -- src tests/generated
+                        git diff --stat -- src tests/generated
+                        exit 1
+                    fi
+
     cs-fix:
         name: Run code style check
         runs-on: "ubuntu-26.04"
@@ -50,4 +72,27 @@ jobs:
                 run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
             -   name: Run test suite
+                if: matrix.php != '8.3'
                 run: composer run-script --timeout=600 test
+
+            -   name: Enable coverage driver
+                if: matrix.php == '8.3'
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.3'
+                    coverage: xdebug
+
+            -   name: Generate coverage reports
+                if: matrix.php == '8.3'
+                run: composer run-script --timeout=600 test-coverage
+                env:
+                    XDEBUG_MODE: coverage
+
+            -   name: Upload coverage reports
+                if: matrix.php == '8.3'
+                uses: actions/upload-artifact@v4
+                with:
+                    name: php-coverage
+                    path: |
+                        build/coverage.xml
+                        build/coverage/
